@@ -1,0 +1,9 @@
+<additional>
+	<inductionLoop id="loop0500_1" lane="Shoulder01_1" pos="500" freq="60" file="output/loopdetector.xml"/>
+	<inductionLoop id="loop0500_2" lane="Shoulder01_2" pos="500" freq="60" file="output/loopdetector.xml"/>
+	<inductionLoop id="loop0500_3" lane="Shoulder01_3" pos="500" freq="60" file="output/loopdetector.xml"/>
+	<inductionLoop id="loop01500_1" lane="Shoulder01_1" pos="1500" freq="60" file="output/loopdetector.xml"/>
+	<inductionLoop id="loop01500_2" lane="Shoulder01_2" pos="1500" freq="60" file="output/loopdetector.xml"/>
+	<inductionLoop id="loop01500_3" lane="Shoulder01_3" pos="1500" freq="60" file="output/loopdetector.xml"/>
+	<laneAreaDetector id="area03500" lane="Shoulder01_0" length="500" pos="3500" endPos="4000" freq="60" file="output/areadetector.xml"/> 
+</additional>

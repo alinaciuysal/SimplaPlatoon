@@ -1,0 +1,31 @@
+
+<configuration>
+
+   <input>
+       <net-file value="A9.net.xml"/>
+       <route-files value="Flow.rou.xml"/>
+	   <additional-files value="A9.add.xml"/>
+   </input>
+   
+    <time>
+        <begin value="0"/>
+        <end value="7200"/>
+    </time>
+	
+	<processing>
+        <time-to-teleport value="-1"/>
+		<lateral-resolution value="0.4"/>
+    </processing>
+	<traci_server>
+		<remote-port value="1122"/>
+	</traci_server>
+	
+	<output> 
+		<tripinfo-output value="output/trip_info.xml" />
+		<netstate-dump value="output/netdump.xml" />
+		<summary value ="output/summary.xml" />
+		<laneData id="1112_0" file="output/laneData.xml" />
+		<edgeData id="1112" freq="300" file="output/edgeData.xml"/>
+		
+	</output>
+</configuration>
