@@ -22,9 +22,6 @@ import _reporting as rp
 warn = rp.Warner("Config")
 report = rp.Reporter("Config")
 
-global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DIST, PLATOON_SPLIT_TIME
-global VTYPE_FILE, PLATOON_VTYPES, LC_MODE, SPEEDFACTOR, SWITCH_IMPATIENCE_FACTOR
-
 def initDefaults():
     '''
     Init default values for the configuration parameters.
@@ -72,7 +69,7 @@ def initDefaults():
     
     # speedfactors for the different platooning modes
     SPEEDFACTOR = {
-        PlatoonMode.NONE: None,  # is not altered
+        PlatoonMode.NONE: 1.0,  # NEW: previous value was None, but set to 1.0 TODO
         PlatoonMode.LEADER: 1.0,
         PlatoonMode.FOLLOWER: 1.0,
         PlatoonMode.CATCHUP: 1.1,

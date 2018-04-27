@@ -2,9 +2,6 @@ import json
 import traci
 import traci.constants as tc
 
-from colorama import Fore
-from app.logging import info
-from app import Config
 from app.streaming import KafkaForword, KafkaConnector
 from app.simpla import update
 
@@ -38,7 +35,5 @@ class PlatoonSimulation(object):
     def start(cls):
         _useStepListener = 'addStepListener' in dir(traci)
         # print(_useStepListener) # prints out true because version is >= 0.30
-        cls._tick = 0
-        while cls._tick < 10000:
-            update()
-            cls._tick += 1
+        while traci.simulation.getMinExpectedNumber() > 0:
+            traci.simulationStep()

@@ -66,6 +66,7 @@ class PVehicle(object):
         self._laneChangeModes = dict()
         # original vtype, speedFactor and lanechangemodes
         self._vTypes[PlatoonMode.NONE] = traci.vehicle.getTypeID(ID)
+        # print(traci.vehicle.getTypeID(ID)) # prints out simple_pkw_leader, PlatoonMode.NONE = 0, PlatoonMode is enum
         self._speedFactors[PlatoonMode.NONE] = traci.vehicle.getSpeedFactor(ID)
         # This is the default mode
         self._laneChangeModes[PlatoonMode.NONE] = 0b1001010101
@@ -75,7 +76,7 @@ class PVehicle(object):
             self._vTypes[mode] = self._determinePlatoonVType(mode)
             self._laneChangeModes[mode] = cfg.LC_MODE[mode]
             self._speedFactors[mode] = cfg.SPEEDFACTOR[mode]
-
+        # print("self._vTypes line 79", self._vTypes)
         # Initialize platoon mode to none
         self._currentPlatoonMode = PlatoonMode.NONE
         # the active speed factor is decreased as the waiting time for a mode switch rises
@@ -106,6 +107,8 @@ class PVehicle(object):
         global WARNED_DEFAULT
         # original vType
         origVType = self._vTypes[PlatoonMode.NONE]
+        # print("cfg.PLATOON_VTYPES", cfg.PLATOON_VTYPES)
+        # print("origVType in determinePlatoonVType", origVType, " mode ", mode)
         if origVType not in cfg.PLATOON_VTYPES \
                 or mode not in cfg.PLATOON_VTYPES[origVType] \
                 or cfg.PLATOON_VTYPES[origVType][mode] is "":
@@ -227,6 +230,7 @@ class PVehicle(object):
         '''
         if rp.VERBOSITY >= 4:
             report("Vehicle '%s' resets switch waiting time." % self._ID, 3)
+
         if mode is None:
             for e in PlatoonMode:
                 self._switchWaitingTime[e] = 0.
@@ -253,6 +257,8 @@ class PVehicle(object):
         Resets the active speed factor to the mode specific base value
         '''
         self._activeSpeedFactor = cfg.SPEEDFACTOR[self._currentPlatoonMode]
+        print("self._currentPlatoonMode", self._currentPlatoonMode)
+        print("self._activeSpeedFactor", self._activeSpeedFactor)
         traci.vehicle.setSpeedFactor(self._ID, self._activeSpeedFactor)
 
     def splitCountDown(self, dt):

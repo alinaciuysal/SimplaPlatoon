@@ -44,7 +44,6 @@ class PlatoonManager(traci.StepListener):
 
         Creates and initializes the PlatoonManager
         '''
-        print("beginning of platoon manager")
         if rp.VERBOSITY >= 2:
             report("Initializing simpla.PlatoonManager...", True)
 
@@ -60,7 +59,6 @@ class PlatoonManager(traci.StepListener):
         self._maxPlatoonGap = cfg.MAX_PLATOON_GAP
         # max distance for trying to catch up
         self._catchupDist = cfg.CATCHUP_DIST
-        # print(self._maxPlatoonGap) # prints out 25 (as indicated in simpla.cfg)
 
         # platoons currently in the simulation
         # map: platoon ID -> platoon objects
@@ -69,7 +67,7 @@ class PlatoonManager(traci.StepListener):
         # IDs of all potential platoon members currently in the simulation
         # map: ID -> vehicle
         self._connectedVehicles = dict()
-        print(traci.vehicle.getIDList())
+
         for vehID in traci.vehicle.getIDList():
             if self._hasConnectedType(vehID):
                 self._addVehicle(vehID)
@@ -286,7 +284,6 @@ class PlatoonManager(traci.StepListener):
             report("Adding vehicle '%s'" % vehID)
         self._connectedVehicles[vehID] = veh
         self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
-
 
     def _manageFollowers(self):
         '''_manageFollowers()
