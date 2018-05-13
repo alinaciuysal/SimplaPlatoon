@@ -107,6 +107,8 @@ class PVehicle(object):
         global WARNED_DEFAULT
         # original vType
         origVType = self._vTypes[PlatoonMode.NONE]
+        # print("mode", mode)
+        # print("origVType", origVType)
         # print("cfg.PLATOON_VTYPES", cfg.PLATOON_VTYPES)
         # print("origVType in determinePlatoonVType", origVType, " mode ", mode)
         if origVType not in cfg.PLATOON_VTYPES \
@@ -257,8 +259,6 @@ class PVehicle(object):
         Resets the active speed factor to the mode specific base value
         '''
         self._activeSpeedFactor = cfg.SPEEDFACTOR[self._currentPlatoonMode]
-        print("self._currentPlatoonMode", self._currentPlatoonMode)
-        print("self._activeSpeedFactor", self._activeSpeedFactor)
         traci.vehicle.setSpeedFactor(self._ID, self._activeSpeedFactor)
 
     def splitCountDown(self, dt):

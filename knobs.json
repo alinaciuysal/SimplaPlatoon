@@ -1,3 +1,5 @@
 {
-  "hard_shoulder": 0
+  "hard_shoulder": 0,
+  "MAX_PLATOON_GAP": 20,
+  "CATCHUP_DIST": 50
 }

@@ -69,11 +69,11 @@ def initDefaults():
     
     # speedfactors for the different platooning modes
     SPEEDFACTOR = {
-        PlatoonMode.NONE: 1.0,  # NEW: previous value was None, but set to 1.0 TODO
+        PlatoonMode.NONE: 1.0,  # NEW: previous value was None, but set to 1.0 as a work-around
         PlatoonMode.LEADER: 1.0,
-        PlatoonMode.FOLLOWER: 1.0,
-        PlatoonMode.CATCHUP: 1.1,
-        PlatoonMode.CATCHUP_FOLLOWER: None  # is set to the same as for catchup mode below if not explicitely set
+        PlatoonMode.FOLLOWER: 1.2,
+        PlatoonMode.CATCHUP: 1.2,
+        PlatoonMode.CATCHUP_FOLLOWER: 1.2  # is set to the same as for catchup mode below if not explicitely set
     }
     
     # file with vtype maps for platoon types
@@ -146,7 +146,6 @@ def loadVTypeMap(fn):
             if rp.VERBOSITY >= 1:
                 warn("vType file '%s' contained %d lines that were not parsed into a colon-separated sequence of strings!" % (fn, NrBadLines))
 
-
 def load(filename):
     '''load(string)
 
@@ -164,7 +163,7 @@ def load(filename):
             if hasAttributes(e):
                 verbosity = int(list(e.attrib.values())[0])
                 if verbosity in range(5):
-                    rp.VERBOSITY  = verbosity
+                    rp.VERBOSITY = verbosity
                 else:
                     if rp.VERBOSITY >= 1: warn("Verbosity must be one of %s! Ignoring given value: %s"%(str(list(range(5))), verbosity),True)
         elif e.tag == "controlRate":
@@ -186,8 +185,8 @@ def load(filename):
                     MAX_PLATOON_GAP = maxgap 
         elif e.tag == "catchupDist":
             if hasAttributes(e):
-                dist=float(list(e.attrib.values())[0])
-                if maxgap <= 0:
+                dist = float(list(e.attrib.values())[0])
+                if dist <= 0: # TODO: report bugfix here: "variable maxgap was referenced before assignment"
                     if rp.VERBOSITY>=1: warn("Parameter catchupDist must be positive. Ignoring given value: %s" % (dist), True)
                 else:
                     CATCHUP_DIST = dist
@@ -289,7 +288,7 @@ def hasAttributes(element):
         return False
     else:
         return True
-    
+
 def isValidLCMode(mode):
     if 0<=mode<=1023:
         return True
@@ -303,4 +302,20 @@ def isValidSpeedFactor(value):
     else: 
         warn("Given speedFactor %s is invalid. Using default value."%(value),True)
         return False
-    
+
+'''
+    @param(values): a dict that contains config to be applied for global variables
+'''
+def setValues(values):
+    global_variables = ["CONTROL_RATE", "VEH_SELECTORS", "MAX_PLATOON_GAP",
+                        "CATCHUP_DIST", "PLATOON_SPLIT_TIME",
+                        "VTYPE_FILE", "PLATOON_VTYPES", "LC_MODE", "SPEEDFACTOR", "SWITCH_IMPATIENCE_FACTOR"]
+    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DIST, PLATOON_SPLIT_TIME
+    global VTYPE_FILE, PLATOON_VTYPES, LC_MODE, SPEEDFACTOR, SWITCH_IMPATIENCE_FACTOR
+
+    for key in values:
+        if key in globals():
+            globals()[key] = values[key]
+
+def getValues():
+    return globals()

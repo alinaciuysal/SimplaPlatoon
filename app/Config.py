@@ -14,12 +14,22 @@ kafkaHost = "kafka:9092"
 kafkaTopicTicks = "ticks"
 kafkaTopicLoopDetectorOccupancies = "occupancies"
 kafkaTopicCarSpeeds = "speeds"
+kafkaTopicCarEmissions = "emissions"
+kafkaTopicCarFuels = "fuels"
 
 # where we receive system changes
 kafkaCommandsTopic = "shoulder-control"
+kafkaPlatoonConfigTopic = "platoon-config"
+
+# Initial wait time before publishing data
+initialWaitTicks = 10
 
 # True if we want to use the SUMO GUI (always of in parallel mode)
-sumoUseGUI = False
+sumoUseGUI = True
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
 platooning = True
+
+# runtime dependent variable
+processID = 0
+parallelMode = False
