@@ -14,8 +14,8 @@ kafkaHost = "kafka:9092"
 kafkaTopicTicks = "ticks"
 kafkaTopicLoopDetectorOccupancies = "occupancies"
 kafkaTopicCarSpeeds = "speeds"
-kafkaTopicCarEmissions = "emissions"
-kafkaTopicCarFuels = "fuels"
+kafkaTopicDurationForTrips = "durations"
+kafkaTopicReportedValues = "reportedValues"
 
 # where we receive system changes
 kafkaCommandsTopic = "shoulder-control"
@@ -28,8 +28,10 @@ initialWaitTicks = 10
 sumoUseGUI = True
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
-platooning = True
+platooning = False
 
 # runtime dependent variable
 processID = 0
 parallelMode = False
+
+stats = "mean" # can also be median, min, max for now

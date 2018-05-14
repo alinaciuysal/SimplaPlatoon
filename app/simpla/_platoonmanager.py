@@ -24,6 +24,11 @@ import _pvehicle
 import _platoon
 import traci
 import traci.constants as tc
+import app.Config as Config
+import numpy as np
+
+from app.streaming import KafkaForword, KafkaConnector
+
 warn = rp.Warner("PlatoonManager")
 report = rp.Reporter("PlatoonManager")
 
@@ -44,6 +49,8 @@ class PlatoonManager(traci.StepListener):
 
         Creates and initializes the PlatoonManager
         '''
+
+
         if rp.VERBOSITY >= 2:
             report("Initializing simpla.PlatoonManager...", True)
 
@@ -67,6 +74,7 @@ class PlatoonManager(traci.StepListener):
         # IDs of all potential platoon members currently in the simulation
         # map: ID -> vehicle
         self._connectedVehicles = dict()
+        self.tick = 0
 
         for vehID in traci.vehicle.getIDList():
             if self._hasConnectedType(vehID):
@@ -85,7 +93,32 @@ class PlatoonManager(traci.StepListener):
             self._controlInterval = 1. / cfg.CONTROL_RATE
 
         self._timeSinceLastControl = 1000.
-        
+
+        # NEW:
+        # counts the number of finished trips
+        self.totalTrips = 0
+        # average of all trip durations
+        self.totalTripAverage = 0
+        # average of all trip overheads (overhead is TotalTicks/PredictedTicks)
+        self.totalTripOverheadAverage = 0
+
+        # average of all CO2 emissions
+        self.totalCO2EmissionAverage = 0
+        # average of all CO emissions
+        self.totalCOEmissionAverage = 0
+        # average of all fuel emissions
+        self.totalFuelConsumptionAverage = 0
+
+        self.totalHCEmissionAverage = 0
+        self.totalPMXEmissionAverage = 0
+        self.totalNOxEmissionAverage = 0
+        self.totalNoiseEmissionAverage = 0
+
+        # average of all speeds
+        self.totalSpeedAverage = 0
+
+        self.allCO2ReportLength = 0
+
         # Check for undefined vtypes and fill with defaults
         for origType, specialTypes in cfg.PLATOON_VTYPES.items():
             if specialTypes[PlatoonMode.FOLLOWER] is None:
@@ -98,7 +131,7 @@ class PlatoonManager(traci.StepListener):
                 specialTypes[PlatoonMode.CATCHUP]=origType
             if specialTypes[PlatoonMode.CATCHUP_FOLLOWER] is None:
                 if rp.VERBOSITY>=2:
-                    report("Setting unspecified catchup-follower vtype for '%s' to '%s'"%(origType, specialTypes[PlatoonMode.FOLLOWER]),True)                
+                    report("Setting unspecified catchup-follower vtype for '%s' to '%s'"%(origType, specialTypes[PlatoonMode.FOLLOWER]),True)
                 specialTypes[PlatoonMode.CATCHUP_FOLLOWER]=specialTypes[PlatoonMode.FOLLOWER]
 ## Commented snippet generated automatically a catchup follower type with a different color
 #                 catchupFollowerType = origType + "_catchupFollower"
@@ -109,8 +142,8 @@ class PlatoonManager(traci.StepListener):
 #                 traci.vehicletype.copy(specialTypes[PlatoonMode.CATCHUP_FOLLOWER] , catchupFollowerType)
 #                 traci.vehicletype.setColor(catchupFollowerType, (0, 255, 200, 0))
 
-            
-        
+
+
 
         # fill global lookup table for vType parameters (used below in safetycheck)
         knownVTypes = traci.vehicletype.getIDList()
@@ -144,9 +177,10 @@ class PlatoonManager(traci.StepListener):
         Manages platoons at each time step.
         NOTE: argument t is unused, larger step sizes than DeltaT are not supported.
         '''
-        if not t==0 and rp.VERBOSITY >= 1: 
+        if not t==0 and rp.VERBOSITY >= 1:
             warn("Step lengths that differ from SUMO's simulation step length are not supported and probably lead to undesired behavior.\nConsider decreasing simpla's control rate instead.")
         # Handle vehicles entering and leaving the simulation
+        # NEW logic here related with tick
         self._addDeparted()
         self._removeArrived()
         self._timeSinceLastControl += self._DeltaT
@@ -156,7 +190,9 @@ class PlatoonManager(traci.StepListener):
             self._updatePlatoonOrdering()
             self._manageLeaders()
             self._adviseLanes()
-            self._timeSinceLastControl = 0.
+            self._timeSinceLastControl = 0
+            # NEW
+            self.tick += 1
 
     def stop(self):
         '''stop()
@@ -195,6 +231,24 @@ class PlatoonManager(traci.StepListener):
             veh.state.laneID = self._subscriptionResults[veh.getID()][tc.VAR_LANE_ID]
             veh.state.laneIX = self._subscriptionResults[veh.getID()][tc.VAR_LANE_INDEX]
             veh.state.leaderInfo = traci.vehicle.getLeader(veh.getID(), self._catchupDist)
+            # NEW
+            CO2Emission = self._subscriptionResults[veh.getID()][tc.VAR_CO2EMISSION]
+            COEmission = self._subscriptionResults[veh.getID()][tc.VAR_COEMISSION]
+            HCEmission = self._subscriptionResults[veh.getID()][tc.VAR_HCEMISSION]
+            PMXEmission = self._subscriptionResults[veh.getID()][tc.VAR_PMXEMISSION]
+            NOxEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOXEMISSION]
+            FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
+            NoiseEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOISEEMISSION]
+
+            veh.state.reportedCO2Emissions.append(CO2Emission)
+            veh.state.reportedCOEmissions.append(COEmission)
+            veh.state.reportedHCEmissions.append(HCEmission)
+            veh.state.reportedPMXEmissions.append(PMXEmission)
+            veh.state.reportedNOxEmissions.append(NOxEmission)
+            veh.state.reportedFuelConsumptions.append(FuelConsumption)
+            veh.state.reportedNoiseEmissions.append(NoiseEmission)
+            veh.state.reportedSpeeds.append(veh.state.speed)
+
             if veh.state.leaderInfo is None:
                 veh.state.leader = None
                 veh.state.connectedVehicleAhead = False
@@ -241,6 +295,13 @@ class PlatoonManager(traci.StepListener):
             toRemove[veh.getPlatoon().getID()].append(veh)
             count += 1
 
+            # NEW: statistics
+            self.totalTrips += 1
+            self.update_statistics(veh)
+
+            # KafkaForword.publish(self.totalTripAverage, Config.kafkaTopicDurationForTrips)
+            # self.reportStatistics(veh)
+
         for pltnID, vehs in toRemove.items():
             pltn = self._platoons[pltnID]
             pltn.removeVehicles(vehs)
@@ -266,13 +327,22 @@ class PlatoonManager(traci.StepListener):
         return count
 
     def _addVehicle(self, vehID):
-        '''_addVehicle(string)
+        '''_addVehicle(string, int)
 
         Creates a new PVehicle object and registers is soliton platoon
         '''
         try:
-            traci.vehicle.subscribe(vehID, (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED))
-            veh = _pvehicle.PVehicle(vehID, self._controlInterval)
+            # NEW: updated subscription list according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
+            traci.vehicle.subscribe(vehID,
+                                    (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED,
+                                     tc.VAR_CO2EMISSION,
+                                     tc.VAR_COEMISSION,
+                                     tc.VAR_HCEMISSION,
+                                     tc.VAR_PMXEMISSION,
+                                     tc.VAR_NOXEMISSION,
+                                     tc.VAR_FUELCONSUMPTION,
+                                     tc.VAR_NOISEEMISSION))
+            veh = _pvehicle.PVehicle(vehID, self._controlInterval, self.tick)
         except TraCIException:
             if rp.VERBOSITY >= 1:
                 warn("Tried to create non-existing vehicle '%s'" % vehID)
@@ -580,7 +650,7 @@ class PlatoonManager(traci.StepListener):
             return True
         else:
             return False
-        
+
     def _hasConnectedType(self, vehID):
         '''_hasConnectedType(string) -> bool
 
@@ -592,6 +662,70 @@ class PlatoonManager(traci.StepListener):
             if selector_str in vtype:
                 return True
         return False
-        
-        
 
+    # TODO: refactoring needed
+    def update_statistics(self, veh):
+        self.allCO2ReportLength += len(veh.state.reportedCO2Emissions)
+
+        co2 = np.mean(veh.state.reportedCO2Emissions)
+        self.totalCO2EmissionAverage = self.addToAverage(self.totalTrips, self.totalCO2EmissionAverage, co2)
+
+        co = np.mean(veh.state.reportedCOEmissions)
+        self.totalCOEmissionAverage = self.addToAverage(self.totalTrips, self.totalCOEmissionAverage, co)
+
+        hc = np.mean(veh.state.reportedHCEmissions)
+        self.totalHCEmissionAverage = self.addToAverage(self.totalTrips, self.totalHCEmissionAverage, hc)
+
+        pmx = np.mean(veh.state.reportedPMXEmissions)
+        self.totalPMXEmissionAverage = self.addToAverage(self.totalTrips, self.totalPMXEmissionAverage, pmx)
+
+        no = np.mean(veh.state.reportedNOxEmissions)
+        self.totalNOxEmissionAverage = self.addToAverage(self.totalTrips, self.totalNOxEmissionAverage, no)
+
+        fuel = np.mean(veh.state.reportedFuelConsumptions)
+        self.totalFuelConsumptionAverage = self.addToAverage(self.totalTrips, self.totalFuelConsumptionAverage, fuel)
+
+        noise = np.mean(veh.state.reportedNoiseEmissions)
+        self.totalNoiseEmissionAverage = self.addToAverage(self.totalTrips, self.totalNoiseEmissionAverage, noise)
+
+        speed = np.mean(veh.state.reportedSpeeds)
+        self.totalSpeedAverage = self.addToAverage(self.totalTrips, self.totalSpeedAverage, speed)
+
+    @staticmethod
+    def addToAverage(totalCount, totalValue, newValue):
+        """ simple sliding average calculation """
+        return ((1.0 * totalCount * totalValue) + newValue) / (totalCount + 1)
+
+    @staticmethod
+    def reportStatistics(veh):
+        payload = {}
+        # iterate all attributes of pVehicleState class
+        for key, value in veh.state.__dict__.iteritems():
+            if not key.startswith("__") and "reported" in key:
+                report("key: '%s'" % key, True)
+                stats = Config.stats
+                if stats == "mean":
+                    agg = np.mean(value)
+                elif stats == "median":
+                    agg = np.median(value)
+                elif stats == "min":
+                    agg = np.min(value)
+                elif stats == "max":
+                    agg = np.max(value)
+                payload[key] = agg
+
+        KafkaForword.publish(payload, Config.kafkaTopicReportedValues)
+
+    def get_statistics(self):
+        print("allCO2ReportLength", self.allCO2ReportLength)
+        res = dict(
+            totalCO2EmissionAverage=self.totalCO2EmissionAverage,
+            totalCOEmissionAverage=self.totalCOEmissionAverage,
+            totalFuelConsumptionAverage=self.totalFuelConsumptionAverage,
+            totalHCEmissionAverage=self.totalHCEmissionAverage,
+            totalPMXEmissionAverage=self.totalPMXEmissionAverage,
+            totalNOxEmissionAverage=self.totalNOxEmissionAverage,
+            totalNoiseEmissionAverage=self.totalNoiseEmissionAverage,
+            totalSpeedAverage=self.totalSpeedAverage
+        )
+        return res

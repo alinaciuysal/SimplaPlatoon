@@ -5,6 +5,7 @@ import traci.constants as tc
 from colorama import Fore
 from app.logging import info
 import app.Config as cfg
+import numpy as np
 from app.streaming import KafkaForword, KafkaConnector
 
 class Simulation(object):
@@ -13,6 +14,15 @@ class Simulation(object):
     tick = 0
     # whether the hard should should be open
     hard_shoulder_on = False
+
+    reportedCO2Emissions = []
+    reportedCOEmissions = []
+    reportedHCEmissions = []
+    reportedPMXEmissions = []
+    reportedNOxEmissions = []
+    reportedFuelConsumptions = []
+    reportedNoiseEmissions = []
+    reportedSpeeds = []
 
     @classmethod
     def applyFileConfig(cls):
@@ -55,7 +65,14 @@ class Simulation(object):
 
             # attach listener to each car in the simulation
             for veh_id in traci.simulation.getDepartedIDList():
-                traci.vehicle.subscribe(veh_id, [tc.VAR_LANE_ID, tc.VAR_LANEPOSITION, tc.VAR_SPEED])
+                traci.vehicle.subscribe(veh_id, [tc.VAR_LANE_ID, tc.VAR_LANEPOSITION, tc.VAR_SPEED,
+                                                 tc.VAR_CO2EMISSION,
+                                                 tc.VAR_COEMISSION,
+                                                 tc.VAR_HCEMISSION,
+                                                 tc.VAR_PMXEMISSION,
+                                                 tc.VAR_NOXEMISSION,
+                                                 tc.VAR_FUELCONSUMPTION,
+                                                 tc.VAR_NOISEEMISSION])
 
             cars = traci.vehicle.getSubscriptionResults()
             for car in cars:
@@ -64,6 +81,24 @@ class Simulation(object):
                     position = cars[car][tc.VAR_LANEPOSITION]
                     if 500 < position < 1500:
                         KafkaForword.publish({"speed": cars[car][tc.VAR_SPEED]}, cfg.kafkaTopicCarSpeeds)
+                # NEW
+                CO2Emission = cars[car][tc.VAR_CO2EMISSION]
+                COEmission = cars[car][tc.VAR_COEMISSION]
+                HCEmission = cars[car][tc.VAR_HCEMISSION]
+                PMXEmission = cars[car][tc.VAR_PMXEMISSION]
+                NOxEmission = cars[car][tc.VAR_NOXEMISSION]
+                FuelConsumption = cars[car][tc.VAR_FUELCONSUMPTION]
+                NoiseEmission = cars[car][tc.VAR_NOISEEMISSION]
+                Speed = cars[car][tc.VAR_SPEED]
+
+                cls.reportedCO2Emissions.append(CO2Emission)
+                cls.reportedCOEmissions.append(COEmission)
+                cls.reportedHCEmissions.append(HCEmission)
+                cls.reportedPMXEmissions.append(PMXEmission)
+                cls.reportedNOxEmissions.append(NOxEmission)
+                cls.reportedFuelConsumptions.append(FuelConsumption)
+                cls.reportedNoiseEmissions.append(NoiseEmission)
+                cls.reportedSpeeds.append(Speed)
 
             loopDetectorOccupancies = traci.inductionloop.getSubscriptionResults()
             KafkaForword.publish({"occupancy" : loopDetectorOccupancies['loop0500_1'][tc.LAST_STEP_OCCUPANCY], "id" : 'loop0500_1'}, cfg.kafkaTopicLoopDetectorOccupancies)
@@ -88,3 +123,21 @@ class Simulation(object):
                     cls.applyFileConfig()
                 else:
                     cls.applyKafkaConfig()
+        # NEW: get statistics
+        results = cls.get_statistics()
+        print("result in Simulation", results)
+
+    @classmethod
+    def get_statistics(self):
+        print(len(self.reportedCO2Emissions))
+        res = dict(
+            totalCO2EmissionAverage=np.mean(self.reportedCO2Emissions),
+            totalCOEmissionAverage=np.mean(self.reportedCOEmissions),
+            totalFuelConsumptionAverage=np.mean(self.reportedFuelConsumptions),
+            totalHCEmissionAverage=np.mean(self.reportedHCEmissions),
+            totalPMXEmissionAverage=np.mean(self.reportedPMXEmissions),
+            totalNOxEmissionAverage=np.mean(self.reportedNOxEmissions),
+            totalNoiseEmissionAverage=np.mean(self.reportedNoiseEmissions),
+            totalSpeedAverage=np.mean(self.reportedSpeeds),
+        )
+        return res

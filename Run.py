@@ -36,7 +36,9 @@ info('# Configuration:', Fore.YELLOW)
 info('# Kafka-Host   -> ' + app.Config.kafkaHost, Fore.YELLOW)
 info('# Kafka-Topic1 -> ' + app.Config.kafkaTopicTicks, Fore.YELLOW)
 info('# Kafka-Topic2 -> ' + app.Config.kafkaTopicLoopDetectorOccupancies, Fore.YELLOW)
-info('# Kafka-Topic3 -> ' + app.Config.kafkaTopicCarSpeeds, Fore.YELLOW)
+info('# Kafka-Topic3 -> ' + app.Config.kafkaTopicDurationForTrips, Fore.YELLOW)
+info('# Kafka-Topic4 -> ' + app.Config.kafkaTopicReportedValues, Fore.YELLOW)
+
 # init sending updates to kafka and getting commands from there
 if app.Config.kafkaUpdates:
     KafkaForword.connect()
@@ -50,8 +52,8 @@ info("\n# Starting the simulation!", Fore.GREEN)
 
 if app.Config.platooning:
     file_path = os.path.join("app", "map", "simpla.cfg")
-    app.simpla.load(file_path)
-    PlatoonSimulation.start()
+    platoon_mgr = app.simpla.load(file_path)
+    PlatoonSimulation.start(platoon_mgr)
 else:
     info("\n# SUMO-Application started OK!", Fore.GREEN)
     Simulation.start()

@@ -42,7 +42,7 @@ def simTime():
 
 def array2String(a):
     if len(a) > 0 and hasattr(a[0], "getID"):
-        return str([e.getID() for e in a])
+        return str([e.getID() for e in a if e is not None])
     return str([str(e) for e in a])
 
 

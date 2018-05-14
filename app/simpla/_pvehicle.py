@@ -42,6 +42,24 @@ class pVehicleState(object):
         # (though not necessarily being the immediate leader)
         self.connectedVehicleAhead = False
 
+        # NEW:
+        # self.CO2Emission = traci.vehicle.getCO2Emission(ID)
+        # self.COEmission = traci.vehicle.getCOEmission(ID)
+        # self.HCEmission = traci.vehicle.getHCEmission(ID)
+        # self.PMXEmission = traci.vehicle.getPMxEmission(ID)
+        # self.NOxEmission = traci.vehicle.getNOxEmission(ID)
+        # self.FuelConsumption = traci.vehicle.getFuelConsumption(ID)
+        # self.NoiseEmission = traci.vehicle.getNoiseEmission(ID)
+
+        self.reportedCO2Emissions = []
+        self.reportedCOEmissions = []
+        self.reportedHCEmissions = []
+        self.reportedPMXEmissions = []
+        self.reportedNOxEmissions = []
+        self.reportedFuelConsumptions = []
+        self.reportedNoiseEmissions = []
+        self.reportedSpeeds = []
+
 
 class PVehicle(object):
 
@@ -49,7 +67,7 @@ class PVehicle(object):
     Vehicle objects for platooning
     '''
 
-    def __init__(self, ID, controlInterval):
+    def __init__(self, ID, controlInterval, tick):
         '''Constructor(string, float)
 
         Create a PVehicle representing a SUMOVehicle for the PlatoonManager. The controlInterval is only piped through
@@ -96,6 +114,9 @@ class PVehicle(object):
         # waiting time for switching into different modes
         self._switchWaitingTime = {}
         self.resetSwitchWaitingTime()
+
+        # NEW: attribute related with new metrics
+        self.currentRouteBeginTick = tick
 
     def _determinePlatoonVType(self, mode):
         '''_determinePlatoonVType(PlatoonMode) -> string
