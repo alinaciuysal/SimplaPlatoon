@@ -25,10 +25,10 @@ kafkaPlatoonConfigTopic = "platoon-config"
 initialWaitTicks = 10
 
 # True if we want to use the SUMO GUI (always of in parallel mode)
-sumoUseGUI = True
+sumoUseGUI = False
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
-platooning = False
+platooning = True
 
 # runtime dependent variable
 processID = 0

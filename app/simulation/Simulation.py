@@ -125,7 +125,7 @@ class Simulation(object):
                     cls.applyKafkaConfig()
         # NEW: get statistics
         results = cls.get_statistics()
-        print("result in Simulation", results)
+        print(results)
 
     @classmethod
     def get_statistics(self):

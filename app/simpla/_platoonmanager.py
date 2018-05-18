@@ -119,6 +119,10 @@ class PlatoonManager(traci.StepListener):
 
         self.allCO2ReportLength = 0
 
+        # in some configurations, simulation runs forever because of violating platoon ordering
+        # this array keeps track of these violated platoons: if this occurs twice, then setSplitConditions is set True
+        self.violatedPlatoonIDs = []
+
         # Check for undefined vtypes and fill with defaults
         for origType, specialTypes in cfg.PLATOON_VTYPES.items():
             if specialTypes[PlatoonMode.FOLLOWER] is None:
@@ -300,7 +304,6 @@ class PlatoonManager(traci.StepListener):
             self.update_statistics(veh)
 
             # KafkaForword.publish(self.totalTripAverage, Config.kafkaTopicDurationForTrips)
-            # self.reportStatistics(veh)
 
         for pltnID, vehs in toRemove.items():
             pltn = self._platoons[pltnID]
@@ -388,7 +391,12 @@ class PlatoonManager(traci.StepListener):
                         if rp.VERBOSITY >= 2:
                             report("Platoon order for platoon '%s' is violated: real leader '%s' is not registered as leader of '%s'" % (
                                 pltnID, leaderID, veh.getID()), 1)
-                        veh.setSplitConditions(False)
+                        # NEW
+                        if pltnID not in self.violatedPlatoonIDs:
+                            self.violatedPlatoonIDs.append(pltnID)
+                            veh.setSplitConditions(False)
+                        else:
+                            veh.setSplitConditions(True)
                     else:
                         # leader is connected but belongs to a different platoon
                         veh.setSplitConditions(True)
@@ -667,6 +675,12 @@ class PlatoonManager(traci.StepListener):
     def update_statistics(self, veh):
         self.allCO2ReportLength += len(veh.state.reportedCO2Emissions)
 
+        # we don't need a mean here because it should only be calculated once the vehicle lefts simulation
+        durationForTrip = (self.tick - veh.currentRouteBeginTick)
+        self.totalTripAverage = self.addToAverage(self.totalTrips,
+                                                    self.totalTripAverage,
+                                                    durationForTrip)
+
         co2 = np.mean(veh.state.reportedCO2Emissions)
         self.totalCO2EmissionAverage = self.addToAverage(self.totalTrips, self.totalCO2EmissionAverage, co2)
 
@@ -696,28 +710,28 @@ class PlatoonManager(traci.StepListener):
         """ simple sliding average calculation """
         return ((1.0 * totalCount * totalValue) + newValue) / (totalCount + 1)
 
-    @staticmethod
-    def reportStatistics(veh):
-        payload = {}
-        # iterate all attributes of pVehicleState class
-        for key, value in veh.state.__dict__.iteritems():
-            if not key.startswith("__") and "reported" in key:
-                report("key: '%s'" % key, True)
-                stats = Config.stats
-                if stats == "mean":
-                    agg = np.mean(value)
-                elif stats == "median":
-                    agg = np.median(value)
-                elif stats == "min":
-                    agg = np.min(value)
-                elif stats == "max":
-                    agg = np.max(value)
-                payload[key] = agg
-
-        KafkaForword.publish(payload, Config.kafkaTopicReportedValues)
+    # @staticmethod
+    # def reportStatistics(veh):
+    #     payload = {}
+    #     # iterate all attributes of pVehicleState class
+    #     for key, value in veh.state.__dict__.iteritems():
+    #         if not key.startswith("__") and "reported" in key:
+    #             report("key: '%s'" % key, True)
+    #             stats = Config.stats
+    #             if stats == "mean":
+    #                 agg = np.mean(value)
+    #             elif stats == "median":
+    #                 agg = np.median(value)
+    #             elif stats == "min":
+    #                 agg = np.min(value)
+    #             elif stats == "max":
+    #                 agg = np.max(value)
+    #             payload[key] = agg
+    #
+    #     KafkaForword.publish(payload, Config.kafkaTopicReportedValues)
 
     def get_statistics(self):
-        print("allCO2ReportLength", self.allCO2ReportLength)
+        print(self.allCO2ReportLength)
         res = dict(
             totalCO2EmissionAverage=self.totalCO2EmissionAverage,
             totalCOEmissionAverage=self.totalCOEmissionAverage,
@@ -726,6 +740,7 @@ class PlatoonManager(traci.StepListener):
             totalPMXEmissionAverage=self.totalPMXEmissionAverage,
             totalNOxEmissionAverage=self.totalNOxEmissionAverage,
             totalNoiseEmissionAverage=self.totalNoiseEmissionAverage,
-            totalSpeedAverage=self.totalSpeedAverage
+            totalSpeedAverage=self.totalSpeedAverage,
+            totalTripAverage=self.totalTripAverage
         )
         return res

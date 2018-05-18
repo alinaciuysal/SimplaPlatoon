@@ -335,6 +335,13 @@ class PVehicle(object):
                 warn("Given parameter switchImpatience < 0. Assuming == 0.")
             switchImpatience = 0.
 
+        # NEW: workaround for bug when following thing is somehow obtained as {}
+        # if tc.VAR_DECEL not in vTypeParameters[self._vTypes[targetMode]]:
+        #     return False
+        #
+        # if tc.VAR_TAU not in vTypeParameters[self._vTypes[targetMode]]:
+        #     return False
+
         # obtain the preferred deceleration and the tau of the target vType
         decel = vTypeParameters[self._vTypes[targetMode]][tc.VAR_DECEL]
         tau = vTypeParameters[self._vTypes[targetMode]][tc.VAR_TAU]

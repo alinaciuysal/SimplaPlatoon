@@ -66,4 +66,4 @@ class PlatoonSimulation(object):
                 #     + " # totalCO2EmissionAverage: " + str(cls.totalCO2EmissionAverage)
                 #     + " # totalCOEmissionAverage: " + str(cls.totalCOEmissionAverage) )
         results = platoon_mgr.get_statistics()
-        print("results in PlatoonSimulation start", results)
+        print(results)

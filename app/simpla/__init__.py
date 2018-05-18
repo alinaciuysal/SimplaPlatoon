@@ -73,6 +73,7 @@ def load(config_filename):
     if _useStepListener:
         # For SUMO version >= 0.30
         traci.addStepListener(_mgr)
+    return _mgr
 
 
 def stop():
