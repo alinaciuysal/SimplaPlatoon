@@ -124,18 +124,22 @@ class PVehicle(object):
         all_edges_to_travel = edges[:rnd_edge_idx]
 
         # now get line at idx 0 of last edge to randomly select position
-        # line_id = rnd_edge + str("_") + "0"
-        # line_length = traci.lane.getLength(line_id)
+        line_id = rnd_edge + str("_") + "0"
+        line_length = traci.lane.getLength(line_id)
 
         # TODO: remove seed after testing
         # random.seed(3)
         # now get a random exit location within [0, line_length]
-        # self.arrivalPos = random.uniform(0, line_length)
+        self.arrivalPos = random.uniform(0, line_length)
+
         self.edges = all_edges_to_travel
         self.lastEdge = rnd_edge
 
         # NEW: attribute related with new metrics
         self.currentRouteBeginTick = tick
+
+        from _platoonmanager import _destinations
+        _destinations[self._ID] = [self.lastEdge, self.arrivalPos]
 
     def _determinePlatoonVType(self, mode):
         '''_determinePlatoonVType(PlatoonMode) -> string

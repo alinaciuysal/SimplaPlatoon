@@ -1,4 +1,4 @@
-import traci, os, sys
+import os, sys
 from app.streaming import KafkaConnector
 
 sys.path.append(os.path.join(os.environ.get("SUMO_HOME"), "tools"))

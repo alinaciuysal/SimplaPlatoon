@@ -27,7 +27,7 @@ kafkaPlatoonConfigTopic = "platoon-config"
 initialWaitTicks = 10
 
 # True if we want to use the SUMO GUI
-sumoUseGUI = False
+sumoUseGUI = True
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
 platooning = True

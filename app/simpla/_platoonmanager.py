@@ -33,6 +33,8 @@ warn = rp.Warner("PlatoonManager")
 report = rp.Reporter("PlatoonManager")
 
 
+_destinations = {}
+
 class PlatoonManager(traci.StepListener):
 
     '''
@@ -49,7 +51,6 @@ class PlatoonManager(traci.StepListener):
 
         Creates and initializes the PlatoonManager
         '''
-
 
         if rp.VERBOSITY >= 2:
             report("Initializing simpla.PlatoonManager...", True)
@@ -342,10 +343,14 @@ class PlatoonManager(traci.StepListener):
                 # traci.vehicle.setParameter(newID, "arrivalPos", str(veh.arrivalPos))
                 # changes the vehicle route to given edges list
                 traci.vehicle.setRoute(newID, veh.edges)
+
                 arrivalPos = traci.vehicle.getParameter(newID, "arrivalPos")
+
                 route = traci.vehicle.getRoute(newID)
-                print("22222 -- new route of newly-added vehicle", route, " arrivalPos", arrivalPos)
+                print("22222 -- new route of newly-added vehicle", route, " arrivalPos", arrivalPos, " car id" + newID)
                 count += 1
+
+                traci.vehicle.subscribe(newID, [tc.VAR_LANEPOSITION, tc.VAR_LANE_ID])
         return count
 
     def _addVehicle(self, vehID):
