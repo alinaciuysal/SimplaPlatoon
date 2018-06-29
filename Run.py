@@ -1,19 +1,4 @@
-# import os,subprocess, sys
-# sumo_path=os.getenv("SUMO_HOME")
-# traci_path=os.path.join(sumo_path,'tools')
-# sys.path.append(traci_path)
-# import traci
-# import Config
-# from app.logging import info
-# from sumolib import checkBinary
-# from sumo import SUMOConnector, SUMODependency
-# from streaming import KafkaForword
-# from app.streaming import KafkaConnector
-# from colorama import Fore
-# from app.simulation.Simulation import Simulation
-
-import os, sys
-
+import traci, os, sys
 from app.streaming import KafkaConnector
 
 sys.path.append(os.path.join(os.environ.get("SUMO_HOME"), "tools"))
@@ -26,7 +11,6 @@ from colorama import Fore
 from app.sumo import SUMOConnector, SUMODependency
 
 import app.Config
-import traci, sys
 import app.simpla
 
 info('#####################################', Fore.CYAN)

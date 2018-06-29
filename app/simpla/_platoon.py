@@ -133,7 +133,7 @@ class Platoon(object):
         success = False
         if mode == PlatoonMode.NONE:
             if self.size() == 1:
-                if (self._vehicles[0].isSwitchSafe(mode)):
+                if self._vehicles[0].isSwitchSafe(mode):
                     self._vehicles[0].setPlatoonMode(mode)
                     success = True
                 else:
@@ -145,6 +145,7 @@ class Platoon(object):
         elif mode == PlatoonMode.LEADER:
             if self._vehicles[0].isSwitchSafe(mode):
                 self._vehicles[0].setPlatoonMode(mode)
+                # assign follower mode to other vehicles in the platoon
                 for veh in self._vehicles[1:]:
                     if veh.isSwitchSafe(PlatoonMode.FOLLOWER):
                         veh.setPlatoonMode(PlatoonMode.FOLLOWER)
@@ -155,6 +156,7 @@ class Platoon(object):
         elif mode == PlatoonMode.CATCHUP:
             if self._vehicles[0].isSwitchSafe(mode):
                 self._vehicles[0].setPlatoonMode(mode)
+                # assign catchup follower mode to other vehicles in the platoon
                 for veh in self._vehicles[1:]:
                     if veh.isSwitchSafe(PlatoonMode.CATCHUP_FOLLOWER):
                         veh.setPlatoonMode(PlatoonMode.CATCHUP_FOLLOWER)
@@ -165,6 +167,7 @@ class Platoon(object):
         elif mode == PlatoonMode.CATCHUP_FOLLOWER or mode == PlatoonMode.FOLLOWER:
             if self._vehicles[0].isSwitchSafe(mode):
                 self._vehicles[0].setPlatoonMode(mode)
+                # assign same mode to both leader and other vehicles
                 for veh in self._vehicles[1:]:
                     if veh.isSwitchSafe(mode):
                         veh.setPlatoonMode(mode)

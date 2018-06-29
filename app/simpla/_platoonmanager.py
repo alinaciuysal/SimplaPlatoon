@@ -76,9 +76,18 @@ class PlatoonManager(traci.StepListener):
         self._connectedVehicles = dict()
         self.tick = 0
 
+        # getIDList() returns a list of all objects in the network.
         for vehID in traci.vehicle.getIDList():
             if self._hasConnectedType(vehID):
-                self._addVehicle(vehID)
+                veh = self._addVehicle(vehID)
+                # change route and arrivalPos of the newly-added vehicle via traci
+                # http://www.sumo.dlr.de/userdoc/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#arrivalPos
+                # traci.vehicle.setParameter(vehID, "arrivalPos", veh.arrivalPos)
+                # changes the vehicle route to given edges list
+                traci.vehicle.setRoute(vehID, veh.edges)
+                arrivalPos = veh.getParameter("arrivalPos")
+                print("11111 -- newly-added vehicle in init", arrivalPos)
+
 
         # integration step-length
         self._DeltaT = traci.simulation.getDeltaT() / 1000.
@@ -128,26 +137,25 @@ class PlatoonManager(traci.StepListener):
             if specialTypes[PlatoonMode.FOLLOWER] is None:
                 if rp.VERBOSITY>=2:
                     report("Setting unspecified follower vtype for '%s' to '%s'"%(origType, specialTypes[PlatoonMode.LEADER]),True)
-                specialTypes[PlatoonMode.FOLLOWER]=specialTypes[PlatoonMode.LEADER]
+                specialTypes[PlatoonMode.FOLLOWER] = specialTypes[PlatoonMode.LEADER]
             if specialTypes[PlatoonMode.CATCHUP] is None:
                 if rp.VERBOSITY>=2:
                     report("Setting unspecified catchup vtype for '%s' to '%s'"%(origType, origType),True)
-                specialTypes[PlatoonMode.CATCHUP]=origType
+                specialTypes[PlatoonMode.CATCHUP] = origType
             if specialTypes[PlatoonMode.CATCHUP_FOLLOWER] is None:
                 if rp.VERBOSITY>=2:
                     report("Setting unspecified catchup-follower vtype for '%s' to '%s'"%(origType, specialTypes[PlatoonMode.FOLLOWER]),True)
                 specialTypes[PlatoonMode.CATCHUP_FOLLOWER]=specialTypes[PlatoonMode.FOLLOWER]
-## Commented snippet generated automatically a catchup follower type with a different color
-#                 catchupFollowerType = origType + "_catchupFollower"
-#                 specialTypes[PlatoonMode.CATCHUP]=catchupFollowerType
-#                 if rp.VERBOSITY >= 2:
-#                     print("Catchup follower type '%s' for '%s' dynamically created as duplicate of '%s'" %
-#                       (catchupFollowerType, origType, specialTypes[PlatoonMode.CATCHUP_FOLLOWER]))
-#                 traci.vehicletype.copy(specialTypes[PlatoonMode.CATCHUP_FOLLOWER] , catchupFollowerType)
-#                 traci.vehicletype.setColor(catchupFollowerType, (0, 255, 200, 0))
-
-
-
+                ## Commented snippet generated automatically a catchup follower type with a different color
+                catchupFollowerType = origType + "_catchupFollower"
+                specialTypes[PlatoonMode.CATCHUP] = catchupFollowerType
+                if rp.VERBOSITY >= 2:
+                    print("Catchup follower type '%s' for '%s' dynamically created as duplicate of '%s'" %
+                      (catchupFollowerType, origType, specialTypes[PlatoonMode.CATCHUP_FOLLOWER]))
+                # copy(self, origTypeID, newTypeID) documentation:
+                # Duplicates the vType with ID origTypeID. The newly created vType is assigned the ID newTypeID
+                traci.vehicletype.copy(specialTypes[PlatoonMode.CATCHUP_FOLLOWER], catchupFollowerType)
+                traci.vehicletype.setColor(catchupFollowerType, (0, 255, 200, 0))
 
         # fill global lookup table for vType parameters (used below in safetycheck)
         knownVTypes = traci.vehicletype.getIDList()
@@ -267,8 +275,10 @@ class PlatoonManager(traci.StepListener):
                     veh.state.leader = None
                     veh.state.connectedVehicleAhead = False
                     vehAheadID = veh.state.leaderInfo[0]
+                    # getLength returns the length in m of the given vehicle.
                     dist = veh.state.leaderInfo[1] + traci.vehicle.getLength(vehAheadID)
                     while dist < self._catchupDist:
+                        # http://www.sumo.dlr.de/daily/pydoc/traci._vehicle.html#VehicleDomain-getLeader
                         nextLeaderInfo = traci.vehicle.getLeader(vehAheadID, self._catchupDist - dist)
                         if nextLeaderInfo is None:
                             break
@@ -286,6 +296,7 @@ class PlatoonManager(traci.StepListener):
 
         Remove all vehicles that have left the simulation from _connectedVehicles.
         Returns the number of removed connected vehicles
+        In this method, vehicles are not accessible via traci as they've already left the simulation
         '''
         count = 0
         toRemove = defaultdict(list)
@@ -301,7 +312,7 @@ class PlatoonManager(traci.StepListener):
 
             # NEW: statistics
             self.totalTrips += 1
-            self.update_statistics(veh)
+            # self.update_statistics(veh)
 
             # KafkaForword.publish(self.totalTripAverage, Config.kafkaTopicDurationForTrips)
 
@@ -325,7 +336,15 @@ class PlatoonManager(traci.StepListener):
         for newID in traci.simulation.getDepartedIDList():
             # create a new PVehicle object if new vehicle is connected
             if self._hasConnectedType(newID):
-                self._addVehicle(newID)
+                veh = self._addVehicle(newID)
+                # change route and arrivalPos of the newly-added vehicle via traci
+                # http://www.sumo.dlr.de/userdoc/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#arrivalPos
+                # traci.vehicle.setParameter(newID, "arrivalPos", str(veh.arrivalPos))
+                # changes the vehicle route to given edges list
+                traci.vehicle.setRoute(newID, veh.edges)
+                arrivalPos = traci.vehicle.getParameter(newID, "arrivalPos")
+                route = traci.vehicle.getRoute(newID)
+                print("22222 -- new route of newly-added vehicle", route, " arrivalPos", arrivalPos)
                 count += 1
         return count
 
@@ -357,6 +376,7 @@ class PlatoonManager(traci.StepListener):
             report("Adding vehicle '%s'" % vehID)
         self._connectedVehicles[vehID] = veh
         self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
+        return veh
 
     def _manageFollowers(self):
         '''_manageFollowers()
@@ -436,7 +456,8 @@ class PlatoonManager(traci.StepListener):
                 pltn.setModeWithImpatience(PlatoonMode.LEADER, self._controlInterval)
             elif pltnLeader.getCurrentPlatoonMode() == PlatoonMode.CATCHUP_FOLLOWER:
                 pltn.setModeWithImpatience(PlatoonMode.CATCHUP, self._controlInterval)
-            # get leader of the leader
+            # get leading vehicle of the leader
+            # leaderInfo = (string = id of the leading vehicle, double = distance)
             leaderInfo = pltnLeader.state.leaderInfo
 
             if leaderInfo is None or leaderInfo[1] > self._catchupDist:
@@ -483,7 +504,7 @@ class PlatoonManager(traci.StepListener):
                 continue
 
             if leaderDist <= self._maxPlatoonGap:
-                # Try to join the platoon in front
+                # Try to join the platoon in front (leader's platoon)
                 if leader.getPlatoon().join(pltn):
                     toRemove.append(pltnID)
                     # Debug
@@ -521,7 +542,7 @@ class PlatoonManager(traci.StepListener):
             intraPlatoonLeaders = []
             leaderID = None
             for ix, veh in enumerate(pltn.getVehicles()):
-                leaderFromeSamePlatoon = False
+                leaderFromSamePlatoon = False
                 if veh.state.leaderInfo is not None:
                     # leader detected
                     leaderID = veh.state.leaderInfo[0]
@@ -530,10 +551,10 @@ class PlatoonManager(traci.StepListener):
                         leader = self._connectedVehicles[leaderID]
                         if leader.getPlatoon() == pltn:
                             # leader belongs to same platoon
-                            leaderFromeSamePlatoon = True
+                            leaderFromSamePlatoon = True
                             intraPlatoonLeaders.append(leader)
 
-                if not leaderFromeSamePlatoon:
+                if not leaderFromSamePlatoon:
                     intraPlatoonLeaders.append(None)
 
                 if rp.VERBOSITY >= 4:
@@ -561,7 +582,7 @@ class PlatoonManager(traci.StepListener):
         nVeh = len(vehicles)
         # make a copy to write into
         actualLeaders = list(actualLeaders)
-        while(not done and iter_count < nVeh):
+        while not done and iter_count < nVeh:
             newVehOrder = None
             registeredLeaders = [None] + vehicles[:-1]
             if rp.VERBOSITY >= 4:
@@ -569,7 +590,7 @@ class PlatoonManager(traci.StepListener):
                 report("Actual leaders: %s" % rp.array2String(actualLeaders), 3)
                 report("registered leaders: %s" % rp.array2String(registeredLeaders), 3)
             for (ego, registeredLeader, actualLeader) in reversed(list(zip(vehicles, registeredLeaders, actualLeaders))):
-                if (ego == actualLeader):
+                if ego == actualLeader:
                     if rp.VERBOSITY >= 1:
                         warn("Platoon %s:\nVehicle '%s' was found as its own leader. Platoon order might be corrupted." % (
                             rp.array2String(vehicles), str(ego)))
@@ -622,7 +643,7 @@ class PlatoonManager(traci.StepListener):
     def _adviseLanes(self):
         '''_adviseLanes()
 
-        At the moment this only advises all platoon followers to change to their leaders lane
+        At the moment this only advises all platoon followers to change to their leaders' lane
         if it is on a different lane on the same edge. Otherwise, followers are told to keep their
         lane for the next time step.
         NOTE: Future, more sophisticated lc advices should go here.

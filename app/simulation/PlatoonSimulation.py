@@ -1,9 +1,10 @@
 import json
 import traci
 import app.Config as cfg
-
+import traci.constants as tc
 from app.streaming import KafkaForword, KafkaConnector
 from app.simpla._config import setValues, getValues
+from app.entity import CarRegistry
 
 class PlatoonSimulation(object):
 
@@ -49,21 +50,23 @@ class PlatoonSimulation(object):
     def start(cls, platoon_mgr):
         # _useStepListener = 'addStepListener' in dir(traci)
         # print(_useStepListener) # prints out true because version is >= 0.30
-        while traci.simulation.getMinExpectedNumber() > 0:
-            traci.simulationStep()
+        # start listening to all cars that arrived at their target
+        traci.simulation.subscribe((tc.VAR_ARRIVED_VEHICLES_IDS,))
+        while 1:
             cls.tick += 1
-            if (cls.tick % 10) == 0:
-                if cfg.kafkaUpdates is False:
-                    cls.applyFileConfig()
-                else:
-                    cls.applyKafkaConfig()
 
-                # print status update if we are not running in parallel mode
-                # print(str(cfg.processID) + " -> Step:" + str(cls.tick) + " # Driving cars: " + str(
-                #     traci.vehicle.getIDCount()) + "/"
-                #     + " # totalFuelConsumptionAverage: " + str(cls.totalFuelConsumptionAverage)
-                #     + " # totalSpeedAverage: " + str(cls.totalSpeedAverage)
-                #     + " # totalCO2EmissionAverage: " + str(cls.totalCO2EmissionAverage)
-                #     + " # totalCOEmissionAverage: " + str(cls.totalCOEmissionAverage) )
-        results = platoon_mgr.get_statistics()
-        print(results)
+            # if (cls.tick % 10) == 0:
+            #     if cfg.kafkaUpdates is False:
+            #         cls.applyFileConfig()
+            #     else:
+            #         cls.applyKafkaConfig()
+            #
+            # # Check for removed cars and re-add them into the system
+            # for removedCarId in traci.simulation.getSubscriptionResults()[122]:
+            #     CarRegistry.findById(removedCarId).setArrived(cls.tick)
+
+            # let the cars process this step via platoonmgr
+            traci.simulationStep()
+
+        # results = platoon_mgr.get_statistics()
+        # print(results)

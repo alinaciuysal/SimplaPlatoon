@@ -14,6 +14,7 @@ from collections import defaultdict
 
 import traci
 import traci.constants as tc
+import random
 
 from _platoon import Platoon
 import _reporting as rp
@@ -28,6 +29,8 @@ vTypeParameters = defaultdict(dict)
 
 WARNED_DEFAULT = dict([(mode, False) for mode in PlatoonMode])
 
+nrOfNotTravelledEdges = 5 # to select last n routes of each car
+
 class pVehicleState(object):
 
     def __init__(self, ID):
@@ -35,22 +38,19 @@ class pVehicleState(object):
         self.edgeID = traci.vehicle.getRoadID(ID)
         self.laneID = traci.vehicle.getLaneID(ID)
         self.laneIX = traci.vehicle.getLaneIndex(ID)
+
+        # The dist parameter (50.) defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
+        # Note that the returned leader may be farther away than the given dist.
         self.leaderInfo = traci.vehicle.getLeader(ID, 50.)
+
         # must be set by vehicle creator (PlatoonManager._addVehicle()) to guarantee function in first step
         self.leader = None
+
         # Whether a possible platooning partner for the vehicle is located further downstream within _catchupDistance
         # (though not necessarily being the immediate leader)
         self.connectedVehicleAhead = False
 
-        # NEW:
-        # self.CO2Emission = traci.vehicle.getCO2Emission(ID)
-        # self.COEmission = traci.vehicle.getCOEmission(ID)
-        # self.HCEmission = traci.vehicle.getHCEmission(ID)
-        # self.PMXEmission = traci.vehicle.getPMxEmission(ID)
-        # self.NOxEmission = traci.vehicle.getNOxEmission(ID)
-        # self.FuelConsumption = traci.vehicle.getFuelConsumption(ID)
-        # self.NoiseEmission = traci.vehicle.getNoiseEmission(ID)
-
+        # NEW
         self.reportedCO2Emissions = []
         self.reportedCOEmissions = []
         self.reportedHCEmissions = []
@@ -84,7 +84,7 @@ class PVehicle(object):
         self._laneChangeModes = dict()
         # original vtype, speedFactor and lanechangemodes
         self._vTypes[PlatoonMode.NONE] = traci.vehicle.getTypeID(ID)
-        # print(traci.vehicle.getTypeID(ID)) # prints out simple_pkw_leader, PlatoonMode.NONE = 0, PlatoonMode is enum
+        # print(traci.vehicle.getTypeID(ID)) # result: simple_pkw_leader, PlatoonMode.NONE = 0, PlatoonMode is enum
         self._speedFactors[PlatoonMode.NONE] = traci.vehicle.getSpeedFactor(ID)
         # This is the default mode
         self._laneChangeModes[PlatoonMode.NONE] = 0b1001010101
@@ -94,7 +94,6 @@ class PVehicle(object):
             self._vTypes[mode] = self._determinePlatoonVType(mode)
             self._laneChangeModes[mode] = cfg.LC_MODE[mode]
             self._speedFactors[mode] = cfg.SPEEDFACTOR[mode]
-        # print("self._vTypes line 79", self._vTypes)
         # Initialize platoon mode to none
         self._currentPlatoonMode = PlatoonMode.NONE
         # the active speed factor is decreased as the waiting time for a mode switch rises
@@ -115,6 +114,26 @@ class PVehicle(object):
         self._switchWaitingTime = {}
         self.resetSwitchWaitingTime()
 
+        # NEW: randomly pick an edge to exit
+        edges = traci.vehicle.getRoute(ID)
+        # TODO: remove seed after testing
+        random.seed(3)
+
+        rnd_edge = random.choice(edges[-nrOfNotTravelledEdges:])
+        rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
+        all_edges_to_travel = edges[:rnd_edge_idx]
+
+        # now get line at idx 0 of last edge to randomly select position
+        # line_id = rnd_edge + str("_") + "0"
+        # line_length = traci.lane.getLength(line_id)
+
+        # TODO: remove seed after testing
+        # random.seed(3)
+        # now get a random exit location within [0, line_length]
+        # self.arrivalPos = random.uniform(0, line_length)
+        self.edges = all_edges_to_travel
+        self.lastEdge = rnd_edge
+
         # NEW: attribute related with new metrics
         self.currentRouteBeginTick = tick
 
@@ -128,10 +147,6 @@ class PVehicle(object):
         global WARNED_DEFAULT
         # original vType
         origVType = self._vTypes[PlatoonMode.NONE]
-        # print("mode", mode)
-        # print("origVType", origVType)
-        # print("cfg.PLATOON_VTYPES", cfg.PLATOON_VTYPES)
-        # print("origVType in determinePlatoonVType", origVType, " mode ", mode)
         if origVType not in cfg.PLATOON_VTYPES \
                 or mode not in cfg.PLATOON_VTYPES[origVType] \
                 or cfg.PLATOON_VTYPES[origVType][mode] is "":
@@ -400,6 +415,13 @@ class PVehicle(object):
         # TODO: test without headway...
         return gap + leaderBrakeGap - followerBrakeGap - headwayDist > 0
 
+    # proxy for getParameter, type(param) = str
+    def getParameter(self, param):
+        try:
+            value = traci.vehicle.getParameter(self._ID, param)
+            return value
+        except:
+            return None
     @staticmethod
     def brakeGap(speed, decel):
         '''_brakeGap(double) -> double
@@ -409,6 +431,7 @@ class PVehicle(object):
         if decel <= 0.:
             return float("inf")
         return speed * speed / (2.0 * decel)
+
 
     def __str__(self):
         return "<PVehicle '%s'>" % self._ID

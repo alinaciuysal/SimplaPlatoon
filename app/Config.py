@@ -4,8 +4,10 @@ sumoConfig = "./app/map/A9_conf.sumocfg"
 # The network net we use for our simulation
 sumoNet = "./app/map/A9.net.xml"
 
+
+
 # should use kafka for config changes (else it uses json file)
-kafkaUpdates = True
+kafkaUpdates = False
 
 # the kafka host we want to send our messages to
 kafkaHost = "kafka:9092"
@@ -24,7 +26,7 @@ kafkaPlatoonConfigTopic = "platoon-config"
 # Initial wait time before publishing data
 initialWaitTicks = 10
 
-# True if we want to use the SUMO GUI (always of in parallel mode)
+# True if we want to use the SUMO GUI
 sumoUseGUI = False
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
@@ -35,3 +37,5 @@ processID = 0
 parallelMode = False
 
 stats = "mean" # can also be median, min, max for now
+
+totalCarCounter = 200
