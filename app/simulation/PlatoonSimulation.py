@@ -49,14 +49,8 @@ class PlatoonSimulation(object):
 
     @classmethod
     def start(cls, platoon_mgr):
-        # _useStepListener = 'addStepListener' in dir(traci)
-        # print(_useStepListener) # prints out true because version is >= 0.30
-        # start listening to all cars that arrived at their target
-        # traci.simulation.subscribe((tc.VAR_ARRIVED_VEHICLES_IDS,))
-
         while 1:
             cls.tick += 1
-
             # if (cls.tick % 10) == 0:
             #     if cfg.kafkaUpdates is False:
             #         cls.applyFileConfig()
@@ -69,25 +63,6 @@ class PlatoonSimulation(object):
 
             # let the cars process this step via platoonmgr
             traci.simulationStep()
-
-            cars = traci.vehicle.getSubscriptionResults()
-            for car_id in cars:
-                position = cars[car_id][tc.VAR_LANEPOSITION]
-                lane = cars[car_id][tc.VAR_LANE_ID]
-                print car_id
-                print position
-                print lane[:-2]
-
-                car_arrival_data = _destinations[car_id]
-
-                print car_arrival_data[0]
-                print car_arrival_data[1]
-
-                if lane[:-2] == car_arrival_data[0] and position >= car_arrival_data[1]:
-                    print "HEREE"
-                    traci.vehicle.remove(car_id)
-
-                print "****************"
 
 
         # results = platoon_mgr.get_statistics()

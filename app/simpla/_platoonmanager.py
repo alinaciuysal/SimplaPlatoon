@@ -190,10 +190,11 @@ class PlatoonManager(traci.StepListener):
         Manages platoons at each time step.
         NOTE: argument t is unused, larger step sizes than DeltaT are not supported.
         '''
-        if not t==0 and rp.VERBOSITY >= 1:
+
+        if not t == 0 and rp.VERBOSITY >= 1:
             warn("Step lengths that differ from SUMO's simulation step length are not supported and probably lead to undesired behavior.\nConsider decreasing simpla's control rate instead.")
+
         # Handle vehicles entering and leaving the simulation
-        # NEW logic here related with tick
         self._addDeparted()
         self._removeArrived()
         self._timeSinceLastControl += self._DeltaT
@@ -204,7 +205,6 @@ class PlatoonManager(traci.StepListener):
             self._manageLeaders()
             self._adviseLanes()
             self._timeSinceLastControl = 0
-            # NEW
             self.tick += 1
 
     def stop(self):
@@ -243,8 +243,10 @@ class PlatoonManager(traci.StepListener):
             veh.state.edgeID = self._subscriptionResults[veh.getID()][tc.VAR_ROAD_ID]
             veh.state.laneID = self._subscriptionResults[veh.getID()][tc.VAR_LANE_ID]
             veh.state.laneIX = self._subscriptionResults[veh.getID()][tc.VAR_LANE_INDEX]
+            veh.state.lanePosition = self._subscriptionResults[veh.getID()][tc.VAR_LANEPOSITION]
             veh.state.leaderInfo = traci.vehicle.getLeader(veh.getID(), self._catchupDist)
-            # NEW
+
+            # Emissions
             CO2Emission = self._subscriptionResults[veh.getID()][tc.VAR_CO2EMISSION]
             COEmission = self._subscriptionResults[veh.getID()][tc.VAR_COEMISSION]
             HCEmission = self._subscriptionResults[veh.getID()][tc.VAR_HCEMISSION]
@@ -262,6 +264,7 @@ class PlatoonManager(traci.StepListener):
             veh.state.reportedNoiseEmissions.append(NoiseEmission)
             veh.state.reportedSpeeds.append(veh.state.speed)
 
+
             if veh.state.leaderInfo is None:
                 veh.state.leader = None
                 veh.state.connectedVehicleAhead = False
@@ -276,7 +279,7 @@ class PlatoonManager(traci.StepListener):
                     veh.state.leader = None
                     veh.state.connectedVehicleAhead = False
                     vehAheadID = veh.state.leaderInfo[0]
-                    # getLength returns the length in m of the given vehicle.
+                    # getLength returns the length of the given vehicle (in m)
                     dist = veh.state.leaderInfo[1] + traci.vehicle.getLength(vehAheadID)
                     while dist < self._catchupDist:
                         # http://www.sumo.dlr.de/daily/pydoc/traci._vehicle.html#VehicleDomain-getLeader
@@ -297,11 +300,27 @@ class PlatoonManager(traci.StepListener):
 
         Remove all vehicles that have left the simulation from _connectedVehicles.
         Returns the number of removed connected vehicles
-        In this method, vehicles are not accessible via traci as they've already left the simulation
+        Vehicles will not be accessible via traci if they exceed their randomly-selected edges & arrival positions while creating vehicles
         '''
+
+        # remove these vehicles based on their states that are previously-updated
+        for veh in self._connectedVehicles.values():
+            # extract edge id from <edge_id>_edgeIndex, where edgeIndex starts from 0
+            # edge_id = veh.state.laneID[:-2]
+            last_edge_id, arrival_pos = _destinations[veh.getID()]
+
+            if veh.state.edgeID == last_edge_id and veh.state.lanePosition >= arrival_pos:
+                # print("Returns a list of all objects in the network", traci.domain.Domain.getIDList(traci.simulation))
+                print("HEREE ID TO BE REMOVED", veh.getID())
+                # traci.vehicle.remove(veh.getID())
+                # _destinations.pop(veh.getID())
+                print "****************"
+                # continue
+
         count = 0
         toRemove = defaultdict(list)
         for ID in traci.simulation.getArrivedIDList():
+            print("ACTUAL REMOVAL ", ID)
             # first store arrived vehicles platoonwise
             if not self._isConnected(ID):
                 continue
@@ -342,15 +361,14 @@ class PlatoonManager(traci.StepListener):
                 # http://www.sumo.dlr.de/userdoc/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#arrivalPos
                 # traci.vehicle.setParameter(newID, "arrivalPos", str(veh.arrivalPos))
                 # changes the vehicle route to given edges list
-                traci.vehicle.setRoute(newID, veh.edges)
+                traci.vehicle.changeTarget(newID, veh.lastEdge)
 
                 arrivalPos = traci.vehicle.getParameter(newID, "arrivalPos")
-
                 route = traci.vehicle.getRoute(newID)
                 print("22222 -- new route of newly-added vehicle", route, " arrivalPos", arrivalPos, " car id" + newID)
                 count += 1
 
-                traci.vehicle.subscribe(newID, [tc.VAR_LANEPOSITION, tc.VAR_LANE_ID])
+                # traci.vehicle.subscribe(newID, [tc.VAR_LANEPOSITION, tc.VAR_LANE_ID])
         return count
 
     def _addVehicle(self, vehID):
@@ -361,7 +379,7 @@ class PlatoonManager(traci.StepListener):
         try:
             # NEW: updated subscription list according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
             traci.vehicle.subscribe(vehID,
-                                    (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED,
+                                    (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED, tc.VAR_LANEPOSITION,
                                      tc.VAR_CO2EMISSION,
                                      tc.VAR_COEMISSION,
                                      tc.VAR_HCEMISSION,

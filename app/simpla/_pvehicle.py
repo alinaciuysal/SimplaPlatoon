@@ -38,6 +38,7 @@ class pVehicleState(object):
         self.edgeID = traci.vehicle.getRoadID(ID)
         self.laneID = traci.vehicle.getLaneID(ID)
         self.laneIX = traci.vehicle.getLaneIndex(ID)
+        self.lanePosition = traci.vehicle.getLanePosition(ID)
 
         # The dist parameter (50.) defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
         # Note that the returned leader may be farther away than the given dist.
@@ -120,8 +121,8 @@ class PVehicle(object):
         random.seed(3)
 
         rnd_edge = random.choice(edges[-nrOfNotTravelledEdges:])
-        rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
-        all_edges_to_travel = edges[:rnd_edge_idx]
+        # rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
+        # all_edges_to_travel = edges[:rnd_edge_idx]
 
         # now get line at idx 0 of last edge to randomly select position
         line_id = rnd_edge + str("_") + "0"
@@ -132,7 +133,6 @@ class PVehicle(object):
         # now get a random exit location within [0, line_length]
         self.arrivalPos = random.uniform(0, line_length)
 
-        self.edges = all_edges_to_travel
         self.lastEdge = rnd_edge
 
         # NEW: attribute related with new metrics
@@ -426,6 +426,7 @@ class PVehicle(object):
             return value
         except:
             return None
+
     @staticmethod
     def brakeGap(speed, decel):
         '''_brakeGap(double) -> double
@@ -435,7 +436,6 @@ class PVehicle(object):
         if decel <= 0.:
             return float("inf")
         return speed * speed / (2.0 * decel)
-
 
     def __str__(self):
         return "<PVehicle '%s'>" % self._ID
