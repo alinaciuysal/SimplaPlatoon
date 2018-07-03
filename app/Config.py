@@ -38,4 +38,4 @@ parallelMode = False
 
 stats = "mean" # can also be median, min, max for now
 
-totalCarCounter = 200
+totalCarCounter = 500

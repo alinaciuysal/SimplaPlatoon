@@ -251,19 +251,19 @@ def load(filename):
                 else:
                     origType = e.attrib["original"]
                     PLATOON_VTYPES[origType][PlatoonMode.NONE] = origType
-                    if ("leader" in e.attrib):
+                    if "leader" in e.attrib:
                         leaderType = e.attrib["leader"]
                         PLATOON_VTYPES[origType][PlatoonMode.LEADER] = leaderType
                         # report("Registering vtype map '%s':'%s'"%(origType,leaderType), True)
-                    if ("follower" in e.attrib):
+                    if "follower" in e.attrib:
                         followerType = e.attrib["follower"]
                         PLATOON_VTYPES[origType][PlatoonMode.FOLLOWER] = followerType
                         # report("Registering vtype map '%s':'%s'"%(origType,followerType), True)
-                    if ("catchup" in e.attrib):
+                    if "catchup" in e.attrib:
                         catchupType = e.attrib["catchup"]
                         PLATOON_VTYPES[origType][PlatoonMode.CATCHUP] = catchupType
                         # report("Registering vtype map '%s':'%s'"%(origType,followerType), True)
-                    if ("catchupFollower" in e.attrib):
+                    if "catchupFollower" in e.attrib:
                         catchupFollowerType = e.attrib["catchupFollower"]
                         PLATOON_VTYPES[origType][PlatoonMode.CATCHUP_FOLLOWER] = catchupFollowerType
                         # report("Registering vtype map '%s':'%s'"%(origType,followerType), True)

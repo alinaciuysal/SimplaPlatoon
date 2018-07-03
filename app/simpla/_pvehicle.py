@@ -68,74 +68,36 @@ class PVehicle(object):
     Vehicle objects for platooning
     '''
 
-    def __init__(self, ID, controlInterval, tick):
+    def __init__(self, ID, edges, tick):
         '''Constructor(string, float)
 
         Create a PVehicle representing a SUMOVehicle for the PlatoonManager. The controlInterval is only piped through
-        to the singelton platoon created by the vehicle.
+        to the singleton platoon created by the vehicle.
         '''
         # vehicle ID (should be the one used in SUMO)
         self._ID = ID
-        # vehicle state (is updated by platoon manager in every step)
-        self.state = pVehicleState(ID)
+
+        # the rounds this car already drove
+        self.rounds = 0
 
         # store the vehicle's vTypes, speedfactors and lanechangemodes
         self._vTypes = dict()
         self._speedFactors = dict()
         self._laneChangeModes = dict()
-        # original vtype, speedFactor and lanechangemodes
-        self._vTypes[PlatoonMode.NONE] = traci.vehicle.getTypeID(ID)
-        # print(traci.vehicle.getTypeID(ID)) # result: simple_pkw_leader, PlatoonMode.NONE = 0, PlatoonMode is enum
-        self._speedFactors[PlatoonMode.NONE] = traci.vehicle.getSpeedFactor(ID)
-        # This is the default mode
-        self._laneChangeModes[PlatoonMode.NONE] = 0b1001010101
-
-        # vTypes, speedFactors and lanechangemodes parametrizing the platoon behaviour
-        for mode in [PlatoonMode.LEADER, PlatoonMode.FOLLOWER, PlatoonMode.CATCHUP, PlatoonMode.CATCHUP_FOLLOWER]:
-            self._vTypes[mode] = self._determinePlatoonVType(mode)
-            self._laneChangeModes[mode] = cfg.LC_MODE[mode]
-            self._speedFactors[mode] = cfg.SPEEDFACTOR[mode]
-        # Initialize platoon mode to none
-        self._currentPlatoonMode = PlatoonMode.NONE
-        # the active speed factor is decreased as the waiting time for a mode switch rises
-        # (assuming that the main hindrance to switching is too close following)
-        self._activeSpeedFactor = cfg.SPEEDFACTOR[self._currentPlatoonMode]
-        # The switch impatience factor determines the magnitude of the effect
-        # that an increasing waiting time has on the active speed factor:
-        # activeSpeedFactor = modeSpecificSpeedFactor/(1+impatienceFactor*waitingTime)
-        self._switchImpatienceFactor = cfg.SWITCH_IMPATIENCE_FACTOR
-        # create a new platoon containing only this vehicle
-        self._platoon = Platoon([self], controlInterval)
-        # the time left until splitting from a platoon if loosing coherence as a follower
-        self._timeUntilSplit = cfg.PLATOON_SPLIT_TIME
-        # Whether split conditions are fulfilled (i.e. leader in th platoon
-        # is not found directly in front of the vehicle)
-        self._splitConditions = False
-        # waiting time for switching into different modes
-        self._switchWaitingTime = {}
-        self.resetSwitchWaitingTime()
-
-        # NEW: randomly pick an edge to exit
-        edges = traci.vehicle.getRoute(ID)
-        # TODO: remove seed after testing
-        random.seed(3)
 
         rnd_edge = random.choice(edges[-nrOfNotTravelledEdges:])
-        # rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
-        # all_edges_to_travel = edges[:rnd_edge_idx]
+        rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
+        self.edgesToTravel = edges[:rnd_edge_idx]
 
         # now get line at idx 0 of last edge to randomly select position
         line_id = rnd_edge + str("_") + "0"
         line_length = traci.lane.getLength(line_id)
 
         # TODO: remove seed after testing
-        # random.seed(3)
         # now get a random exit location within [0, line_length]
-        self.arrivalPos = random.uniform(0, line_length)
+        self.arrivalPos = str(random.uniform(0, line_length))
 
         self.lastEdge = rnd_edge
-
-        # NEW: attribute related with new metrics
         self.currentRouteBeginTick = tick
 
         from _platoonmanager import _destinations
@@ -345,16 +307,16 @@ class PVehicle(object):
             return True
 
         # Check value of switchImpatience
-        if (switchImpatience > 1.):
-            if rp.VERBOSITY>=1:
+        if switchImpatience > 1.:
+            if rp.VERBOSITY >= 1:
                 warn("Given parameter switchImpatience > 1. Assuming == 1.")
             switchImpatience = 1.
-        elif (switchImpatience < 0.):
-            if rp.VERBOSITY>=1:
+        elif switchImpatience < 0.:
+            if rp.VERBOSITY >= 1:
                 warn("Given parameter switchImpatience < 0. Assuming == 0.")
             switchImpatience = 0.
 
-        # NEW: workaround for bug when following thing is somehow obtained as {}
+        # workaround for bug when following thing is somehow obtained as {}
         # if tc.VAR_DECEL not in vTypeParameters[self._vTypes[targetMode]]:
         #     return False
         #
@@ -362,10 +324,10 @@ class PVehicle(object):
         #     return False
 
         # obtain the preferred deceleration and the tau of the target vType
+
         decel = vTypeParameters[self._vTypes[targetMode]][tc.VAR_DECEL]
         tau = vTypeParameters[self._vTypes[targetMode]][tc.VAR_TAU]
         speed = self.state.speed
-
         # If time until switch decreases below 0, this indicates that a switch from platoon to normal mode is required
         maxDecel = vTypeParameters[self._vTypes[targetMode]][tc.VAR_EMERGENCY_DECEL] * switchImpatience \
             + (1. - switchImpatience) * decel
@@ -439,3 +401,39 @@ class PVehicle(object):
 
     def __str__(self):
         return "<PVehicle '%s'>" % self._ID
+
+    # this method is called after car is successfully added to the simulation
+    def setState(self, controlInterval):
+        # original vtype, speedFactor and lanechangemodes
+        self._vTypes[PlatoonMode.NONE] = traci.vehicle.getTypeID(self._ID)
+        # print(traci.vehicle.getTypeID(ID)) # result: simple_pkw_leader, PlatoonMode.NONE = 0, PlatoonMode is enum
+        self._speedFactors[PlatoonMode.NONE] = traci.vehicle.getSpeedFactor(self._ID)
+        # This is the default mode
+        self._laneChangeModes[PlatoonMode.NONE] = 0b1001010101
+
+        # vTypes, speedFactors and lanechangemodes parametrizing the platoon behaviour
+        for mode in [PlatoonMode.LEADER, PlatoonMode.FOLLOWER, PlatoonMode.CATCHUP, PlatoonMode.CATCHUP_FOLLOWER]:
+            self._vTypes[mode] = self._determinePlatoonVType(mode)
+            self._laneChangeModes[mode] = cfg.LC_MODE[mode]
+            self._speedFactors[mode] = cfg.SPEEDFACTOR[mode]
+        # Initialize platoon mode to none
+        self._currentPlatoonMode = PlatoonMode.NONE
+        # the active speed factor is decreased as the waiting time for a mode switch rises
+        # (assuming that the main hindrance to switching is too close following)
+        self._activeSpeedFactor = cfg.SPEEDFACTOR[self._currentPlatoonMode]
+        # The switch impatience factor determines the magnitude of the effect
+        # that an increasing waiting time has on the active speed factor:
+        # activeSpeedFactor = modeSpecificSpeedFactor/(1+impatienceFactor*waitingTime)
+        self._switchImpatienceFactor = cfg.SWITCH_IMPATIENCE_FACTOR
+        # create a new platoon containing only this vehicle
+        self._platoon = Platoon([self], controlInterval)
+        # the time left until splitting from a platoon if loosing coherence as a follower
+        self._timeUntilSplit = cfg.PLATOON_SPLIT_TIME
+        # Whether split conditions are fulfilled (i.e. leader in th platoon
+        # is not found directly in front of the vehicle)
+        self._splitConditions = False
+        # waiting time for switching into different modes
+        self._switchWaitingTime = {}
+        self.resetSwitchWaitingTime()
+        # vehicle state (is updated by platoon manager in every step)
+        self.state = pVehicleState(self._ID)

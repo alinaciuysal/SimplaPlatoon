@@ -7,8 +7,8 @@ from app.simpla._config import setValues, getValues
 from app.entity import CarRegistry
 from app.simpla._platoonmanager import _destinations
 
-class PlatoonSimulation(object):
 
+class PlatoonSimulation(object):
     # the current tick of the simulation
     tick = 0
 
@@ -49,6 +49,12 @@ class PlatoonSimulation(object):
 
     @classmethod
     def start(cls, platoon_mgr):
+        """ start the simulation """
+        print("# Started adding initial cars to the simulation")
+        # apply the configuration from the json file
+        cls.applyFileConfig()
+        platoon_mgr.applyCarCounter()
+
         while 1:
             cls.tick += 1
             # if (cls.tick % 10) == 0:
