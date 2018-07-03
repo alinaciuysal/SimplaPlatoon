@@ -25,8 +25,8 @@ class Platoon(object):
     # static platoon ID counter
     _nextID = 0
 
-    def __init__(self, vehicles, controlInterval, registerVehicles=True):
-        '''Platoon(list(PVehicle), float, bool) -> Platoon
+    def __init__(self, vehicles, controlInterval, arrivalInterval=None, registerVehicles=True):
+        '''Platoon(list(PVehicle), float, tuple(float, float), bool) -> Platoon
 
         Create a Platoon object that holds an ordered list of its members, which is inititialized with 'vehicles'.
         Creator is responsible for setting the platoon mode of the vehicles. If registerVehicles is set, the vehicle's
@@ -40,6 +40,7 @@ class Platoon(object):
             self.registerVehicles()
 
         self._controlInterval = controlInterval
+        self._arrivalInterval = arrivalInterval
 
     def registerVehicles(self):
         ''' registerVehicles() -> void
@@ -96,6 +97,12 @@ class Platoon(object):
         Sets the platoon members. Used for reordering, e.g..
         '''
         self._vehicles = vehs
+
+    def getArrivalInterval(self):
+        return self._arrivalInterval
+
+    def setArrivalInterval(self, arrivalInterval):
+        self._arrivalInterval = arrivalInterval
 
     def size(self):
         '''size() -> int
@@ -228,7 +235,8 @@ class Platoon(object):
         splitLeader = self._vehicles[index]
         mode = PlatoonMode.LEADER if (index < self.size() - 1) else PlatoonMode.NONE
         # splitImpatience = 1. - math.exp(min([0., splitLeader._timeUntilSplit]))
-        pltn = Platoon(self._vehicles[index:], self._controlInterval, False)
+
+        pltn = Platoon(self._vehicles[index:], self._controlInterval, None, False)
 
         if not pltn.setModeWithImpatience(mode, self._controlInterval):
             # could not split off platoon safely
@@ -238,6 +246,9 @@ class Platoon(object):
         self._vehicles = self._vehicles[:index]
         # set reference to new platoon in splitted vehicles
         pltn.registerVehicles()
+        # TODO: arrival interval must be updated, for now we set vehicle's interval
+        newLeader = self._vehicles[0]
+        pltn.setArrivalInterval(newLeader.getArrivalInterval())
 
         if len(self._vehicles) == 1:
             # only one vehicle remains, turn off its platoon-specific behavior

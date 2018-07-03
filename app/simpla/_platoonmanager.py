@@ -272,31 +272,37 @@ class PlatoonManager(traci.StepListener):
                 veh.state.connectedVehicleAhead = False
                 continue
 
+            # try to find a connected leader within the provided distance
+            # this case is special when there's a non-connected car in front of veh, but there's a leader in front of non-connected car and it's within the catchupDist
             if veh.state.leader is None or veh.state.leader.getID() != veh.state.leaderInfo[0]:
-                if self._isConnected(veh.state.leaderInfo[0]):
-                    veh.state.leader = self._connectedVehicles[veh.state.leaderInfo[0]]
+                leaderID = veh.state.leaderInfo[0]
+                distanceBetweenLeader = veh.state.leaderInfo[1]
+                if self._isConnected(leaderID):
+                    veh.state.leader = self._connectedVehicles[leaderID]
                     veh.state.connectedVehicleAhead = True
                 else:
                     # leader is not connected -> check whether a connected vehicle is located further downstream
                     veh.state.leader = None
                     veh.state.connectedVehicleAhead = False
-                    vehAheadID = veh.state.leaderInfo[0]
+
                     # getLength returns the length of the given vehicle (in m)
-                    dist = veh.state.leaderInfo[1] + traci.vehicle.getLength(vehAheadID)
+                    dist = distanceBetweenLeader + traci.vehicle.getLength(leaderID)
                     while dist < self._catchupDist:
                         # http://www.sumo.dlr.de/daily/pydoc/traci._vehicle.html#VehicleDomain-getLeader
-                        nextLeaderInfo = traci.vehicle.getLeader(vehAheadID, self._catchupDist - dist)
-                        # print("dist:", dist, "self._catchupDist", self._catchupDist, "vehAheadID", vehAheadID)
+                        nextLeaderInfo = traci.vehicle.getLeader(leaderID, self._catchupDist - dist)
                         if nextLeaderInfo is None:
                             break
                         vehAheadID = nextLeaderInfo[0]
+                        # TODO: investigate why gap is negative
+                        if nextLeaderInfo[1] < 0:
+                            break
+
                         if self._isConnected(vehAheadID):
                             veh.state.connectedVehicleAhead = True
                             if rp.VERBOSITY >= 4:
                                 report("Found connected vehicle '%s' downstream of vehicle '%s' (at distance %s)" %
                                        (vehAheadID, veh.getID(), dist + nextLeaderInfo[1]))
                             break
-                        # print("nextLeaderInfo[1]:", nextLeaderInfo[1], "traci.vehicle.getLength(vehAheadID)", traci.vehicle.getLength(vehAheadID))
                         dist += nextLeaderInfo[1] + traci.vehicle.getLength(vehAheadID)
 
     def _removeArrived(self):
@@ -327,10 +333,13 @@ class PlatoonManager(traci.StepListener):
         for pltnID, vehs in toRemove.items():
             pltn = self._platoons[pltnID]
             pltn.removeVehicles(vehs)
+
             if pltn.size() == 0:
                 # remove empty platoons
                 self._platoons.pop(pltn.getID())
-
+            # TODO: adjust case 2 for vehicle removal, i.e. find new interval of pltn
+            else:
+                pass
         # Re-add removed platooning cars into the system, normal car(s) are already being created with flows
         for vehID in traci.simulation.getArrivedIDList():
             self._addVehicle()
@@ -341,6 +350,7 @@ class PlatoonManager(traci.StepListener):
         '''_addVehicle()
 
         Creates a new PVehicle object for platooning and registers is soliton platoon
+        It filters out car types that are not related with platooning logic to ensure a valid platooning car addition to simulation
         '''
         try:
             self.carIndexCounter += 1
@@ -359,10 +369,10 @@ class PlatoonManager(traci.StepListener):
                 veh = _pvehicle.PVehicle(ID=vehID, edges=edges, tick=simTime())
                 routeID = "route-" + str(self.carIndexCounter)
                 traci.route.add(routeID, veh.edgesToTravel)
-                traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=random_vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=veh.arrivalPos)
+                traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=random_vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
                 valid = traci.vehicle.isRouteValid(vehID=vehID)
                 if valid:
-                    print("id ", vehID, " routeID ", routeID, " random_vType ", random_vType, " simTime", simTime(), " lastEdge ", veh.lastEdge, " arrivalPos ", veh.arrivalPos, " valid ", valid)
+                    print("id ", vehID, " routeID ", routeID, " random_vType ", random_vType, " simTime", simTime(), " arrivalEdge ", veh.arrivalEdge, " arrivalPos ", veh.arrivalPos, " valid ", valid)
                     veh.setState(self._controlInterval)
                     # Subscribe according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
                     traci.vehicle.subscribe(vehID,
@@ -381,6 +391,7 @@ class PlatoonManager(traci.StepListener):
                     return veh
                 else:
                     report("Route of vehicle '%s' is not valid" % vehID)
+                    return None
         except TraCIException as traci_exception:
             traceback.print_exc()
             raise traci_exception
@@ -439,6 +450,7 @@ class PlatoonManager(traci.StepListener):
             for ix in reversed(splitIndices):
                 newPlatoon = pltn.split(ix)
                 if newPlatoon is not None:
+                    # TODO: integrate case 3 for split
                     # if the platoon was split, register the splitted platoons
                     newPlatoons.append(newPlatoon)
                     if rp.VERBOSITY >= 2:
@@ -507,21 +519,36 @@ class PlatoonManager(traci.StepListener):
             # index of the current edge within the vehicles route
             pltnLeaderRouteIx = traci.vehicle.getRouteIndex(pltnLeader.getID())
             leadersCurrentEdge = leader.state.edgeID
-            # edges from pltnLeaderRouteIx to the end
-            if leadersCurrentEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
+            leadersArrivalPos = leader.arrivalPos
+
+            # DEPRECATED: edges from pltnLeaderRouteIx to the end
+            # if leadersCurrentEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
+            #     continue
+
+            leadersArrivalEdge = leader.arrivalEdge
+            pltnLeaderLastEdgeID = pltnLeaderRoute[-1]
+            # for now, we support only this case: "cars should form platoons if their route end in same edge"
+            if leadersArrivalEdge != pltnLeaderLastEdgeID:
                 continue
 
             if leader.getPlatoon() == pltn:
                 # Platoon order is corrupted, don't join own platoon.
                 continue
 
+            # if arrivalPos is not within the range of platoon, it won't join (merge)
+            pltnArrivalInterval = pltnLeader.getPlatoon().getArrivalInterval()
+            print("pltnLeaderLastEdgeID", pltnLeaderLastEdgeID, " pltnArrivalInterval:", pltnArrivalInterval, " leadersArrivalEdge: ", leadersArrivalEdge, " leadersArrivalPos", leadersArrivalPos)
+            # interval is always a tuple of (min, max)
+            if leadersArrivalPos < pltnArrivalInterval[0] or leadersArrivalPos > pltnArrivalInterval[1]:
+                continue
+
             gapCondition, nrOfVehiclesCondition = self.joiningConditionsSatisfied(leaderInfo, pltn)
-            # print("gapCondition:", gapCondition, " nrOfVehiclesCondition:", nrOfVehiclesCondition)
             if gapCondition and nrOfVehiclesCondition:
                 # Try to join the platoon in front (leader's platoon),
                 # i.e. add vehicles of "pltn" to the end of leader's platoon
                 if leader.getPlatoon().join(pltn):
                     toRemove.append(pltnID)
+                    # TODO: adjust interval of leader's platoon now
                     # Debug
                     if rp.VERBOSITY >= 2:
                         report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(), leader.getPlatoon().getID()) +
@@ -671,13 +698,16 @@ class PlatoonManager(traci.StepListener):
             print("simTime:" + str(simTime()) + " # Statistics: " + str(self.get_statistics()))
 
     def joiningConditionsSatisfied(self, leaderInfo, pltn):
+        ''' returns two bool:
+            1) if gap between leader and platoon is less than maxPlatoonGap
+            2) if merge will not exceed maximum number of vehicles for each platoon
+        '''
         leaderID, leaderDist = leaderInfo
         gapCondition = leaderDist <= self._maxPlatoonGap
 
         leader = self._connectedVehicles[leaderID]
         # check if number of maximum allowed vehicles in platoon will not be exceeded upon join
-        nrOfVehiclesCondition = len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles()) <= Config.maxVehiclesInPlatoon
-
+        nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= Config.maxVehiclesInPlatoon
         return gapCondition, nrOfVehiclesCondition
 
     @staticmethod

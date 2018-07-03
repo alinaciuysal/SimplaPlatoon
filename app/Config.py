@@ -45,3 +45,5 @@ joinDistance = 50.0 # the term "d" that is used to find extreme positions (-+d) 
 lookAheadDistance = 30.0 # distance to find a leader vehicle in the simulation
 
 maxVehiclesInPlatoon = 6
+
+nrOfNotTravelledEdges = 5 # to select last n edges of each car route

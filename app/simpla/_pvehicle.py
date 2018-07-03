@@ -20,7 +20,7 @@ from _platoon import Platoon
 import _reporting as rp
 import _config as cfg
 from _platoonmode import PlatoonMode
-from app.Config import lookAheadDistance
+from app.Config import lookAheadDistance, joinDistance, nrOfNotTravelledEdges
 
 warn = rp.Warner("PVehicle")
 report = rp.Reporter("PVehicle")
@@ -30,7 +30,6 @@ vTypeParameters = defaultdict(dict)
 
 WARNED_DEFAULT = dict([(mode, False) for mode in PlatoonMode])
 
-nrOfNotTravelledEdges = 5 # to select last n routes of each car
 
 class pVehicleState(object):
 
@@ -43,6 +42,7 @@ class pVehicleState(object):
 
         # lookAheadDistance parameter defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
         # Note that the returned leader may be farther away than the given dist.
+        # type of leaderInfo is (string, double) where string ID the leading vehicle's ID and double is the distance
         self.leaderInfo = traci.vehicle.getLeader(ID, lookAheadDistance)
 
         # must be set by vehicle creator (PlatoonManager._addVehicle()) to guarantee function in first step
@@ -94,15 +94,17 @@ class PVehicle(object):
         line_id = rnd_edge + str("_") + "0"
         line_length = traci.lane.getLength(line_id)
 
-        # TODO: remove seed after testing
-        # now get a random exit location within [0, line_length]
-        self.arrivalPos = str(random.uniform(0, line_length))
+        # get a random exit location within [0, line_length]
+        arrivalPos = random.uniform(0, line_length)
+        # set arrivalInterval relative to the edge length,
+        # i.e. negative values or values greater than actual length are not allowed
+        self.arrivalInterval = (max(arrivalPos - joinDistance, 0), min(arrivalPos + joinDistance, line_length))
 
-        self.lastEdge = rnd_edge
+        # cast to string (required by SUMO)
+        self.arrivalPos = arrivalPos
+
+        self.arrivalEdge = rnd_edge
         self.currentRouteBeginTick = tick
-
-        from _platoonmanager import _destinations
-        _destinations[self._ID] = [self.lastEdge, self.arrivalPos]
 
     def _determinePlatoonVType(self, mode):
         '''_determinePlatoonVType(PlatoonMode) -> string
@@ -281,6 +283,9 @@ class PVehicle(object):
         '''
         self._timeUntilSplit = cfg.PLATOON_SPLIT_TIME
 
+    def getArrivalInterval(self):
+        return self.arrivalInterval
+
     def setSplitConditions(self, b=True):
         ''' splitConditions(bool) -> void
         Sets whether splitConditions are satisfied.
@@ -346,8 +351,8 @@ class PVehicle(object):
 
         leader = self.state.leader
         gap = self.state.leaderInfo[1]
-        minGapDifference = vTypeParameters[self._vTypes[targetMode]][
-            tc.VAR_MINGAP] - vTypeParameters[self.getCurrentVType()][tc.VAR_MINGAP]
+        minGapDifference = vTypeParameters[self._vTypes[targetMode]][tc.VAR_MINGAP] - \
+                           vTypeParameters[self.getCurrentVType()][tc.VAR_MINGAP]
         gap -= minGapDifference
 
         if gap < 0.:
@@ -418,8 +423,8 @@ class PVehicle(object):
         # that an increasing waiting time has on the active speed factor:
         # activeSpeedFactor = modeSpecificSpeedFactor/(1+impatienceFactor*waitingTime)
         self._switchImpatienceFactor = cfg.SWITCH_IMPATIENCE_FACTOR
-        # create a new platoon containing only this vehicle
-        self._platoon = Platoon([self], controlInterval)
+        # create a new platoon containing only this vehicle, also set its arrivalInterval
+        self._platoon = Platoon([self], controlInterval, self.arrivalInterval)
         # the time left until splitting from a platoon if loosing coherence as a follower
         self._timeUntilSplit = cfg.PLATOON_SPLIT_TIME
         # Whether split conditions are fulfilled (i.e. leader in th platoon
