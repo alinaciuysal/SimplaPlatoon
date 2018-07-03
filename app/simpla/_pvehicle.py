@@ -20,6 +20,7 @@ from _platoon import Platoon
 import _reporting as rp
 import _config as cfg
 from _platoonmode import PlatoonMode
+from app.Config import lookAheadDistance
 
 warn = rp.Warner("PVehicle")
 report = rp.Reporter("PVehicle")
@@ -40,9 +41,9 @@ class pVehicleState(object):
         self.laneIX = traci.vehicle.getLaneIndex(ID)
         self.lanePosition = traci.vehicle.getLanePosition(ID)
 
-        # The dist parameter (50.) defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
+        # lookAheadDistance parameter defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
         # Note that the returned leader may be farther away than the given dist.
-        self.leaderInfo = traci.vehicle.getLeader(ID, 50.)
+        self.leaderInfo = traci.vehicle.getLeader(ID, lookAheadDistance)
 
         # must be set by vehicle creator (PlatoonManager._addVehicle()) to guarantee function in first step
         self.leader = None
@@ -380,14 +381,6 @@ class PVehicle(object):
 
         # TODO: test without headway...
         return gap + leaderBrakeGap - followerBrakeGap - headwayDist > 0
-
-    # proxy for getParameter, type(param) = str
-    def getParameter(self, param):
-        try:
-            value = traci.vehicle.getParameter(self._ID, param)
-            return value
-        except:
-            return None
 
     @staticmethod
     def brakeGap(speed, decel):

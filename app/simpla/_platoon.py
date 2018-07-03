@@ -183,8 +183,7 @@ class Platoon(object):
                                mode=mode, pltnID=self.getID(), pltn_members=str([veh.getID() for veh in self.getVehicles()])))
         
         return success
-            
-    
+
     def adviseMemberModes(self):
         ''' adviseMemberModes() -> void
         Advise all member vehicles to adopt the adequate platoon mode if safely possible.

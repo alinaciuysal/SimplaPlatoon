@@ -71,7 +71,7 @@ def initDefaults():
     SPEEDFACTOR = {
         PlatoonMode.NONE: 1.0,  # NEW: previous value was None, but set to 1.0 as a work-around
         PlatoonMode.LEADER: 1.0,
-        PlatoonMode.FOLLOWER: 1.2,
+        PlatoonMode.FOLLOWER: 1.1,
         PlatoonMode.CATCHUP: 1.2,
         PlatoonMode.CATCHUP_FOLLOWER: 1.2  # is set to the same as for catchup mode below if not explicitely set
     }

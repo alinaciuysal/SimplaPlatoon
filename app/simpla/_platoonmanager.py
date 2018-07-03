@@ -28,7 +28,6 @@ import app.Config as Config
 import numpy as np
 import random
 import traceback
-import simpla
 
 from app.simpla._reporting import simTime
 from app.streaming import KafkaForword, KafkaConnector
@@ -287,6 +286,7 @@ class PlatoonManager(traci.StepListener):
                     while dist < self._catchupDist:
                         # http://www.sumo.dlr.de/daily/pydoc/traci._vehicle.html#VehicleDomain-getLeader
                         nextLeaderInfo = traci.vehicle.getLeader(vehAheadID, self._catchupDist - dist)
+                        # print("dist:", dist, "self._catchupDist", self._catchupDist, "vehAheadID", vehAheadID)
                         if nextLeaderInfo is None:
                             break
                         vehAheadID = nextLeaderInfo[0]
@@ -296,6 +296,7 @@ class PlatoonManager(traci.StepListener):
                                 report("Found connected vehicle '%s' downstream of vehicle '%s' (at distance %s)" %
                                        (vehAheadID, veh.getID(), dist + nextLeaderInfo[1]))
                             break
+                        # print("nextLeaderInfo[1]:", nextLeaderInfo[1], "traci.vehicle.getLength(vehAheadID)", traci.vehicle.getLength(vehAheadID))
                         dist += nextLeaderInfo[1] + traci.vehicle.getLength(vehAheadID)
 
     def _removeArrived(self):
@@ -332,7 +333,6 @@ class PlatoonManager(traci.StepListener):
 
         # Re-add removed platooning cars into the system, normal car(s) are already being created with flows
         for vehID in traci.simulation.getArrivedIDList():
-            # if self._isConnected(vehID):
             self._addVehicle()
 
         return count
@@ -492,7 +492,7 @@ class PlatoonManager(traci.StepListener):
                     pltn.setModeWithImpatience(PlatoonMode.LEADER, self._controlInterval)
                 continue
 
-            # leader vehicle
+            # get leader vehicle
             leaderID, leaderDist = leaderInfo
             leader = self._connectedVehicles[leaderID]
 
@@ -504,17 +504,22 @@ class PlatoonManager(traci.StepListener):
             # (sometimes a 'linkLeader' on junction is returned by traci.getLeader())
             # XXX: This prevents joining attempts on internal lanes (probably doesn't hurt so much)
             pltnLeaderRoute = traci.vehicle.getRoute(pltnLeader.getID())
+            # index of the current edge within the vehicles route
             pltnLeaderRouteIx = traci.vehicle.getRouteIndex(pltnLeader.getID())
-            leaderEdge = leader.state.edgeID
-            if leaderEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
+            leadersCurrentEdge = leader.state.edgeID
+            # edges from pltnLeaderRouteIx to the end
+            if leadersCurrentEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
                 continue
 
             if leader.getPlatoon() == pltn:
                 # Platoon order is corrupted, don't join own platoon.
                 continue
 
-            if leaderDist <= self._maxPlatoonGap:
-                # Try to join the platoon in front (leader's platoon)
+            gapCondition, nrOfVehiclesCondition = self.joiningConditionsSatisfied(leaderInfo, pltn)
+            # print("gapCondition:", gapCondition, " nrOfVehiclesCondition:", nrOfVehiclesCondition)
+            if gapCondition and nrOfVehiclesCondition:
+                # Try to join the platoon in front (leader's platoon),
+                # i.e. add vehicles of "pltn" to the end of leader's platoon
                 if leader.getPlatoon().join(pltn):
                     toRemove.append(pltnID)
                     # Debug
@@ -527,12 +532,19 @@ class PlatoonManager(traci.StepListener):
                         report("Merging of platoons '%s' (%s) and '%s' (%s) would not be safe." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
                                                                                                    leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
             else:
-                # Join failed due to too large distance. Try to get closer (change to CATCHUP mode).
-                if not pltn.setMode(PlatoonMode.CATCHUP):
-                    if rp.VERBOSITY >= 3:
-                        report("Switch to catchup mode would not be safe for platoon '%s' (%s) chasing platoon '%s' (%s)." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
-                                                                                                                              leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
-
+                # Join can fail due to different reasons:
+                # 1) too large distance. Try to get closer (change to CATCHUP mode).
+                if not gapCondition:
+                    if not pltn.setMode(PlatoonMode.CATCHUP):
+                        if rp.VERBOSITY >= 3:
+                            report("Switch to catchup mode would not be safe for platoon '%s' (%s) chasing platoon '%s' (%s)." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
+                                                                                                                                                  leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
+                # 2) numberOfVehicles in platoon is already too much.
+                if not nrOfVehiclesCondition:
+                    if not pltn.setMode(PlatoonMode.FOLLOWER):
+                        if rp.VERBOSITY >= 3:
+                            report("Switch to follower mode would not be safe for platoon '%s' (%s) chasing platoon '%s' (%s)." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
+                                                                                                                                  leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
         # remove merged platoons
         for pltnID in toRemove:
             self._platoons.pop(pltnID)
@@ -619,9 +631,7 @@ class PlatoonManager(traci.StepListener):
         Determines whether the given vehicle should be connected to the platoon manager
         by comparing the vType with the type selector substrings specified in vehicleSelectors of cfg.
         '''
-        print("self._typeSubstrings", self._typeSubstrings)
         for selector_str in self._typeSubstrings:
-            print("111111 selector_str", selector_str, "vType", vType)
             if selector_str in vType:
                 return True
         return False
@@ -633,10 +643,6 @@ class PlatoonManager(traci.StepListener):
 
 
         co2 = np.mean(veh.state.reportedCO2Emissions)
-        print("actual emissions", veh.state.reportedCO2Emissions)
-        print("calculated co2", co2)
-        print("totalTrips", self.totalTrips)
-        print("totalCO2EmissionAverage", self.totalCO2EmissionAverage)
         self.totalCO2EmissionAverage = self.addToAverage(self.totalTrips, self.totalCO2EmissionAverage, co2)
 
         co = np.mean(veh.state.reportedCOEmissions)
@@ -658,15 +664,21 @@ class PlatoonManager(traci.StepListener):
         self.totalNoiseEmissionAverage = self.addToAverage(self.totalTrips, self.totalNoiseEmissionAverage, noise)
 
         speed = np.mean(veh.state.reportedSpeeds)
-        print("actual speeds", veh.state.reportedSpeeds)
-        print("calculated speed", speed)
-        print("totalTrips", self.totalTrips)
-        print("totalSpeedAverage", self.totalSpeedAverage)
         self.totalSpeedAverage = self.addToAverage(self.totalTrips, self.totalSpeedAverage, speed)
 
     def _publishStatistics(self):
         if simTime() % 100 == 0:
             print("simTime:" + str(simTime()) + " # Statistics: " + str(self.get_statistics()))
+
+    def joiningConditionsSatisfied(self, leaderInfo, pltn):
+        leaderID, leaderDist = leaderInfo
+        gapCondition = leaderDist <= self._maxPlatoonGap
+
+        leader = self._connectedVehicles[leaderID]
+        # check if number of maximum allowed vehicles in platoon will not be exceeded upon join
+        nrOfVehiclesCondition = len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles()) <= Config.maxVehiclesInPlatoon
+
+        return gapCondition, nrOfVehiclesCondition
 
     @staticmethod
     def addToAverage(totalCount, totalValue, newValue):

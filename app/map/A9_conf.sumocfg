@@ -9,7 +9,7 @@
    </input>
 
 	<processing>
-        <time-to-teleport value="5"/> <!-- required to teleport halting cars in the specified time interval-->
+        <time-to-teleport value="2"/> <!-- required to teleport halting cars in the specified time interval-->
 		<lateral-resolution value="0.4"/>
     </processing>
 	<traci_server>

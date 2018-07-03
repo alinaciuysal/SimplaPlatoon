@@ -38,4 +38,10 @@ parallelMode = False
 
 stats = "mean" # can also be median, min, max for now
 
-totalCarCounter = 500
+totalCarCounter = 100
+
+joinDistance = 50.0 # the term "d" that is used to find extreme positions (-+d) of platoon
+
+lookAheadDistance = 30.0 # distance to find a leader vehicle in the simulation
+
+maxVehiclesInPlatoon = 6
