@@ -1,4 +1,5 @@
-import os, sys, traci
+import os, sys
+
 from app.streaming import KafkaConnector
 
 sys.path.append(os.path.join(os.environ.get("SUMO_HOME"), "tools"))
@@ -10,8 +11,7 @@ from app.streaming import KafkaForword
 from colorama import Fore
 from app.sumo import SUMOConnector, SUMODependency
 
-import app.Config
-import app.simpla
+import app.simpla, traci
 
 info('#####################################', Fore.CYAN)
 info('# Starting Traffic-Control-A9-v0.1  #', Fore.CYAN)
