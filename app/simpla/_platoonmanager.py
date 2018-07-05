@@ -56,6 +56,8 @@ class PlatoonManager(traci.StepListener):
     platoonCarCounter = Config.platoonCarCounter
     nonPlatoonCarCounter = Config.nonPlatoonCarCounter
 
+    edges = []
+
     tick = None
 
     # counts the number of finished trips
@@ -175,6 +177,8 @@ class PlatoonManager(traci.StepListener):
                 _pvehicle.vTypeParameters[typeID][tc.VAR_DECEL] = traci.vehicletype.getDecel(typeID)
                 _pvehicle.vTypeParameters[typeID][tc.VAR_MINGAP] = traci.vehicletype.getMinGap(typeID)
                 _pvehicle.vTypeParameters[typeID][tc.VAR_EMERGENCY_DECEL] = traci.vehicletype.getEmergencyDecel(typeID)
+
+        self.edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.endEdgeID).edges
 
         warn("end of platoon manager", True)
 
@@ -749,9 +753,7 @@ class PlatoonManager(traci.StepListener):
             # other vehicles are already started moving according to defined flow(s)
             if self._hasConnectedType(vType):
                 vehID = "platoon-car-" + str(self.platoonCarIndex)
-                # hard-coded start & end edges
-                edges = traci.simulation.findRoute(fromEdge="11S", toEdge="12N").edges
-                veh = _pvehicle.PVehicle(ID=vehID, edges=edges, tick=simTime())
+                veh = _pvehicle.PVehicle(ID=vehID, edges=self.edges, tick=simTime())
                 routeID = "platoon-car-route-" + str(self.platoonCarIndex)
                 traci.route.add(routeID, veh.edgesToTravel)
                 traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
@@ -786,13 +788,16 @@ class PlatoonManager(traci.StepListener):
     def _addNormalVehicle(self):
         vehID = "normal-car-" + str(self.normalCarIndex)
         typeID = "normal-car" # must be same with <vType> id in flow.rou.xml if used
-        # hard-coded start & end edges
-        edges = traci.simulation.findRoute(fromEdge="11S", toEdge="12N").edges
         routeID = "normal-car-route-" + str(self.normalCarIndex)
-        traci.route.add(routeID, edges)
-        # -5 denotes best line, http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes#depart
-        # http://sumo.dlr.de/wiki/TraCI/Change_Vehicle_State
-        traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID='DEFAULT_VEHTYPE', depart=str(simTime()), departLane='random', departPos='base', departSpeed='0')
+        traci.route.add(routeID, self.edges)
+
+        # TODO: hard-coded lane numbers, there should be getLaneNumber(edgeID) method in edge,
+        # TODO: but there's no such fcn in current version
+        # see: http://www.sumo.dlr.de/daily/pydoc/traci._edge.html#EdgeDomain-getLaneNumber
+        # laneNumbers = traci.edge.getLaneNumber("12N")
+        laneNumbers = [0, 1, 2, 3]
+        arrivalLane = str(random.choice(laneNumbers))
+        traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID='DEFAULT_VEHTYPE', depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalLane=arrivalLane, arrivalPos='random')
 
         self.normalCarIndex += 1
 

@@ -41,10 +41,14 @@ stats = "mean" # can also be median, min, max for now
 platoonCarCounter = 100
 nonPlatoonCarCounter = 200
 
-joinDistance = 50.0 # the term "d" that is used to find extreme positions (-+d) of platoon
+joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d) of platoon
 
 lookAheadDistance = 200.0 # distance to find a leader vehicle in the simulation
 
 maxVehiclesInPlatoon = 6
 
 nrOfNotTravelledEdges = 5 # to select last n edges of each platoon car route
+
+# start & end edges for destinations of all cars
+startEdgeID = "11S"
+endEdgeID = "135586672#0"
