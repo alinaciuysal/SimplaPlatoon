@@ -45,7 +45,7 @@ class pVehicleState(object):
         # type of leaderInfo is (string, double) where string ID the leading vehicle's ID and double is the distance
         self.leaderInfo = traci.vehicle.getLeader(ID, lookAheadDistance)
 
-        # must be set by vehicle creator (PlatoonManager._addVehicle()) to guarantee function in first step
+        # must be set by vehicle creator (PlatoonManager._addPlatoonVehicle()) to guarantee function in first step
         self.leader = None
 
         # Whether a possible platooning partner for the vehicle is located further downstream within _catchupDistance
@@ -362,6 +362,7 @@ class PVehicle(object):
         if leader is None:
             # This may occur if the leader is not connected, so no corresponding PVehicle exists
             # I'm not sure if this is ever called, but wouldn't exclude the possibility
+            # TODO: in one of the runs, traci gave this error: "state.leaderInfo[0] -> id of the car is not known"
             leaderDecel = traci.vehicle.getDecel(self.state.leaderInfo[0])
             leaderSpeed = traci.vehicle.getSpeed(self.state.leaderInfo[0])
         else:

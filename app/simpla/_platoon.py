@@ -13,6 +13,8 @@
 
 from _platoonmode import PlatoonMode
 import _reporting as rp
+from operator import itemgetter
+from app.Config import joinDistance
 
 warn = rp.Warner("Platoon")
 report = rp.Reporter("Platoon")
@@ -244,11 +246,10 @@ class Platoon(object):
 
         # split can be taken out safely -> reduce vehicles in this platoon
         self._vehicles = self._vehicles[:index]
+
         # set reference to new platoon in splitted vehicles
         pltn.registerVehicles()
-        # TODO: arrival interval must be updated, for now we set vehicle's interval
-        newLeader = self._vehicles[0]
-        pltn.setArrivalInterval(newLeader.getArrivalInterval())
+        pltn.adjustInterval()
 
         if len(self._vehicles) == 1:
             # only one vehicle remains, turn off its platoon-specific behavior
@@ -259,7 +260,7 @@ class Platoon(object):
     def join(self, pltn):
         '''join(Platoon)
 
-        Tries to add the given platoon to the end of this. Returns True if this could safely be executed.
+        Tries to add the given platoon to the end of this (self). Returns True if this could safely be executed.
         '''
         vehs = pltn.getVehicles()
         if self.getMode() == PlatoonMode.CATCHUP:
@@ -300,3 +301,15 @@ class Platoon(object):
             # Leader was kept in CATCHUP_FOLLOW mode due to safety constraints
             mode = PlatoonMode.CATCHUP
         return mode
+
+    # see https://stackoverflow.com/questions/13145368/find-the-maximum-value-in-a-list-of-tuples-in-python and
+    # app.tests.arrivals
+    def adjustInterval(self):
+        intervals = []
+        for veh in self._vehicles:
+            intervals.append(veh.arrivalInterval)
+
+        min_interval = min(intervals, key=itemgetter(0))[0]
+        max_interval = max(intervals, key=itemgetter(1))[1]
+        self.setArrivalInterval((min_interval, max_interval))
+        # self._arrivalInterval = min_interval, max_interval

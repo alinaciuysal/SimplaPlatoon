@@ -49,9 +49,13 @@ class PlatoonManager(traci.StepListener):
     the associated vehicle types are exclusive for each.
     '''
 
-    # keep track of added vehicles with this index & upper limit
-    carIndexCounter = 0
-    totalCarCounter = Config.totalCarCounter
+    # keeps track of added platoon vehicles with this index & upper limit
+    platoonCarIndex = 0
+    normalCarIndex = 0
+
+    platoonCarCounter = Config.platoonCarCounter
+    nonPlatoonCarCounter = Config.nonPlatoonCarCounter
+
     tick = None
 
     # counts the number of finished trips
@@ -171,6 +175,7 @@ class PlatoonManager(traci.StepListener):
                 _pvehicle.vTypeParameters[typeID][tc.VAR_DECEL] = traci.vehicletype.getDecel(typeID)
                 _pvehicle.vTypeParameters[typeID][tc.VAR_MINGAP] = traci.vehicletype.getMinGap(typeID)
                 _pvehicle.vTypeParameters[typeID][tc.VAR_EMERGENCY_DECEL] = traci.vehicletype.getEmergencyDecel(typeID)
+
         warn("end of platoon manager", True)
 
     def step(self, t=0):
@@ -305,99 +310,6 @@ class PlatoonManager(traci.StepListener):
                             break
                         dist += nextLeaderInfo[1] + traci.vehicle.getLength(vehAheadID)
 
-    def _removeArrived(self):
-        ''' _removeArrived()
-
-        Remove all vehicles that have left the simulation from _connectedVehicles.
-        Returns the number of removed connected vehicles
-        Vehicles are not accessible via traci in this method
-        '''
-
-        count = 0
-        toRemove = defaultdict(list)
-        for ID in traci.simulation.getArrivedIDList():
-            # first store arrived vehicles platoonwise
-            if not self._isConnected(ID):
-                continue
-            if rp.VERBOSITY >= 2:
-                report("Removing arrived vehicle '%s'" % ID)
-
-            veh = self._connectedVehicles.pop(ID)
-            toRemove[veh.getPlatoon().getID()].append(veh)
-            count += 1
-
-            # required for statistics
-            self.totalTrips += 1
-            self._updateStatistics(veh)
-
-        for pltnID, vehs in toRemove.items():
-            pltn = self._platoons[pltnID]
-            pltn.removeVehicles(vehs)
-
-            if pltn.size() == 0:
-                # remove empty platoons
-                self._platoons.pop(pltn.getID())
-            # TODO: adjust case 2 for vehicle removal, i.e. find new interval of pltn
-            else:
-                pass
-        # Re-add removed platooning cars into the system, normal car(s) are already being created with flows
-        for vehID in traci.simulation.getArrivedIDList():
-            self._addVehicle()
-
-        return count
-
-    def _addVehicle(self):
-        '''_addVehicle()
-
-        Creates a new PVehicle object for platooning and registers is soliton platoon
-        It filters out car types that are not related with platooning logic to ensure a valid platooning car addition to simulation
-        '''
-        try:
-            self.carIndexCounter += 1
-            knownVTypes = traci.vehicletype.getIDList()
-            knownVTypes.remove("DEFAULT_PEDTYPE")
-            knownVTypes.remove("DEFAULT_VEHTYPE")
-            knownVTypes.remove("normal-car")
-            random_vType = random.choice(knownVTypes)
-
-            # register car within the platooning manager if randomly selected type is specialized for platooning
-            # other vehicles are already started moving according to defined flow(s)
-            if self._hasConnectedType(random_vType):
-                vehID = "car-" + str(self.carIndexCounter)
-                # hard-coded start & end edges
-                edges = traci.simulation.findRoute(fromEdge="11S", toEdge="12N").edges
-                veh = _pvehicle.PVehicle(ID=vehID, edges=edges, tick=simTime())
-                routeID = "route-" + str(self.carIndexCounter)
-                traci.route.add(routeID, veh.edgesToTravel)
-                traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=random_vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
-                valid = traci.vehicle.isRouteValid(vehID=vehID)
-                if valid:
-                    print("id ", vehID, " routeID ", routeID, " random_vType ", random_vType, " simTime", simTime(), " arrivalEdge ", veh.arrivalEdge, " arrivalPos ", veh.arrivalPos, " valid ", valid)
-                    veh.setState(self._controlInterval)
-                    # Subscribe according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
-                    traci.vehicle.subscribe(vehID,
-                                            (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED, tc.VAR_LANEPOSITION,
-                                             tc.VAR_CO2EMISSION,
-                                             tc.VAR_COEMISSION,
-                                             tc.VAR_HCEMISSION,
-                                             tc.VAR_PMXEMISSION,
-                                             tc.VAR_NOXEMISSION,
-                                             tc.VAR_FUELCONSUMPTION,
-                                             tc.VAR_NOISEEMISSION))
-                    if rp.VERBOSITY >= 2:
-                        report("Adding vehicle '%s'" % vehID)
-                    self._connectedVehicles[vehID] = veh
-                    self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
-                    return veh
-                else:
-                    report("Route of vehicle '%s' is not valid" % vehID)
-                    return None
-        except TraCIException as traci_exception:
-            traceback.print_exc()
-            raise traci_exception
-        except KeyError as e:
-            raise e
-
     def _manageFollowers(self):
         '''_manageFollowers()
 
@@ -450,8 +362,8 @@ class PlatoonManager(traci.StepListener):
             for ix in reversed(splitIndices):
                 newPlatoon = pltn.split(ix)
                 if newPlatoon is not None:
-                    # TODO: integrate case 3 for split
-                    # if the platoon was split, register the splitted platoons
+                    # if the platoon was split, register the splitted platoons and find its arrivalInterval
+                    newPlatoon.adjustInterval()
                     newPlatoons.append(newPlatoon)
                     if rp.VERBOSITY >= 2:
                         report("Platoon '%s' splits (ID of new platoon: '%s'):\n" % (pltn.getID(), newPlatoon.getID()) +
@@ -537,7 +449,6 @@ class PlatoonManager(traci.StepListener):
 
             # if arrivalPos is not within the range of platoon, it won't join (merge)
             pltnArrivalInterval = pltnLeader.getPlatoon().getArrivalInterval()
-            print("pltnLeaderLastEdgeID", pltnLeaderLastEdgeID, " pltnArrivalInterval:", pltnArrivalInterval, " leadersArrivalEdge: ", leadersArrivalEdge, " leadersArrivalPos", leadersArrivalPos)
             # interval is always a tuple of (min, max)
             if leadersArrivalPos < pltnArrivalInterval[0] or leadersArrivalPos > pltnArrivalInterval[1]:
                 continue
@@ -548,7 +459,12 @@ class PlatoonManager(traci.StepListener):
                 # i.e. add vehicles of "pltn" to the end of leader's platoon
                 if leader.getPlatoon().join(pltn):
                     toRemove.append(pltnID)
-                    # TODO: adjust interval of leader's platoon now
+                    leader.getPlatoon().adjustInterval()
+                    print("joined: pltnArrivalInterval: ", pltnArrivalInterval,
+                          " leadersArrivalPos", leadersArrivalPos,
+                          " leadersArrivalInterval", leader.getArrivalInterval(),
+                          " newInterval", leader.getPlatoon().getArrivalInterval())
+
                     # Debug
                     if rp.VERBOSITY >= 2:
                         report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(), leader.getPlatoon().getID()) +
@@ -807,19 +723,124 @@ class PlatoonManager(traci.StepListener):
         return vehicles
 
     def applyCarCounter(self):
-        """ add specified number of platooning cars into the system """
-        while len(self._connectedVehicles) < self.totalCarCounter:
-            self._addVehicle()
+        while self.normalCarIndex < self.nonPlatoonCarCounter:
+            self._addNormalVehicle()
 
-    # def _removeBeforeExit(self):
-    #     subscriptionResults = traci.vehicle.getSubscriptionResults()
-    #     for veh in self._connectedVehicles.values():
-    #         veh.state.edgeID = subscriptionResults[veh.getID()][tc.VAR_ROAD_ID]
-    #         veh.state.lanePosition = subscriptionResults[veh.getID()][tc.VAR_LANEPOSITION]
-    #         last_edge_id, arrival_pos = _destinations[veh.getID()]
-    #         if veh.state.edgeID == last_edge_id and veh.state.lanePosition >= arrival_pos:
-    #             print("veh_id", veh.getID(), " veh.state.lanePosition", veh.state.lanePosition, " arrival_pos", arrival_pos)
-    #             traci.vehicle.remove(veh.getID())
-    #             _destinations.pop(veh.getID())
-    #             print "****************"
-    #             continue
+            """ add a platooning car into the system """
+            if len(self._connectedVehicles) < self.platoonCarCounter:
+                self._addPlatoonVehicle()
+
+    def _addPlatoonVehicle(self):
+        '''_addPlatoonVehicle()
+
+        Creates a new PVehicle object for platooning and registers is soliton platoon
+        It filters out car types that are not related with platooning logic to ensure a valid platooning car addition to simulation
+        '''
+        try:
+            self.platoonCarIndex += 1
+            # Returns a list of ids of currently loaded vehicle types
+            knownVTypes = traci.vehicletype.getIDList()
+            knownVTypes.remove("DEFAULT_PEDTYPE")
+            knownVTypes.remove("DEFAULT_VEHTYPE")
+            knownVTypes.remove("normal-car")
+            vType = random.choice(knownVTypes)
+
+            # register car within the platooning manager if randomly selected type is specialized for platooning
+            # other vehicles are already started moving according to defined flow(s)
+            if self._hasConnectedType(vType):
+                vehID = "platoon-car-" + str(self.platoonCarIndex)
+                # hard-coded start & end edges
+                edges = traci.simulation.findRoute(fromEdge="11S", toEdge="12N").edges
+                veh = _pvehicle.PVehicle(ID=vehID, edges=edges, tick=simTime())
+                routeID = "platoon-car-route-" + str(self.platoonCarIndex)
+                traci.route.add(routeID, veh.edgesToTravel)
+                traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
+                traci.vehicle.setColor(vehID=vehID, color=(255, 255, 255, 255))
+                valid = traci.vehicle.isRouteValid(vehID=vehID)
+                if valid:
+                    veh.setState(self._controlInterval)
+                    # Subscribe according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
+                    traci.vehicle.subscribe(vehID,
+                                            (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED, tc.VAR_LANEPOSITION,
+                                             tc.VAR_CO2EMISSION,
+                                             tc.VAR_COEMISSION,
+                                             tc.VAR_HCEMISSION,
+                                             tc.VAR_PMXEMISSION,
+                                             tc.VAR_NOXEMISSION,
+                                             tc.VAR_FUELCONSUMPTION,
+                                             tc.VAR_NOISEEMISSION))
+                    if rp.VERBOSITY >= 3:
+                        report("Adding vehicle '%s', routeID: '%s', vType:'%s'" % (vehID, routeID, vType))
+                    self._connectedVehicles[vehID] = veh
+                    self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
+                    return veh
+                else:
+                    report("Route of vehicle '%s' is not valid" % vehID)
+                    return None
+        except TraCIException as traci_exception:
+            traceback.print_exc()
+            raise traci_exception
+        except KeyError as e:
+            raise e
+
+    def _addNormalVehicle(self):
+        vehID = "normal-car-" + str(self.normalCarIndex)
+        typeID = "normal-car" # must be same with <vType> id in flow.rou.xml if used
+        # hard-coded start & end edges
+        edges = traci.simulation.findRoute(fromEdge="11S", toEdge="12N").edges
+        routeID = "normal-car-route-" + str(self.normalCarIndex)
+        traci.route.add(routeID, edges)
+        # -5 denotes best line, http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes#depart
+        # http://sumo.dlr.de/wiki/TraCI/Change_Vehicle_State
+        traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID='DEFAULT_VEHTYPE', depart=str(simTime()), departLane='random', departPos='base', departSpeed='0')
+
+        self.normalCarIndex += 1
+
+    def _removeArrived(self):
+        ''' _removeArrived()
+
+        Remove all vehicles that have left the simulation from _connectedVehicles.
+        Returns the number of removed connected vehicles
+        Vehicles are not accessible via traci in this method
+        '''
+
+        count = 0
+        toRemove = defaultdict(list)
+        for ID in traci.simulation.getArrivedIDList():
+            # first store arrived vehicles platoonwise
+            if not self._isConnected(ID):
+                continue
+            if rp.VERBOSITY >= 3:
+                report("Removing arrived vehicle '%s'" % ID)
+
+            veh = self._connectedVehicles.pop(ID)
+            toRemove[veh.getPlatoon().getID()].append(veh)
+            count += 1
+
+            # required for statistics
+            self.totalTrips += 1
+            self._updateStatistics(veh)
+
+        # adjust platoons
+        for pltnID, vehs in toRemove.items():
+            pltn = self._platoons[pltnID]
+            pltn.removeVehicles(vehs)
+
+            if pltn.size() == 0:
+                # remove empty platoons
+                self._platoons.pop(pltn.getID())
+
+            else:
+                pltn.adjustInterval()
+
+        # Re-add removed cars (both normal & platoon) into the system
+        # Returns a list of ids of arrived vehicles (reached their destination and removed from the road network)
+        for vehID in traci.simulation.getArrivedIDList():
+            # The only way to distinguish the type of arrived car is to look at its id
+            # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
+            if "platoon" in vehID:
+                self._addPlatoonVehicle()
+            else:
+                self._addNormalVehicle()
+
+        return count

@@ -2,8 +2,6 @@ import json
 import traci
 import traci.constants as tc
 
-from colorama import Fore
-from app.logging import info
 import app.Config as cfg
 import numpy as np
 from app.streaming import KafkaForword, KafkaConnector

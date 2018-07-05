@@ -38,12 +38,13 @@ parallelMode = False
 
 stats = "mean" # can also be median, min, max for now
 
-totalCarCounter = 100
+platoonCarCounter = 100
+nonPlatoonCarCounter = 200
 
 joinDistance = 50.0 # the term "d" that is used to find extreme positions (-+d) of platoon
 
-lookAheadDistance = 30.0 # distance to find a leader vehicle in the simulation
+lookAheadDistance = 200.0 # distance to find a leader vehicle in the simulation
 
 maxVehiclesInPlatoon = 6
 
-nrOfNotTravelledEdges = 5 # to select last n edges of each car route
+nrOfNotTravelledEdges = 5 # to select last n edges of each platoon car route

@@ -186,8 +186,9 @@ def load(filename):
         elif e.tag == "catchupDist":
             if hasAttributes(e):
                 dist = float(list(e.attrib.values())[0])
-                if dist <= 0: # TODO: report bugfix here: "variable maxgap was referenced before assignment"
-                    if rp.VERBOSITY>=1: warn("Parameter catchupDist must be positive. Ignoring given value: %s" % (dist), True)
+                if dist <= 0:
+                    if rp.VERBOSITY >= 1:
+                        warn("Parameter catchupDist must be positive. Ignoring given value: %s" % (dist), True)
                 else:
                     CATCHUP_DIST = dist
         elif e.tag == "switchImpatienceFactor":

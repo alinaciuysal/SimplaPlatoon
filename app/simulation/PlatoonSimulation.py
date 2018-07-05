@@ -39,7 +39,6 @@ class PlatoonSimulation(object):
                     cls.hard_shoulder_on = False
                 else:
                     cls.hard_shoulder_on = True
-        # TODO: to be removed, just for easy testing
         # else:
             # NEW: apply platoon configs
             # print("setting config")

@@ -16,7 +16,8 @@ class CarRegistry(object):
     """ central registry for all our cars we have in the sumo simulation """
 
     # the total amount of cars that should be in the system
-    totalCarCounter = Config.totalCarCounter
+    totalCarCounter = Config.nonPlatoonCarCounter + Config.platoonCarCounter
+
     # always increasing counter for carIDs
     carIndexCounter = 0
     # list of all cars, type: dict(str, Car)
