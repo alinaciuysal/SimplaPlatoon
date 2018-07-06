@@ -27,14 +27,10 @@ kafkaPlatoonConfigTopic = "platoon-config"
 initialWaitTicks = 10
 
 # True if we want to use the SUMO GUI
-sumoUseGUI = True
+sumoUseGUI = False
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
 platooning = True
-
-# runtime dependent variable
-processID = 0
-parallelMode = False
 
 stats = "mean" # can also be median, min, max for now
 
@@ -52,3 +48,7 @@ nrOfNotTravelledEdges = 5 # to select last n edges of each platoon car route
 # start & end edges for destinations of all cars
 startEdgeID = "11S"
 endEdgeID = "135586672#0"
+
+# runtime dependent variable
+processID = 6
+parallelMode = False

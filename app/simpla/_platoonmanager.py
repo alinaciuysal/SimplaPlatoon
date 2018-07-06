@@ -26,8 +26,7 @@ import traci
 import traci.constants as tc
 import app.Config as Config
 import numpy as np
-import random
-import traceback
+import random, traceback, os.path, json
 
 from app.simpla._reporting import simTime
 from app.streaming import KafkaForword, KafkaConnector
@@ -49,6 +48,9 @@ class PlatoonManager(traci.StepListener):
     the associated vehicle types are exclusive for each.
     '''
 
+    edges = []
+    tick = None
+
     # keeps track of added platoon vehicles with this index & upper limit
     platoonCarIndex = 0
     normalCarIndex = 0
@@ -56,9 +58,12 @@ class PlatoonManager(traci.StepListener):
     platoonCarCounter = Config.platoonCarCounter
     nonPlatoonCarCounter = Config.nonPlatoonCarCounter
 
-    edges = []
+    # parameters to be used as output
+    nrOfPlatoonsFormed = 0
+    nrOfPlatoonsSplit = 0
 
-    tick = None
+    # number of simulation ticks that does not include durations of platoons with single vehicle
+    overallPlatoonDuration = 0
 
     # counts the number of finished trips
     totalTrips = 0
@@ -66,6 +71,9 @@ class PlatoonManager(traci.StepListener):
     totalTripAverage = 0
     # average of all trip overheads (overhead is TotalTicks/PredictedTicks)
     totalTripOverheadAverage = 0
+
+    # average of all speeds
+    totalSpeedAverage = 0
 
     # average of respective metrics
     totalCO2EmissionAverage = 0
@@ -75,13 +83,6 @@ class PlatoonManager(traci.StepListener):
     totalPMXEmissionAverage = 0
     totalNOxEmissionAverage = 0
     totalNoiseEmissionAverage = 0
-
-    # average of all speeds
-    totalSpeedAverage = 0
-
-    # in some configurations, simulation runs forever because of violating platoon ordering
-    # this array keeps track of these violated platoons: if this occurs twice, then setSplitConditions is set True
-    violatedPlatoonIDs = []
 
     def __init__(self):
         ''' PlatoonManager()
@@ -348,12 +349,6 @@ class PlatoonManager(traci.StepListener):
                             report("Platoon order for platoon '%s' is violated: real leader '%s' is not registered as leader of '%s'" % (
                                 pltnID, leaderID, veh.getID()), 1)
                         veh.setSplitConditions(False)
-                        # NEW
-                        # if pltnID not in self.violatedPlatoonIDs:
-                        #     self.violatedPlatoonIDs.append(pltnID)
-                        #     veh.setSplitConditions(False)
-                        # else:
-                        #     veh.setSplitConditions(True)
                     else:
                         # leader is connected but belongs to a different platoon
                         veh.setSplitConditions(True)
@@ -364,6 +359,7 @@ class PlatoonManager(traci.StepListener):
                         splitIndices.append(ix + 1)
             # try to split at the collected splitIndices
             for ix in reversed(splitIndices):
+                self.nrOfPlatoonsSplit += 1
                 newPlatoon = pltn.split(ix)
                 if newPlatoon is not None:
                     # if the platoon was split, register the splitted platoons and find its arrivalInterval
@@ -462,6 +458,7 @@ class PlatoonManager(traci.StepListener):
                 # Try to join the platoon in front (leader's platoon),
                 # i.e. add vehicles of "pltn" to the end of leader's platoon
                 if leader.getPlatoon().join(pltn):
+                    self.nrOfPlatoonsFormed += 1
                     toRemove.append(pltnID)
                     leader.getPlatoon().adjustInterval()
                     print("joined: pltnArrivalInterval: ", pltnArrivalInterval,
@@ -507,6 +504,9 @@ class PlatoonManager(traci.StepListener):
         for pltnID, pltn in self._platoons.items():
             if pltn.size() == 1:
                 continue
+            # increment duration for each platoon
+            self.overallPlatoonDuration += 1
+
             # collect leaders within platoon
             intraPlatoonLeaders = []
             leaderID = None
@@ -588,7 +588,6 @@ class PlatoonManager(traci.StepListener):
         durationForTrip = simTime() - veh.currentRouteBeginTick
         self.totalTripAverage = self.addToAverage(self.totalTrips, self.totalTripAverage, durationForTrip)
 
-
         co2 = np.mean(veh.state.reportedCO2Emissions)
         self.totalCO2EmissionAverage = self.addToAverage(self.totalTrips, self.totalCO2EmissionAverage, co2)
 
@@ -613,10 +612,6 @@ class PlatoonManager(traci.StepListener):
         speed = np.mean(veh.state.reportedSpeeds)
         self.totalSpeedAverage = self.addToAverage(self.totalTrips, self.totalSpeedAverage, speed)
 
-    def _publishStatistics(self):
-        if simTime() % 100 == 0:
-            print("simTime:" + str(simTime()) + " # Statistics: " + str(self.get_statistics()))
-
     def joiningConditionsSatisfied(self, leaderInfo, pltn):
         ''' returns two bool:
             1) if gap between leader and platoon is less than maxPlatoonGap
@@ -634,20 +629,6 @@ class PlatoonManager(traci.StepListener):
     def addToAverage(totalCount, totalValue, newValue):
         """ simple sliding average calculation """
         return ((1.0 * totalCount * totalValue) + newValue) / (totalCount + 1)
-
-    def get_statistics(self):
-        res = dict(
-            totalCO2EmissionAverage=self.totalCO2EmissionAverage,
-            totalCOEmissionAverage=self.totalCOEmissionAverage,
-            totalFuelConsumptionAverage=self.totalFuelConsumptionAverage,
-            totalHCEmissionAverage=self.totalHCEmissionAverage,
-            totalPMXEmissionAverage=self.totalPMXEmissionAverage,
-            totalNOxEmissionAverage=self.totalNOxEmissionAverage,
-            totalNoiseEmissionAverage=self.totalNoiseEmissionAverage,
-            totalSpeedAverage=self.totalSpeedAverage,
-            totalTripAverage=self.totalTripAverage
-        )
-        return res
 
     @staticmethod
     def reorderVehicles(vehicles, actualLeaders):
@@ -849,3 +830,51 @@ class PlatoonManager(traci.StepListener):
                 self._addNormalVehicle()
 
         return count
+
+    def get_statistics(self):
+        config = dict(
+            catchupDist=cfg.CATCHUP_DIST,
+            maxPlatoonGap=cfg.MAX_PLATOON_GAP,
+            platoonSplitTime=cfg.PLATOON_SPLIT_TIME,
+            switchImpatienceFactor=cfg.SWITCH_IMPATIENCE_FACTOR,
+            maxVehiclesInPlatoon=Config.maxVehiclesInPlatoon,
+            lookAheadDistance=Config.lookAheadDistance,
+            platoonCarCounter=Config.platoonCarCounter,
+            nonPlatoonCarCounter=Config.nonPlatoonCarCounter,
+            nrOfNotTravelledEdges=Config.nrOfNotTravelledEdges,
+            joinDistance=Config.joinDistance
+        )
+
+        averages = dict(
+            totalTripAverage=self.totalTripAverage,
+            totalCO2EmissionAverage=self.totalCO2EmissionAverage,
+            totalSpeedAverage=self.totalSpeedAverage,
+            totalCOEmissionAverage=self.totalCOEmissionAverage,
+            totalFuelConsumptionAverage=self.totalFuelConsumptionAverage,
+            totalHCEmissionAverage=self.totalHCEmissionAverage,
+            totalPMXEmissionAverage=self.totalPMXEmissionAverage,
+            totalNOxEmissionAverage=self.totalNOxEmissionAverage,
+            totalNoiseEmissionAverage=self.totalNoiseEmissionAverage,
+        )
+
+        res = dict(
+            averages=averages,
+            nrOfPlatoonsFormed=self.nrOfPlatoonsFormed,
+            nrOfPlatoonsSplit=self.nrOfPlatoonsSplit,
+            overallPlatoonDuration=self.overallPlatoonDuration,
+            totalTrips=self.totalTrips,
+            config=config,
+            simTime=simTime()
+        )
+
+        return res
+
+    def _publishStatistics(self):
+        if simTime() % 1000 == 0:
+            statistics = self.get_statistics()
+            current_dir = os.path.abspath(os.path.dirname(__file__))
+            parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+            file_path = os.path.join(parent_dir, 'results', str(Config.processID))
+
+            with open(file_path + '.json', 'w') as outfile:
+                json.dump(statistics, outfile, sort_keys=True, indent=4, ensure_ascii=False)
