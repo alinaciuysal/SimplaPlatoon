@@ -1,8 +1,8 @@
 # The network config (links to the net) we use for our simulation
-sumoConfig = "./app/map/A9_conf.sumocfg"
+sumoConfig = "A9_conf.sumocfg"
 
 # The network net we use for our simulation
-sumoNet = "./app/map/A9.net.xml"
+sumoNet = "A9.net.xml"
 
 
 
@@ -24,31 +24,26 @@ kafkaCommandsTopic = "shoulder-control"
 kafkaPlatoonConfigTopic = "platoon-config"
 
 # Initial wait time before publishing data
-initialWaitTicks = 10
+initialWaitTicks = 300
 
 # True if we want to use the SUMO GUI
 sumoUseGUI = False
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
 platooning = True
-
 stats = "mean" # can also be median, min, max for now
-
-platoonCarCounter = 100
-nonPlatoonCarCounter = 200
-
-joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d) of platoon
-
-lookAheadDistance = 200.0 # distance to find a leader vehicle in the simulation
-
-maxVehiclesInPlatoon = 6
-
-nrOfNotTravelledEdges = 5 # to select last n edges of each platoon car route
 
 # start & end edges for destinations of all cars
 startEdgeID = "11S"
 endEdgeID = "135586672#0"
 
-# runtime dependent variable
-processID = 6
-parallelMode = False
+# number of ticks to run each simulation
+nrOfTicks = 2000
+
+# changeable variables
+maxVehiclesInPlatoon = 6
+lookAheadDistance = 200.0 # distance to find a leader vehicle in the simulation
+platoonCarCounter = 100
+nonPlatoonCarCounter = 200
+nrOfNotTravelledEdges = 5 # to select last n edges of each platoon car route
+joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d) of platoon

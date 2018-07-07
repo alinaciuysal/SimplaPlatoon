@@ -203,7 +203,7 @@ class PlatoonManager(traci.StepListener):
             self._manageLeaders()
             self._adviseLanes()
             self._timeSinceLastControl = 0
-            self._publishStatistics()
+            self._endSimulation()
 
     def stop(self):
         '''stop()
@@ -213,7 +213,7 @@ class PlatoonManager(traci.StepListener):
         for veh in self._connectedVehicles.values():
             veh.setPlatoonMode(PlatoonMode.NONE)
             traci.vehicle.unsubscribe(veh.getID())
-        self._connectedVehicles = []
+        self._connectedVehicles = dict()
         _platoon.Platoon._nextID = 0
 
     def getPlatoonLeaders(self):
@@ -869,12 +869,7 @@ class PlatoonManager(traci.StepListener):
 
         return res
 
-    def _publishStatistics(self):
-        if simTime() % 1000 == 0:
-            statistics = self.get_statistics()
-            current_dir = os.path.abspath(os.path.dirname(__file__))
-            parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
-            file_path = os.path.join(parent_dir, 'results', str(Config.processID))
-
-            with open(file_path + '.json', 'w') as outfile:
-                json.dump(statistics, outfile, sort_keys=True, indent=4, ensure_ascii=False)
+    def _endSimulation(self):
+        import app.simulation.PlatoonSimulation as ps
+        if simTime() % Config.nrOfTicks == 0:
+            ps.simulationEnded = True

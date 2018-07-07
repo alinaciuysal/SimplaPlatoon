@@ -8,6 +8,8 @@ from app.entity import CarRegistry
 from app.simpla._platoonmanager import _destinations
 
 
+simulationEnded = False
+
 class PlatoonSimulation(object):
     # the current tick of the simulation
     tick = 0
@@ -50,25 +52,14 @@ class PlatoonSimulation(object):
     def start(cls, platoon_mgr):
         """ start the simulation """
         print("# Started adding initial cars to the simulation")
-        # apply the configuration from the json file
-        cls.applyFileConfig()
+
+        global simulationEnded
+        simulationEnded = False
         platoon_mgr.applyCarCounter()
-
-        while 1:
+        while not simulationEnded:
             cls.tick += 1
-            # if (cls.tick % 10) == 0:
-            #     if cfg.kafkaUpdates is False:
-            #         cls.applyFileConfig()
-            #     else:
-            #         cls.applyKafkaConfig()
-            #
-            # # Check for removed cars and re-add them into the system
-            # for removedCarId in traci.simulation.getSubscriptionResults()[122]:
-            #     CarRegistry.findById(removedCarId).setArrived(cls.tick)
-
             # let the cars process this step via platoonmgr
             traci.simulationStep()
 
-
-        # results = platoon_mgr.get_statistics()
-        # print(results)
+        results = platoon_mgr.get_statistics()
+        return results
