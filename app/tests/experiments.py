@@ -99,6 +99,7 @@ if __name__ == '__main__':
     for variable_name in changeableVariables:
         for value in changeableVariables[variable_name]:
             changeVariable(variable_name, value)
+            print("New parameter: " + variable_name + " - " + str(value))
             results = run()
             flush_results(variable_name=variable_name, value=value, results=results)
             defaultVariables = deepcopy(originalVariables)

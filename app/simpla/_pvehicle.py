@@ -21,6 +21,7 @@ import _reporting as rp
 import _config as cfg
 from _platoonmode import PlatoonMode
 from app.Config import lookAheadDistance, joinDistance, nrOfNotTravelledEdges
+from traci.exceptions import TraCIException
 
 warn = rp.Warner("PVehicle")
 report = rp.Reporter("PVehicle")
@@ -322,15 +323,7 @@ class PVehicle(object):
                 warn("Given parameter switchImpatience < 0. Assuming == 0.")
             switchImpatience = 0.
 
-        # workaround for bug when following thing is somehow obtained as {}
-        # if tc.VAR_DECEL not in vTypeParameters[self._vTypes[targetMode]]:
-        #     return False
-        #
-        # if tc.VAR_TAU not in vTypeParameters[self._vTypes[targetMode]]:
-        #     return False
-
         # obtain the preferred deceleration and the tau of the target vType
-
         decel = vTypeParameters[self._vTypes[targetMode]][tc.VAR_DECEL]
         tau = vTypeParameters[self._vTypes[targetMode]][tc.VAR_TAU]
         speed = self.state.speed
@@ -362,9 +355,14 @@ class PVehicle(object):
         if leader is None:
             # This may occur if the leader is not connected, so no corresponding PVehicle exists
             # I'm not sure if this is ever called, but wouldn't exclude the possibility
-            # TODO: in one of the runs, traci gave this error: "state.leaderInfo[0] -> id of the car is not known"
-            leaderDecel = traci.vehicle.getDecel(self.state.leaderInfo[0])
-            leaderSpeed = traci.vehicle.getSpeed(self.state.leaderInfo[0])
+            # in one of the runs, traci gave this error: "state.leaderInfo[0] -> id of the car is not known"
+            # so for this case, we just return false (switch is not safe)
+            try:
+                leaderDecel = traci.vehicle.getDecel(self.state.leaderInfo[0])
+                leaderSpeed = traci.vehicle.getSpeed(self.state.leaderInfo[0])
+            except TraCIException as e:
+                if rp.VERBOSITY >= 2:
+                    report("leader-id does not exist in the simulation %s" % self.state.leaderInfo[0])
         else:
             leaderDecel = vTypeParameters[leader.getCurrentVType()][tc.VAR_DECEL]
             leaderSpeed = leader.state.speed
