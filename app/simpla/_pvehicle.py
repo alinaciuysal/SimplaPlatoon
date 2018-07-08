@@ -363,6 +363,7 @@ class PVehicle(object):
             except TraCIException as e:
                 if rp.VERBOSITY >= 2:
                     report("leader-id does not exist in the simulation %s" % self.state.leaderInfo[0])
+                return False
         else:
             leaderDecel = vTypeParameters[leader.getCurrentVType()][tc.VAR_DECEL]
             leaderSpeed = leader.state.speed

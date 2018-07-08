@@ -27,18 +27,17 @@ defaultVariables = dict(
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
-    catchupDist=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0],
-    maxPlatoonGap=[10.0, 15.0, 20.0, 25.0, 50.0, 100.0, 200.0],
-    platoonSplitTime=[1.0, 2.0, 3.0, 4.0, 5.0],
-    switchImpatienceFactor=[0.1, 0.2, 0.3, 0.4],
-    maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10],
-    lookAheadDistance=[50.0, 100.0, 200.0, 400.0],
-    platoonCarCounter=[50, 100, 200],
-    nonPlatoonCarCounter=[100, 200, 400],
-    nrOfNotTravelledEdges=[0, 5, 10, 20],
-    joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 500.0]
+    catchupDist=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0],
+    maxPlatoonGap=[10.0, 15.0, 20.0, 25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0],
+    platoonSplitTime=[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 20.0],
+    switchImpatienceFactor=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+    maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50],
+    lookAheadDistance=[50.0, 100.0, 200.0, 300.0, 400.0, 500.0, 1000.0],
+    platoonCarCounter=[50, 100, 150, 200, 250, 300, 350, 500],
+    nonPlatoonCarCounter=[50, 100, 150, 200, 250, 300, 350, 400, 500],
+    nrOfNotTravelledEdges=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20],
+    joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0]
 )
-
 
 def flush_results(variable_name, value, results):
     current_dir = os.path.abspath(os.path.dirname(__file__))

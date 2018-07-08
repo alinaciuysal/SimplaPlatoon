@@ -1,14 +1,14 @@
 {
     "averages": {
-        "totalCO2EmissionAverage": 10773.383656570326, 
-        "totalCOEmissionAverage": 282.57575477223895, 
-        "totalFuelConsumptionAverage": 4.631002307480275, 
-        "totalHCEmissionAverage": 1.568235861326596, 
-        "totalNOxEmissionAverage": 4.546850215893212, 
-        "totalNoiseEmissionAverage": 79.17761366968313, 
-        "totalPMXEmissionAverage": 0.30701971436837405, 
-        "totalSpeedAverage": 40.647587402692096, 
-        "totalTripAverage": 283.98153846153855
+        "totalCO2EmissionAverage": 9848.098710602835, 
+        "totalCOEmissionAverage": 256.24362077402327, 
+        "totalFuelConsumptionAverage": 4.233263927041799, 
+        "totalHCEmissionAverage": 1.423067399907289, 
+        "totalNOxEmissionAverage": 4.1615637067841496, 
+        "totalNoiseEmissionAverage": 76.761094987968, 
+        "totalPMXEmissionAverage": 0.2770162769761653, 
+        "totalSpeedAverage": 36.19317688419956, 
+        "totalTripAverage": 306.43853820597997
     }, 
     "config": {
         "catchupDist": 150.0, 
@@ -22,9 +22,9 @@
         "platoonSplitTime": 5.0, 
         "switchImpatienceFactor": 0.1
     }, 
-    "nrOfPlatoonsFormed": 123, 
-    "nrOfPlatoonsSplit": 82, 
-    "overallPlatoonDuration": 6725, 
+    "nrOfPlatoonsFormed": 135, 
+    "nrOfPlatoonsSplit": 205, 
+    "overallPlatoonDuration": 6958, 
     "simTime": 2000.0, 
-    "totalTrips": 649
+    "totalTrips": 601
 }

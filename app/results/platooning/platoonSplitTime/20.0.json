@@ -1,0 +1,30 @@
+{
+    "averages": {
+        "totalCO2EmissionAverage": 9965.555743954119, 
+        "totalCOEmissionAverage": 258.985143388043, 
+        "totalFuelConsumptionAverage": 4.283752967127248, 
+        "totalHCEmissionAverage": 1.4385920461820545, 
+        "totalNOxEmissionAverage": 4.213754982780353, 
+        "totalNoiseEmissionAverage": 76.87381274530671, 
+        "totalPMXEmissionAverage": 0.28035613137694365, 
+        "totalSpeedAverage": 36.38580902763105, 
+        "totalTripAverage": 305.7870216306156
+    }, 
+    "config": {
+        "catchupDist": 150.0, 
+        "joinDistance": 100.0, 
+        "lookAheadDistance": 200.0, 
+        "maxPlatoonGap": 100.0, 
+        "maxVehiclesInPlatoon": 6, 
+        "nonPlatoonCarCounter": 200, 
+        "nrOfNotTravelledEdges": 5, 
+        "platoonCarCounter": 100, 
+        "platoonSplitTime": 20.0, 
+        "switchImpatienceFactor": 0.1
+    }, 
+    "nrOfPlatoonsFormed": 110, 
+    "nrOfPlatoonsSplit": 87, 
+    "overallPlatoonDuration": 8736, 
+    "simTime": 2000.0, 
+    "totalTrips": 600
+}
