@@ -51,8 +51,31 @@ def plot_data(x_values, y_values, x_label, y_label):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.set_title('Effect of ' + x_label + " on " + y_label)
-    ax.set_xlabel(x_label)
-    ax.set_ylabel(y_label)
+
+    # set proper units for labels and use another variable for them as original ones are used for plot image files
+    yLabelPlot = y_label
+    xLabelPlot = x_label
+    if yLabelPlot == "overallPlatoonDuration" or yLabelPlot == "totalTripAverage":
+        yLabelPlot += " [sim. s]"
+    elif "FuelConsumption" in yLabelPlot:
+        yLabelPlot += " [ml/s]"
+    elif "Speed" in yLabelPlot:
+        yLabelPlot += " [m/s]"
+    elif "Emission" in yLabelPlot and yLabelPlot != "totalNoiseEmissionAverage":
+        yLabelPlot += " [mg/s]"
+    elif yLabelPlot == "totalNoiseEmissionAverage":
+        yLabelPlot += " [dBA]"
+
+    if xLabelPlot == "totalTripAverage":
+        xLabelPlot += " [sim. s]"
+    elif xLabelPlot == "platoonSplitTime":
+        xLabelPlot += " [s]"
+    elif xLabelPlot == "maxPlatoonGap" or xLabelPlot == "catchupDist" or xLabelPlot == "joinDistance" or xLabelPlot == "lookAheadDistance":
+        xLabelPlot += " [m]"
+
+    ax.set_ylabel(yLabelPlot)
+    ax.set_xlabel(xLabelPlot)
+
     ax.plot(x_values, y_values, 'o')
     fig_name = y_label + ".pdf"
     fig_folder = os.path.join(os.getcwd(), "..", "results", "platooning", "plots", x_label)
