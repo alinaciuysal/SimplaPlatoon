@@ -36,7 +36,6 @@ def run():
     SUMOConnector.start()
     info("\n# Starting the simulation!", Fore.GREEN)
 
-    results = None
     if app.Config.platooning:
         current_dir = os.path.abspath(os.path.dirname(__file__))
         file_path = os.path.abspath(os.path.join(current_dir, "app", "map", "simpla.cfg"))
@@ -44,8 +43,9 @@ def run():
         results = PlatoonSimulation.start(platoon_mgr)
         app.simpla.stop()
     else:
-        info("\n# SUMO-Application started OK!", Fore.GREEN)
-        Simulation.start()
+        sim_mgr = app.simulation.load()
+        results = Simulation.start(sim_mgr)
+        app.simulation.stop()
     # Simulation ended, so we shutdown
     info(Fore.RED + '# Shutdown' + Fore.RESET)
     traci.close()

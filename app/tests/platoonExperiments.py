@@ -4,6 +4,13 @@ from copy import deepcopy
 import app.Config as PlatoonConfig
 import xml.etree.ElementTree as ET
 
+'''
+    Driver for platooning scenario
+    Before running via "python platoonExperiments.py",
+    set sumoUseGUI flag to False and platooning flag to True in app.Config.py
+'''
+
+
 variablesOfSimpla = ["catchupDist", "maxPlatoonGap", "platoonSplitTime", "switchImpatienceFactor"]
 variablesOfPlatooning = ["maxVehiclesInPlatoon", "lookAheadDistance", "platoonCarCounter", "nonPlatoonCarCounter", "nrOfNotTravelledEdges", "joinDistance"]
 current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -69,7 +76,7 @@ def changeValueInXML(attribute, newValue):
 
 
 def changeVariable(variable_name, value):
-    # temporarily change a variable to perform an experiment or for revert back
+    # temporarily change a variable to perform an experiment and revert it back
     # these parameters should be loaded/changed within different files, we need to distinguish them based on their names
     if variable_name in variablesOfSimpla:
         changeValueInXML(variable_name, value)

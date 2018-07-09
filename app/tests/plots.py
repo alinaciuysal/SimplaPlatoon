@@ -1,7 +1,7 @@
 # import glob
 import os, json
 import matplotlib.pyplot as plt
-from app.tests.experiments import make_sure_path_exists
+from app.tests.platoonExperiments import make_sure_path_exists
 
 avgParams = ["totalCO2EmissionAverage", "totalCOEmissionAverage", "totalFuelConsumptionAverage",
              "totalHCEmissionAverage", "totalNOxEmissionAverage", "totalNoiseEmissionAverage",

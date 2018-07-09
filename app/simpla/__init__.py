@@ -97,8 +97,3 @@ def update():
     else:
         if rp.VERBOSITY >= 1:
             warn("call simpla.init(<config_file>) before simpla.update()!")
-
-def get_platoon_manager():
-    global _mgr
-    if _mgr is not None:
-        return _mgr

@@ -30,7 +30,8 @@ initialWaitTicks = 300
 sumoUseGUI = False
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
-platooning = True
+platooning = False
+
 stats = "mean" # can also be median, min, max for now
 
 # start & end edges for destinations of all cars

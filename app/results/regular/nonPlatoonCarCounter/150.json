@@ -1,0 +1,19 @@
+{
+    "averages": {
+        "totalCO2EmissionAverage": 9941.731580743957, 
+        "totalCOEmissionAverage": 268.16134071749485, 
+        "totalFuelConsumptionAverage": 4.273519209994936, 
+        "totalHCEmissionAverage": 1.4823406740641343, 
+        "totalNOxEmissionAverage": 4.154846329524064, 
+        "totalNoiseEmissionAverage": 79.42046974073116, 
+        "totalPMXEmissionAverage": 0.28702684413104257, 
+        "totalSpeedAverage": 41.55441830341948, 
+        "totalTripAverage": 306.3030303030306
+    }, 
+    "config": {
+        "nonPlatoonCarCounter": 150, 
+        "platoonCarCounter": 100
+    }, 
+    "simTime": 2000.0, 
+    "totalTrips": 1517
+}

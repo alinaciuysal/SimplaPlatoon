@@ -4,15 +4,13 @@ import app.Config as cfg
 import traci.constants as tc
 from app.streaming import KafkaForword, KafkaConnector
 from app.simpla._config import setValues, getValues
-from app.entity import CarRegistry
+from app.entity import SimulationManager
 from app.simpla._platoonmanager import _destinations
-
 
 simulationEnded = False
 
+
 class PlatoonSimulation(object):
-    # the current tick of the simulation
-    tick = 0
 
     @classmethod
     def applyFileConfig(cls):
@@ -57,7 +55,6 @@ class PlatoonSimulation(object):
         simulationEnded = False
         platoon_mgr.applyCarCounter()
         while not simulationEnded:
-            cls.tick += 1
             # let the cars process this step via platoonmgr
             traci.simulationStep()
 

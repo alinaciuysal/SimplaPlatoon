@@ -79,9 +79,6 @@ class PVehicle(object):
         # vehicle ID (should be the one used in SUMO)
         self._ID = ID
 
-        # the rounds this car already drove
-        self.rounds = 0
-
         # store the vehicle's vTypes, speedfactors and lanechangemodes
         self._vTypes = dict()
         self._speedFactors = dict()

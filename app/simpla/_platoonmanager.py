@@ -722,7 +722,6 @@ class PlatoonManager(traci.StepListener):
         It filters out car types that are not related with platooning logic to ensure a valid platooning car addition to simulation
         '''
         try:
-            self.platoonCarIndex += 1
             # Returns a list of ids of currently loaded vehicle types
             knownVTypes = traci.vehicletype.getIDList()
             knownVTypes.remove("DEFAULT_PEDTYPE")
@@ -756,6 +755,7 @@ class PlatoonManager(traci.StepListener):
                         report("Adding vehicle '%s', routeID: '%s', vType:'%s'" % (vehID, routeID, vType))
                     self._connectedVehicles[vehID] = veh
                     self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
+                    self.platoonCarIndex += 1
                     return veh
                 else:
                     report("Route of vehicle '%s' is not valid" % vehID)
