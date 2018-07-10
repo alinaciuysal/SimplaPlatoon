@@ -36,22 +36,23 @@ stats = "mean" # can also be median, min, max for now
 
 # start & end edges for destinations of all cars
 startEdgeID = "11S"
-endEdgeID = "135586672#0"
+endEdgeID_1 = "135586672#0"
+endEdgeID_2 = "23805795"
 
 # number of ticks to run each simulation
-nrOfTicks = 3000
+nrOfTicks = 1000
 
 # changeable variables
 maxVehiclesInPlatoon = 6
 lookAheadDistance = 50.0 # distance to find a leader vehicle in the simulation
-platoonCarCounter = 100
-totalCarCounter = 300
-nrOfNotTravelledEdges = 3 # to select last n edges of each platoon car route
+platoonCarCounter = 250
+totalCarCounter = 250
+
 joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d) of platoon
 
 # simpla parameters
 import random
-random.seed(0)
+# random.seed(0)
 
 def get_random():
     return random
