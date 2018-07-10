@@ -48,3 +48,10 @@ platoonCarCounter = 100
 totalCarCounter = 300
 nrOfNotTravelledEdges = 3 # to select last n edges of each platoon car route
 joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d) of platoon
+
+# simpla parameters
+import random
+random.seed(0)
+
+def get_random():
+    return random

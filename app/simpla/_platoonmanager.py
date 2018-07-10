@@ -25,7 +25,7 @@ import _platoon
 import traci
 import traci.constants as tc
 import app.Config as Config
-import random, traceback, os.path, json
+import traceback, os.path, json
 
 from app.simpla._reporting import simTime
 from app.streaming import KafkaForword, KafkaConnector
@@ -721,7 +721,7 @@ class PlatoonManager(traci.StepListener):
             knownVTypes.remove("DEFAULT_PEDTYPE")
             knownVTypes.remove("DEFAULT_VEHTYPE")
             knownVTypes.remove("normal-car")
-            vType = random.choice(knownVTypes)
+            vType = Config.get_random().choice(knownVTypes)
 
             # register car within the platooning manager if randomly selected type is specialized for platooning
             # other vehicles are already started moving according to defined flow(s)
@@ -773,9 +773,9 @@ class PlatoonManager(traci.StepListener):
         laneNumbers = [0, 1, 2, 3]
 
         # TODO: remove in production
-        random.seed(0)
+        # random.seed(0)
 
-        arrivalLane = str(random.choice(laneNumbers))
+        arrivalLane = str(Config.get_random().choice(laneNumbers))
         traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID='DEFAULT_VEHTYPE', depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalLane=arrivalLane, arrivalPos='random')
 
         self.carIndex += 1

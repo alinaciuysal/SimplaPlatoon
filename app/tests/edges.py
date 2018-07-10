@@ -1,10 +1,11 @@
-import random
+from app.Config import get_random
+
 nrOfNotTravelledEdges = 5
 
 def extract_info(edges):
     print(edges)
     # random.seed(3)
-    rnd_edge = random.choice(edges[-nrOfNotTravelledEdges:])
+    rnd_edge = get_random().choice(edges[-nrOfNotTravelledEdges:])
     print("random_edge", rnd_edge)
     rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
     print(rnd_edge_idx)

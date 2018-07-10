@@ -1,6 +1,5 @@
 import app.Config as cfg
 from json import dumps
-from random import randint
 from app.changeproviders.__init__ import init_change_provider
 from kafka import KafkaProducer
 import json

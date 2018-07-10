@@ -14,13 +14,12 @@ from collections import defaultdict
 
 import traci
 import traci.constants as tc
-import random
 
 from _platoon import Platoon
 import _reporting as rp
 import _config as cfg
 from _platoonmode import PlatoonMode
-from app.Config import lookAheadDistance, joinDistance, nrOfNotTravelledEdges
+from app.Config import lookAheadDistance, joinDistance, nrOfNotTravelledEdges, get_random
 from traci.exceptions import TraCIException
 
 warn = rp.Warner("PVehicle")
@@ -85,9 +84,8 @@ class PVehicle(object):
         self._laneChangeModes = dict()
 
         # TODO: remove in production
-        random.seed(0)
 
-        rnd_edge = random.choice(edges[-nrOfNotTravelledEdges:])
+        rnd_edge = get_random().choice(edges[-nrOfNotTravelledEdges:])
         rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
         self.edgesToTravel = edges[:rnd_edge_idx]
 
@@ -96,10 +94,10 @@ class PVehicle(object):
         line_length = traci.lane.getLength(line_id)
 
         # TODO: remove in production
-        random.seed(0)
+        # random.seed(0)
 
         # get a random exit location within [0, line_length]
-        arrivalPos = random.uniform(0, line_length)
+        arrivalPos = get_random().uniform(0, line_length)
         # set arrivalInterval relative to the edge length,
         # i.e. negative values or values greater than actual length are not allowed
         self.arrivalInterval = (max(arrivalPos - joinDistance, 0), min(arrivalPos + joinDistance, line_length))

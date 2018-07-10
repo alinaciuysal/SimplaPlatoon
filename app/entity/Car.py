@@ -1,4 +1,3 @@
-import random
 import traci
 import traci.constants as tc
 from app import Config
@@ -65,7 +64,7 @@ class Car:
             # see: http://www.sumo.dlr.de/daily/pydoc/traci._edge.html#EdgeDomain-getLaneNumber
             # laneNumbers = traci.edge.getLaneNumber("12N")
             laneNumbers = [0, 1, 2, 3]
-            arrivalLane = str(random.choice(laneNumbers))
+            arrivalLane = str(Config.get_random().choice(laneNumbers))
             traci.vehicle.addFull(vehID=self.id, routeID=routeID, typeID='DEFAULT_VEHTYPE', depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalLane=arrivalLane, arrivalPos='random')
             traci.vehicle.subscribe(self.id,
                                     (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED, tc.VAR_LANEPOSITION,
