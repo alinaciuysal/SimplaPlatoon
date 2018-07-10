@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 
 
 variablesOfSimpla = ["catchupDistance", "maxPlatoonGap", "platoonSplitTime", "switchImpatienceFactor"]
-variablesOfPlatooning = ["maxVehiclesInPlatoon", "lookAheadDistance", "platoonCarCounter", "nonPlatoonCarCounter", "nrOfNotTravelledEdges", "joinDistance"]
+variablesOfPlatooning = ["maxVehiclesInPlatoon", "lookAheadDistance", "platoonCarCounter", "nonPlatoonCarCounter", "joinDistance"]
 current_dir = os.path.abspath(os.path.dirname(__file__))
 parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
 simpla_cfg_xml = os.path.abspath(os.path.join(parent_dir, "map", "simpla.cfg"))

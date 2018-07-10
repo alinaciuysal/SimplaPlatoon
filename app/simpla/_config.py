@@ -291,7 +291,7 @@ def hasAttributes(element):
         return True
 
 def isValidLCMode(mode):
-    if 0<=mode<=1023:
+    if 0 <= mode <= 1023:
         return True
     else: 
         warn("Given lane change mode '%d' lies out of admissible range [0,255]. Using default mode instead."%(mode),True)

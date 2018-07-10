@@ -47,9 +47,6 @@ class PlatoonManager(traci.StepListener):
     the associated vehicle types are exclusive for each.
     '''
 
-    edges = []
-    tick = None
-
     # keeps track of added vehicles with this index
     carIndex = None
     platoonCarCounter = None
@@ -59,19 +56,25 @@ class PlatoonManager(traci.StepListener):
     nrOfPlatoonsFormed = None
     nrOfPlatoonsSplit = None
 
-    # number of simulation ticks that does not include durations of platoons with single vehicle
+    # summed up durations that does not include durations with single vehicles
     overallPlatoonDuration = None
 
-    TripDurations = None
-    CO2Emissions = None
-    COEmissions = None
-    HCEmissions = None
-    PMXEmissions = None
-    NOxEmissions = None
-    FuelConsumptions = None
-    NoiseEmissions = None
-    Speeds = None
+    # to store each vehicle's durationInPlatoon attributes
+    DurationsInPlatoon = None
 
+    TripDurations = None
+    # CO2Emissions = None
+    # COEmissions = None
+    # HCEmissions = None
+    # PMXEmissions = None
+    # NOxEmissions = None
+    # NoiseEmissions = None
+
+    FuelConsumptions = None
+    Speeds = None
+    Overheads = None
+
+    allEdges = None
 
 
     def __init__(self):
@@ -90,13 +93,18 @@ class PlatoonManager(traci.StepListener):
 
         self.TripDurations = []
         self.CO2Emissions = []
-        self.COEmissions = []
-        self.HCEmissions = []
-        self.PMXEmissions = []
-        self.NOxEmissions = []
+        # self.COEmissions = []
+        # self.HCEmissions = []
+        # self.PMXEmissions = []
+        # self.NOxEmissions = []
+        # self.NoiseEmissions = []
         self.FuelConsumptions = []
-        self.NoiseEmissions = []
         self.Speeds = []
+        self.Overheads = []
+        self.DurationsInPlatoon = []
+
+        self.allEdges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.lastEdgeOfMap).edges
+
 
         if rp.VERBOSITY >= 2:
             report("Initializing simpla.PlatoonManager...", True)
@@ -134,7 +142,6 @@ class PlatoonManager(traci.StepListener):
             self._controlInterval = 1. / cfg.CONTROL_RATE
 
         self._timeSinceLastControl = 1000.
-        self.tick = simTime()
 
 
         # Check for undefined vtypes and fill with defaults
@@ -186,8 +193,6 @@ class PlatoonManager(traci.StepListener):
                 _pvehicle.vTypeParameters[typeID][tc.VAR_DECEL] = traci.vehicletype.getDecel(typeID)
                 _pvehicle.vTypeParameters[typeID][tc.VAR_MINGAP] = traci.vehicletype.getMinGap(typeID)
                 _pvehicle.vTypeParameters[typeID][tc.VAR_EMERGENCY_DECEL] = traci.vehicletype.getEmergencyDecel(typeID)
-
-        self.edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.endEdgeID).edges
 
         warn("end of platoon manager", True)
 
@@ -252,36 +257,40 @@ class PlatoonManager(traci.StepListener):
             veh.state.lanePosition = self._subscriptionResults[veh.getID()][tc.VAR_LANEPOSITION]
             veh.state.leaderInfo = traci.vehicle.getLeader(veh.getID(), self._catchupDist)
 
+            # getDistance returns the distance the vehicle has already driven [in m]
+            veh.state.distance = traci.vehicle.getDistance(veh.getID())
+
             # Emissions
             CO2Emission = self._subscriptionResults[veh.getID()][tc.VAR_CO2EMISSION]
-            COEmission = self._subscriptionResults[veh.getID()][tc.VAR_COEMISSION]
-            HCEmission = self._subscriptionResults[veh.getID()][tc.VAR_HCEMISSION]
-            PMXEmission = self._subscriptionResults[veh.getID()][tc.VAR_PMXEMISSION]
-            NOxEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOXEMISSION]
-            FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
-            NoiseEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOISEEMISSION]
 
-            # sometimes emissions are always 0.0, filters them out
+            # COEmission = self._subscriptionResults[veh.getID()][tc.VAR_COEMISSION]
+            # HCEmission = self._subscriptionResults[veh.getID()][tc.VAR_HCEMISSION]
+            # PMXEmission = self._subscriptionResults[veh.getID()][tc.VAR_PMXEMISSION]
+            # NOxEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOXEMISSION]
+            # NoiseEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOISEEMISSION]
+
+            FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
+
+            # sometimes emissions are always 0.0, we filter them out
             if CO2Emission > 0:
                 veh.state.reportedCO2Emissions.append(CO2Emission)
-
-            if COEmission > 0:
-                veh.state.reportedCOEmissions.append(COEmission)
-
-            if HCEmission > 0:
-                veh.state.reportedHCEmissions.append(HCEmission)
-
-            if PMXEmission > 0:
-                veh.state.reportedPMXEmissions.append(PMXEmission)
-
-            if NOxEmission > 0:
-                veh.state.reportedNOxEmissions.append(NOxEmission)
-
             if FuelConsumption > 0:
                 veh.state.reportedFuelConsumptions.append(FuelConsumption)
 
-            if NoiseEmission > 0:
-                veh.state.reportedNoiseEmissions.append(NoiseEmission)
+            # if COEmission > 0:
+            #     veh.state.reportedCOEmissions.append(COEmission)
+            #
+            # if HCEmission > 0:
+            #     veh.state.reportedHCEmissions.append(HCEmission)
+            #
+            # if PMXEmission > 0:
+            #     veh.state.reportedPMXEmissions.append(PMXEmission)
+            #
+            # if NOxEmission > 0:
+            #     veh.state.reportedNOxEmissions.append(NOxEmission)
+            #
+            # if NoiseEmission > 0:
+            #     veh.state.reportedNoiseEmissions.append(NoiseEmission)
 
             if veh.state.speed > 0:
                 veh.state.reportedSpeeds.append(veh.state.speed)
@@ -290,6 +299,10 @@ class PlatoonManager(traci.StepListener):
                 veh.state.leader = None
                 veh.state.connectedVehicleAhead = False
                 continue
+
+            # update durationInPlatoon if there are more than 1 cars in each vehicle's platoon
+            if len(veh.getPlatoon().getVehicles()) > 1:
+                veh.durationInPlatoon += 1
 
             # try to find a connected leader within the provided distance
             # this case is special when there's a non-connected car in front of veh, but there's a leader in front of non-connected car and it's within the catchupDist
@@ -593,16 +606,27 @@ class PlatoonManager(traci.StepListener):
         return False
 
     def _updateStatistics(self, veh):
-        tripDuration = simTime() - veh.currentRouteBeginTick
-        self.TripDurations.append(tripDuration)
+        theoreticalDuration = 0
+        # try to find theoreticalDuration by iterating travelled lanes, veh.state.travelledLaneIDs contain duplicates
+        # so remove them by converting array to list and then back to array
+        maxSpeed = 44.44 # by observation, it's same for all the lanes that we care about
+        theoreticalDuration = veh.state.distance / maxSpeed
+        actualDuration = simTime() - veh.currentRouteBeginTime
+        overhead = actualDuration / theoreticalDuration # Different logic from CrowdNav
+        print("veh.state.distance", veh.state.distance, "actualDuration", actualDuration, "theoreticalDuration", theoreticalDuration, "overhead", overhead, "+++++++++")
+
+        self.TripDurations.append(actualDuration)
         self.CO2Emissions.extend(veh.state.reportedCO2Emissions)
-        self.COEmissions.extend(veh.state.reportedCOEmissions)
-        self.HCEmissions.extend(veh.state.reportedHCEmissions)
-        self.PMXEmissions.extend(veh.state.reportedPMXEmissions)
-        self.NOxEmissions.extend(veh.state.reportedNOxEmissions)
         self.FuelConsumptions.extend(veh.state.reportedFuelConsumptions)
-        self.NoiseEmissions.extend(veh.state.reportedNoiseEmissions)
         self.Speeds.extend(veh.state.reportedSpeeds)
+        self.Overheads.append(overhead)
+        self.DurationsInPlatoon.append(veh.durationInPlatoon)
+
+        # self.COEmissions.extend(veh.state.reportedCOEmissions)
+        # self.HCEmissions.extend(veh.state.reportedHCEmissions)
+        # self.PMXEmissions.extend(veh.state.reportedPMXEmissions)
+        # self.NOxEmissions.extend(veh.state.reportedNOxEmissions)
+        # self.NoiseEmissions.extend(veh.state.reportedNoiseEmissions)
 
     def joiningConditionsSatisfied(self, leaderInfo, pltn):
         ''' returns two bool:
@@ -616,11 +640,6 @@ class PlatoonManager(traci.StepListener):
         # check if number of maximum allowed vehicles in platoon will not be exceeded upon join
         nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= Config.maxVehiclesInPlatoon
         return gapCondition, nrOfVehiclesCondition
-
-    @staticmethod
-    def addToAverage(totalCount, totalValue, newValue):
-        """ simple sliding average calculation """
-        return ((1.0 * totalCount * totalValue) + newValue) / (totalCount + 1)
 
     @staticmethod
     def reorderVehicles(vehicles, actualLeaders):
@@ -727,7 +746,7 @@ class PlatoonManager(traci.StepListener):
             # other vehicles are already started moving according to defined flow(s)
             if self._hasConnectedType(vType):
                 vehID = "platoon-car-" + str(self.carIndex)
-                veh = _pvehicle.PVehicle(ID=vehID, edges=self.edges, tick=simTime())
+                veh = _pvehicle.PVehicle(ID=vehID, allEdges=self.allEdges, simTime=simTime())
                 routeID = "platoon-car-route-" + str(self.carIndex)
                 traci.route.add(routeID, veh.edgesToTravel)
                 traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
@@ -737,14 +756,13 @@ class PlatoonManager(traci.StepListener):
                     veh.setState(self._controlInterval)
                     # Subscribe according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
                     traci.vehicle.subscribe(vehID,
-                                            (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED, tc.VAR_LANEPOSITION,
+                                            (tc.VAR_ROAD_ID,
+                                             tc.VAR_LANE_INDEX,
+                                             tc.VAR_LANE_ID,
+                                             tc.VAR_SPEED,
+                                             tc.VAR_LANEPOSITION,
                                              tc.VAR_CO2EMISSION,
-                                             tc.VAR_COEMISSION,
-                                             tc.VAR_HCEMISSION,
-                                             tc.VAR_PMXEMISSION,
-                                             tc.VAR_NOXEMISSION,
-                                             tc.VAR_FUELCONSUMPTION,
-                                             tc.VAR_NOISEEMISSION))
+                                             tc.VAR_FUELCONSUMPTION))
                     if rp.VERBOSITY >= 3:
                         report("Adding vehicle '%s', routeID: '%s', vType:'%s'" % (vehID, routeID, vType))
                     self._connectedVehicles[vehID] = veh
@@ -754,6 +772,8 @@ class PlatoonManager(traci.StepListener):
                 else:
                     report("Route of vehicle '%s' is not valid" % vehID)
                     return None
+            else:
+                raise Exception
         except TraCIException as traci_exception:
             traceback.print_exc()
             raise traci_exception
@@ -764,7 +784,9 @@ class PlatoonManager(traci.StepListener):
         vehID = "normal-car-" + str(self.carIndex)
         typeID = "normal-car" # must be same with <vType> id in flow.rou.xml if used
         routeID = "normal-car-route-" + str(self.carIndex)
-        traci.route.add(routeID, self.edges)
+        rnd_edge = Config.get_random().choice([Config.endEdgeID_1, Config.endEdgeID_2])
+        edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=rnd_edge).edges
+        traci.route.add(routeID, edges)
 
         # TODO: hard-coded lane numbers, there should be getLaneNumber(edgeID) method in edge,
         # TODO: but there's no such fcn in current version
@@ -837,27 +859,27 @@ class PlatoonManager(traci.StepListener):
             lookAheadDistance=Config.lookAheadDistance,
             platoonCarCounter=Config.platoonCarCounter,
             totalCarCounter=Config.totalCarCounter,
-            nrOfNotTravelledEdges=Config.nrOfNotTravelledEdges,
             joinDistance=Config.joinDistance
         )
 
         data = dict(
             TripDurations=self.TripDurations,
             CO2Emissions=self.CO2Emissions,
-            COEmissions=self.COEmissions,
-            HCEmissions=self.HCEmissions,
-            PMXEmissions=self.PMXEmissions,
-            NOxEmissions=self.NOxEmissions,
+            # COEmissions=self.COEmissions,
+            # HCEmissions=self.HCEmissions,
+            # PMXEmissions=self.PMXEmissions,
+            # NOxEmissions=self.NOxEmissions,
             FuelConsumptions=self.FuelConsumptions,
-            NoiseEmissions=self.NoiseEmissions,
+            # NoiseEmissions=self.NoiseEmissions,
             Speeds=self.Speeds,
+            Overheads=self.Overheads,
+            DurationsInPlatoon=self.DurationsInPlatoon
         )
 
         res = dict(
             data=data,
             nrOfPlatoonsFormed=self.nrOfPlatoonsFormed,
             nrOfPlatoonsSplit=self.nrOfPlatoonsSplit,
-            overallPlatoonDuration=self.overallPlatoonDuration,
             config=config,
             simTime=simTime()
         )

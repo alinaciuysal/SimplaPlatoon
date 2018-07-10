@@ -1,6 +1,6 @@
 import traci
 import traci.constants as tc
-from app import Config
+import app.Config as Config
 
 # from app.Util import addToAverage
 from app.network.Network import Network
@@ -19,19 +19,21 @@ class Car:
         # the string id
         self.id = str(carIndex)  # type: str
         # when we started the route
-        self.currentRouteBeginTick = None
-        # the id of the current route (somu)
+        self.currentRouteBeginTime = None
+
+        # the id of the current route (sumo)
         self.currentRouteID = None  # type: str
         # the id of the current edge/street the car is driving (sumo)
         self.currentEdgeID = None
+
         # the tick this car got on this edge/street
-        self.currentEdgeBeginTick = None
+        # self.currentEdgeBeginTick = None
         # the target node this car drives to
         self.targetID = None
         # the source node this car is coming from
         self.sourceID = None
         # if it is disabled, it will stop driving
-        self.disabled = False
+        # self.disabled = False
         # the cars acceleration in the simulation
         # self.acceleration = max(1, random.gauss(4, 2))
         # the cars deceleration in the simulation
@@ -39,7 +41,8 @@ class Car:
         # the driver imperfection in handling the car
         # self.imperfection = min(0.9, max(0.1, random.gauss(0.5, 0.5)))
 
-        self.edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.endEdgeID).edges
+        rnd_edge = Config.get_random().choice([Config.endEdgeID_1, Config.endEdgeID_2])
+        self.edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=rnd_edge).edges
 
         # NEW
         self.reportedCO2Emissions = []
@@ -51,9 +54,9 @@ class Car:
         self.reportedNoiseEmissions = []
         self.reportedSpeeds = []
 
-    def addToSimulation(self, tick):
+    def addToSimulation(self, simTime):
         """ adds this car to the simulation through the traci API """
-        self.currentRouteBeginTick = tick
+        self.currentRouteBeginTime = simTime
         try:
             typeID = "normal-car" # must be same with <vType> id in flow.rou.xml if used
             routeID = "normal-car-route-" + str(self.id)

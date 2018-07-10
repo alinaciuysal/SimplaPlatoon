@@ -19,7 +19,7 @@ from _platoon import Platoon
 import _reporting as rp
 import _config as cfg
 from _platoonmode import PlatoonMode
-from app.Config import lookAheadDistance, joinDistance, nrOfNotTravelledEdges, get_random
+from app.Config import lookAheadDistance, joinDistance, get_random, endEdgeID_1, endEdgeID_2, startEdgeID
 from traci.exceptions import TraCIException
 
 warn = rp.Warner("PVehicle")
@@ -52,15 +52,16 @@ class pVehicleState(object):
         # (though not necessarily being the immediate leader)
         self.connectedVehicleAhead = False
 
-        # NEW
         self.reportedCO2Emissions = []
-        self.reportedCOEmissions = []
-        self.reportedHCEmissions = []
-        self.reportedPMXEmissions = []
-        self.reportedNOxEmissions = []
+        # self.reportedCOEmissions = []
+        # self.reportedHCEmissions = []
+        # self.reportedPMXEmissions = []
+        # self.reportedNOxEmissions = []
         self.reportedFuelConsumptions = []
         self.reportedNoiseEmissions = []
         self.reportedSpeeds = []
+
+
 
 
 class PVehicle(object):
@@ -69,11 +70,13 @@ class PVehicle(object):
     Vehicle objects for platooning
     '''
 
-    def __init__(self, ID, edges, tick):
-        '''Constructor(string, float)
+    def __init__(self, ID, allEdges, simTime):
+        '''Constructor(string, list, float)
 
         Create a PVehicle representing a SUMOVehicle for the PlatoonManager. The controlInterval is only piped through
         to the singleton platoon created by the vehicle.
+
+        allEdges contain a list of edgeIDs retrieved using the parameters in Config.py
         '''
         # vehicle ID (should be the one used in SUMO)
         self._ID = ID
@@ -83,30 +86,26 @@ class PVehicle(object):
         self._speedFactors = dict()
         self._laneChangeModes = dict()
 
-        # TODO: remove in production
+        self.durationInPlatoon = 0
 
-        rnd_edge = get_random().choice(edges[-nrOfNotTravelledEdges:])
-        rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
-        self.edgesToTravel = edges[:rnd_edge_idx]
+        rnd_edge = get_random().choice([endEdgeID_1, endEdgeID_2])
+        rnd_edge_idx = allEdges.index(rnd_edge) + 1 # to include randomly selected edge
+        self.edgesToTravel = allEdges[:rnd_edge_idx]
 
-        # now get line at idx 0 of last edge to randomly select position
+        # now get line at idx 0 of last edge to randomly select a position within this line
         line_id = rnd_edge + str("_") + "0"
         line_length = traci.lane.getLength(line_id)
 
-        # TODO: remove in production
-        # random.seed(0)
-
         # get a random exit location within [0, line_length]
         arrivalPos = get_random().uniform(0, line_length)
+
         # set arrivalInterval relative to the edge length,
         # i.e. negative values or values greater than actual length are not allowed
         self.arrivalInterval = (max(arrivalPos - joinDistance, 0), min(arrivalPos + joinDistance, line_length))
 
-        # cast to string (required by SUMO)
         self.arrivalPos = arrivalPos
-
         self.arrivalEdge = rnd_edge
-        self.currentRouteBeginTick = tick
+        self.currentRouteBeginTime = simTime
 
     def _determinePlatoonVType(self, mode):
         '''_determinePlatoonVType(PlatoonMode) -> string

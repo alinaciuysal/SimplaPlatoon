@@ -36,6 +36,7 @@ def initDefaults():
 # perform default init
 initDefaults()
 
+# converts current simulation time (in ms) to s
 def simTime():
     return traci.simulation.getCurrentTime() / 1000.
 

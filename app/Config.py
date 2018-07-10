@@ -24,7 +24,7 @@ kafkaCommandsTopic = "shoulder-control"
 kafkaPlatoonConfigTopic = "platoon-config"
 
 # Initial wait time before publishing data
-initialWaitTicks = 300
+initialWaitTicks = 500
 
 # True if we want to use the SUMO GUI
 sumoUseGUI = False
@@ -34,10 +34,14 @@ platooning = True
 
 stats = "mean" # can also be median, min, max for now
 
-# start & end edges for destinations of all cars
+# start & end edges for destinations of all cars, these can be changed to shrink actual trips of cars
 startEdgeID = "11S"
 endEdgeID_1 = "135586672#0"
 endEdgeID_2 = "23805795"
+
+# for performance issues, start and end edges of the map must be provided
+startEdgeOfMap = "11S"
+lastEdgeOfMap = "23805795"
 
 # number of ticks to run each simulation
 nrOfTicks = 1000
@@ -52,7 +56,7 @@ joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d)
 
 # simpla parameters
 import random
-# random.seed(0)
+random.seed(0)
 
 def get_random():
     return random

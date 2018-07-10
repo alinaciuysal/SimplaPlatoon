@@ -38,7 +38,7 @@ def parse_data(x_label, data, y_label):
         if y_label in parameters:
             y_values.append(json_obj["data"][y_label])
         else:
-            # regular parameters like nrOfPlatoonsFormed, nrOfPlatoonsSplit, overallPlatoonDuration, simTime
+            # regular parameters like nrOfPlatoonsFormed, nrOfPlatoonsSplit, simTime
             y_values.append(json_obj[y_label])
     return x_values, y_values
 
@@ -51,8 +51,8 @@ def draw_scatter_plot(x_values, y_values, x_label, y_label):
     # set proper units for labels and use another variable for them as original ones are used for plot image files
     yLabelPlot = y_label
     xLabelPlot = x_label
-    if yLabelPlot == "overallPlatoonDuration" or yLabelPlot == "totalTripAverage":
-        yLabelPlot += " [sim. s]"
+    if yLabelPlot == "totalTripAverage":
+        yLabelPlot += " [s]"
     elif "FuelConsumption" in yLabelPlot:
         yLabelPlot += " [ml/s]"
     elif "Speed" in yLabelPlot:
@@ -62,9 +62,7 @@ def draw_scatter_plot(x_values, y_values, x_label, y_label):
     elif yLabelPlot == "totalNoiseEmissionAverage":
         yLabelPlot += " [dBA]"
 
-    if xLabelPlot == "totalTripAverage":
-        xLabelPlot += " [sim. s]"
-    elif xLabelPlot == "platoonSplitTime":
+    if xLabelPlot == "platoonSplitTime":
         xLabelPlot += " [s]"
     elif xLabelPlot == "maxPlatoonGap" or xLabelPlot == "catchupDistance" or xLabelPlot == "joinDistance" or xLabelPlot == "lookAheadDistance":
         xLabelPlot += " [m]"
