@@ -3,4 +3,9 @@
 .DS_Store
 *.iml
 **.pyc
+
+/app/results/platooning/**/*.json
+/app/results/regular/**/*.json
+
 !/app/map/output/placeholder
+!/app/results/plots/*

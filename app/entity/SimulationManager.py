@@ -2,7 +2,6 @@ from app import Config
 from app.entity.Car import Car
 import traci
 import traci.constants as tc
-import numpy as np
 
 class NullCar:
     """ a car with no function used for error prevention """
@@ -17,48 +16,41 @@ class SimulationManager(traci.StepListener):
     """ central registry for all our cars we have in the sumo simulation """
 
     tick = None
-    carIndexCounter = None
+    carIndex = None
     cars = None
-    totalTrips = None
-    totalTripAverage = None
     totalCarCounter = None
-    # average of all speeds
-    totalSpeedAverage = None
-    # average of respective metrics
-    totalCO2EmissionAverage = None
-    totalCOEmissionAverage = None
-    totalFuelConsumptionAverage = None
-    totalHCEmissionAverage = None
-    totalPMXEmissionAverage = None
-    totalNOxEmissionAverage = None
-    totalNoiseEmissionAverage = None
+
+    TripDurations = None
+    CO2Emissions = None
+    COEmissions = None
+    HCEmissions = None
+    PMXEmissions = None
+    NOxEmissions = None
+    FuelConsumptions = None
+    NoiseEmissions = None
+    Speeds = None
+
     _subscriptionResults = None
 
     def __init__(self):
         self.tick = 0
-        # the total amount of cars that should be in the system
-        self.totalCarCounter = Config.nonPlatoonCarCounter + Config.platoonCarCounter
+        # total amount of cars that should be in this regular scenario system
+        self.totalCarCounter = Config.totalCarCounter
 
         # always increasing counter for carIDs
-        self.carIndexCounter = 0
+        self.carIndex = 0
         # list of all cars, type: dict(str, Car)
         self.cars = dict()
-        # counts the number of finished trips
-        self.totalTrips = 0
-        # average of all trip durations
-        self.totalTripAverage = 0
-        # average of all trip overheads (overhead is TotalTicks/PredictedTicks)
-        self.totalTripOverheadAverage = 0
-        self.totalSpeedAverage = 0
 
-        # average of respective metrics
-        self.totalCO2EmissionAverage = 0
-        self.totalCOEmissionAverage = 0
-        self.totalFuelConsumptionAverage = 0
-        self.totalHCEmissionAverage = 0
-        self.totalPMXEmissionAverage = 0
-        self.totalNOxEmissionAverage = 0
-        self.totalNoiseEmissionAverage = 0
+        self.TripDurations = []
+        self.CO2Emissions = []
+        self.COEmissions = []
+        self.HCEmissions = []
+        self.PMXEmissions = []
+        self.NOxEmissions = []
+        self.FuelConsumptions = []
+        self.NoiseEmissions = []
+        self.Speeds = []
 
     def applyCarCounter(self):
         """ syncs the value of the carCounter to the SUMO simulation """
@@ -66,10 +58,10 @@ class SimulationManager(traci.StepListener):
             self.addCarToSimulation(self.tick)
 
     def addCarToSimulation(self, tick):
-        self.carIndexCounter += 1
-        c = Car(self.carIndexCounter)
+        c = Car(self.carIndex)
         self.cars[c.id] = c
         c.addToSimulation(tick)
+        self.carIndex += 1
 
     def findById(self, carID):
         """ returns a car by a given carID """
@@ -81,20 +73,18 @@ class SimulationManager(traci.StepListener):
     def _removeArrived(self):
         for ID in traci.simulation.getArrivedIDList():
             veh = self.cars.pop(ID)
-            self.totalTrips += 1
             self._updateStatistics(veh)
-
             self.addCarToSimulation(self.tick)
 
     def step(self, s=0):
         '''step(int)
         Manages simulation at each time step.
         '''
-        self.tick += 1
         # Handle vehicles entering and leaving the simulation
         self._removeArrived()
         self._updateVehicleStates()
         self._endSimulation()
+        self.tick += 1
 
     def stop(self):
         '''stop()
@@ -128,58 +118,42 @@ class SimulationManager(traci.StepListener):
             FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
             NoiseEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOISEEMISSION]
 
-            if CO2Emission >= 0:
+            # sometimes emissions are always 0.0, filters them out
+            if CO2Emission > 0:
                 veh.reportedCO2Emissions.append(CO2Emission)
 
-            if COEmission >= 0:
+            if COEmission > 0:
                 veh.reportedCOEmissions.append(COEmission)
 
-            if HCEmission >= 0:
+            if HCEmission > 0:
                 veh.reportedHCEmissions.append(HCEmission)
 
-            if PMXEmission >= 0:
+            if PMXEmission > 0:
                 veh.reportedPMXEmissions.append(PMXEmission)
 
-            if NOxEmission >= 0:
+            if NOxEmission > 0:
                 veh.reportedNOxEmissions.append(NOxEmission)
 
-            if FuelConsumption >= 0:
+            if FuelConsumption > 0:
                 veh.reportedFuelConsumptions.append(FuelConsumption)
 
-            if NoiseEmission >= 0:
+            if NoiseEmission > 0:
                 veh.reportedNoiseEmissions.append(NoiseEmission)
 
-            if speed >= 0:
+            if speed > 0:
                 veh.reportedSpeeds.append(speed)
 
     def _updateStatistics(self, veh):
-        # we don't need a mean here because it should only be calculated once the vehicle lefts simulation
-        durationForTrip = simTime() - veh.currentRouteBeginTick
-        self.totalTripAverage = self.addToAverage(self.totalTrips, self.totalTripAverage, durationForTrip)
-
-        co2 = np.mean(veh.reportedCO2Emissions)
-        self.totalCO2EmissionAverage = self.addToAverage(self.totalTrips, self.totalCO2EmissionAverage, co2)
-
-        co = np.mean(veh.reportedCOEmissions)
-        self.totalCOEmissionAverage = self.addToAverage(self.totalTrips, self.totalCOEmissionAverage, co)
-
-        hc = np.mean(veh.reportedHCEmissions)
-        self.totalHCEmissionAverage = self.addToAverage(self.totalTrips, self.totalHCEmissionAverage, hc)
-
-        pmx = np.mean(veh.reportedPMXEmissions)
-        self.totalPMXEmissionAverage = self.addToAverage(self.totalTrips, self.totalPMXEmissionAverage, pmx)
-
-        no = np.mean(veh.reportedNOxEmissions)
-        self.totalNOxEmissionAverage = self.addToAverage(self.totalTrips, self.totalNOxEmissionAverage, no)
-
-        fuel = np.mean(veh.reportedFuelConsumptions)
-        self.totalFuelConsumptionAverage = self.addToAverage(self.totalTrips, self.totalFuelConsumptionAverage, fuel)
-
-        noise = np.mean(veh.reportedNoiseEmissions)
-        self.totalNoiseEmissionAverage = self.addToAverage(self.totalTrips, self.totalNoiseEmissionAverage, noise)
-
-        speed = np.mean(veh.reportedSpeeds)
-        self.totalSpeedAverage = self.addToAverage(self.totalTrips, self.totalSpeedAverage, speed)
+        tripDuration = simTime() - veh.currentRouteBeginTick
+        self.TripDurations.append(tripDuration)
+        self.CO2Emissions.extend(veh.reportedCO2Emissions)
+        self.COEmissions.extend(veh.reportedCOEmissions)
+        self.HCEmissions.extend(veh.reportedHCEmissions)
+        self.PMXEmissions.extend(veh.reportedPMXEmissions)
+        self.NOxEmissions.extend(veh.reportedNOxEmissions)
+        self.FuelConsumptions.extend(veh.reportedFuelConsumptions)
+        self.NoiseEmissions.extend(veh.reportedNoiseEmissions)
+        self.Speeds.extend(veh.reportedSpeeds)
 
     def addToAverage(self, totalCount, totalValue, newValue):
         """ simple sliding average calculation """
@@ -187,28 +161,26 @@ class SimulationManager(traci.StepListener):
 
     def get_statistics(self):
         config = dict(
-            platoonCarCounter=Config.platoonCarCounter,
-            nonPlatoonCarCounter=Config.nonPlatoonCarCounter,
+            totalCarCounter=Config.totalCarCounter
         )
-
-        averages = dict(
-            totalTripAverage=self.totalTripAverage,
-            totalCO2EmissionAverage=self.totalCO2EmissionAverage,
-            totalSpeedAverage=self.totalSpeedAverage,
-            totalCOEmissionAverage=self.totalCOEmissionAverage,
-            totalFuelConsumptionAverage=self.totalFuelConsumptionAverage,
-            totalHCEmissionAverage=self.totalHCEmissionAverage,
-            totalPMXEmissionAverage=self.totalPMXEmissionAverage,
-            totalNOxEmissionAverage=self.totalNOxEmissionAverage,
-            totalNoiseEmissionAverage=self.totalNoiseEmissionAverage,
+        data = dict(
+            TripDurations=self.TripDurations,
+            CO2Emissions=self.CO2Emissions,
+            COEmissions=self.COEmissions,
+            HCEmissions=self.HCEmissions,
+            PMXEmissions=self.PMXEmissions,
+            NOxEmissions=self.NOxEmissions,
+            FuelConsumptions=self.FuelConsumptions,
+            NoiseEmissions=self.NoiseEmissions,
+            Speeds=self.Speeds,
         )
 
         res = dict(
-            averages=averages,
-            totalTrips=self.totalTrips,
+            data=data,
             config=config,
             simTime=simTime()
         )
+        # if required, total number of trips can be obtained with len(TripDurations)
 
         return res
 

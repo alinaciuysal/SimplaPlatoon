@@ -27,7 +27,7 @@ def initDefaults():
     Init default values for the configuration parameters.
     They are overriden by specification in a configuration file (see load() method).
     '''
-    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DIST, PLATOON_SPLIT_TIME
+    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DISTANCE, PLATOON_SPLIT_TIME
     global VTYPE_FILE, PLATOON_VTYPES, LC_MODE, SPEEDFACTOR, SWITCH_IMPATIENCE_FACTOR
     
     # Rate for updating the platoon manager checks and advices
@@ -40,7 +40,7 @@ def initDefaults():
     MAX_PLATOON_GAP = 15.0
     
     # Distance in meters below which a vehicle tries to catch up with a platoon in front
-    CATCHUP_DIST = 50.0
+    CATCHUP_DISTANCE = 50.0
     
     # Latency time in secs. until a platoon is split if vehicles exceed PLATOON_SPLIT_DISTANCE to their
     # leaders within a platoon (or if they are not the direct follower),
@@ -151,7 +151,7 @@ def load(filename):
 
     This loads configuration parameters from a file and overwrites default values.
     '''
-    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DIST, PLATOON_SPLIT_TIME
+    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DISTANCE, PLATOON_SPLIT_TIME
     global VTYPE_FILE, PLATOON_VTYPES, LC_MODE, SPEEDFACTOR, SWITCH_IMPATIENCE_FACTOR
 
     configDir = os.path.dirname(filename)
@@ -183,14 +183,14 @@ def load(filename):
                     if rp.VERBOSITY>=1: warn("Parameter maxPlatoonGap must be positive. Ignoring given value: %s" % (maxgap), True)
                 else:
                     MAX_PLATOON_GAP = maxgap 
-        elif e.tag == "catchupDist":
+        elif e.tag == "catchupDistance":
             if hasAttributes(e):
                 dist = float(list(e.attrib.values())[0])
                 if dist <= 0:
                     if rp.VERBOSITY >= 1:
                         warn("Parameter catchupDist must be positive. Ignoring given value: %s" % (dist), True)
                 else:
-                    CATCHUP_DIST = dist
+                    CATCHUP_DISTANCE = dist
         elif e.tag == "switchImpatienceFactor":
             if hasAttributes(e):
                 impfact=float(list(e.attrib.values())[0])
@@ -309,9 +309,9 @@ def isValidSpeedFactor(value):
 '''
 def setValues(values):
     global_variables = ["CONTROL_RATE", "VEH_SELECTORS", "MAX_PLATOON_GAP",
-                        "CATCHUP_DIST", "PLATOON_SPLIT_TIME",
+                        "CATCHUP_DISTANCE", "PLATOON_SPLIT_TIME",
                         "VTYPE_FILE", "PLATOON_VTYPES", "LC_MODE", "SPEEDFACTOR", "SWITCH_IMPATIENCE_FACTOR"]
-    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DIST, PLATOON_SPLIT_TIME
+    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DISTANCE, PLATOON_SPLIT_TIME
     global VTYPE_FILE, PLATOON_VTYPES, LC_MODE, SPEEDFACTOR, SWITCH_IMPATIENCE_FACTOR
 
     for key in values:

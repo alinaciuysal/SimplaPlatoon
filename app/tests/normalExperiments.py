@@ -11,14 +11,12 @@ import app.Config as PlatoonConfig
 
 
 defaultVariables = dict(
-    platoonCarCounter=100,
-    nonPlatoonCarCounter=200,
+    totalCarCounter=300
 )
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
-    platoonCarCounter=[50, 100, 150, 200, 250, 300, 350, 500],
-    nonPlatoonCarCounter=[50, 100, 150, 200, 250, 300, 350, 400, 500]
+    totalCarCounter=[150, 200, 250, 300, 350, 400, 450, 500, 1000]
 )
 
 def flush_results(variable_name, value, results):
@@ -42,20 +40,17 @@ def make_sure_path_exists(path):
 def changeVariable(variable_name, value):
     # temporarily change a variable to perform an experiment and revert it back
     # these parameters should be loaded/changed within different files, we need to distinguish them based on their names
-    # there must be a better way instead of this
-
-    if variable_name == "platoonCarCounter":
-        PlatoonConfig.platoonCarCounter = value
-    elif variable_name == "nonPlatoonCarCounter":
-        PlatoonConfig.nonPlatoonCarCounter = value
+    if variable_name == "totalCarCounter":
+        PlatoonConfig.totalCarCounter = value
     defaultVariables[variable_name] = value
 
 
 if __name__ == '__main__':
     originalVariables = deepcopy(defaultVariables)
-    if PlatoonConfig.sumoUseGUI:
-        print("SUMO GUI cannot be used to perform sequential experiments")
-        exit(0)
+    # TODO: uncomment in production
+    # if PlatoonConfig.sumoUseGUI:
+    #     print("SUMO GUI cannot be used to perform sequential experiments")
+    #     exit(0)
 
     for variable_name in changeableVariables:
         for value in changeableVariables[variable_name]:

@@ -30,7 +30,7 @@ initialWaitTicks = 300
 sumoUseGUI = False
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
-platooning = False
+platooning = True
 
 stats = "mean" # can also be median, min, max for now
 
@@ -39,12 +39,12 @@ startEdgeID = "11S"
 endEdgeID = "135586672#0"
 
 # number of ticks to run each simulation
-nrOfTicks = 2000
+nrOfTicks = 3000
 
 # changeable variables
 maxVehiclesInPlatoon = 6
-lookAheadDistance = 200.0 # distance to find a leader vehicle in the simulation
+lookAheadDistance = 50.0 # distance to find a leader vehicle in the simulation
 platoonCarCounter = 100
-nonPlatoonCarCounter = 200
-nrOfNotTravelledEdges = 5 # to select last n edges of each platoon car route
+totalCarCounter = 300
+nrOfNotTravelledEdges = 3 # to select last n edges of each platoon car route
 joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d) of platoon

@@ -16,9 +16,9 @@ def simTime():
 class Car:
     """ a abstract class of something that is driving around the streets """
 
-    def __init__(self, carIndexCounter):
+    def __init__(self, carIndex):
         # the string id
-        self.id = str(carIndexCounter)  # type: str
+        self.id = str(carIndex)  # type: str
         # when we started the route
         self.currentRouteBeginTick = None
         # the id of the current route (somu)

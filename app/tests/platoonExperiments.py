@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 '''
 
 
-variablesOfSimpla = ["catchupDist", "maxPlatoonGap", "platoonSplitTime", "switchImpatienceFactor"]
+variablesOfSimpla = ["catchupDistance", "maxPlatoonGap", "platoonSplitTime", "switchImpatienceFactor"]
 variablesOfPlatooning = ["maxVehiclesInPlatoon", "lookAheadDistance", "platoonCarCounter", "nonPlatoonCarCounter", "nrOfNotTravelledEdges", "joinDistance"]
 current_dir = os.path.abspath(os.path.dirname(__file__))
 parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
@@ -20,30 +20,20 @@ xml_tree = ET.parse(simpla_cfg_xml)
 root = xml_tree.getroot()
 
 defaultVariables = dict(
-    catchupDist=150.0,
+    catchupDistance=150.0,
     maxPlatoonGap=100.0,
-    platoonSplitTime=5.0,
-    switchImpatienceFactor=0.1,
     maxVehiclesInPlatoon=6,
-    lookAheadDistance=200.0,
     platoonCarCounter=100,
-    nonPlatoonCarCounter=200,
-    nrOfNotTravelledEdges=5,
     joinDistance=100.0
 )
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
-    catchupDist=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0],
-    maxPlatoonGap=[10.0, 15.0, 20.0, 25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0],
-    platoonSplitTime=[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 20.0],
-    switchImpatienceFactor=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+    # catchupDistance=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0],
+    # maxPlatoonGap=[10.0, 15.0, 20.0, 25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0],
     maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50],
-    lookAheadDistance=[50.0, 100.0, 200.0, 300.0, 400.0, 500.0, 1000.0],
     platoonCarCounter=[50, 100, 150, 200, 250, 300, 350, 500],
-    nonPlatoonCarCounter=[50, 100, 150, 200, 250, 300, 350, 400, 500],
-    nrOfNotTravelledEdges=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20],
-    joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0]
+    # joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0]
 )
 
 def flush_results(variable_name, value, results):
@@ -84,24 +74,21 @@ def changeVariable(variable_name, value):
         # there must be a better way instead of this
         if variable_name == "maxVehiclesInPlatoon":
             PlatoonConfig.maxVehiclesInPlatoon = value
-        elif variable_name == "lookAheadDistance":
-            PlatoonConfig.lookAheadDistance = value
         elif variable_name == "platoonCarCounter":
             PlatoonConfig.platoonCarCounter = value
-        elif variable_name == "nonPlatoonCarCounter":
-            PlatoonConfig.nonPlatoonCarCounter = value
-        elif variable_name == "nrOfNotTravelledEdges":
-            PlatoonConfig.nrOfNotTravelledEdges = value
         elif variable_name == "joinDistance":
             PlatoonConfig.joinDistance = value
     defaultVariables[variable_name] = value
 
 if __name__ == '__main__':
     originalVariables = deepcopy(defaultVariables)
-    if PlatoonConfig.sumoUseGUI:
-        print("SUMO GUI cannot be used to perform sequential experiments")
-        exit(0)
 
+    # TODO: uncomment in production
+    # if PlatoonConfig.sumoUseGUI:
+    #     print("SUMO GUI cannot be used to perform sequential experiments")
+    #     exit(0)
+
+    PlatoonConfig.platooning = True
     for variable_name in changeableVariables:
         for value in changeableVariables[variable_name]:
             changeVariable(variable_name, value)

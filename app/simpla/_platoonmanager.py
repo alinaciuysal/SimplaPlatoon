@@ -25,7 +25,6 @@ import _platoon
 import traci
 import traci.constants as tc
 import app.Config as Config
-import numpy as np
 import random, traceback, os.path, json
 
 from app.simpla._reporting import simTime
@@ -51,44 +50,53 @@ class PlatoonManager(traci.StepListener):
     edges = []
     tick = None
 
-    # keeps track of added platoon vehicles with this index & upper limit
-    platoonCarIndex = 0
-    normalCarIndex = 0
-
-    platoonCarCounter = Config.platoonCarCounter
-    nonPlatoonCarCounter = Config.nonPlatoonCarCounter
+    # keeps track of added vehicles with this index
+    carIndex = None
+    platoonCarCounter = None
+    totalCarCounter = None
 
     # parameters to be used as output
-    nrOfPlatoonsFormed = 0
-    nrOfPlatoonsSplit = 0
+    nrOfPlatoonsFormed = None
+    nrOfPlatoonsSplit = None
 
     # number of simulation ticks that does not include durations of platoons with single vehicle
-    overallPlatoonDuration = 0
+    overallPlatoonDuration = None
 
-    # counts the number of finished trips
-    totalTrips = 0
-    # average of all trip durations
-    totalTripAverage = 0
-    # average of all trip overheads (overhead is TotalTicks/PredictedTicks)
-    totalTripOverheadAverage = 0
+    TripDurations = None
+    CO2Emissions = None
+    COEmissions = None
+    HCEmissions = None
+    PMXEmissions = None
+    NOxEmissions = None
+    FuelConsumptions = None
+    NoiseEmissions = None
+    Speeds = None
 
-    # average of all speeds
-    totalSpeedAverage = 0
 
-    # average of respective metrics
-    totalCO2EmissionAverage = 0
-    totalCOEmissionAverage = 0
-    totalFuelConsumptionAverage = 0
-    totalHCEmissionAverage = 0
-    totalPMXEmissionAverage = 0
-    totalNOxEmissionAverage = 0
-    totalNoiseEmissionAverage = 0
 
     def __init__(self):
         ''' PlatoonManager()
 
         Creates and initializes the PlatoonManager
         '''
+
+        self.carIndex = 0
+        self.platoonCarCounter = Config.platoonCarCounter
+        self.totalCarCounter = Config.totalCarCounter
+
+        self.nrOfPlatoonsFormed = 0
+        self.nrOfPlatoonsSplit = 0
+        self.overallPlatoonDuration = 0
+
+        self.TripDurations = []
+        self.CO2Emissions = []
+        self.COEmissions = []
+        self.HCEmissions = []
+        self.PMXEmissions = []
+        self.NOxEmissions = []
+        self.FuelConsumptions = []
+        self.NoiseEmissions = []
+        self.Speeds = []
 
         if rp.VERBOSITY >= 2:
             report("Initializing simpla.PlatoonManager...", True)
@@ -104,7 +112,7 @@ class PlatoonManager(traci.StepListener):
         # max intra platoon gap
         self._maxPlatoonGap = cfg.MAX_PLATOON_GAP
         # max distance for trying to catch up
-        self._catchupDist = cfg.CATCHUP_DIST
+        self._catchupDist = cfg.CATCHUP_DISTANCE
 
         # platoons currently in the simulation
         # map: platoon ID -> platoon objects
@@ -253,28 +261,29 @@ class PlatoonManager(traci.StepListener):
             FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
             NoiseEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOISEEMISSION]
 
-            if CO2Emission >= 0:
+            # sometimes emissions are always 0.0, filters them out
+            if CO2Emission > 0:
                 veh.state.reportedCO2Emissions.append(CO2Emission)
 
-            if COEmission >= 0:
+            if COEmission > 0:
                 veh.state.reportedCOEmissions.append(COEmission)
 
-            if HCEmission >= 0:
+            if HCEmission > 0:
                 veh.state.reportedHCEmissions.append(HCEmission)
 
-            if PMXEmission >= 0:
+            if PMXEmission > 0:
                 veh.state.reportedPMXEmissions.append(PMXEmission)
 
-            if NOxEmission >= 0:
+            if NOxEmission > 0:
                 veh.state.reportedNOxEmissions.append(NOxEmission)
 
-            if FuelConsumption >= 0:
+            if FuelConsumption > 0:
                 veh.state.reportedFuelConsumptions.append(FuelConsumption)
 
-            if NoiseEmission >= 0:
+            if NoiseEmission > 0:
                 veh.state.reportedNoiseEmissions.append(NoiseEmission)
 
-            if veh.state.speed >= 0:
+            if veh.state.speed > 0:
                 veh.state.reportedSpeeds.append(veh.state.speed)
 
             if veh.state.leaderInfo is None:
@@ -584,33 +593,16 @@ class PlatoonManager(traci.StepListener):
         return False
 
     def _updateStatistics(self, veh):
-        # we don't need a mean here because it should only be calculated once the vehicle lefts simulation
-        durationForTrip = simTime() - veh.currentRouteBeginTick
-        self.totalTripAverage = self.addToAverage(self.totalTrips, self.totalTripAverage, durationForTrip)
-
-        co2 = np.mean(veh.state.reportedCO2Emissions)
-        self.totalCO2EmissionAverage = self.addToAverage(self.totalTrips, self.totalCO2EmissionAverage, co2)
-
-        co = np.mean(veh.state.reportedCOEmissions)
-        self.totalCOEmissionAverage = self.addToAverage(self.totalTrips, self.totalCOEmissionAverage, co)
-
-        hc = np.mean(veh.state.reportedHCEmissions)
-        self.totalHCEmissionAverage = self.addToAverage(self.totalTrips, self.totalHCEmissionAverage, hc)
-
-        pmx = np.mean(veh.state.reportedPMXEmissions)
-        self.totalPMXEmissionAverage = self.addToAverage(self.totalTrips, self.totalPMXEmissionAverage, pmx)
-
-        no = np.mean(veh.state.reportedNOxEmissions)
-        self.totalNOxEmissionAverage = self.addToAverage(self.totalTrips, self.totalNOxEmissionAverage, no)
-
-        fuel = np.mean(veh.state.reportedFuelConsumptions)
-        self.totalFuelConsumptionAverage = self.addToAverage(self.totalTrips, self.totalFuelConsumptionAverage, fuel)
-
-        noise = np.mean(veh.state.reportedNoiseEmissions)
-        self.totalNoiseEmissionAverage = self.addToAverage(self.totalTrips, self.totalNoiseEmissionAverage, noise)
-
-        speed = np.mean(veh.state.reportedSpeeds)
-        self.totalSpeedAverage = self.addToAverage(self.totalTrips, self.totalSpeedAverage, speed)
+        tripDuration = simTime() - veh.currentRouteBeginTick
+        self.TripDurations.append(tripDuration)
+        self.CO2Emissions.extend(veh.state.reportedCO2Emissions)
+        self.COEmissions.extend(veh.state.reportedCOEmissions)
+        self.HCEmissions.extend(veh.state.reportedHCEmissions)
+        self.PMXEmissions.extend(veh.state.reportedPMXEmissions)
+        self.NOxEmissions.extend(veh.state.reportedNOxEmissions)
+        self.FuelConsumptions.extend(veh.state.reportedFuelConsumptions)
+        self.NoiseEmissions.extend(veh.state.reportedNoiseEmissions)
+        self.Speeds.extend(veh.state.reportedSpeeds)
 
     def joiningConditionsSatisfied(self, leaderInfo, pltn):
         ''' returns two bool:
@@ -708,12 +700,14 @@ class PlatoonManager(traci.StepListener):
         return vehicles
 
     def applyCarCounter(self):
-        while self.normalCarIndex < self.nonPlatoonCarCounter:
+
+        """ add normal car into the system """
+        while self.carIndex < self.totalCarCounter - self.platoonCarCounter:
             self._addNormalVehicle()
 
-            """ add a platooning car into the system """
-            if len(self._connectedVehicles) < self.platoonCarCounter:
-                self._addPlatoonVehicle()
+        """ add platooning car into the system """
+        while len(self._connectedVehicles) < self.platoonCarCounter:
+            self._addPlatoonVehicle()
 
     def _addPlatoonVehicle(self):
         '''_addPlatoonVehicle()
@@ -732,9 +726,9 @@ class PlatoonManager(traci.StepListener):
             # register car within the platooning manager if randomly selected type is specialized for platooning
             # other vehicles are already started moving according to defined flow(s)
             if self._hasConnectedType(vType):
-                vehID = "platoon-car-" + str(self.platoonCarIndex)
+                vehID = "platoon-car-" + str(self.carIndex)
                 veh = _pvehicle.PVehicle(ID=vehID, edges=self.edges, tick=simTime())
-                routeID = "platoon-car-route-" + str(self.platoonCarIndex)
+                routeID = "platoon-car-route-" + str(self.carIndex)
                 traci.route.add(routeID, veh.edgesToTravel)
                 traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
                 traci.vehicle.setColor(vehID=vehID, color=(255, 255, 255, 255))
@@ -755,7 +749,7 @@ class PlatoonManager(traci.StepListener):
                         report("Adding vehicle '%s', routeID: '%s', vType:'%s'" % (vehID, routeID, vType))
                     self._connectedVehicles[vehID] = veh
                     self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
-                    self.platoonCarIndex += 1
+                    self.carIndex += 1
                     return veh
                 else:
                     report("Route of vehicle '%s' is not valid" % vehID)
@@ -767,9 +761,9 @@ class PlatoonManager(traci.StepListener):
             raise e
 
     def _addNormalVehicle(self):
-        vehID = "normal-car-" + str(self.normalCarIndex)
+        vehID = "normal-car-" + str(self.carIndex)
         typeID = "normal-car" # must be same with <vType> id in flow.rou.xml if used
-        routeID = "normal-car-route-" + str(self.normalCarIndex)
+        routeID = "normal-car-route-" + str(self.carIndex)
         traci.route.add(routeID, self.edges)
 
         # TODO: hard-coded lane numbers, there should be getLaneNumber(edgeID) method in edge,
@@ -777,10 +771,14 @@ class PlatoonManager(traci.StepListener):
         # see: http://www.sumo.dlr.de/daily/pydoc/traci._edge.html#EdgeDomain-getLaneNumber
         # laneNumbers = traci.edge.getLaneNumber("12N")
         laneNumbers = [0, 1, 2, 3]
+
+        # TODO: remove in production
+        random.seed(0)
+
         arrivalLane = str(random.choice(laneNumbers))
         traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID='DEFAULT_VEHTYPE', depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalLane=arrivalLane, arrivalPos='random')
 
-        self.normalCarIndex += 1
+        self.carIndex += 1
 
     def _removeArrived(self):
         ''' _removeArrived()
@@ -803,8 +801,6 @@ class PlatoonManager(traci.StepListener):
             toRemove[veh.getPlatoon().getID()].append(veh)
             count += 1
 
-            # required for statistics
-            self.totalTrips += 1
             self._updateStatistics(veh)
 
         # adjust platoons
@@ -833,39 +829,39 @@ class PlatoonManager(traci.StepListener):
 
     def get_statistics(self):
         config = dict(
-            catchupDist=cfg.CATCHUP_DIST,
+            catchupDistance=cfg.CATCHUP_DISTANCE,
             maxPlatoonGap=cfg.MAX_PLATOON_GAP,
             platoonSplitTime=cfg.PLATOON_SPLIT_TIME,
             switchImpatienceFactor=cfg.SWITCH_IMPATIENCE_FACTOR,
             maxVehiclesInPlatoon=Config.maxVehiclesInPlatoon,
             lookAheadDistance=Config.lookAheadDistance,
             platoonCarCounter=Config.platoonCarCounter,
-            nonPlatoonCarCounter=Config.nonPlatoonCarCounter,
+            totalCarCounter=Config.totalCarCounter,
             nrOfNotTravelledEdges=Config.nrOfNotTravelledEdges,
             joinDistance=Config.joinDistance
         )
 
-        averages = dict(
-            totalTripAverage=self.totalTripAverage,
-            totalCO2EmissionAverage=self.totalCO2EmissionAverage,
-            totalSpeedAverage=self.totalSpeedAverage,
-            totalCOEmissionAverage=self.totalCOEmissionAverage,
-            totalFuelConsumptionAverage=self.totalFuelConsumptionAverage,
-            totalHCEmissionAverage=self.totalHCEmissionAverage,
-            totalPMXEmissionAverage=self.totalPMXEmissionAverage,
-            totalNOxEmissionAverage=self.totalNOxEmissionAverage,
-            totalNoiseEmissionAverage=self.totalNoiseEmissionAverage,
+        data = dict(
+            TripDurations=self.TripDurations,
+            CO2Emissions=self.CO2Emissions,
+            COEmissions=self.COEmissions,
+            HCEmissions=self.HCEmissions,
+            PMXEmissions=self.PMXEmissions,
+            NOxEmissions=self.NOxEmissions,
+            FuelConsumptions=self.FuelConsumptions,
+            NoiseEmissions=self.NoiseEmissions,
+            Speeds=self.Speeds,
         )
 
         res = dict(
-            averages=averages,
+            data=data,
             nrOfPlatoonsFormed=self.nrOfPlatoonsFormed,
             nrOfPlatoonsSplit=self.nrOfPlatoonsSplit,
             overallPlatoonDuration=self.overallPlatoonDuration,
-            totalTrips=self.totalTrips,
             config=config,
             simTime=simTime()
         )
+        # if required, total number of trips can be obtained with len(TripDurations)
 
         return res
 

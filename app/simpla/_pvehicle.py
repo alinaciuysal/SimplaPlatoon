@@ -84,6 +84,9 @@ class PVehicle(object):
         self._speedFactors = dict()
         self._laneChangeModes = dict()
 
+        # TODO: remove in production
+        random.seed(0)
+
         rnd_edge = random.choice(edges[-nrOfNotTravelledEdges:])
         rnd_edge_idx = edges.index(rnd_edge) + 1 # to include randomly selected edge
         self.edgesToTravel = edges[:rnd_edge_idx]
@@ -91,6 +94,9 @@ class PVehicle(object):
         # now get line at idx 0 of last edge to randomly select position
         line_id = rnd_edge + str("_") + "0"
         line_length = traci.lane.getLength(line_id)
+
+        # TODO: remove in production
+        random.seed(0)
 
         # get a random exit location within [0, line_length]
         arrivalPos = random.uniform(0, line_length)
