@@ -24,12 +24,12 @@ defaultParameters = deepcopy(PlatoonConfig.parameters)
 # variables to be used in each experiment separately
 changeableVariables = dict(
     # catchupDistance=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0],
-    catchupDistance=[25.0, 50.0, 100.0, 200.0, 400.0, 800.0, 1600.0],
+    catchupDistance=[100.0, 200.0, 300.0, 400.0, 500.0, 750.0, 1000.0, 1600.0],
     # maxPlatoonGap=[10.0, 15.0, 20.0, 25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0],
-    maxPlatoonGap=[15.0, 30.0, 60.0, 120.0, 240.0, 480.0, 560.0, 1120.0],
+    maxPlatoonGap=[100.0, 200.0, 300.0, 400.0, 500.0, 750.0],
     # maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50],
     # joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0],
-    platoonSplitTime=[2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 10.0, 20.0]
+    platoonSplitTime=[3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 20.0]
 )
 
 def flush_results(variable_name, value, results):

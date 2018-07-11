@@ -95,34 +95,14 @@ class SimulationManager(traci.StepListener):
             speed = self._subscriptionResults[veh.getID()][tc.VAR_SPEED]
             # Emissions
             CO2Emission = self._subscriptionResults[veh.getID()][tc.VAR_CO2EMISSION]
-            COEmission = self._subscriptionResults[veh.getID()][tc.VAR_COEMISSION]
-            HCEmission = self._subscriptionResults[veh.getID()][tc.VAR_HCEMISSION]
-            PMXEmission = self._subscriptionResults[veh.getID()][tc.VAR_PMXEMISSION]
-            NOxEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOXEMISSION]
             FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
-            NoiseEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOISEEMISSION]
 
             # sometimes emissions are always 0.0, filters them out
             if CO2Emission > 0:
                 veh.reportedCO2Emissions.append(CO2Emission)
 
-            if COEmission > 0:
-                veh.reportedCOEmissions.append(COEmission)
-
-            if HCEmission > 0:
-                veh.reportedHCEmissions.append(HCEmission)
-
-            if PMXEmission > 0:
-                veh.reportedPMXEmissions.append(PMXEmission)
-
-            if NOxEmission > 0:
-                veh.reportedNOxEmissions.append(NOxEmission)
-
             if FuelConsumption > 0:
                 veh.reportedFuelConsumptions.append(FuelConsumption)
-
-            if NoiseEmission > 0:
-                veh.reportedNoiseEmissions.append(NoiseEmission)
 
             if speed > 0:
                 veh.reportedSpeeds.append(speed)

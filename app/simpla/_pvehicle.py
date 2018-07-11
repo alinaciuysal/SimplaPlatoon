@@ -63,7 +63,6 @@ class pVehicleState(object):
 
 
 
-
 class PVehicle(object):
 
     '''
@@ -71,12 +70,11 @@ class PVehicle(object):
     '''
 
     def __init__(self, ID, simTime):
-        '''Constructor(string, list, float)
+        '''Constructor(string, float)
 
         Create a PVehicle representing a SUMOVehicle for the PlatoonManager. The controlInterval is only piped through
         to the singleton platoon created by the vehicle.
 
-        allEdges contain a list of edgeIDs retrieved using the parameters in Config.py
         '''
         # vehicle ID (should be the one used in SUMO)
         self._ID = ID
@@ -85,7 +83,6 @@ class PVehicle(object):
         self._vTypes = dict()
         self._speedFactors = dict()
         self._laneChangeModes = dict()
-
         allEdges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.lastEdgeID).edges
 
         rnd_edge = Config.get_random().choice(Config.edgeIDsForExit)

@@ -80,16 +80,11 @@ class PlatoonManager(traci.StepListener):
         self.platoonCarCounter = PlatoonManager.platoonCarCounter
 
         self.TripDurations = []
-        self.CO2Emissions = []
         self.FuelConsumptions = []
         self.Speeds = []
         self.Overheads = []
-        self.TotalTimeSpentInsidePlatoon = []
-        self.TotalTimeSpentOutsidePlatoon = []
+        self.TimeSpentInsidePlatoon = []
         self.NumberOfCarsInPlatoons = []
-
-        self.NumberOfPlatoonsFormed = 0
-        self.NumberOfPlatoonsSplit = 0
 
         # integration step-length
         self._DeltaT = traci.simulation.getDeltaT() / 1000.
@@ -223,15 +218,12 @@ class PlatoonManager(traci.StepListener):
             veh.state.distance = traci.vehicle.getDistance(veh.getID())
 
             # Emissions
-            CO2Emission = self._subscriptionResults[veh.getID()][tc.VAR_CO2EMISSION]
             FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
 
-            # sometimes reported values are always 0, we filter them out
-            if CO2Emission > 0:
-                veh.state.reportedCO2Emissions.append(CO2Emission)
-            if FuelConsumption > 0:
+            # sometimes reported values are always -1001 (error value) so we filter them out
+            if FuelConsumption >= 0:
                 veh.state.reportedFuelConsumptions.append(FuelConsumption)
-            if veh.state.speed > 0:
+            if veh.state.speed >= 0:
                 veh.state.reportedSpeeds.append(veh.state.speed)
 
             # update respective metrics if there are more than 1 cars or only single car in each vehicle's platoon
@@ -306,27 +298,6 @@ class PlatoonManager(traci.StepListener):
 
         return count
 
-    def _addVehicle(self, vehID):
-        '''_addVehicle(string)
-
-        Creates a new PVehicle object and registers is soliton platoon
-        '''
-        try:
-            traci.vehicle.subscribe(vehID, (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED))
-            veh = _pvehicle.PVehicle(vehID, self._controlInterval)
-        except TraCIException:
-            if rp.VERBOSITY >= 1:
-                warn("Tried to create non-existing vehicle '%s'" % vehID)
-            return
-        except KeyError as e:
-            raise e
-
-        if rp.VERBOSITY >= 2:
-            report("Adding vehicle '%s'" % vehID)
-        self._connectedVehicles[vehID] = veh
-        self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
-
-
     def _manageFollowers(self):
         '''_manageFollowers()
         Iterates over platoon-followers and
@@ -375,7 +346,6 @@ class PlatoonManager(traci.StepListener):
             # try to split at the collected splitIndices
             for ix in reversed(splitIndices):
                 newPlatoon = pltn.split(ix)
-                self.NumberOfPlatoonsSplit += 1
                 if newPlatoon is not None:
                     # if the platoon was split, register the splitted platoons
                     newPlatoons.append(newPlatoon)
@@ -453,7 +423,6 @@ class PlatoonManager(traci.StepListener):
             if leaderDist <= self._maxPlatoonGap:
                 # Try to join the platoon in front
                 if leader.getPlatoon().join(pltn):
-                    self.NumberOfPlatoonsFormed += 1
                     toRemove.append(pltnID)
                     # Debug
                     if rp.VERBOSITY >= 2:
@@ -698,7 +667,7 @@ class PlatoonManager(traci.StepListener):
         # other vehicles are already started moving according to defined flow(s)
         if self._hasConnectedType(vType):
             vehID = "platoon-car-" + str(self.carIndex)
-            veh = _pvehicle.PVehicle(vehID, self._controlInterval)
+            veh = _pvehicle.PVehicle(vehID, simTime())
             routeID = "platoon-car-route-" + str(self.carIndex)
             traci.route.add(routeID, veh.edgesToTravel)
             traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
@@ -713,7 +682,6 @@ class PlatoonManager(traci.StepListener):
                                          tc.VAR_LANE_ID,
                                          tc.VAR_SPEED,
                                          tc.VAR_LANEPOSITION,
-                                         tc.VAR_CO2EMISSION,
                                          tc.VAR_FUELCONSUMPTION))
                 if rp.VERBOSITY >= 3:
                     report("Adding vehicle '%s', routeID: '%s', vType:'%s'" % (vehID, routeID, vType))
@@ -748,14 +716,10 @@ class PlatoonManager(traci.StepListener):
 
         data = dict(
             TripDurations=self.TripDurations,
-            CO2Emissions=self.CO2Emissions,
             FuelConsumptions=self.FuelConsumptions,
             Speeds=self.Speeds,
             Overheads=self.Overheads,
-            TotalTimeSpentOutsidePlatoon=self.TotalTimeSpentOutsidePlatoon,
-            TotalTimeSpentInsidePlatoon=self.TotalTimeSpentInsidePlatoon,
-            NumberOfPlatoonsFormed=self.NumberOfPlatoonsFormed,
-            NumberOfPlatoonsSplit=self.NumberOfPlatoonsSplit,
+            TimeSpentInsidePlatoon=self.TimeSpentInsidePlatoon,
             NumberOfCarsInPlatoons=self.NumberOfCarsInPlatoons
         )
 
@@ -773,18 +737,16 @@ class PlatoonManager(traci.StepListener):
         # as indicated in _setActiveSpeedFactor() method:
         # vehicles' maxSpeed determines determines travel speed, not road's speed limit
         maxSpeed = veh.state.maxSpeed
-        theoreticalDuration = veh.state.distance / maxSpeed
+        theoreticalDuration = veh.state.distance / (maxSpeed * 1.0)
         actualDuration = simTime() - veh.currentRouteBeginTime
         overhead = actualDuration / theoreticalDuration
         print("veh.state.distance", veh.state.distance, "actualDuration", actualDuration, "theoreticalDuration", theoreticalDuration, "overhead", overhead, "+++++++++")
 
         self.TripDurations.append(actualDuration)
-        self.CO2Emissions.extend(veh.state.reportedCO2Emissions)
         self.FuelConsumptions.extend(veh.state.reportedFuelConsumptions)
         self.Speeds.extend(veh.state.reportedSpeeds)
         self.Overheads.append(overhead)
-        self.TotalTimeSpentInsidePlatoon.append(veh.state.durationInsidePlatoon)
-        self.TotalTimeSpentOutsidePlatoon.append(veh.state.durationOutsidePlatoon)
+        self.TimeSpentInsidePlatoon.append(veh.state.durationInsidePlatoon / (veh.state.durationOutsidePlatoon * 1.0) )
 
     def _endSimulation(self):
         import app.simulation.PlatoonSimulation as ps
