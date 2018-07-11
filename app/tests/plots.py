@@ -38,7 +38,7 @@ def parse_data(x_label, data, y_label):
         if y_label in parameters:
             y_values.append(json_obj["data"][y_label])
         else:
-            # regular parameters like nrOfPlatoonsFormed, nrOfPlatoonsSplit, simTime
+            # regular parameters like numberOfPlatoonsFormed, numberOfPlatoonsSplit, simTime
             y_values.append(json_obj[y_label])
     return x_values, y_values
 

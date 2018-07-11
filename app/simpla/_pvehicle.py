@@ -9,18 +9,16 @@
 # @author Leonhard Luecken
 # @date   2017-04-09
 # @version $Id$
-
-from collections import defaultdict
-
 import traci
 import traci.constants as tc
-
-from _platoon import Platoon
 import _reporting as rp
-import _config as cfg
-from _platoonmode import PlatoonMode
-from app.Config import lookAheadDistance, joinDistance, get_random, endEdgeID_1, endEdgeID_2, startEdgeID
+import simpla._config as cfg
+import app.Config as Config
+
+from simpla._platoonmode import PlatoonMode
+from simpla._platoon import Platoon
 from traci.exceptions import TraCIException
+from collections import defaultdict
 
 warn = rp.Warner("PVehicle")
 report = rp.Reporter("PVehicle")
@@ -43,7 +41,7 @@ class pVehicleState(object):
         # lookAheadDistance parameter defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
         # Note that the returned leader may be farther away than the given dist.
         # type of leaderInfo is (string, double) where string ID the leading vehicle's ID and double is the distance
-        self.leaderInfo = traci.vehicle.getLeader(ID, lookAheadDistance)
+        self.leaderInfo = traci.vehicle.getLeader(ID, Config.lookAheadDistance)
 
         # must be set by vehicle creator (PlatoonManager._addPlatoonVehicle()) to guarantee function in first step
         self.leader = None
@@ -70,7 +68,7 @@ class PVehicle(object):
     Vehicle objects for platooning
     '''
 
-    def __init__(self, ID, allEdges, simTime):
+    def __init__(self, ID, simTime):
         '''Constructor(string, list, float)
 
         Create a PVehicle representing a SUMOVehicle for the PlatoonManager. The controlInterval is only piped through
@@ -86,22 +84,26 @@ class PVehicle(object):
         self._speedFactors = dict()
         self._laneChangeModes = dict()
 
-        self.durationInPlatoon = 0
+        # time that is spent in & out of a platoon
+        self.durationInsidePlatoon = 0
+        self.durationOutsidePlatoon = 0
 
-        rnd_edge = get_random().choice([endEdgeID_1, endEdgeID_2])
+        allEdges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.lastEdgeID).edges
+
+        rnd_edge = Config.get_random().choice(Config.edgeIDsForExit)
         rnd_edge_idx = allEdges.index(rnd_edge) + 1 # to include randomly selected edge
         self.edgesToTravel = allEdges[:rnd_edge_idx]
 
-        # now get line at idx 0 of last edge to randomly select a position within this line
+        # now get line at idx 0 of this random edge to randomly select a position within this line
         line_id = rnd_edge + str("_") + "0"
         line_length = traci.lane.getLength(line_id)
 
         # get a random exit location within [0, line_length]
-        arrivalPos = get_random().uniform(0, line_length)
+        arrivalPos = Config.get_random().uniform(0, line_length)
 
         # set arrivalInterval relative to the edge length,
         # i.e. negative values or values greater than actual length are not allowed
-        self.arrivalInterval = (max(arrivalPos - joinDistance, 0), min(arrivalPos + joinDistance, line_length))
+        self.arrivalInterval = (max(arrivalPos - Config.joinDistance, 0), min(arrivalPos + Config.joinDistance, line_length))
 
         self.arrivalPos = arrivalPos
         self.arrivalEdge = rnd_edge

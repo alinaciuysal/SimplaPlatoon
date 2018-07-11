@@ -41,7 +41,7 @@ class Car:
         # the driver imperfection in handling the car
         # self.imperfection = min(0.9, max(0.1, random.gauss(0.5, 0.5)))
 
-        rnd_edge = Config.get_random().choice([Config.endEdgeID_1, Config.endEdgeID_2])
+        rnd_edge = Config.get_random().choice(Config.edgeIDsForExit)
         self.edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=rnd_edge).edges
 
         # NEW

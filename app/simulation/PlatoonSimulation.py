@@ -5,7 +5,6 @@ import traci.constants as tc
 from app.streaming import KafkaForword, KafkaConnector
 from app.simpla._config import setValues, getValues
 from app.entity import SimulationManager
-from app.simpla._platoonmanager import _destinations
 
 simulationEnded = False
 

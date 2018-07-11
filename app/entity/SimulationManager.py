@@ -1,7 +1,7 @@
-from app import Config
 from app.entity.Car import Car
 import traci
 import traci.constants as tc
+import app.Config as Config
 
 class SimulationManager(traci.StepListener):
     """ central registry for all our cars we have in the sumo simulation """
@@ -71,7 +71,8 @@ class SimulationManager(traci.StepListener):
         # Handle vehicles entering and leaving the simulation
         self._removeArrived()
         self._updateVehicleStates()
-        self._endSimulation()
+        if Config.forTests:
+            self._endSimulation()
 
     def stop(self):
         '''stop()
@@ -83,10 +84,6 @@ class SimulationManager(traci.StepListener):
             traci.vehicle.unsubscribe(veh.getID())
         self.cars = dict()
 
-    def _endSimulation(self):
-        import app.simulation.Simulation as ps
-        if simTime() % Config.nrOfTicks == 0:
-            ps.simulationEnded = True
 
     def _updateVehicleStates(self):
         '''_updateVehicleStates()
@@ -171,6 +168,11 @@ class SimulationManager(traci.StepListener):
         # if required, total number of trips can be obtained with len(TripDurations)
 
         return res
+
+    def _endSimulation(self):
+        import app.simulation.Simulation as ps
+        if simTime() % Config.nrOfTicks == 0:
+            ps.simulationEnded = True
 
 def simTime():
     return traci.simulation.getCurrentTime() / 1000.

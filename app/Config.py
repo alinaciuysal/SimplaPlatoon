@@ -4,9 +4,7 @@ sumoConfig = "A9_conf.sumocfg"
 # The network net we use for our simulation
 sumoNet = "A9.net.xml"
 
-
-
-# should use kafka for config changes (else it uses json file)
+# should it use kafka for config changes (else it uses json file)
 kafkaUpdates = False
 
 # the kafka host we want to send our messages to
@@ -27,32 +25,41 @@ kafkaPlatoonConfigTopic = "platoon-config"
 initialWaitTicks = 500
 
 # True if we want to use the SUMO GUI
-sumoUseGUI = False
+sumoUseGUI = True
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
 platooning = True
 
-stats = "mean" # can also be median, min, max for now
+# True if we want end simulation at some point and get / publish the results via script
+forTests = True
 
-# start & end edges for destinations of all cars, these can be changed to shrink actual trips of cars
+if forTests:
+    # number of ticks to run each simulation for test
+    nrOfTicks = 1000
+
+# startEdgeID & lastEdgeID denotes lower & upper edges, i.e. extreme points
 startEdgeID = "11S"
-endEdgeID_1 = "135586672#0"
-endEdgeID_2 = "23805795"
+lastEdgeID = "23805795"
 
-# for performance issues, start and end edges of the map must be provided
-startEdgeOfMap = "11S"
-lastEdgeOfMap = "23805795"
+''' one of these will be selected (in randomized manner) as exit edge of each car '''
+# edgeIDsForExit = ["135586672#0", "23805795"]
 
-# number of ticks to run each simulation
-nrOfTicks = 1000
+edgeIDsForExit = ["135586672#0"]
+''' contextual parameters '''
+lookAheadDistance = 300.0 # distance to find a leader vehicle in the simulation
+switchImpatienceFactor = 0.2
+platoonSplitTime = 5.0
 
-# changeable variables
+''' changeable parameters '''
 maxVehiclesInPlatoon = 6
-lookAheadDistance = 50.0 # distance to find a leader vehicle in the simulation
 platoonCarCounter = 250
 totalCarCounter = 250
+catchupDistance = 300.0
+maxPlatoonGap = 200.0
+# to find extreme positions (-+d) of platoon
+joinDistance = 100.0
 
-joinDistance = 100.0 # the term "d" that is used to find extreme positions (-+d) of platoon
+
 
 # simpla parameters
 import random

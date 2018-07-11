@@ -13,28 +13,22 @@
 
 # TODO: For CATCHUP_FOLLOWER mode could also be set active if intra-platoon gap becomes too large
 
-from _exceptions import SimplaException
-from traci.exceptions import TraCIException
-from _platoonmode import PlatoonMode
-from _collections import defaultdict
-
-import _config as cfg
-import _reporting as rp
-import _pvehicle
-import _platoon
 import traci
+import traceback
+from traci.exceptions import TraCIException
 import traci.constants as tc
-import app.Config as Config
-import traceback, os.path, json
 
-from app.simpla._reporting import simTime
-from app.streaming import KafkaForword, KafkaConnector
+import simpla._reporting as rp
+import simpla._config as cfg
+import simpla._pvehicle
+from simpla import SimplaException
+from simpla._platoonmode import PlatoonMode
+from _collections import defaultdict
+import app.Config as Config
 
 warn = rp.Warner("PlatoonManager")
 report = rp.Reporter("PlatoonManager")
 
-
-_destinations = {}
 
 class PlatoonManager(traci.StepListener):
 
@@ -47,127 +41,69 @@ class PlatoonManager(traci.StepListener):
     the associated vehicle types are exclusive for each.
     '''
 
-    # keeps track of added vehicles with this index
-    carIndex = None
-    platoonCarCounter = None
-    totalCarCounter = None
-
-    # parameters to be used as output
-    nrOfPlatoonsFormed = None
-    nrOfPlatoonsSplit = None
-
-    # summed up durations that does not include durations with single vehicles
-    overallPlatoonDuration = None
-
-    # to store each vehicle's durationInPlatoon attributes
-    DurationsInPlatoon = None
-
-    TripDurations = None
-    # CO2Emissions = None
-    # COEmissions = None
-    # HCEmissions = None
-    # PMXEmissions = None
-    # NOxEmissions = None
-    # NoiseEmissions = None
-
-    FuelConsumptions = None
-    Speeds = None
-    Overheads = None
-
-    allEdges = None
-
-
     def __init__(self):
         ''' PlatoonManager()
 
         Creates and initializes the PlatoonManager
         '''
-
-        self.carIndex = 0
-        self.platoonCarCounter = Config.platoonCarCounter
-        self.totalCarCounter = Config.totalCarCounter
-
-        self.nrOfPlatoonsFormed = 0
-        self.nrOfPlatoonsSplit = 0
-        self.overallPlatoonDuration = 0
-
-        self.TripDurations = []
-        self.CO2Emissions = []
-        # self.COEmissions = []
-        # self.HCEmissions = []
-        # self.PMXEmissions = []
-        # self.NOxEmissions = []
-        # self.NoiseEmissions = []
-        self.FuelConsumptions = []
-        self.Speeds = []
-        self.Overheads = []
-        self.DurationsInPlatoon = []
-
-        self.allEdges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.lastEdgeOfMap).edges
-
-
-        if rp.VERBOSITY >= 2:
+        if rp.VERBOSITY>=2:
             report("Initializing simpla.PlatoonManager...", True)
-
         # Load parameters from config
         # vehicle type filter
         self._typeSubstrings = cfg.VEH_SELECTORS
-
-        if self._typeSubstrings == [""] and rp.VERBOSITY >= 1:
+        if self._typeSubstrings == [""] and rp.VERBOSITY>=1:
             warn("No typeSubstring given. Managing all vehicles.", True)
-        elif rp.VERBOSITY >= 2:
-            report("Managing all vTypes selected by %s" % str(self._typeSubstrings), True)
+        elif rp.VERBOSITY>=2:
+            report("Managing all vTypes selected by %s"%str(self._typeSubstrings),True)
         # max intra platoon gap
         self._maxPlatoonGap = cfg.MAX_PLATOON_GAP
         # max distance for trying to catch up
-        self._catchupDist = cfg.CATCHUP_DISTANCE
+        self._catchupDist = cfg.CATCHUP_DIST
 
         # platoons currently in the simulation
         # map: platoon ID -> platoon objects
         self._platoons = dict()
-
-        # IDs of all potential platoon members currently in the simulation
-        # map: ID -> vehicle
+        self.carIndex = 0
+        self.totalCarCounter = Config.totalCarCounter
+        self.platoonCarCounter = Config.platoonCarCounter
         self._connectedVehicles = dict()
 
         # integration step-length
         self._DeltaT = traci.simulation.getDeltaT() / 1000.
 
         # rate for executing the platoon logic
-        if 1. / cfg.CONTROL_RATE < self._DeltaT:
-            if rp.VERBOSITY >= 1:
-                warn("Restricting given control rate (= %d per sec.) to 1 per timestep (= %g per sec.)" % (cfg.CONTROL_RATE, 1./self._DeltaT), True)
+        if(1. / cfg.CONTROL_RATE < self._DeltaT):
+            if rp.VERBOSITY>=1:
+                warn("Restricting given control rate (= %d per sec.) to 1 per timestep (= %g per sec.)" %
+                     (cfg.CONTROL_RATE, 1./self._DeltaT), True)
             self._controlInterval = self._DeltaT
         else:
             self._controlInterval = 1. / cfg.CONTROL_RATE
 
         self._timeSinceLastControl = 1000.
 
-
         # Check for undefined vtypes and fill with defaults
         for origType, specialTypes in cfg.PLATOON_VTYPES.items():
             if specialTypes[PlatoonMode.FOLLOWER] is None:
                 if rp.VERBOSITY>=2:
                     report("Setting unspecified follower vtype for '%s' to '%s'"%(origType, specialTypes[PlatoonMode.LEADER]),True)
-                specialTypes[PlatoonMode.FOLLOWER] = specialTypes[PlatoonMode.LEADER]
+                specialTypes[PlatoonMode.FOLLOWER]=specialTypes[PlatoonMode.LEADER]
             if specialTypes[PlatoonMode.CATCHUP] is None:
                 if rp.VERBOSITY>=2:
                     report("Setting unspecified catchup vtype for '%s' to '%s'"%(origType, origType),True)
-                specialTypes[PlatoonMode.CATCHUP] = origType
+                specialTypes[PlatoonMode.CATCHUP]=origType
             if specialTypes[PlatoonMode.CATCHUP_FOLLOWER] is None:
                 if rp.VERBOSITY>=2:
                     report("Setting unspecified catchup-follower vtype for '%s' to '%s'"%(origType, specialTypes[PlatoonMode.FOLLOWER]),True)
                 specialTypes[PlatoonMode.CATCHUP_FOLLOWER]=specialTypes[PlatoonMode.FOLLOWER]
-                ## Commented snippet generated automatically a catchup follower type with a different color
-                catchupFollowerType = origType + "_catchupFollower"
-                specialTypes[PlatoonMode.CATCHUP] = catchupFollowerType
-                if rp.VERBOSITY >= 2:
-                    print("Catchup follower type '%s' for '%s' dynamically created as duplicate of '%s'" %
-                      (catchupFollowerType, origType, specialTypes[PlatoonMode.CATCHUP_FOLLOWER]))
-                # copy(self, origTypeID, newTypeID) documentation:
-                # Duplicates the vType with ID origTypeID. The newly created vType is assigned the ID newTypeID
-                traci.vehicletype.copy(specialTypes[PlatoonMode.CATCHUP_FOLLOWER], catchupFollowerType)
-                traci.vehicletype.setColor(catchupFollowerType, (0, 255, 200, 0))
+        ## Commented snippet generated automatically a catchup follower type with a different color
+        #                 catchupFollowerType = origType + "_catchupFollower"
+        #                 specialTypes[PlatoonMode.CATCHUP]=catchupFollowerType
+        #                 if rp.VERBOSITY >= 2:
+        #                     print("Catchup follower type '%s' for '%s' dynamically created as duplicate of '%s'" %
+        #                       (catchupFollowerType, origType, specialTypes[PlatoonMode.CATCHUP_FOLLOWER]))
+        #                 traci.vehicletype.copy(specialTypes[PlatoonMode.CATCHUP_FOLLOWER] , catchupFollowerType)
+        #                 traci.vehicletype.setColor(catchupFollowerType, (0, 255, 200, 0))
 
         # fill global lookup table for vType parameters (used below in safetycheck)
         knownVTypes = traci.vehicletype.getIDList()
@@ -184,17 +120,15 @@ class PlatoonManager(traci.StepListener):
                 if origLength != mappedLength:
                     if rp.VERBOSITY>=1:
                         warn("length of mapped vType '%s' (%sm.) does not equal length of original vType '%s' (%sm.)\nThis will probably lead to collisions." % (
-                        typeID, mappedLength, origType, origLength), True)
+                            typeID, mappedLength, origType, origLength), True)
                 if origEmergencyDecel != mappedEmergencyDecel:
                     if rp.VERBOSITY>=1:
                         warn("emergencyDecel of mapped vType '%s' (%gm.) does not equal emergencyDecel of original vType '%s' (%gm.)" % (
-                        typeID, mappedEmergencyDecel, origType, origEmergencyDecel), True)
-                _pvehicle.vTypeParameters[typeID][tc.VAR_TAU] = traci.vehicletype.getTau(typeID)
-                _pvehicle.vTypeParameters[typeID][tc.VAR_DECEL] = traci.vehicletype.getDecel(typeID)
-                _pvehicle.vTypeParameters[typeID][tc.VAR_MINGAP] = traci.vehicletype.getMinGap(typeID)
-                _pvehicle.vTypeParameters[typeID][tc.VAR_EMERGENCY_DECEL] = traci.vehicletype.getEmergencyDecel(typeID)
-
-        warn("end of platoon manager", True)
+                            typeID, mappedEmergencyDecel, origType, origEmergencyDecel), True)
+                simpla._pvehicle.vTypeParameters[typeID][tc.VAR_TAU] = traci.vehicletype.getTau(typeID)
+                simpla._pvehicle.vTypeParameters[typeID][tc.VAR_DECEL] = traci.vehicletype.getDecel(typeID)
+                simpla._pvehicle.vTypeParameters[typeID][tc.VAR_MINGAP] = traci.vehicletype.getMinGap(typeID)
+                simpla._pvehicle.vTypeParameters[typeID][tc.VAR_EMERGENCY_DECEL] = traci.vehicletype.getEmergencyDecel(typeID)
 
     def step(self, t=0):
         '''step(int)
@@ -202,10 +136,8 @@ class PlatoonManager(traci.StepListener):
         Manages platoons at each time step.
         NOTE: argument t is unused, larger step sizes than DeltaT are not supported.
         '''
-
-        if not t == 0 and rp.VERBOSITY >= 1:
+        if not t==0 and rp.VERBOSITY >= 1:
             warn("Step lengths that differ from SUMO's simulation step length are not supported and probably lead to undesired behavior.\nConsider decreasing simpla's control rate instead.")
-
         # Handle vehicles entering and leaving the simulation
         self._removeArrived()
         self._timeSinceLastControl += self._DeltaT
@@ -215,8 +147,7 @@ class PlatoonManager(traci.StepListener):
             self._updatePlatoonOrdering()
             self._manageLeaders()
             self._adviseLanes()
-            self._timeSinceLastControl = 0
-            self._endSimulation()
+            self._timeSinceLastControl = 0.
 
     def stop(self):
         '''stop()
@@ -226,8 +157,8 @@ class PlatoonManager(traci.StepListener):
         for veh in self._connectedVehicles.values():
             veh.setPlatoonMode(PlatoonMode.NONE)
             traci.vehicle.unsubscribe(veh.getID())
-        self._connectedVehicles = dict()
-        _platoon.Platoon._nextID = 0
+        self._connectedVehicles = []
+        simpla._platoon.Platoon._nextID = 0
 
     def getPlatoonLeaders(self):
         '''getPlatoonLeaders() -> list(PVehicle)
@@ -254,81 +185,27 @@ class PlatoonManager(traci.StepListener):
             veh.state.edgeID = self._subscriptionResults[veh.getID()][tc.VAR_ROAD_ID]
             veh.state.laneID = self._subscriptionResults[veh.getID()][tc.VAR_LANE_ID]
             veh.state.laneIX = self._subscriptionResults[veh.getID()][tc.VAR_LANE_INDEX]
-            veh.state.lanePosition = self._subscriptionResults[veh.getID()][tc.VAR_LANEPOSITION]
             veh.state.leaderInfo = traci.vehicle.getLeader(veh.getID(), self._catchupDist)
-
-            # getDistance returns the distance the vehicle has already driven [in m]
-            veh.state.distance = traci.vehicle.getDistance(veh.getID())
-
-            # Emissions
-            CO2Emission = self._subscriptionResults[veh.getID()][tc.VAR_CO2EMISSION]
-
-            # COEmission = self._subscriptionResults[veh.getID()][tc.VAR_COEMISSION]
-            # HCEmission = self._subscriptionResults[veh.getID()][tc.VAR_HCEMISSION]
-            # PMXEmission = self._subscriptionResults[veh.getID()][tc.VAR_PMXEMISSION]
-            # NOxEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOXEMISSION]
-            # NoiseEmission = self._subscriptionResults[veh.getID()][tc.VAR_NOISEEMISSION]
-
-            FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
-
-            # sometimes emissions are always 0.0, we filter them out
-            if CO2Emission > 0:
-                veh.state.reportedCO2Emissions.append(CO2Emission)
-            if FuelConsumption > 0:
-                veh.state.reportedFuelConsumptions.append(FuelConsumption)
-
-            # if COEmission > 0:
-            #     veh.state.reportedCOEmissions.append(COEmission)
-            #
-            # if HCEmission > 0:
-            #     veh.state.reportedHCEmissions.append(HCEmission)
-            #
-            # if PMXEmission > 0:
-            #     veh.state.reportedPMXEmissions.append(PMXEmission)
-            #
-            # if NOxEmission > 0:
-            #     veh.state.reportedNOxEmissions.append(NOxEmission)
-            #
-            # if NoiseEmission > 0:
-            #     veh.state.reportedNoiseEmissions.append(NoiseEmission)
-
-            if veh.state.speed > 0:
-                veh.state.reportedSpeeds.append(veh.state.speed)
-
             if veh.state.leaderInfo is None:
                 veh.state.leader = None
                 veh.state.connectedVehicleAhead = False
                 continue
 
-            # update durationInPlatoon if there are more than 1 cars in each vehicle's platoon
-            if len(veh.getPlatoon().getVehicles()) > 1:
-                veh.durationInPlatoon += 1
-
-            # try to find a connected leader within the provided distance
-            # this case is special when there's a non-connected car in front of veh, but there's a leader in front of non-connected car and it's within the catchupDist
             if veh.state.leader is None or veh.state.leader.getID() != veh.state.leaderInfo[0]:
-                leaderID = veh.state.leaderInfo[0]
-                distanceBetweenLeader = veh.state.leaderInfo[1]
-                if self._isConnected(leaderID):
-                    veh.state.leader = self._connectedVehicles[leaderID]
+                if self._isConnected(veh.state.leaderInfo[0]):
+                    veh.state.leader = self._connectedVehicles[veh.state.leaderInfo[0]]
                     veh.state.connectedVehicleAhead = True
                 else:
                     # leader is not connected -> check whether a connected vehicle is located further downstream
                     veh.state.leader = None
                     veh.state.connectedVehicleAhead = False
-
-                    # getLength returns the length of the given vehicle (in m)
-                    dist = distanceBetweenLeader + traci.vehicle.getLength(leaderID)
+                    vehAheadID = veh.state.leaderInfo[0]
+                    dist = veh.state.leaderInfo[1] + traci.vehicle.getLength(vehAheadID)
                     while dist < self._catchupDist:
-                        # http://www.sumo.dlr.de/daily/pydoc/traci._vehicle.html#VehicleDomain-getLeader
-                        nextLeaderInfo = traci.vehicle.getLeader(leaderID, self._catchupDist - dist)
+                        nextLeaderInfo = traci.vehicle.getLeader(vehAheadID, self._catchupDist - dist)
                         if nextLeaderInfo is None:
                             break
                         vehAheadID = nextLeaderInfo[0]
-                        # TODO: investigate why gap is negative
-                        if nextLeaderInfo[1] < 0:
-                            break
-
                         if self._isConnected(vehAheadID):
                             veh.state.connectedVehicleAhead = True
                             if rp.VERBOSITY >= 4:
@@ -336,6 +213,54 @@ class PlatoonManager(traci.StepListener):
                                        (vehAheadID, veh.getID(), dist + nextLeaderInfo[1]))
                             break
                         dist += nextLeaderInfo[1] + traci.vehicle.getLength(vehAheadID)
+
+    def _removeArrived(self):
+        ''' _removeArrived()
+
+        Remove all vehicles that have left the simulation from _connectedVehicles.
+        Returns the number of removed connected vehicles
+        '''
+        count = 0
+        toRemove = defaultdict(list)
+        for ID in traci.simulation.getArrivedIDList():
+            # first store arrived vehicles platoonwise
+            if not self._isConnected(ID):
+                continue
+            if rp.VERBOSITY >= 2:
+                report("Removing arrived vehicle '%s'" % ID)
+            veh = self._connectedVehicles.pop(ID)
+            toRemove[veh.getPlatoon().getID()].append(veh)
+            count += 1
+
+        for pltnID, vehs in toRemove.items():
+            pltn = self._platoons[pltnID]
+            pltn.removeVehicles(vehs)
+            if pltn.size() == 0:
+                # remove empty platoons
+                self._platoons.pop(pltn.getID())
+
+        return count
+
+    def _addVehicle(self, vehID):
+        '''_addVehicle(string)
+
+        Creates a new PVehicle object and registers is soliton platoon
+        '''
+        try:
+            traci.vehicle.subscribe(vehID, (tc.VAR_ROAD_ID, tc.VAR_LANE_INDEX, tc.VAR_LANE_ID, tc.VAR_SPEED))
+            veh = simpla._pvehicle.PVehicle(vehID, self._controlInterval)
+        except TraCIException:
+            if rp.VERBOSITY >= 1:
+                warn("Tried to create non-existing vehicle '%s'" % vehID)
+            return
+        except KeyError as e:
+            raise e
+
+        if rp.VERBOSITY >= 2:
+            report("Adding vehicle '%s'" % vehID)
+        self._connectedVehicles[vehID] = veh
+        self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
+
 
     def _manageFollowers(self):
         '''_manageFollowers()
@@ -381,16 +306,14 @@ class PlatoonManager(traci.StepListener):
                         splitIndices.append(ix + 1)
             # try to split at the collected splitIndices
             for ix in reversed(splitIndices):
-                self.nrOfPlatoonsSplit += 1
                 newPlatoon = pltn.split(ix)
                 if newPlatoon is not None:
-                    # if the platoon was split, register the splitted platoons and find its arrivalInterval
-                    newPlatoon.adjustInterval()
+                    # if the platoon was split, register the splitted platoons
                     newPlatoons.append(newPlatoon)
                     if rp.VERBOSITY >= 2:
                         report("Platoon '%s' splits (ID of new platoon: '%s'):\n" % (pltn.getID(), newPlatoon.getID()) +
                                "    Platoon '%s': %s\n    Platoon '%s': %s" % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
-                                                                       newPlatoon.getID(), str([veh.getID() for veh in newPlatoon.getVehicles()])))
+                                                                               newPlatoon.getID(), str([veh.getID() for veh in newPlatoon.getVehicles()])))
         for pltn in newPlatoons:
             self._platoons[pltn.getID()] = pltn
 
@@ -412,8 +335,7 @@ class PlatoonManager(traci.StepListener):
                 pltn.setModeWithImpatience(PlatoonMode.LEADER, self._controlInterval)
             elif pltnLeader.getCurrentPlatoonMode() == PlatoonMode.CATCHUP_FOLLOWER:
                 pltn.setModeWithImpatience(PlatoonMode.CATCHUP, self._controlInterval)
-            # get leading vehicle of the leader
-            # leaderInfo = (string = id of the leading vehicle, double = distance)
+            # get leader of the leader
             leaderInfo = pltnLeader.state.leaderInfo
 
             if leaderInfo is None or leaderInfo[1] > self._catchupDist:
@@ -438,7 +360,7 @@ class PlatoonManager(traci.StepListener):
                     pltn.setModeWithImpatience(PlatoonMode.LEADER, self._controlInterval)
                 continue
 
-            # get leader vehicle
+            # leader vehicle
             leaderID, leaderDist = leaderInfo
             leader = self._connectedVehicles[leaderID]
 
@@ -450,44 +372,19 @@ class PlatoonManager(traci.StepListener):
             # (sometimes a 'linkLeader' on junction is returned by traci.getLeader())
             # XXX: This prevents joining attempts on internal lanes (probably doesn't hurt so much)
             pltnLeaderRoute = traci.vehicle.getRoute(pltnLeader.getID())
-            # index of the current edge within the vehicles route
             pltnLeaderRouteIx = traci.vehicle.getRouteIndex(pltnLeader.getID())
-            leadersCurrentEdge = leader.state.edgeID
-            leadersArrivalPos = leader.arrivalPos
-
-            # DEPRECATED: edges from pltnLeaderRouteIx to the end
-            # if leadersCurrentEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
-            #     continue
-
-            leadersArrivalEdge = leader.arrivalEdge
-            pltnLeaderLastEdgeID = pltnLeaderRoute[-1]
-            # for now, we support only this case: "cars should form platoons if their route end in same edge"
-            if leadersArrivalEdge != pltnLeaderLastEdgeID:
+            leaderEdge = leader.state.edgeID
+            if leaderEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
                 continue
 
             if leader.getPlatoon() == pltn:
                 # Platoon order is corrupted, don't join own platoon.
                 continue
 
-            # if arrivalPos is not within the range of platoon, it won't join (merge)
-            pltnArrivalInterval = pltnLeader.getPlatoon().getArrivalInterval()
-            # interval is always a tuple of (min, max)
-            if leadersArrivalPos < pltnArrivalInterval[0] or leadersArrivalPos > pltnArrivalInterval[1]:
-                continue
-
-            gapCondition, nrOfVehiclesCondition = self.joiningConditionsSatisfied(leaderInfo, pltn)
-            if gapCondition and nrOfVehiclesCondition:
-                # Try to join the platoon in front (leader's platoon),
-                # i.e. add vehicles of "pltn" to the end of leader's platoon
+            if leaderDist <= self._maxPlatoonGap:
+                # Try to join the platoon in front
                 if leader.getPlatoon().join(pltn):
-                    self.nrOfPlatoonsFormed += 1
                     toRemove.append(pltnID)
-                    leader.getPlatoon().adjustInterval()
-                    print("joined: pltnArrivalInterval: ", pltnArrivalInterval,
-                          " leadersArrivalPos", leadersArrivalPos,
-                          " leadersArrivalInterval", leader.getArrivalInterval(),
-                          " newInterval", leader.getPlatoon().getArrivalInterval())
-
                     # Debug
                     if rp.VERBOSITY >= 2:
                         report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(), leader.getPlatoon().getID()) +
@@ -498,19 +395,12 @@ class PlatoonManager(traci.StepListener):
                         report("Merging of platoons '%s' (%s) and '%s' (%s) would not be safe." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
                                                                                                    leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
             else:
-                # Join can fail due to different reasons:
-                # 1) too large distance. Try to get closer (change to CATCHUP mode).
-                if not gapCondition:
-                    if not pltn.setMode(PlatoonMode.CATCHUP):
-                        if rp.VERBOSITY >= 3:
-                            report("Switch to catchup mode would not be safe for platoon '%s' (%s) chasing platoon '%s' (%s)." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
-                                                                                                                                                  leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
-                # 2) numberOfVehicles in platoon is already too much.
-                if not nrOfVehiclesCondition:
-                    if not pltn.setMode(PlatoonMode.FOLLOWER):
-                        if rp.VERBOSITY >= 3:
-                            report("Switch to follower mode would not be safe for platoon '%s' (%s) chasing platoon '%s' (%s)." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
-                                                                                                                                  leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
+                # Join failed due to too large distance. Try to get closer (change to CATCHUP mode).
+                if not pltn.setMode(PlatoonMode.CATCHUP):
+                    if rp.VERBOSITY >= 3:
+                        report("Switch to catchup mode would not be safe for platoon '%s' (%s) chasing platoon '%s' (%s)." % (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
+                                                                                                                              leader.getPlatoon().getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
+
         # remove merged platoons
         for pltnID in toRemove:
             self._platoons.pop(pltnID)
@@ -526,14 +416,11 @@ class PlatoonManager(traci.StepListener):
         for pltnID, pltn in self._platoons.items():
             if pltn.size() == 1:
                 continue
-            # increment duration for each platoon
-            self.overallPlatoonDuration += 1
-
             # collect leaders within platoon
             intraPlatoonLeaders = []
             leaderID = None
             for ix, veh in enumerate(pltn.getVehicles()):
-                leaderFromSamePlatoon = False
+                leaderFromeSamePlatoon = False
                 if veh.state.leaderInfo is not None:
                     # leader detected
                     leaderID = veh.state.leaderInfo[0]
@@ -542,10 +429,10 @@ class PlatoonManager(traci.StepListener):
                         leader = self._connectedVehicles[leaderID]
                         if leader.getPlatoon() == pltn:
                             # leader belongs to same platoon
-                            leaderFromSamePlatoon = True
+                            leaderFromeSamePlatoon = True
                             intraPlatoonLeaders.append(leader)
 
-                if not leaderFromSamePlatoon:
+                if not leaderFromeSamePlatoon:
                     intraPlatoonLeaders.append(None)
 
                 if rp.VERBOSITY >= 4:
@@ -553,93 +440,6 @@ class PlatoonManager(traci.StepListener):
                            % (pltn.getID(), veh.getID(), str(leaderID), ("same platoon" if (intraPlatoonLeaders[-1] is not None) else "not from same platoon")), 3)
 
             pltn.setVehicles(self.reorderVehicles(pltn.getVehicles(), intraPlatoonLeaders))
-
-    def _adviseLanes(self):
-        '''_adviseLanes()
-
-        At the moment this only advises all platoon followers to change to their leaders' lane
-        if it is on a different lane on the same edge. Otherwise, followers are told to keep their
-        lane for the next time step.
-        NOTE: Future, more sophisticated lc advices should go here.
-        '''
-        for pltn in self._platoons.values():
-            for ix, veh in enumerate(pltn.getVehicles()[1:]):
-                laneID = veh.state.laneID
-                if laneID == "" or laneID[0] == ":":
-                    continue
-                # Find the leader in the platoon and request a lanechange if appropriate
-                leader = pltn.getVehicles()[ix]
-                if leader.state.edgeID == veh.state.edgeID:
-                    # leader is on the same edge, advise follower to use the same lane
-                    try:
-                        traci.vehicle.changeLane(veh.getID(), leader.state.laneIX, int(self._controlInterval*1000))
-                    except traci.exceptions.TraCIException as e:
-                        if rp.VERBOSITY>=1:
-                            warn("Lanechange advice for vehicle'%s' failed. Message:\n%s" % (veh.getID(), e.message))
-                else:
-                    # leader is on another edge, just stay on the current and hope it is the right one
-                    try:
-                        traci.vehicle.changeLane(veh.getID(), veh.state.laneIX, int(self._controlInterval*1000))
-                    except traci.exceptions.TraCIException as e:
-                        if rp.VERBOSITY>=1:
-                            warn("Lanechange advice for vehicle'%s' failed. Message:\n%s" % (veh.getID(), e.message))
-
-    def _isConnected(self, vehID):
-        '''_isConnected(string) -> bool
-
-        Returns whether the given vehicle is a potential platooning participant
-        '''
-        if vehID in self._connectedVehicles:
-            return True
-        else:
-            return False
-
-    def _hasConnectedType(self, vType):
-        '''_hasConnectedType(string) -> bool
-
-        Determines whether the given vehicle should be connected to the platoon manager
-        by comparing the vType with the type selector substrings specified in vehicleSelectors of cfg.
-        '''
-        for selector_str in self._typeSubstrings:
-            if selector_str in vType:
-                return True
-        return False
-
-    def _updateStatistics(self, veh):
-        theoreticalDuration = 0
-        # try to find theoreticalDuration by iterating travelled lanes, veh.state.travelledLaneIDs contain duplicates
-        # so remove them by converting array to list and then back to array
-        maxSpeed = 44.44 # by observation, it's same for all the lanes that we care about
-        theoreticalDuration = veh.state.distance / maxSpeed
-        actualDuration = simTime() - veh.currentRouteBeginTime
-        overhead = actualDuration / theoreticalDuration # Different logic from CrowdNav
-        print("veh.state.distance", veh.state.distance, "actualDuration", actualDuration, "theoreticalDuration", theoreticalDuration, "overhead", overhead, "+++++++++")
-
-        self.TripDurations.append(actualDuration)
-        self.CO2Emissions.extend(veh.state.reportedCO2Emissions)
-        self.FuelConsumptions.extend(veh.state.reportedFuelConsumptions)
-        self.Speeds.extend(veh.state.reportedSpeeds)
-        self.Overheads.append(overhead)
-        self.DurationsInPlatoon.append(veh.durationInPlatoon)
-
-        # self.COEmissions.extend(veh.state.reportedCOEmissions)
-        # self.HCEmissions.extend(veh.state.reportedHCEmissions)
-        # self.PMXEmissions.extend(veh.state.reportedPMXEmissions)
-        # self.NOxEmissions.extend(veh.state.reportedNOxEmissions)
-        # self.NoiseEmissions.extend(veh.state.reportedNoiseEmissions)
-
-    def joiningConditionsSatisfied(self, leaderInfo, pltn):
-        ''' returns two bool:
-            1) if gap between leader and platoon is less than maxPlatoonGap
-            2) if merge will not exceed maximum number of vehicles for each platoon
-        '''
-        leaderID, leaderDist = leaderInfo
-        gapCondition = leaderDist <= self._maxPlatoonGap
-
-        leader = self._connectedVehicles[leaderID]
-        # check if number of maximum allowed vehicles in platoon will not be exceeded upon join
-        nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= Config.maxVehiclesInPlatoon
-        return gapCondition, nrOfVehiclesCondition
 
     @staticmethod
     def reorderVehicles(vehicles, actualLeaders):
@@ -660,7 +460,7 @@ class PlatoonManager(traci.StepListener):
         nVeh = len(vehicles)
         # make a copy to write into
         actualLeaders = list(actualLeaders)
-        while not done and iter_count < nVeh:
+        while(not done and iter_count < nVeh):
             newVehOrder = None
             registeredLeaders = [None] + vehicles[:-1]
             if rp.VERBOSITY >= 4:
@@ -668,7 +468,7 @@ class PlatoonManager(traci.StepListener):
                 report("Actual leaders: %s" % rp.array2String(actualLeaders), 3)
                 report("registered leaders: %s" % rp.array2String(registeredLeaders), 3)
             for (ego, registeredLeader, actualLeader) in reversed(list(zip(vehicles, registeredLeaders, actualLeaders))):
-                if ego == actualLeader:
+                if (ego == actualLeader):
                     if rp.VERBOSITY >= 1:
                         warn("Platoon %s:\nVehicle '%s' was found as its own leader. Platoon order might be corrupted." % (
                             rp.array2String(vehicles), str(ego)))
@@ -718,6 +518,57 @@ class PlatoonManager(traci.StepListener):
 
         return vehicles
 
+    def _adviseLanes(self):
+        '''_adviseLanes()
+
+        At the moment this only advises all platoon followers to change to their leaders lane
+        if it is on a different lane on the same edge. Otherwise, followers are told to keep their
+        lane for the next time step.
+        NOTE: Future, more sophisticated lc advices should go here.
+        '''
+        for pltn in self._platoons.values():
+            for ix, veh in enumerate(pltn.getVehicles()[1:]):
+                laneID = veh.state.laneID
+                if laneID == "" or laneID[0] == ":":
+                    continue
+                # Find the leader in the platoon and request a lanechange if appropriate
+                leader = pltn.getVehicles()[ix]
+                if leader.state.edgeID == veh.state.edgeID:
+                    # leader is on the same edge, advise follower to use the same lane
+                    try:
+                        traci.vehicle.changeLane(veh.getID(), leader.state.laneIX, int(self._controlInterval*1000))
+                    except traci.exceptions.TraCIException as e:
+                        if rp.VERBOSITY>=1:
+                            warn("Lanechange advice for vehicle'%s' failed. Message:\n%s" % (veh.getID(), e.message))
+                else:
+                    # leader is on another edge, just stay on the current and hope it is the right one
+                    try:
+                        traci.vehicle.changeLane(veh.getID(), veh.state.laneIX, int(self._controlInterval*1000))
+                    except traci.exceptions.TraCIException as e:
+                        if rp.VERBOSITY>=1:
+                            warn("Lanechange advice for vehicle'%s' failed. Message:\n%s" % (veh.getID(), e.message))
+
+    def _isConnected(self, vehID):
+        '''_isConnected(string) -> bool
+
+        Returns whether the given vehicle is a potential platooning participant
+        '''
+        if vehID in self._connectedVehicles:
+            return True
+        else:
+            return False
+
+    def _hasConnectedType(self, vType):
+        '''_hasConnectedType(string) -> bool
+
+        Determines whether the given vehicle should be connected to the platoon manager
+        by comparing its vType with the type selector substrings specified in vehicleSelectors.
+        '''
+        for selector_str in self._typeSubstrings:
+            if selector_str in vType:
+                return True
+        return False
+
     def applyCarCounter(self):
 
         """ add normal car into the system """
@@ -728,63 +579,11 @@ class PlatoonManager(traci.StepListener):
         while len(self._connectedVehicles) < self.platoonCarCounter:
             self._addPlatoonVehicle()
 
-    def _addPlatoonVehicle(self):
-        '''_addPlatoonVehicle()
-
-        Creates a new PVehicle object for platooning and registers is soliton platoon
-        It filters out car types that are not related with platooning logic to ensure a valid platooning car addition to simulation
-        '''
-        try:
-            # Returns a list of ids of currently loaded vehicle types
-            knownVTypes = traci.vehicletype.getIDList()
-            knownVTypes.remove("DEFAULT_PEDTYPE")
-            knownVTypes.remove("DEFAULT_VEHTYPE")
-            knownVTypes.remove("normal-car")
-            vType = Config.get_random().choice(knownVTypes)
-
-            # register car within the platooning manager if randomly selected type is specialized for platooning
-            # other vehicles are already started moving according to defined flow(s)
-            if self._hasConnectedType(vType):
-                vehID = "platoon-car-" + str(self.carIndex)
-                veh = _pvehicle.PVehicle(ID=vehID, allEdges=self.allEdges, simTime=simTime())
-                routeID = "platoon-car-route-" + str(self.carIndex)
-                traci.route.add(routeID, veh.edgesToTravel)
-                traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
-                traci.vehicle.setColor(vehID=vehID, color=(255, 255, 255, 255))
-                valid = traci.vehicle.isRouteValid(vehID=vehID)
-                if valid:
-                    veh.setState(self._controlInterval)
-                    # Subscribe according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
-                    traci.vehicle.subscribe(vehID,
-                                            (tc.VAR_ROAD_ID,
-                                             tc.VAR_LANE_INDEX,
-                                             tc.VAR_LANE_ID,
-                                             tc.VAR_SPEED,
-                                             tc.VAR_LANEPOSITION,
-                                             tc.VAR_CO2EMISSION,
-                                             tc.VAR_FUELCONSUMPTION))
-                    if rp.VERBOSITY >= 3:
-                        report("Adding vehicle '%s', routeID: '%s', vType:'%s'" % (vehID, routeID, vType))
-                    self._connectedVehicles[vehID] = veh
-                    self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
-                    self.carIndex += 1
-                    return veh
-                else:
-                    report("Route of vehicle '%s' is not valid" % vehID)
-                    return None
-            else:
-                raise Exception
-        except TraCIException as traci_exception:
-            traceback.print_exc()
-            raise traci_exception
-        except KeyError as e:
-            raise e
-
     def _addNormalVehicle(self):
         vehID = "normal-car-" + str(self.carIndex)
         typeID = "normal-car" # must be same with <vType> id in flow.rou.xml if used
         routeID = "normal-car-route-" + str(self.carIndex)
-        rnd_edge = Config.get_random().choice([Config.endEdgeID_1, Config.endEdgeID_2])
+        rnd_edge = Config.get_random().choice(Config.edgeIDsForExit)
         edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=rnd_edge).edges
         traci.route.add(routeID, edges)
 
@@ -802,92 +601,60 @@ class PlatoonManager(traci.StepListener):
 
         self.carIndex += 1
 
-    def _removeArrived(self):
-        ''' _removeArrived()
+    def _addPlatoonVehicle(self):
+        import app.simpla._pvehicle as _pvehicle
+        '''_addPlatoonVehicle()
 
-        Remove all vehicles that have left the simulation from _connectedVehicles.
-        Returns the number of removed connected vehicles
-        Vehicles are not accessible via traci in this method
+        Creates a new PVehicle object for platooning and registers is soliton platoon
+        It filters out car types that are not related with platooning logic to ensure a valid platooning car addition to simulation
         '''
+        # try:
+        # Returns a list of ids of currently loaded vehicle types
+        knownVTypes = traci.vehicletype.getIDList()
+        knownVTypes.remove("DEFAULT_PEDTYPE")
+        knownVTypes.remove("DEFAULT_VEHTYPE")
+        # knownVTypes.remove("normal-car")
+        print("knownVTypes", knownVTypes)
+        vType = Config.get_random().choice(knownVTypes)
 
-        count = 0
-        toRemove = defaultdict(list)
-        for ID in traci.simulation.getArrivedIDList():
-            # first store arrived vehicles platoonwise
-            if not self._isConnected(ID):
-                continue
-            if rp.VERBOSITY >= 3:
-                report("Removing arrived vehicle '%s'" % ID)
-
-            veh = self._connectedVehicles.pop(ID)
-            toRemove[veh.getPlatoon().getID()].append(veh)
-            count += 1
-
-            self._updateStatistics(veh)
-
-        # adjust platoons
-        for pltnID, vehs in toRemove.items():
-            pltn = self._platoons[pltnID]
-            pltn.removeVehicles(vehs)
-
-            if pltn.size() == 0:
-                # remove empty platoons
-                self._platoons.pop(pltn.getID())
-
+        # register car within the platooning manager if randomly selected type is specialized for platooning
+        # other vehicles are already started moving according to defined flow(s)
+        if self._hasConnectedType(vType):
+            vehID = "platoon-car-" + str(self.carIndex)
+            veh = _pvehicle.PVehicle(vehID, self._controlInterval)
+            routeID = "platoon-car-route-" + str(self.carIndex)
+            traci.route.add(routeID, veh.edgesToTravel)
+            traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID=vType, depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalPos=str(veh.arrivalPos))
+            traci.vehicle.setColor(vehID=vehID, color=(255, 255, 255, 255))
+            valid = traci.vehicle.isRouteValid(vehID=vehID)
+            if valid:
+                veh.setState(self._controlInterval)
+                # Subscribe according to new metrics http://sumo.dlr.de/wiki/TraCI/Vehicle_Value_Retrieval
+                traci.vehicle.subscribe(vehID,
+                                        (tc.VAR_ROAD_ID,
+                                         tc.VAR_LANE_INDEX,
+                                         tc.VAR_LANE_ID,
+                                         tc.VAR_SPEED,
+                                         tc.VAR_LANEPOSITION,
+                                         tc.VAR_CO2EMISSION,
+                                         tc.VAR_FUELCONSUMPTION))
+                if rp.VERBOSITY >= 3:
+                    report("Adding vehicle '%s', routeID: '%s', vType:'%s'" % (vehID, routeID, vType))
+                self._connectedVehicles[vehID] = veh
+                self._platoons[veh.getPlatoon().getID()] = veh.getPlatoon()
+                self.carIndex += 1
+                return veh
             else:
-                pltn.adjustInterval()
+                report("Route of vehicle '%s' is not valid" % vehID)
+                return None
+        else:
+            raise Exception
+        # except TraCIException as traci_exception:
+        #     traceback.print_exc()
+        #     raise traci_exception
+        # except KeyError as e:
+        #     raise e
 
-        # Re-add removed cars (both normal & platoon) into the system
-        # Returns a list of ids of arrived vehicles (reached their destination and removed from the road network)
-        for vehID in traci.simulation.getArrivedIDList():
-            # The only way to distinguish the type of arrived car is to look at its id
-            # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
-            if "platoon" in vehID:
-                self._addPlatoonVehicle()
-            else:
-                self._addNormalVehicle()
 
-        return count
-
-    def get_statistics(self):
-        config = dict(
-            catchupDistance=cfg.CATCHUP_DISTANCE,
-            maxPlatoonGap=cfg.MAX_PLATOON_GAP,
-            platoonSplitTime=cfg.PLATOON_SPLIT_TIME,
-            switchImpatienceFactor=cfg.SWITCH_IMPATIENCE_FACTOR,
-            maxVehiclesInPlatoon=Config.maxVehiclesInPlatoon,
-            lookAheadDistance=Config.lookAheadDistance,
-            platoonCarCounter=Config.platoonCarCounter,
-            totalCarCounter=Config.totalCarCounter,
-            joinDistance=Config.joinDistance
-        )
-
-        data = dict(
-            TripDurations=self.TripDurations,
-            CO2Emissions=self.CO2Emissions,
-            # COEmissions=self.COEmissions,
-            # HCEmissions=self.HCEmissions,
-            # PMXEmissions=self.PMXEmissions,
-            # NOxEmissions=self.NOxEmissions,
-            FuelConsumptions=self.FuelConsumptions,
-            # NoiseEmissions=self.NoiseEmissions,
-            Speeds=self.Speeds,
-            Overheads=self.Overheads,
-            DurationsInPlatoon=self.DurationsInPlatoon
-        )
-
-        res = dict(
-            data=data,
-            nrOfPlatoonsFormed=self.nrOfPlatoonsFormed,
-            nrOfPlatoonsSplit=self.nrOfPlatoonsSplit,
-            config=config,
-            simTime=simTime()
-        )
-        # if required, total number of trips can be obtained with len(TripDurations)
-
-        return res
-
-    def _endSimulation(self):
-        import app.simulation.PlatoonSimulation as ps
-        if simTime() % Config.nrOfTicks == 0:
-            ps.simulationEnded = True
+def simTime():
+    return traci.simulation.getCurrentTime() / 1000.

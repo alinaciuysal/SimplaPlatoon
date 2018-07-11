@@ -43,6 +43,7 @@ class Platoon(object):
 
         self._controlInterval = controlInterval
         self._arrivalInterval = arrivalInterval
+        self.lifeSpan = 0
 
     def registerVehicles(self):
         ''' registerVehicles() -> void
