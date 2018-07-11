@@ -19,6 +19,7 @@ import os
 import xml.etree.ElementTree as ET
 import _reporting as rp
 import app.Config as Config
+
 warn = rp.Warner("Config")
 report = rp.Reporter("Config")
 
@@ -79,11 +80,12 @@ def initDefaults():
     
     # speedfactors for the different platooning modes
     SPEEDFACTOR = {
-        PlatoonMode.NONE: 1.0,  # NEW: previous value was None, but set to 1.0 as a work-around
+        # PlatoonMode.NONE: 1.0,  # NEW: previous value was None, but set to 1.0 as a work-around
+        PlatoonMode.NONE: None,
         PlatoonMode.LEADER: 1.0,
         PlatoonMode.FOLLOWER: 1.1,
         PlatoonMode.CATCHUP: 1.2,
-        PlatoonMode.CATCHUP_FOLLOWER: 1.2  # is set to the same as for catchup mode below if not explicitely set
+        PlatoonMode.CATCHUP_FOLLOWER: 1.3
     }
     
     # file with vtype maps for platoon types
@@ -98,8 +100,8 @@ initDefaults()
 
 def loadVTypeMap(fn):
     '''loadVTypeMap(string) -> dict
-    
-    Reads lines of the form 'origMode:leadMode:followMode:catchupMode:catchupFollowMode' (last three elements can be omitted) from a given file and write corresponding key:value pairs to PLATOON_VTYPES
+    Reads lines of the form 'origMode:leadMode:followMode:catchupMode:catchupFollowMode' (last three elements
+    can be omitted) from a given file and write corresponding key:value pairs to PLATOON_VTYPES
     '''
     global PLATOON_VTYPES
 
@@ -120,7 +122,8 @@ def loadVTypeMap(fn):
 
                 leadType = stripped[1]
                 if leadType == "":
-                    raise SimplaException("Platoon leader vType must be specified in line %s of vType file '%s'!" % (j, fn))
+                    raise SimplaException(
+                        "Platoon leader vType must be specified in line %s of vType file '%s'!" % (j, fn))
                 if rp.VERBOSITY >= 2:
                     report("platoon leader type: '%s'" % leadType, True)
 
@@ -154,14 +157,14 @@ def loadVTypeMap(fn):
                 NrBadLines += 1
         if NrBadLines > 0:
             if rp.VERBOSITY >= 1:
-                warn("vType file '%s' contained %d lines that were not parsed into a colon-separated sequence of strings!" % (fn, NrBadLines))
+                warn(("vType file '%s' contained %d lines that were not parsed into a colon-separated " +
+                      "sequence of strings!") % (fn, NrBadLines))
 
 def load(filename):
     '''load(string)
-
     This loads configuration parameters from a file and overwrites default values.
     '''
-    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DISTANCE, PLATOON_SPLIT_TIME
+    global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DIST, PLATOON_SPLIT_TIME
     global VTYPE_FILE, PLATOON_VTYPES, LC_MODE, SPEEDFACTOR, SWITCH_IMPATIENCE_FACTOR
 
     configDir = os.path.dirname(filename)
@@ -175,12 +178,15 @@ def load(filename):
                 if verbosity in range(5):
                     rp.VERBOSITY = verbosity
                 else:
-                    if rp.VERBOSITY >= 1: warn("Verbosity must be one of %s! Ignoring given value: %s"%(str(list(range(5))), verbosity),True)
+                    if rp.VERBOSITY >= 1:
+                        warn("Verbosity must be one of %s! Ignoring given value: %s" %
+                             (str(list(range(5))), verbosity), True)
         elif e.tag == "controlRate":
             if hasAttributes(e):
                 rate = float(list(e.attrib.values())[0])
                 if rate <= 0.:
-                    if rp.VERBOSITY >= 1: warn("Parameter controlRate must be positive. Ignoring given value: %s" % (rate), True)
+                    if rp.VERBOSITY >= 1:
+                        warn("Parameter controlRate must be positive. Ignoring given value: %s" % (rate), True)
                 else:
                     CONTROL_RATE = float(rate)
         elif e.tag == "vehicleSelectors":
@@ -188,31 +194,36 @@ def load(filename):
                 VEH_SELECTORS = list(map(lambda x: x.strip(), list(e.attrib.values())[0].split(",")))
         elif e.tag == "maxPlatoonGap":
             if hasAttributes(e):
-                maxgap=float(list(e.attrib.values())[0])
+                maxgap = float(list(e.attrib.values())[0])
                 if maxgap <= 0:
-                    if rp.VERBOSITY>=1: warn("Parameter maxPlatoonGap must be positive. Ignoring given value: %s" % (maxgap), True)
+                    if rp.VERBOSITY >= 1:
+                        warn("Parameter maxPlatoonGap must be positive. Ignoring given value: %s" % (maxgap), True)
                 else:
-                    MAX_PLATOON_GAP = maxgap 
-        elif e.tag == "catchupDistance":
+                    MAX_PLATOON_GAP = maxgap
+        elif e.tag == "catchupDist":
             if hasAttributes(e):
                 dist = float(list(e.attrib.values())[0])
                 if dist <= 0:
                     if rp.VERBOSITY >= 1:
                         warn("Parameter catchupDist must be positive. Ignoring given value: %s" % (dist), True)
                 else:
-                    CATCHUP_DISTANCE = dist
+                    CATCHUP_DIST = dist
         elif e.tag == "switchImpatienceFactor":
             if hasAttributes(e):
-                impfact=float(list(e.attrib.values())[0])
+                impfact = float(list(e.attrib.values())[0])
                 if impfact < 0:
-                    if rp.VERBOSITY>=1: warn("Parameter switchImpatienceFactor must be non-negative. Ignoring given value: %s" % (impfact), True)
+                    if rp.VERBOSITY >= 1:
+                        warn("Parameter switchImpatienceFactor must be non-negative. Ignoring given value: %s" %
+                             (impfact), True)
                 else:
                     SWITCH_IMPATIENCE_FACTOR = impfact
         elif e.tag == "platoonSplitTime":
             if hasAttributes(e):
-                splittime=float(list(e.attrib.values())[0])
+                splittime = float(list(e.attrib.values())[0])
                 if splittime < 0:
-                    if rp.VERBOSITY>=1: warn("Parameter platoonSplitTime must be non-negative. Ignoring given value: %s" % (splittime), True)
+                    if rp.VERBOSITY >= 1:
+                        warn("Parameter platoonSplitTime must be non-negative. Ignoring given value: %s" %
+                             (splittime), True)
                 else:
                     PLATOON_SPLIT_TIME = splittime
         elif e.tag == "lcMode":
@@ -251,35 +262,35 @@ def load(filename):
                         SPEEDFACTOR[PlatoonMode.NONE] = float(e.attrib["original"])
         elif e.tag == "vTypeMapFile":
             if hasAttributes(e):
-                fn=os.path.join(configDir, list(e.attrib.values())[0])
+                fn = os.path.join(configDir, list(e.attrib.values())[0])
                 if not os.path.isfile(fn):
                     raise SimplaException("Given vTypeMapFile '%s' does not exist." % fn)
                 VTYPE_FILE = fn
         elif e.tag == "vTypeMap":
             if hasAttributes(e):
-                if not "original" in e.attrib:
-                    warn("vTypeMap must specify original type. Ignoring malformed vTypeMap element.",True)
+                if "original" not in e.attrib:
+                    warn("vTypeMap must specify original type. Ignoring malformed vTypeMap element.", True)
                 else:
                     origType = e.attrib["original"]
                     PLATOON_VTYPES[origType][PlatoonMode.NONE] = origType
-                    if "leader" in e.attrib:
+                    if ("leader" in e.attrib):
                         leaderType = e.attrib["leader"]
                         PLATOON_VTYPES[origType][PlatoonMode.LEADER] = leaderType
                         # report("Registering vtype map '%s':'%s'"%(origType,leaderType), True)
-                    if "follower" in e.attrib:
+                    if ("follower" in e.attrib):
                         followerType = e.attrib["follower"]
                         PLATOON_VTYPES[origType][PlatoonMode.FOLLOWER] = followerType
                         # report("Registering vtype map '%s':'%s'"%(origType,followerType), True)
-                    if "catchup" in e.attrib:
+                    if ("catchup" in e.attrib):
                         catchupType = e.attrib["catchup"]
                         PLATOON_VTYPES[origType][PlatoonMode.CATCHUP] = catchupType
                         # report("Registering vtype map '%s':'%s'"%(origType,followerType), True)
-                    if "catchupFollower" in e.attrib:
+                    if ("catchupFollower" in e.attrib):
                         catchupFollowerType = e.attrib["catchupFollower"]
                         PLATOON_VTYPES[origType][PlatoonMode.CATCHUP_FOLLOWER] = catchupFollowerType
                         # report("Registering vtype map '%s':'%s'"%(origType,followerType), True)
         elif rp.VERBOSITY >= 1:
-            warn("Encountered unknown configuration parameter '%s'!" % e.tag,True)
+            warn("Encountered unknown configuration parameter '%s'!" % e.tag, True)
 
     if "vTypeMapFile" in parsedTags:
         # load vType mapping from file
@@ -289,13 +300,14 @@ def load(filename):
         # if unset, set speedfactor for catchupfollower mode to the same as in catchup mode
         SPEEDFACTOR[PlatoonMode.CATCHUP_FOLLOWER] = SPEEDFACTOR[PlatoonMode.CATCHUP]
 
+
 def hasAttributes(element):
     '''
-    check if xml element has at least one attribute 
+    check if xml element has at least one attribute
     '''
-    #print("Checking element {tag}:\n{attributes}".format(tag=element.tag, attributes=str(element.attrib)))
+    # print("Checking element {tag}:\n{attributes}".format(tag=element.tag, attributes=str(element.attrib)))
     if len(element.attrib) == 0:
-        warn("No attributes found for tag '%s'."%element.tag, True)
+        warn("No attributes found for tag '%s'." % element.tag, True)
         return False
     else:
         return True
@@ -308,7 +320,7 @@ def isValidLCMode(mode):
         return False
 
 def isValidSpeedFactor(value):
-    if 0<value:
+    if 0 < value:
         return True
     else: 
         warn("Given speedFactor %s is invalid. Using default value."%(value),True)

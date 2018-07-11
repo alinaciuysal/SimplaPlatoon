@@ -1,9 +1,10 @@
 # Eclipse SUMO, Simulation of Urban MObility; see https://eclipse.org/sumo
-# Copyright (C) 2014-2017 German Aerospace Center (DLR) and others.
+# Copyright (C) 2014-2018 German Aerospace Center (DLR) and others.
 # This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v2.0
 # which accompanies this distribution, and is available at
 # http://www.eclipse.org/legal/epl-v20.html
+# SPDX-License-Identifier: EPL-2.0
 
 # @file    _reporting.py
 # @author Leonhard Luecken
@@ -17,6 +18,7 @@ import traci
 VERBOSITY = 1
 WARNING_LOG = deque()
 REPORT_LOG = deque()
+
 
 def initDefaults():
     global VERBOSITY, MAX_LOG_SIZE, WARNING_LOG, REPORT_LOG
@@ -33,17 +35,18 @@ def initDefaults():
     WARNING_LOG = deque()
     REPORT_LOG = deque()
 
+
 # perform default init
 initDefaults()
 
-# converts current simulation time (in ms) to s
+
 def simTime():
     return traci.simulation.getCurrentTime() / 1000.
 
 
 def array2String(a):
     if len(a) > 0 and hasattr(a[0], "getID"):
-        return str([e.getID() for e in a if e is not None])
+        return str([e.getID() for e in a])
     return str([str(e) for e in a])
 
 
@@ -61,8 +64,9 @@ class Warner(object):
         if not omitReportTime:
             sys.stderr.write(time + ": " + rep + "\n")
         else:
-            sys.stderr.write(rep+"\n")
+            sys.stderr.write(rep + "\n")
         WARNING_LOG.append((time, rep))
+
 
 class Reporter(object):
 
@@ -76,7 +80,7 @@ class Reporter(object):
         time = str(simTime())
         rep = str(msg) + " (" + self._domain + ")"
         if not omitReportTime:
-            sys.stdout.write(time + ": " + rep+"\n")
+            sys.stdout.write(time + ": " + rep + "\n")
         else:
-            sys.stdout.write(rep+"\n")
+            sys.stdout.write(rep + "\n")
         REPORT_LOG.append((time, rep))

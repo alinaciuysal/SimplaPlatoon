@@ -12,11 +12,11 @@
 import traci
 import traci.constants as tc
 import _reporting as rp
-import simpla._config as cfg
+import _config as cfg
 import app.Config as Config
 
-from simpla._platoonmode import PlatoonMode
-from simpla._platoon import Platoon
+from _platoonmode import PlatoonMode
+from _platoon import Platoon
 from traci.exceptions import TraCIException
 from collections import defaultdict
 
@@ -326,6 +326,8 @@ class PVehicle(object):
             switchImpatience = 0.
 
         # obtain the preferred deceleration and the tau of the target vType
+        print("vTypeParameters", vTypeParameters)
+        print(self._vTypes[targetMode])
         decel = vTypeParameters[self._vTypes[targetMode]][tc.VAR_DECEL]
         tau = vTypeParameters[self._vTypes[targetMode]][tc.VAR_TAU]
         speed = self.state.speed
