@@ -10,30 +10,26 @@ import xml.etree.ElementTree as ET
     set sumoUseGUI flag to False and platooning flag to True in app.Config.py
 '''
 
+# These must be same with the ones in Config.py
 
-variablesOfSimpla = ["catchupDistance", "maxPlatoonGap", "platoonSplitTime", "switchImpatienceFactor"]
-variablesOfPlatooning = ["maxVehiclesInPlatoon", "lookAheadDistance", "platoonCarCounter", "nonPlatoonCarCounter", "joinDistance"]
+
 current_dir = os.path.abspath(os.path.dirname(__file__))
 parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
 simpla_cfg_xml = os.path.abspath(os.path.join(parent_dir, "map", "simpla.cfg"))
 xml_tree = ET.parse(simpla_cfg_xml)
 root = xml_tree.getroot()
 
-defaultVariables = dict(
-    catchupDistance=150.0,
-    maxPlatoonGap=100.0,
-    maxVehiclesInPlatoon=6,
-    platoonCarCounter=100,
-    joinDistance=100.0
-)
+defaultParameters = deepcopy(PlatoonConfig.parameters)
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
     # catchupDistance=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0],
+    catchupDistance=[25.0, 50.0, 100.0, 200.0, 400.0, 800.0, 1600.0],
     # maxPlatoonGap=[10.0, 15.0, 20.0, 25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0],
-    maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50],
-    platoonCarCounter=[50, 100, 150, 200, 250, 300, 350, 500],
-    # joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0]
+    maxPlatoonGap=[15.0, 30.0, 60.0, 120.0, 240.0, 480.0, 560.0, 1120.0],
+    # maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50],
+    # joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0],
+    platoonSplitTime=[2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 10.0, 20.0]
 )
 
 def flush_results(variable_name, value, results):
@@ -68,20 +64,22 @@ def changeValueInXML(attribute, newValue):
 def changeVariable(variable_name, value):
     # temporarily change a variable to perform an experiment and revert it back
     # these parameters should be loaded/changed within different files, we need to distinguish them based on their names
-    if variable_name in variablesOfSimpla:
-        changeValueInXML(variable_name, value)
-    else:
-        # there must be a better way instead of this
-        if variable_name == "maxVehiclesInPlatoon":
-            PlatoonConfig.maxVehiclesInPlatoon = value
-        elif variable_name == "platoonCarCounter":
-            PlatoonConfig.platoonCarCounter = value
-        elif variable_name == "joinDistance":
-            PlatoonConfig.joinDistance = value
-    defaultVariables[variable_name] = value
+
+    # there must be a better way instead of this
+    if variable_name == "maxVehiclesInPlatoon":
+        PlatoonConfig.parameters["changeable"]["maxVehiclesInPlatoon"] = value
+    elif variable_name == "catchupDistance":
+        PlatoonConfig.parameters["changeable"]["catchupDistance"] = value
+    elif variable_name == "maxPlatoonGap":
+        PlatoonConfig.parameters["changeable"]["maxPlatoonGap"] = value
+    elif variable_name == "platoonSplitTime":
+        PlatoonConfig.parameters["changeable"]["platoonSplitTime"] = value
+    elif variable_name == "joinDistance":
+        PlatoonConfig.parameters["changeable"]["joinDistance"] = value
+    defaultParameters[variable_name] = value
 
 if __name__ == '__main__':
-    originalVariables = deepcopy(defaultVariables)
+    originalParameters = deepcopy(defaultParameters)
 
     # TODO: uncomment in production
     # if PlatoonConfig.sumoUseGUI:
@@ -95,6 +93,5 @@ if __name__ == '__main__':
             print("New parameter: " + variable_name + " - " + str(value))
             results = run()
             flush_results(variable_name=variable_name, value=value, results=results)
-            defaultVariables = deepcopy(originalVariables)
             # now revert back to original
-            changeVariable(variable_name, defaultVariables[variable_name])
+            defaultParameters = deepcopy(originalParameters)

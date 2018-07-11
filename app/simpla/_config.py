@@ -23,6 +23,18 @@ import app.Config as Config
 warn = rp.Warner("Config")
 report = rp.Reporter("Config")
 
+CONTROL_RATE = None
+VEH_SELECTORS = None
+MAX_PLATOON_GAP = None
+CATCHUP_DISTANCE = None
+PLATOON_SPLIT_TIME = None
+VTYPE_FILE = None
+PLATOON_VTYPES = None
+LC_MODE = None
+SPEEDFACTOR = None
+SWITCH_IMPATIENCE_FACTOR = None
+
+
 def initDefaults():
     '''
     Init default values for the configuration parameters.
@@ -30,9 +42,10 @@ def initDefaults():
         1) specifications in Config.py
         2) specifications in simpla.cfg file (see load() method)
     '''
+
     global CONTROL_RATE, VEH_SELECTORS, MAX_PLATOON_GAP, CATCHUP_DISTANCE, PLATOON_SPLIT_TIME
     global VTYPE_FILE, PLATOON_VTYPES, LC_MODE, SPEEDFACTOR, SWITCH_IMPATIENCE_FACTOR
-    
+
     # Rate for updating the platoon manager checks and advices
     CONTROL_RATE = 1.0
     
@@ -41,27 +54,27 @@ def initDefaults():
     
     # Distance in meters below which a vehicle joins a leading platoon
     MAX_PLATOON_GAP = 15.0
-    if Config.catchupDistance is not None:
-        MAX_PLATOON_GAP = Config.maxPlatoonGap
+    if Config.parameters["changeable"]["maxPlatoonGap"] is not None:
+        MAX_PLATOON_GAP = Config.parameters["changeable"]["maxPlatoonGap"]
     
     # Distance in meters below which a vehicle tries to catch up with a platoon in front
     CATCHUP_DISTANCE = 50.0
-    if Config.catchupDistance is not None:
-        CATCHUP_DISTANCE = Config.catchupDistance
+    if Config.parameters["changeable"]["catchupDistance"] is not None:
+        CATCHUP_DISTANCE = Config.parameters["changeable"]["catchupDistance"]
 
     # Latency time in secs. until a platoon is split if vehicles exceed PLATOON_SPLIT_DISTANCE to their
     # leaders within a platoon (or if they are not the direct follower),
     # or drive on different lanes than their leader within the platoon
     PLATOON_SPLIT_TIME = 3.0
-    if Config.platoonSplitTime is not None:
-        PLATOON_SPLIT_TIME = Config.platoonSplitTime
+    if Config.parameters["changeable"]["platoonSplitTime"] is not None:
+        PLATOON_SPLIT_TIME = Config.parameters["changeable"]["platoonSplitTime"]
     
     # The switch impatience factor determines the magnitude of the effect
     # that an increasing waiting time has on the active speed factor of a vehicle:
     # activeSpeedFactor = modeSpecificSpeedFactor/(1+impatienceFactor*waitingTime)
     SWITCH_IMPATIENCE_FACTOR = 0.1
-    if Config.catchupDistance is not None:
-        SWITCH_IMPATIENCE_FACTOR = Config.switchImpatienceFactor
+    if Config.parameters["contextual"]["switchImpatienceFactor"] is not None:
+        SWITCH_IMPATIENCE_FACTOR = Config.parameters["contextual"]["switchImpatienceFactor"]
     
     # Lanechange modes for the different platooning modes
     LC_MODE = {

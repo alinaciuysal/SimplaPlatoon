@@ -28,6 +28,8 @@ vTypeParameters = defaultdict(dict)
 
 WARNED_DEFAULT = dict([(mode, False) for mode in PlatoonMode])
 
+joinDistance = Config.parameters["changeable"]["joinDistance"]
+lookAheadDistance = Config.parameters["contextual"]["lookAheadDistance"]
 
 class pVehicleState(object):
 
@@ -37,11 +39,12 @@ class pVehicleState(object):
         self.laneID = traci.vehicle.getLaneID(ID)
         self.laneIX = traci.vehicle.getLaneIndex(ID)
         self.lanePosition = traci.vehicle.getLanePosition(ID)
+        self.maxSpeed = traci.vehicle.getMaxSpeed(ID)
 
         # lookAheadDistance parameter defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
         # Note that the returned leader may be farther away than the given dist.
         # type of leaderInfo is (string, double) where string ID the leading vehicle's ID and double is the distance
-        self.leaderInfo = traci.vehicle.getLeader(ID, Config.lookAheadDistance)
+        self.leaderInfo = traci.vehicle.getLeader(ID, lookAheadDistance)
 
         # must be set by vehicle creator (PlatoonManager._addPlatoonVehicle()) to guarantee function in first step
         self.leader = None
@@ -51,13 +54,12 @@ class pVehicleState(object):
         self.connectedVehicleAhead = False
 
         self.reportedCO2Emissions = []
-        # self.reportedCOEmissions = []
-        # self.reportedHCEmissions = []
-        # self.reportedPMXEmissions = []
-        # self.reportedNOxEmissions = []
         self.reportedFuelConsumptions = []
         self.reportedNoiseEmissions = []
         self.reportedSpeeds = []
+
+        self.durationInsidePlatoon = 0
+        self.durationOutsidePlatoon = 0
 
 
 
@@ -84,10 +86,6 @@ class PVehicle(object):
         self._speedFactors = dict()
         self._laneChangeModes = dict()
 
-        # time that is spent in & out of a platoon
-        self.durationInsidePlatoon = 0
-        self.durationOutsidePlatoon = 0
-
         allEdges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.lastEdgeID).edges
 
         rnd_edge = Config.get_random().choice(Config.edgeIDsForExit)
@@ -103,7 +101,7 @@ class PVehicle(object):
 
         # set arrivalInterval relative to the edge length,
         # i.e. negative values or values greater than actual length are not allowed
-        self.arrivalInterval = (max(arrivalPos - Config.joinDistance, 0), min(arrivalPos + Config.joinDistance, line_length))
+        self.arrivalInterval = (max(arrivalPos - joinDistance, 0), min(arrivalPos + joinDistance, line_length))
 
         self.arrivalPos = arrivalPos
         self.arrivalEdge = rnd_edge
@@ -326,8 +324,6 @@ class PVehicle(object):
             switchImpatience = 0.
 
         # obtain the preferred deceleration and the tau of the target vType
-        print("vTypeParameters", vTypeParameters)
-        print(self._vTypes[targetMode])
         decel = vTypeParameters[self._vTypes[targetMode]][tc.VAR_DECEL]
         tau = vTypeParameters[self._vTypes[targetMode]][tc.VAR_TAU]
         speed = self.state.speed
@@ -404,7 +400,7 @@ class PVehicle(object):
     def __str__(self):
         return "<PVehicle '%s'>" % self._ID
 
-    # this method is called after car is successfully added to the simulation
+    # this method is called after a car is successfully added to the simulation
     def setState(self, controlInterval):
         # original vtype, speedFactor and lanechangemodes
         self._vTypes[PlatoonMode.NONE] = traci.vehicle.getTypeID(self._ID)

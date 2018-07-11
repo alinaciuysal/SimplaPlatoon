@@ -39,8 +39,7 @@ def run():
     if app.Config.platooning:
         current_dir = os.path.abspath(os.path.dirname(__file__))
         file_path = os.path.abspath(os.path.join(current_dir, "app", "map", "simpla.cfg"))
-        app.simpla.load(file_path)
-        platoon_mgr = app.simpla.get_pltn_mgr()
+        platoon_mgr = app.simpla.load(file_path)
         results = PlatoonSimulation.start(platoon_mgr)
         app.simpla.stop()
     else:

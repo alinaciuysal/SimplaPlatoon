@@ -22,6 +22,7 @@ import _reporting as rp
 import _config as cfg
 import _pvehicle, _platoon
 from _utils import SimplaException
+from _reporting import simTime
 from _platoonmode import PlatoonMode
 from _collections import defaultdict
 import app.Config as Config
@@ -40,11 +41,18 @@ class PlatoonManager(traci.StepListener):
     Do not create more than one PlatoonManager, if you cannot guarantee that
     the associated vehicle types are exclusive for each.
     '''
+    carIndex = None
+    _platoons = None
+    _connectedVehicles = None
+    totalCarCounter = Config.parameters["contextual"]["totalCarCounter"]
+    platoonCarCounter = Config.parameters["contextual"]["platoonCarCounter"]
+
 
     def __init__(self):
         ''' PlatoonManager()
         Creates and initializes the PlatoonManager
         '''
+        print("carIndex in _platoonManager", self.carIndex)
         if rp.VERBOSITY >= 2:
             report("Initializing simpla.PlatoonManager...", True)
         # Load parameters from config
@@ -57,15 +65,31 @@ class PlatoonManager(traci.StepListener):
         # max intra platoon gap
         self._maxPlatoonGap = cfg.MAX_PLATOON_GAP
         # max distance for trying to catch up
-        self._catchupDist = cfg.CATCHUP_DIST
+        self._catchupDist = cfg.CATCHUP_DISTANCE
 
         # platoons currently in the simulation
         # map: platoon ID -> platoon objects
         self._platoons = dict()
-        self.carIndex = 0
-        self.totalCarCounter = Config.totalCarCounter
-        self.platoonCarCounter = Config.platoonCarCounter
+        # IDs of all potential platoon members currently in the simulation
+        # map: ID -> vehicle
         self._connectedVehicles = dict()
+
+        self.carIndex = 0
+        print("carIndex in _platoonManager", self.carIndex)
+        self.totalCarCounter = PlatoonManager.totalCarCounter
+        self.platoonCarCounter = PlatoonManager.platoonCarCounter
+
+        self.TripDurations = []
+        self.CO2Emissions = []
+        self.FuelConsumptions = []
+        self.Speeds = []
+        self.Overheads = []
+        self.TotalTimeSpentInsidePlatoon = []
+        self.TotalTimeSpentOutsidePlatoon = []
+        self.NumberOfCarsInPlatoons = []
+
+        self.NumberOfPlatoonsFormed = 0
+        self.NumberOfPlatoonsSplit = 0
 
         # integration step-length
         self._DeltaT = traci.simulation.getDeltaT() / 1000.
@@ -155,6 +179,8 @@ class PlatoonManager(traci.StepListener):
             self._manageLeaders()
             self._adviseLanes()
             self._timeSinceLastControl = 0.
+            if Config.forTests:
+                self._endSimulation()
 
     def stop(self):
         '''stop()
@@ -164,7 +190,7 @@ class PlatoonManager(traci.StepListener):
         for veh in self._connectedVehicles.values():
             veh.setPlatoonMode(PlatoonMode.NONE)
             traci.vehicle.unsubscribe(veh.getID())
-        self._connectedVehicles = []
+        self._connectedVehicles = dict()
         _platoon.Platoon._nextID = 0
 
     def getPlatoonLeaders(self):
@@ -192,6 +218,28 @@ class PlatoonManager(traci.StepListener):
             veh.state.laneID = self._subscriptionResults[veh.getID()][tc.VAR_LANE_ID]
             veh.state.laneIX = self._subscriptionResults[veh.getID()][tc.VAR_LANE_INDEX]
             veh.state.leaderInfo = traci.vehicle.getLeader(veh.getID(), self._catchupDist)
+
+            # getDistance returns the distance the vehicle has already driven [in m]
+            veh.state.distance = traci.vehicle.getDistance(veh.getID())
+
+            # Emissions
+            CO2Emission = self._subscriptionResults[veh.getID()][tc.VAR_CO2EMISSION]
+            FuelConsumption = self._subscriptionResults[veh.getID()][tc.VAR_FUELCONSUMPTION]
+
+            # sometimes reported values are always 0, we filter them out
+            if CO2Emission > 0:
+                veh.state.reportedCO2Emissions.append(CO2Emission)
+            if FuelConsumption > 0:
+                veh.state.reportedFuelConsumptions.append(FuelConsumption)
+            if veh.state.speed > 0:
+                veh.state.reportedSpeeds.append(veh.state.speed)
+
+            # update respective metrics if there are more than 1 cars or only single car in each vehicle's platoon
+            if len(veh.getPlatoon().getVehicles()) > 1:
+                veh.state.durationInsidePlatoon += 1
+            else:
+                veh.state.durationOutsidePlatoon += 1
+
             if veh.state.leaderInfo is None:
                 veh.state.leader = None
                 veh.state.connectedVehicleAhead = False
@@ -235,6 +283,7 @@ class PlatoonManager(traci.StepListener):
             if rp.VERBOSITY >= 2:
                 report("Removing arrived vehicle '%s'" % ID)
             veh = self._connectedVehicles.pop(ID)
+            self._updateStatistics(veh)
             toRemove[veh.getPlatoon().getID()].append(veh)
             count += 1
 
@@ -244,6 +293,16 @@ class PlatoonManager(traci.StepListener):
             if pltn.size() == 0:
                 # remove empty platoons
                 self._platoons.pop(pltn.getID())
+
+        # Re-add removed cars (both normal & platoon) into the system
+        # Returns a list of ids of arrived vehicles (reached their destination and removed from the road network)
+        for ID in traci.simulation.getArrivedIDList():
+            # The only way to distinguish the type of arrived car is to look at its id
+            # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
+            if "platoon" in ID:
+                self._addPlatoonVehicle()
+            else:
+                self._addNormalVehicle()
 
         return count
 
@@ -275,6 +334,9 @@ class PlatoonManager(traci.StepListener):
         '''
         newPlatoons = []
         for pltnID, pltn in self._platoons.items():
+            # additional metric: in each tick, push number of cars in a platoon (excluding single ones)
+            if len(pltn.getVehicles()) > 1:
+                self.NumberOfCarsInPlatoons.append(len(pltn.getVehicles()))
             # encourage all vehicles to adopt the current mode of the platoon
             # NOTE: for switching between platoon modes, there may be vehicles not
             #       complying immediately. They are asked to do so, here in each turn.
@@ -313,6 +375,7 @@ class PlatoonManager(traci.StepListener):
             # try to split at the collected splitIndices
             for ix in reversed(splitIndices):
                 newPlatoon = pltn.split(ix)
+                self.NumberOfPlatoonsSplit += 1
                 if newPlatoon is not None:
                     # if the platoon was split, register the splitted platoons
                     newPlatoons.append(newPlatoon)
@@ -390,6 +453,7 @@ class PlatoonManager(traci.StepListener):
             if leaderDist <= self._maxPlatoonGap:
                 # Try to join the platoon in front
                 if leader.getPlatoon().join(pltn):
+                    self.NumberOfPlatoonsFormed += 1
                     toRemove.append(pltnID)
                     # Debug
                     if rp.VERBOSITY >= 2:
@@ -573,10 +637,10 @@ class PlatoonManager(traci.StepListener):
             return False
 
     def _hasConnectedType(self, vType):
-        '''_hasConnectedType(string) -> bool
+        '''_hasConnectedType(vType) -> bool
 
-        Determines whether the given vehicle should be connected to the platoon manager
-        by comparing its vType with the type selector substrings specified in vehicleSelectors.
+        Determines whether the given vType & its vehicle should be connected to the platoon manager
+        by comparing vType with the type selector substrings specified in vehicleSelectors.
         '''
         for selector_str in self._typeSubstrings:
             if selector_str in vType:
@@ -627,7 +691,7 @@ class PlatoonManager(traci.StepListener):
         knownVTypes.remove("DEFAULT_PEDTYPE")
         knownVTypes.remove("DEFAULT_VEHTYPE")
         # knownVTypes.remove("normal-car")
-        print("knownVTypes", knownVTypes)
+        # print("knownVTypes", knownVTypes)
         vType = Config.get_random().choice(knownVTypes)
 
         # register car within the platooning manager if randomly selected type is specialized for platooning
@@ -668,6 +732,61 @@ class PlatoonManager(traci.StepListener):
         # except KeyError as e:
         #     raise e
 
+    def get_statistics(self):
+        config = dict(
+            switchImpatienceFactor=Config.parameters["contextual"]["switchImpatienceFactor"],
+            lookAheadDistance=Config.parameters["contextual"]["lookAheadDistance"],
+            platoonCarCounter=Config.parameters["contextual"]["platoonCarCounter"],
+            totalCarCounter=Config.parameters["contextual"]["totalCarCounter"],
 
-def simTime():
-    return traci.simulation.getCurrentTime() / 1000.
+            catchupDistance=Config.parameters["changeable"]["catchupDistance"],
+            maxPlatoonGap=Config.parameters["changeable"]["maxPlatoonGap"],
+            maxVehiclesInPlatoon=Config.parameters["changeable"]["maxVehiclesInPlatoon"],
+            platoonSplitTime=Config.parameters["changeable"]["platoonSplitTime"],
+            joinDistance=Config.parameters["changeable"]["joinDistance"]
+        )
+
+        data = dict(
+            TripDurations=self.TripDurations,
+            CO2Emissions=self.CO2Emissions,
+            FuelConsumptions=self.FuelConsumptions,
+            Speeds=self.Speeds,
+            Overheads=self.Overheads,
+            TotalTimeSpentOutsidePlatoon=self.TotalTimeSpentOutsidePlatoon,
+            TotalTimeSpentInsidePlatoon=self.TotalTimeSpentInsidePlatoon,
+            NumberOfPlatoonsFormed=self.NumberOfPlatoonsFormed,
+            NumberOfPlatoonsSplit=self.NumberOfPlatoonsSplit,
+            NumberOfCarsInPlatoons=self.NumberOfCarsInPlatoons
+        )
+
+        res = dict(
+            simTime=simTime(),
+            config=config,
+            data=data,
+        )
+        # if required, total number of trips can be obtained with len(TripDurations)
+
+        return res
+
+    def _updateStatistics(self, veh):
+        # maxSpeed = 44.44 # by observation, maxAllowedSpeed is same for all major lanes in highway
+        # as indicated in _setActiveSpeedFactor() method:
+        # vehicles' maxSpeed determines determines travel speed, not road's speed limit
+        maxSpeed = veh.state.maxSpeed
+        theoreticalDuration = veh.state.distance / maxSpeed
+        actualDuration = simTime() - veh.currentRouteBeginTime
+        overhead = actualDuration / theoreticalDuration
+        print("veh.state.distance", veh.state.distance, "actualDuration", actualDuration, "theoreticalDuration", theoreticalDuration, "overhead", overhead, "+++++++++")
+
+        self.TripDurations.append(actualDuration)
+        self.CO2Emissions.extend(veh.state.reportedCO2Emissions)
+        self.FuelConsumptions.extend(veh.state.reportedFuelConsumptions)
+        self.Speeds.extend(veh.state.reportedSpeeds)
+        self.Overheads.append(overhead)
+        self.TotalTimeSpentInsidePlatoon.append(veh.state.durationInsidePlatoon)
+        self.TotalTimeSpentOutsidePlatoon.append(veh.state.durationOutsidePlatoon)
+
+    def _endSimulation(self):
+        import app.simulation.PlatoonSimulation as ps
+        if simTime() % Config.nrOfTicks == 0:
+            ps.simulationEnded = True

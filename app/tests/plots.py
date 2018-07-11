@@ -3,7 +3,11 @@ import os, json
 import matplotlib.pyplot as plt
 from app.tests.platoonExperiments import make_sure_path_exists
 
-parameters = ["TripDurations", "CO2Emissions", "COEmissions", "HCEmissions", "PMXEmissions", "NOxEmissions", "FuelConsumptions", "NoiseEmissions", "Speeds"]
+# These must be same with parameters in data (dict) in _platoonmanager.get_statistics()
+parameters = ["TripDurations", "CO2Emissions", "FuelConsumptions", "Speeds", "Overheads",
+              "TotalTimeSpentInsidePlatoon", "TotalTimeSpentOutsidePlatoon",
+              "NumberOfCarsInPlatoons",
+              "NumberOfPlatoonsFormed", "NumberOfPlatoonsSplit"]
 
 def get_folder_paths():
     folder_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results", "platooning"))]
@@ -57,14 +61,12 @@ def draw_scatter_plot(x_values, y_values, x_label, y_label):
         yLabelPlot += " [ml/s]"
     elif "Speed" in yLabelPlot:
         yLabelPlot += " [m/s]"
-    elif "Emission" in yLabelPlot and yLabelPlot != "totalNoiseEmissionAverage":
+    elif "Emission" in yLabelPlot:
         yLabelPlot += " [mg/s]"
-    elif yLabelPlot == "totalNoiseEmissionAverage":
-        yLabelPlot += " [dBA]"
 
     if xLabelPlot == "platoonSplitTime":
         xLabelPlot += " [s]"
-    elif xLabelPlot == "maxPlatoonGap" or xLabelPlot == "catchupDistance" or xLabelPlot == "joinDistance" or xLabelPlot == "lookAheadDistance":
+    elif xLabelPlot == "maxPlatoonGap" or xLabelPlot == "catchupDistance" or xLabelPlot == "joinDistance":
         xLabelPlot += " [m]"
 
     ax.set_ylabel(yLabelPlot)
@@ -85,7 +87,8 @@ def draw_box_plot(x_label, y_label, x_values, y_values):
     ax = fig.add_subplot(111)
 
     # Create the boxplot & format it
-    format_box_plot(ax, y_values)
+    # format_box_plot(ax, y_values)
+    bp = ax.boxplot(y_values)
 
     ax.set_ylabel(y_label)
     ax.set_xlabel(x_label)
@@ -97,7 +100,7 @@ def draw_box_plot(x_label, y_label, x_values, y_values):
     ax.get_xaxis().tick_bottom()
     ax.get_yaxis().tick_left()
 
-    fig_name = y_label + ".png"
+    fig_name = y_label + ".pdf"
     fig_folder = os.path.join(os.getcwd(), "..", "results", "platooning", "plots", x_label)
     make_sure_path_exists(fig_folder)
     fig_path = os.path.join(fig_folder, fig_name)
@@ -136,16 +139,17 @@ def format_box_plot(ax, y_values):
 
 if __name__ == '__main__':
     paths = get_folder_paths()
-    # paths = ['catchupDistance', 'joinDistance', 'lookAheadDistance', 'maxPlatoonGap'...]
-
     for path in paths:
         x_label, data = get_data(path)
         # x_label is the catchupDistance, joinDistance etc. i.e. last element of file path
-        print("x_label", x_label)
-        sorted_data = sort_data(x_label, data)
+
+        # sorted_data = sort_data(x_label, data)
+        # print(sorted_data)
         # y_label = TripDurations, CO2Emissions, COEmissions etc.
         for y_label in parameters:
-            x_values, y_values = parse_data(x_label, sorted_data, y_label)
+
+            x_values, y_values = parse_data(x_label, data, y_label)
+            print("x_label", x_label, "y_label", y_label, "x_values", x_values)
             # x_labels = [50.0, 100.0, 150.0...]
             # draw_scatter_plot(x, y, parameter, y_parameter)
             draw_box_plot(x_label=x_label, y_label=y_label, x_values=x_values, y_values=y_values)

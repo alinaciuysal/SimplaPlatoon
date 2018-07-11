@@ -14,7 +14,7 @@
 from _platoonmode import PlatoonMode
 import _reporting as rp
 from operator import itemgetter
-from app.Config import joinDistance
+from app.Config import parameters
 
 warn = rp.Warner("Platoon")
 report = rp.Reporter("Platoon")

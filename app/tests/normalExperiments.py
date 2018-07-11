@@ -41,7 +41,7 @@ def changeVariable(variable_name, value):
     # temporarily change a variable to perform an experiment and revert it back
     # these parameters should be loaded/changed within different files, we need to distinguish them based on their names
     if variable_name == "totalCarCounter":
-        PlatoonConfig.totalCarCounter = value
+        PlatoonConfig.parameters.changeable.totalCarCounter = value
     defaultVariables[variable_name] = value
 
 
