@@ -25,7 +25,7 @@ kafkaPlatoonConfigTopic = "platoon-config"
 initialWaitTicks = 500
 
 # True if we want to use the SUMO GUI
-sumoUseGUI = False
+sumoUseGUI = True
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
 platooning = True
@@ -35,7 +35,7 @@ forTests = True
 
 if forTests:
     # number of ticks to run each simulation for test
-    nrOfTicks = 1000
+    nrOfTicks = 2000
 
 # startEdgeID & lastEdgeID denotes lower & upper edges, i.e. extreme points
 startEdgeID = "11S"
@@ -44,7 +44,7 @@ lastEdgeID = "23805795"
 ''' one of these will be selected (in randomized manner) as exit edge of each car '''
 # edgeIDsForExit = ["135586672#0", "23805795"]
 
-edgeIDsForExit = ["135586672#0"]
+edgeIDsForExit = ["135586672#0", "12N", "286344111", "286344110", "23805795"]
 
 parameters = dict(
     contextual=dict(

@@ -330,7 +330,7 @@ class PlatoonManager(traci.StepListener):
                         veh.resetSplitCountDown()
                     elif leader.getPlatoon() == veh.getPlatoon():
                         # the platoon order is violated.
-                        if rp.VERBOSITY >= 2:
+                        if rp.VERBOSITY >= 3:
                             report(("Platoon order for platoon '%s' is violated: real leader '%s' is not registered " +
                                     "as leader of '%s'") % (
                                        pltnID, leaderID, veh.getID()), 1)

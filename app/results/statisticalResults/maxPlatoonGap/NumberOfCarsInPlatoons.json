@@ -1,8 +1,8 @@
 {
     "actual_results": [
         {
-            "pvalue": 0.008246666148295285, 
-            "statistic": 2.6420045041190576, 
+            "pvalue": 0.17048466793390324, 
+            "statistic": -1.3706630994241846, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -11,8 +11,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.8562170557288373, 
-            "statistic": 0.18119362242501322, 
+            "pvalue": 3.596105977223134e-15, 
+            "statistic": -7.870262330078447, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -21,8 +21,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.2893737888261449, 
-            "statistic": -1.059518924950749, 
+            "pvalue": 6.399110359387184e-10, 
+            "statistic": -6.181220306722321, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -31,8 +31,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.3241323818113985, 
-            "statistic": -0.986020999763759, 
+            "pvalue": 2.0909625861562746e-09, 
+            "statistic": -5.991457733751981, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -41,8 +41,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.3158469701356424, 
-            "statistic": 1.0030486193616095, 
+            "pvalue": 4.835829681914227e-40, 
+            "statistic": -13.255455097287662, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -51,8 +51,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.014318353921120729, 
-            "statistic": -2.449341422230759, 
+            "pvalue": 4.932452455364774e-11, 
+            "statistic": -6.574138652757267, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -61,8 +61,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.00020911599199235892, 
-            "statistic": -3.7082763806216525, 
+            "pvalue": 1.40480587441427e-06, 
+            "statistic": -4.824781699908152, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -71,8 +71,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.00029971810615590387, 
-            "statistic": -3.6160413560066678, 
+            "pvalue": 2.689129610055442e-06, 
+            "statistic": -4.693670116094856, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -81,8 +81,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.1004486698998655, 
-            "statistic": -1.6427407113151715, 
+            "pvalue": 1.861826578235234e-33, 
+            "statistic": -12.061399578888711, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -91,8 +91,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.2162792339061838, 
-            "statistic": -1.236513880103813, 
+            "pvalue": 0.05223513717426465, 
+            "statistic": 1.9412286845259756, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "300.0.json", 
@@ -101,8 +101,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.24519765865956097, 
-            "statistic": -1.1621203975310435, 
+            "pvalue": 0.0718230388410039, 
+            "statistic": 1.8002690833918213, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "300.0.json", 
@@ -111,8 +111,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.4138137975430085, 
-            "statistic": 0.8172139976519892, 
+            "pvalue": 8.700383260382184e-09, 
+            "statistic": -5.755152884843322, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "300.0.json", 
@@ -121,8 +121,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.9472896406861651, 
-            "statistic": 0.06611143745320096, 
+            "pvalue": 0.9429311419943779, 
+            "statistic": -0.0715865917123746, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "400.0.json", 
@@ -131,8 +131,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.03877398051384916, 
-            "statistic": 2.0666859347245814, 
+            "pvalue": 9.810825008047073e-15, 
+            "statistic": -7.743812006468219, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "400.0.json", 
@@ -141,8 +141,8 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }, 
         {
-            "pvalue": 0.047055130173439354, 
-            "statistic": 1.9859013431585566, 
+            "pvalue": 1.0501339606619787e-13, 
+            "statistic": -7.436258738493954, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "500.0.json", 
@@ -151,6 +151,6 @@
             "y_parameter": "NumberOfCarsInPlatoons"
         }
     ], 
-    "number_of_non_significant_results": 9, 
-    "number_of_significant_results": 6
+    "number_of_non_significant_results": 4, 
+    "number_of_significant_results": 11
 }

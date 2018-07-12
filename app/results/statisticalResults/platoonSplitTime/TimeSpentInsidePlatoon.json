@@ -1,8 +1,8 @@
 {
     "actual_results": [
         {
-            "pvalue": 8.234003224435558e-05, 
-            "statistic": 3.958134530637463, 
+            "pvalue": 0.6613635616031148, 
+            "statistic": -0.438094016384936, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "3.0.json", 
@@ -11,8 +11,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.11761099135469728, 
-            "statistic": 1.566434837974948, 
+            "pvalue": 0.011423581871928932, 
+            "statistic": 2.5317032435067377, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "3.0.json", 
@@ -21,8 +21,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.0005506071731518089, 
-            "statistic": 3.468854321394233, 
+            "pvalue": 0.020497707751823184, 
+            "statistic": 2.318879971213253, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "3.0.json", 
@@ -31,8 +31,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.09347224765724749, 
-            "statistic": 1.6792813870095775, 
+            "pvalue": 0.20348081910618943, 
+            "statistic": 1.2720922015241418, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "3.0.json", 
@@ -41,8 +41,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.5754570751811512, 
-            "statistic": 0.5602435966464896, 
+            "pvalue": 0.013355286843468537, 
+            "statistic": 2.476245151129332, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "3.0.json", 
@@ -51,8 +51,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.020421959705689087, 
-            "statistic": 2.3228522410268395, 
+            "pvalue": 0.04427278796027193, 
+            "statistic": 2.012701578594969, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "3.0.json", 
@@ -61,8 +61,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.22611311972157205, 
-            "statistic": 1.2112865520516347, 
+            "pvalue": 0.0634986319887855, 
+            "statistic": 1.8566874203861592, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "3.0.json", 
@@ -71,8 +71,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.008981367279283663, 
-            "statistic": -2.6182337415837065, 
+            "pvalue": 0.0038412184387978878, 
+            "statistic": 2.8942238520578996, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "4.0.json", 
@@ -81,8 +81,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.5761618918054711, 
-            "statistic": -0.5591911559354503, 
+            "pvalue": 0.007364247712177682, 
+            "statistic": 2.6825763460513876, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "4.0.json", 
@@ -91,8 +91,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.006774568559077897, 
-            "statistic": -2.713414798814482, 
+            "pvalue": 0.09470306856199358, 
+            "statistic": 1.6718594714891817, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "4.0.json", 
@@ -101,8 +101,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.0010386937721736486, 
-            "statistic": -3.2924092027507705, 
+            "pvalue": 0.004554931441857526, 
+            "statistic": 2.8400534869476948, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "4.0.json", 
@@ -111,8 +111,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.11098732939422272, 
-            "statistic": -1.5954449459301556, 
+            "pvalue": 0.016816262296583815, 
+            "statistic": 2.392647652075909, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "4.0.json", 
@@ -121,8 +121,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.002306325101283535, 
-            "statistic": -3.0559180639652808, 
+            "pvalue": 0.025955464080508008, 
+            "statistic": 2.228501533224124, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "4.0.json", 
@@ -131,8 +131,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.038507280236029916, 
-            "statistic": 2.0723541369035163, 
+            "pvalue": 0.8748843641278469, 
+            "statistic": -0.15747686538360414, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "5.0.json", 
@@ -141,8 +141,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.9537761417117631, 
-            "statistic": 0.05798048863553791, 
+            "pvalue": 0.21279757010388836, 
+            "statistic": -1.2462888397631546, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "5.0.json", 
@@ -151,8 +151,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.3435808363225389, 
-            "statistic": -0.94764304877891, 
+            "pvalue": 0.9597803346503722, 
+            "statistic": -0.05043522644362653, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "5.0.json", 
@@ -161,8 +161,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.3798183122345028, 
-            "statistic": 0.8786657785304021, 
+            "pvalue": 0.5969066726541133, 
+            "statistic": -0.5289340192488894, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "5.0.json", 
@@ -171,8 +171,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.6889916049208507, 
-            "statistic": -0.4003437527498926, 
+            "pvalue": 0.5691564309704422, 
+            "statistic": -0.5693874039116165, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "5.0.json", 
@@ -181,8 +181,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.033297737065415486, 
-            "statistic": -2.1315004921313303, 
+            "pvalue": 0.2884970363513529, 
+            "statistic": -1.0616953708804313, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "6.0.json", 
@@ -191,8 +191,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.005050918867632438, 
-            "statistic": -2.8117558722759375, 
+            "pvalue": 0.9140833327725627, 
+            "statistic": 0.10790259506293375, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "6.0.json", 
@@ -201,8 +201,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.2807729886597595, 
-            "statistic": -1.0792742939718705, 
+            "pvalue": 0.7200297231986151, 
+            "statistic": -0.3584674171786238, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "6.0.json", 
@@ -211,8 +211,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.012479401906596233, 
-            "statistic": -2.503086726902665, 
+            "pvalue": 0.6843737181502885, 
+            "statistic": -0.4065604524837901, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "6.0.json", 
@@ -221,8 +221,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.3006031355705913, 
-            "statistic": -1.0358018241656741, 
+            "pvalue": 0.2327695644721603, 
+            "statistic": 1.1935978142577117, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "7.0.json", 
@@ -231,8 +231,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.38757113287549483, 
-            "statistic": 0.8644583253719865, 
+            "pvalue": 0.4683162710820864, 
+            "statistic": 0.725352192457073, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "7.0.json", 
@@ -241,8 +241,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.6322706392997547, 
-            "statistic": -0.4786831919444885, 
+            "pvalue": 0.5310636658064933, 
+            "statistic": 0.6264897274048985, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "7.0.json", 
@@ -251,8 +251,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.08687602944683825, 
-            "statistic": 1.7141318970752364, 
+            "pvalue": 0.633295449413791, 
+            "statistic": -0.477162414163556, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "8.0.json", 
@@ -261,8 +261,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.5534618531231836, 
-            "statistic": 0.5928151862175858, 
+            "pvalue": 0.6030464063199574, 
+            "statistic": -0.5201057502951719, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "8.0.json", 
@@ -271,8 +271,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.20429728126621308, 
-            "statistic": -1.2703212405631588, 
+            "pvalue": 0.9472741980561764, 
+            "statistic": -0.06613829599404934, 
             "x_label": "platoonSplitTime", 
             "x_parameters": [
                 "10.0.json", 
@@ -281,6 +281,6 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }
     ], 
-    "number_of_non_significant_results": 17, 
-    "number_of_significant_results": 11
+    "number_of_non_significant_results": 19, 
+    "number_of_significant_results": 9
 }

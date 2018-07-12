@@ -216,7 +216,7 @@ def run_statistics_process(paths):
 
 if __name__ == '__main__':
     paths = get_folder_paths()
-    plotting = False
+    plotting = True
     if plotting:
         run_plotting_process(paths=paths)
 

@@ -1,8 +1,8 @@
 {
     "actual_results": [
         {
-            "pvalue": 0.37274664247701705, 
-            "statistic": 0.8917659072373421, 
+            "pvalue": 0.09574195537575912, 
+            "statistic": -1.6665942904693276, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -11,8 +11,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.8012097529487174, 
-            "statistic": -0.25185463018332005, 
+            "pvalue": 0.1037767211860609, 
+            "statistic": -1.6275273021702394, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -21,8 +21,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.8149970861484824, 
-            "statistic": 0.23404971359008372, 
+            "pvalue": 0.1073306475197256, 
+            "statistic": -1.6109978378357872, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -31,8 +31,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.05060018050413348, 
-            "statistic": 1.957434505357475, 
+            "pvalue": 0.7785973969204123, 
+            "statistic": -0.281182878749067, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -41,8 +41,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.6798207426253041, 
-            "statistic": -0.4128356994771474, 
+            "pvalue": 0.5256757851952809, 
+            "statistic": -0.6347266607390454, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "100.0.json", 
@@ -51,8 +51,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.2612112390815218, 
-            "statistic": -1.124233139100056, 
+            "pvalue": 0.9883992576768618, 
+            "statistic": -0.014541632716652696, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -61,8 +61,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.5201134971630601, 
-            "statistic": -0.6434120064490165, 
+            "pvalue": 0.9852532208788033, 
+            "statistic": 0.01848560153797246, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -71,8 +71,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.2880348957195707, 
-            "statistic": 1.0630499527868875, 
+            "pvalue": 0.16586271451440246, 
+            "statistic": 1.3860965124152862, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -81,8 +81,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.18905573122007882, 
-            "statistic": -1.3143287743648657, 
+            "pvalue": 0.3177579037676257, 
+            "statistic": 0.9993135126951529, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "200.0.json", 
@@ -91,8 +91,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.6330587627765585, 
-            "statistic": 0.4775848421461066, 
+            "pvalue": 0.9743380884900559, 
+            "statistic": 0.03217187120989584, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "300.0.json", 
@@ -101,8 +101,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.030761669847093432, 
-            "statistic": 2.163652883563759, 
+            "pvalue": 0.17518584849915297, 
+            "statistic": 1.3561913285287515, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "300.0.json", 
@@ -111,8 +111,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.8806930457080144, 
-            "statistic": -0.15013236357583795, 
+            "pvalue": 0.3257747076291593, 
+            "statistic": 0.9828938231472166, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "300.0.json", 
@@ -121,8 +121,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.09165631298363909, 
-            "statistic": 1.688499792277789, 
+            "pvalue": 0.18142242692064608, 
+            "statistic": 1.3368329250429731, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "400.0.json", 
@@ -131,8 +131,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.5203405595189761, 
-            "statistic": -0.6430604439423657, 
+            "pvalue": 0.3372028586686865, 
+            "statistic": 0.9599282872700408, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "400.0.json", 
@@ -141,8 +141,8 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }, 
         {
-            "pvalue": 0.01683405875657637, 
-            "statistic": -2.394702316874575, 
+            "pvalue": 0.7193317551489639, 
+            "statistic": -0.3594004007635447, 
             "x_label": "maxPlatoonGap", 
             "x_parameters": [
                 "500.0.json", 
@@ -151,6 +151,6 @@
             "y_parameter": "TimeSpentInsidePlatoon"
         }
     ], 
-    "number_of_non_significant_results": 13, 
-    "number_of_significant_results": 2
+    "number_of_non_significant_results": 15, 
+    "number_of_significant_results": 0
 }
