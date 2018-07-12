@@ -1,0 +1,286 @@
+{
+    "actual_results": [
+        {
+            "pvalue": 0.0, 
+            "statistic": -79.34656886475848, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "3.0.json", 
+                "4.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": -41.469120233924585, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "3.0.json", 
+                "5.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": -49.143405015369495, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "3.0.json", 
+                "6.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": -60.63648657652792, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "3.0.json", 
+                "7.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.02056334298546884, 
+            "statistic": 2.3159181300069482, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "3.0.json", 
+                "8.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 3.900605792001664e-09, 
+            "statistic": -5.8885137782634125, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "3.0.json", 
+                "10.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 4.597459654114577e-237, 
+            "statistic": -32.90373069476587, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "3.0.json", 
+                "20.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 39.141502334450514, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "4.0.json", 
+                "5.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.0442283345081553e-205, 
+            "statistic": 30.627246814127464, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "4.0.json", 
+                "6.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 6.301933804186636e-92, 
+            "statistic": 20.34133897935225, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "4.0.json", 
+                "7.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 82.39193930228274, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "4.0.json", 
+                "8.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 72.63280787620383, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "4.0.json", 
+                "10.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 48.18624060300874, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "4.0.json", 
+                "20.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 2.1347754276072944e-16, 
+            "statistic": -8.214682831536868, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "5.0.json", 
+                "6.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 4.5307251010069034e-83, 
+            "statistic": -19.31409952349359, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "5.0.json", 
+                "7.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 44.19113231522252, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "5.0.json", 
+                "8.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 5.0207049511330185e-269, 
+            "statistic": 35.07597523231569, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "5.0.json", 
+                "10.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 3.793336667984564e-19, 
+            "statistic": 8.943355079749132, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "5.0.json", 
+                "20.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 2.1145732272405807e-27, 
+            "statistic": -10.845610135625824, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "6.0.json", 
+                "7.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 51.908087758408996, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "6.0.json", 
+                "8.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 42.73175256129421, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "6.0.json", 
+                "10.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.2910955749725046e-65, 
+            "statistic": 17.111838806617218, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "6.0.json", 
+                "20.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 63.55965186416797, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "7.0.json", 
+                "8.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 54.00328712313764, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "7.0.json", 
+                "10.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.7074122102690919e-177, 
+            "statistic": 28.42254157405282, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "7.0.json", 
+                "20.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.8701512305947166e-16, 
+            "statistic": -8.23056307787715, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "8.0.json", 
+                "10.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.8237903251026374e-276, 
+            "statistic": -35.56135093019164, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "8.0.json", 
+                "20.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 2.4257430177397437e-155, 
+            "statistic": -26.56640002142293, 
+            "x_label": "platoonSplitTime", 
+            "x_parameters": [
+                "10.0.json", 
+                "20.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }
+    ], 
+    "number_of_non_significant_results": 0, 
+    "number_of_significant_results": 28
+}

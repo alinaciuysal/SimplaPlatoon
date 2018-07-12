@@ -167,29 +167,34 @@ def write_results_to_file(folder_name, variable_name, result):
 
 def run_statistics_process(paths):
     for path in paths:
-
-
         x_values = get_json_file_paths(path)
         x_values = sorted(x_values, key=lambda x: float(x))
 
-        for pair in itertools.combinations(x_values, 2):
-            x1 = str(pair[0]) + ".json"
-            x2 = str(pair[1]) + ".json"
-            # now get the files & their data
+        for y_label in parameters:
+            res = dict(
+                actual_results=[],
+                number_of_significant_results=0,
+                number_of_non_significant_results=0
+            )
 
-            print(x1, x2)
-            json_file_path_1 = os.path.join(os.getcwd(), "..", "results", "platooning", path, x1)
-            with open(json_file_path_1) as f:
-                json_data_1 = json.load(f)
-            # pprint.pprint(json_data_1["config"])
+            for pair in itertools.combinations(x_values, 2):
+                x1 = str(pair[0]) + ".json"
+                x2 = str(pair[1]) + ".json"
+                # now get the files & their data
 
-            json_file_path_2 = os.path.join(os.getcwd(), "..", "results", "platooning", path, x2)
-            with open(json_file_path_2) as f:
-                json_data_2 = json.load(f)
-            # pprint.pprint(json_data_2["config"])
+                print(x1, x2)
+                json_file_path_1 = os.path.join(os.getcwd(), "..", "results", "platooning", path, x1)
+                with open(json_file_path_1) as f:
+                    json_data_1 = json.load(f)
+                # pprint.pprint(json_data_1["config"])
 
-            # now iterate each parameter & get values from json files, perform test, and write to sep. file
-            for y_label in parameters:
+                json_file_path_2 = os.path.join(os.getcwd(), "..", "results", "platooning", path, x2)
+                with open(json_file_path_2) as f:
+                    json_data_2 = json.load(f)
+                # pprint.pprint(json_data_2["config"])
+
+                # now iterate each parameter & get values from json files, perform test, and write to sep. file
+
                 y1 = json_data_1["data"][y_label]
                 y2 = json_data_2["data"][y_label]
                 statistic, pvalue = stats.ttest_ind(y1, y2, equal_var=False)
@@ -200,7 +205,13 @@ def run_statistics_process(paths):
                     statistic=statistic,
                     pvalue=pvalue
                 )
-                write_results_to_file(folder_name=path, variable_name=y_label + "_" + str(pair[0]) + "_" + str(pair[1]), result=result)
+                if pvalue <= 0.05:
+                    res["number_of_significant_results"] += 1
+                else:
+                    res["number_of_non_significant_results"] += 1
+                res["actual_results"].append(result)
+
+            write_results_to_file(folder_name=path, variable_name=y_label, result=res)
 
 
 if __name__ == '__main__':

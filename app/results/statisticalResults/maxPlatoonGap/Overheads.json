@@ -1,0 +1,156 @@
+{
+    "actual_results": [
+        {
+            "pvalue": 0.6135854361072159, 
+            "statistic": -0.5051307880129039, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "200.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.15545104106129048, 
+            "statistic": -1.4217266387917067, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "300.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.5706804819654895, 
+            "statistic": -0.5672494134065018, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.5894183534603905, 
+            "statistic": 0.5398661258694188, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.43135702097897044, 
+            "statistic": -0.7872108783767939, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.36573592500049956, 
+            "statistic": -0.9049369155408176, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "300.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.9479710408786965, 
+            "statistic": -0.0652722203949267, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.31265792080314336, 
+            "statistic": 1.0102037676739772, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.7846663479666465, 
+            "statistic": -0.27332071941997654, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.4048731671366652, 
+            "statistic": 0.8333319570679106, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "300.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.060079580567784015, 
+            "statistic": 1.882546376792861, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "300.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.5226981389275271, 
+            "statistic": 0.6394366862765776, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "300.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.2869431008324503, 
+            "statistic": 1.0654563501985341, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "400.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.837287717926976, 
+            "statistic": -0.20542055854953503, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "400.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }, 
+        {
+            "pvalue": 0.20002955034438688, 
+            "statistic": -1.2823694889393262, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "500.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Overheads"
+        }
+    ], 
+    "number_of_non_significant_results": 15, 
+    "number_of_significant_results": 0
+}

@@ -1,0 +1,286 @@
+{
+    "actual_results": [
+        {
+            "pvalue": 1.9749488809984147e-110, 
+            "statistic": 22.336573679550437, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "100.0.json", 
+                "200.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 3.6844978525184065e-238, 
+            "statistic": -32.98140193509902, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "100.0.json", 
+                "300.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.3309621535916113e-256, 
+            "statistic": -34.24758776400478, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "100.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 4.922061024098978e-07, 
+            "statistic": 5.029427057759398, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "100.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 3.0742501744457482e-174, 
+            "statistic": -28.15804340929018, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "100.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.08402663772369691, 
+            "statistic": -1.7277909400090157, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "100.0.json", 
+                "1000.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 7.792251321105364e-98, 
+            "statistic": -20.99876715602167, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "100.0.json", 
+                "1600.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": -55.01161239169083, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "200.0.json", 
+                "300.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": -56.597645909450144, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "200.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.2044715280167975e-65, 
+            "statistic": -17.116001690862962, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "200.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": -50.35608736665304, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "200.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 3.1119202762514156e-124, 
+            "statistic": -23.71624288775007, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "200.0.json", 
+                "1000.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": -43.37888992498036, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "200.0.json", 
+                "1600.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.46832356410100395, 
+            "statistic": -0.725210242835365, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "300.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 2.17414122521533e-309, 
+            "statistic": 37.640096632045974, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "300.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 5.151334068324869e-07, 
+            "statistic": 5.0206873650727495, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "300.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 4.4856959441494276e-207, 
+            "statistic": 30.729380060034263, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "300.0.json", 
+                "1000.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 4.20761165678824e-35, 
+            "statistic": 12.363187743187726, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "300.0.json", 
+                "1600.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 0.0, 
+            "statistic": 38.95719704115834, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "400.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 5.348823548461113e-09, 
+            "statistic": 5.836090755226754, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "400.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 2.1495898595532346e-223, 
+            "statistic": 31.930839723750818, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "400.0.json", 
+                "1000.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 2.099781259466539e-40, 
+            "statistic": 13.309015651487679, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "400.0.json", 
+                "1600.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 5.865781791129308e-237, 
+            "statistic": -32.897078142796026, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "500.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 2.684750706034932e-11, 
+            "statistic": -6.663126758505421, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "500.0.json", 
+                "1000.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 3.951868547582003e-147, 
+            "statistic": -25.844223973394083, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "500.0.json", 
+                "1600.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.529005949604031e-148, 
+            "statistic": 25.9696894790374, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "750.0.json", 
+                "1000.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 1.8501750679374557e-13, 
+            "statistic": 7.359498594681497, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "750.0.json", 
+                "1600.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }, 
+        {
+            "pvalue": 9.518241477322614e-80, 
+            "statistic": -18.914543744857724, 
+            "x_label": "catchupDistance", 
+            "x_parameters": [
+                "1000.0.json", 
+                "1600.0.json"
+            ], 
+            "y_parameter": "Speeds"
+        }
+    ], 
+    "number_of_non_significant_results": 2, 
+    "number_of_significant_results": 26
+}

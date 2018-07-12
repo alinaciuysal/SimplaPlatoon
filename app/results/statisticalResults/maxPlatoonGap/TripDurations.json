@@ -1,0 +1,156 @@
+{
+    "actual_results": [
+        {
+            "pvalue": 0.8270118477194364, 
+            "statistic": 0.21859632478759625, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "200.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.3121067979335694, 
+            "statistic": -1.011377431055589, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "300.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.8944150213735617, 
+            "statistic": 0.13275562113495967, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.3979728502223301, 
+            "statistic": 0.8456348739789137, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.6265937500174025, 
+            "statistic": -0.4866867240081025, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "100.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.2320847539784326, 
+            "statistic": -1.1957994953210633, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "300.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.9348678452172192, 
+            "statistic": -0.081743651409422, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.5397183321678074, 
+            "statistic": 0.6134637299303646, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.49139567902829195, 
+            "statistic": -0.6883588112780401, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "200.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.2687884391041772, 
+            "statistic": 1.1065259818277573, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "300.0.json", 
+                "400.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.07512996597983919, 
+            "statistic": 1.7817124795878876, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "300.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.5975354784189395, 
+            "statistic": 0.5281318080431939, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "300.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.4910348814497304, 
+            "statistic": 0.6889339306967025, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "400.0.json", 
+                "500.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.5483656749630146, 
+            "statistic": -0.6004265215240882, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "400.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }, 
+        {
+            "pvalue": 0.1951588096965809, 
+            "statistic": -1.2963926431034714, 
+            "x_label": "maxPlatoonGap", 
+            "x_parameters": [
+                "500.0.json", 
+                "750.0.json"
+            ], 
+            "y_parameter": "TripDurations"
+        }
+    ], 
+    "number_of_non_significant_results": 15, 
+    "number_of_significant_results": 0
+}
