@@ -2,6 +2,10 @@ import os, json
 import matplotlib.pyplot as plt
 import itertools
 import pprint
+import numpy as np
+import matplotlib.patches as mpatches
+import matplotlib.lines as mlines
+
 pp = pprint.PrettyPrinter(indent=4)
 
 from app.tests.platoonExperiments import make_sure_path_exists
@@ -12,20 +16,18 @@ parameters = ["TripDurations",
               "FuelConsumptions",
               "Speeds",
               "Overheads",
-              "TimeSpentInsidePlatoon",
-              "NumberOfCarsInPlatoons"]
+              "NumberOfCarsInPlatoons",
+              "ReportedPlatoonDurationsBeforeSplit"]
 
-4
 def get_folder_paths():
-    folder_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results", "platooning"))]
-    for folder_path in folder_paths:
-        if "plots" in folder_path:
-            folder_paths.remove(folder_path)
+    folder_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results"))]
+    folder_paths.remove("statistics")
+    folder_paths.remove("plots")
     return folder_paths
 
 
 def get_json_file_paths(x_label):
-    file_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results", "platooning", x_label))]
+    file_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results", x_label))]
     for i in xrange(len(file_paths)):
         file_paths[i] = str(file_paths[i]).replace(".json", '')
     return file_paths
@@ -34,12 +36,12 @@ def get_json_file_paths(x_label):
 def get_data(folder_path):
     json_data = []
     parameter = folder_path.split(os.sep)[-1]
-    parameterFolder = os.path.join(os.getcwd(), "..", "results", "platooning", folder_path)
-
+    parameterFolder = os.path.join(os.getcwd(), "..", "results", folder_path)
     for f_name in os.listdir(parameterFolder):
         f_path = os.path.join(parameterFolder, f_name)
         with open(f_path) as f:
-            json_data.append(json.load(f))
+            data = json.load(f)
+            json_data.append(data)
     return parameter, json_data
 
 
@@ -74,7 +76,7 @@ def draw_scatter_plot(x_values, y_values, x_label, y_label):
 
     ax.plot(x_values, y_values, 'o')
     fig_name = y_label + ".pdf"
-    fig_folder = os.path.join(os.getcwd(), "..", "results", "platooning", "plots", x_label)
+    fig_folder = os.path.join(os.getcwd(), "..", "results", "plots", x_label)
     make_sure_path_exists(fig_folder)
     fig_path = os.path.join(fig_folder, fig_name)
     plt.savefig(fig_path)
@@ -100,8 +102,15 @@ def draw_box_plot(x_label, y_label, x_values, y_values):
     ax.get_xaxis().tick_bottom()
     ax.get_yaxis().tick_left()
 
+    median_legend = mlines.Line2D([], [], color='green', marker='^', linestyle='None',
+                                    markersize=5, label='Mean')
+
+    mean_legend = mpatches.Patch(color='red', label='Median')
+
+    plt.legend(handles=[median_legend, mean_legend])
+
     fig_name = y_label + ".png"
-    fig_folder = os.path.join(os.getcwd(), "..", "results", "platooning", "plots", x_label)
+    fig_folder = os.path.join(os.getcwd(), "..", "results", "plots", x_label)
     make_sure_path_exists(fig_folder)
     fig_path = os.path.join(fig_folder, fig_name)
     plt.savefig(fig_path, bbox_inches='tight')
@@ -112,30 +121,36 @@ def draw_box_plot(x_label, y_label, x_values, y_values):
 def format_box_plot(ax, y_values):
     ## add patch_artist=True option to ax.boxplot()
     ## to get fill color
-    bp = ax.boxplot(y_values, patch_artist=True)
+
+    bp = ax.boxplot(y_values, showmeans=True, showfliers=False)
 
     ## change outline color, fill color and linewidth of the boxes
-    for box in bp['boxes']:
-        # change outline color
-        box.set( color='#7570b3', linewidth=2)
-        # change fill color
-        box.set( facecolor = '#1b9e77' )
-
-    ## change color and linewidth of the whiskers
-    for whisker in bp['whiskers']:
-        whisker.set(color='#7570b3', linewidth=2)
-
-    ## change color and linewidth of the caps
-    for cap in bp['caps']:
-        cap.set(color='#7570b3', linewidth=2)
-
-    ## change color and linewidth of the medians
+    # for box in bp['boxes']:
+    #     # change outline color
+    #     box.set(linewidth=2)
+    #     # change fill color
+    #     box.set( facecolor = '#1b9e77' )
+    #
+    # ## change linewidth of the whiskers
+    # for whisker in bp['whiskers']:
+    #     whisker.set(linewidth=2)
+    #
+    # ## change color and linewidth of the caps
+    # for cap in bp['caps']:
+    #     cap.set(linewidth=2)
+    #
+    # ## change color and linewidth of the medians
     for median in bp['medians']:
-        median.set(color='#b2df8a', linewidth=2)
+        median.set_color('red')
 
-    ## change the style of fliers and their fill
-    for flier in bp['fliers']:
-        flier.set(marker='o', color='#e7298a', alpha=0.5)
+    #
+    # ## change the style of fliers and their fill
+    # for flier in bp['fliers']:
+    #     flier.set(marker='o', color='#e7298a', alpha=0.5)
+    #
+    ## change the style of means and their fill
+    for mean in bp['means']:
+        mean.set_color('green')
 
 
 def run_plotting_process(paths):
@@ -159,11 +174,12 @@ def run_plotting_process(paths):
 def write_results_to_file(folder_name, variable_name, result):
     current_dir = os.path.abspath(os.path.dirname(__file__))
     parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
-    results_dir = os.path.join(parent_dir, 'results', 'statisticalResults', folder_name)
+    results_dir = os.path.join(parent_dir, 'results', 'statistics', folder_name)
     make_sure_path_exists(results_dir)
     results_path = os.path.join(results_dir, variable_name)
     with open(results_path + '.json', 'w') as outfile:
-        json.dump(result, outfile, sort_keys=True, indent=4, ensure_ascii=False)
+        json.dump(result, outfile, indent=4, ensure_ascii=False)
+
 
 def run_statistics_process(paths):
     for path in paths:
@@ -183,24 +199,30 @@ def run_statistics_process(paths):
                 # now get the files & their data
 
                 print(x1, x2)
-                json_file_path_1 = os.path.join(os.getcwd(), "..", "results", "platooning", path, x1)
+                json_file_path_1 = os.path.join(os.getcwd(), "..", "results", path, x1)
                 with open(json_file_path_1) as f:
                     json_data_1 = json.load(f)
-                # pprint.pprint(json_data_1["config"])
+                    orig = json_data_1["data"]["FuelConsumptions"]
+                    updated = [item for item in orig if item > 0]
+                    json_data_1["data"]["FuelConsumptions"] = updated
 
-                json_file_path_2 = os.path.join(os.getcwd(), "..", "results", "platooning", path, x2)
+                json_file_path_2 = os.path.join(os.getcwd(), "..", "results", path, x2)
                 with open(json_file_path_2) as f:
                     json_data_2 = json.load(f)
-                # pprint.pprint(json_data_2["config"])
+                    orig = json_data_2["data"]["FuelConsumptions"]
+                    updated = [item for item in orig if item > 0]
+                    json_data_2["data"]["FuelConsumptions"] = updated
 
                 # now iterate each parameter & get values from json files, perform test, and write to sep. file
-
                 y1 = json_data_1["data"][y_label]
+                y1_mean = np.mean(y1)
                 y2 = json_data_2["data"][y_label]
+                y2_mean = np.mean(y2)
                 statistic, pvalue = stats.ttest_ind(y1, y2, equal_var=False)
                 result = dict(
                     x_label=path,
                     x_parameters=[x1, x2],
+                    means_of_x_parameters=[y1_mean, y2_mean],
                     y_parameter=y_label,
                     statistic=statistic,
                     pvalue=pvalue
@@ -216,7 +238,7 @@ def run_statistics_process(paths):
 
 if __name__ == '__main__':
     paths = get_folder_paths()
-    plotting = True
+    plotting = False
     if plotting:
         run_plotting_process(paths=paths)
 

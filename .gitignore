@@ -4,8 +4,9 @@
 *.iml
 **.pyc
 
-/app/results/platooning/**/*.json
-/app/results/regular/**/*.json
-
 !/app/map/output/placeholder
+
+
+/app/results/**/*.json
 !/app/results/plots/*
+!/app/results/statistics/*
