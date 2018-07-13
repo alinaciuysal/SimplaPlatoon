@@ -25,7 +25,7 @@ kafkaPlatoonConfigTopic = "platoon-config"
 initialWaitTicks = 500
 
 # True if we want to use the SUMO GUI
-sumoUseGUI = False
+sumoUseGUI = True
 
 # True if we want to use platooning scenario, False if we want to use regular scenario
 platooning = True
@@ -44,22 +44,23 @@ lastEdgeID = "23805795"
 ''' one of these will be selected (in randomized manner) as exit edge of each car '''
 # edgeIDsForExit = ["135586672#0", "23805795"]
 
-edgeIDsForExit = ["135586672#0", "12N", "286344111", "286344110", "23805795"]
+# edgeIDsForExit = ["135586672#0", "12N", "286344111", "286344110", "23805795"]
+edgeIDsForExit = ["135586672#0"]
 
 parameters = dict(
     contextual=dict(
-        lookAheadDistance=50.0, # distance to find a leader vehicle in the simulation
+        lookAheadDistance=500.0, # distance to find a leader vehicle in the simulation
         switchImpatienceFactor=0.1,
-        platoonCarCounter=250,
-        totalCarCounter=250
+        platoonCarCounter=25,
+        totalCarCounter=25
     ),
 
     changeable=dict(
-        maxVehiclesInPlatoon=6,
-        catchupDistance=50.0,
-        maxPlatoonGap=50.0,
-        platoonSplitTime=3.0,
-        joinDistance=100.0 # to find extreme positions (-+d) of platoon
+        maxVehiclesInPlatoon=25,
+        catchupDistance=500.0,
+        maxPlatoonGap=500.0,
+        platoonSplitTime=5.0,
+        joinDistance=1000.0 # to find extreme positions (-+d) of platoon
     )
 )
 

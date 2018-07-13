@@ -47,6 +47,7 @@ class PlatoonManager(traci.StepListener):
     _connectedVehicles = None
     totalCarCounter = Config.parameters["contextual"]["totalCarCounter"]
     platoonCarCounter = Config.parameters["contextual"]["platoonCarCounter"]
+    maxVehiclesInPlatoon = Config.parameters["changeable"]["maxVehiclesInPlatoon"]
     pairwise_platoons = None
 
     def __init__(self):
@@ -320,8 +321,16 @@ class PlatoonManager(traci.StepListener):
             for ix, veh in enumerate(pltn.getVehicles()[1:]):
                 # check whether to split the platoon at index ix
                 leaderInfo = veh.state.leaderInfo
-                if leaderInfo is None or not self._isConnected(leaderInfo[0]) or leaderInfo[1] > self._maxPlatoonGap:
+
+                if leaderInfo is None:
                     # no leader or no leader that allows platooning
+                    print("case 1: no leader or no leader that allows platooning")
+                    veh.setSplitConditions(True)
+                elif not self._isConnected(leaderInfo[0]):
+                    print("case 2: leader is not connected id: '%s'", leaderInfo[0])
+                    veh.setSplitConditions(True)
+                elif leaderInfo[1] > self._maxPlatoonGap:
+                    print("case 3: leader is too far '%s' > '%s'", leaderInfo[1], self._maxPlatoonGap)
                     veh.setSplitConditions(True)
                 else:
                     # ego has a connected leader
@@ -339,7 +348,12 @@ class PlatoonManager(traci.StepListener):
                                        pltnID, leaderID, veh.getID()), 1)
                         veh.setSplitConditions(False)
                     else:
+                        print("veh-platoonID:", veh.getPlatoon().getID(), "leader-platoonID:", leader.getPlatoon().getID())
                         # leader is connected but belongs to a different platoon
+                        print("case 4: leader is connected but belongs to a different platoon. ")
+                        print("leaderID:", leader.getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
+                        print("vehicleID:", veh.getID(), str([veh.getID() for veh in veh.getPlatoon().getVehicles()]))
+                        print("++++++++++++++++++")
                         veh.setSplitConditions(True)
                 if veh.splitConditions():
                     # eventually increase isolation time
@@ -417,6 +431,15 @@ class PlatoonManager(traci.StepListener):
             pltnLeaderRoute = traci.vehicle.getRoute(pltnLeader.getID())
             pltnLeaderRouteIx = traci.vehicle.getRouteIndex(pltnLeader.getID())
             leaderEdge = leader.state.edgeID
+
+            # if leaderArrivalPos is not within arrivalInterval (type tuple = (min, max)) of platoon
+            # and if their journey do not end in the same edge, they won't merge
+            leaderArrivalPos = leader.arrivalPos
+            pltnArrivalInterval = pltnLeader.getPlatoon().getArrivalInterval()
+            leadersArrivalEdge = leader.arrivalEdge
+            pltnLeaderLastEdgeID = pltnLeaderRoute[-1]
+
+            # usual simpla logic
             if leaderEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
                 continue
 
@@ -424,27 +447,48 @@ class PlatoonManager(traci.StepListener):
                 # Platoon order is corrupted, don't join own platoon.
                 continue
 
+            if leadersArrivalEdge != pltnLeaderLastEdgeID:
+                continue
+
+            if leaderArrivalPos < pltnArrivalInterval[0] or leaderArrivalPos > pltnArrivalInterval[1]:
+                continue
+
+            print("pltnLeaderLastEdgeID", pltnLeaderLastEdgeID, "pltnArrivalInterval", pltnArrivalInterval, "leadersArrivalEdge", leadersArrivalEdge, "leaderArrivalPos", leaderArrivalPos)
+
             if leaderDist <= self._maxPlatoonGap:
-                # Try to join the platoon in front
-                if leader.getPlatoon().join(pltn):
-                    toRemove.append(pltnID)
-                    # Debug
-                    if rp.VERBOSITY >= 2:
-                        report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(),
-                                                                                          leader.getPlatoon().getID()) +
-                               "vehicles:\n%s" % str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
-                    self.add_to_pairwise_platoons(leader.getPlatoon(), pltn)
-                    continue
+                # introducing number of vehicles in platoon logic
+                nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= self.maxVehiclesInPlatoon
+                print("number of vehicles in leader's platoon", len(leader.getPlatoon().getVehicles()), " number of vehicles in platoon to join", len(pltn.getVehicles()), "res", nrOfVehiclesCondition)
+                print("**************")
+                if nrOfVehiclesCondition == True:
+                    # Try to join the platoon in front
+                    if leader.getPlatoon().join(pltn):
+                        toRemove.append(pltnID)
+                        # Debug
+                        if rp.VERBOSITY >= 2:
+                            report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(),
+                                                                                              leader.getPlatoon().getID()) +
+                                   "vehicles:\n%s" % str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
+                        self.add_to_pairwise_platoons(leader.getPlatoon(), pltn)
+                        continue
+                    else:
+                        if rp.VERBOSITY >= 2:
+                            report("Merging of platoons '%s' (%s) and '%s' (%s) would not be safe." %
+                                   (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
+                                    leader.getPlatoon().getID(),
+                                    str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
                 else:
-                    if rp.VERBOSITY >= 3:
-                        report("Merging of platoons '%s' (%s) and '%s' (%s) would not be safe." %
+                    # Join failed due to number of cars in platoon. Do not change pltn behavior.
+                    if rp.VERBOSITY >= 2:
+                        report("Merging of platoons '%s' (%s) and '%s' (%s) failed due to number of vehicles limitation" %
                                (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
                                 leader.getPlatoon().getID(),
                                 str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
+                    continue
             else:
                 # Join failed due to too large distance. Try to get closer (change to CATCHUP mode).
                 if not pltn.setMode(PlatoonMode.CATCHUP):
-                    if rp.VERBOSITY >= 3:
+                    if rp.VERBOSITY >= 2:
                         report(("Switch to catchup mode would not be safe for platoon '%s' (%s) chasing " +
                                 "platoon '%s' (%s).") %
                                (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),

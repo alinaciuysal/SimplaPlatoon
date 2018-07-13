@@ -353,14 +353,14 @@ class PVehicle(object):
             # This may occur if the leader is not connected, so no corresponding PVehicle exists
             # I'm not sure if this is ever called, but wouldn't exclude the possibility
             # in one of the runs, traci gave this error: "state.leaderInfo[0] -> id of the car is not known"
-            # so for this case, we just return false (switch is not safe)
+            # so for this case, we (Ali & Ilias) just return True (switch is safe)
             try:
                 leaderDecel = traci.vehicle.getDecel(self.state.leaderInfo[0])
                 leaderSpeed = traci.vehicle.getSpeed(self.state.leaderInfo[0])
             except TraCIException as e:
                 if rp.VERBOSITY >= 2:
                     report("leader-id does not exist in the simulation %s" % self.state.leaderInfo[0])
-                return False
+                return True
         else:
             leaderDecel = vTypeParameters[leader.getCurrentVType()][tc.VAR_DECEL]
             leaderSpeed = leader.state.speed
