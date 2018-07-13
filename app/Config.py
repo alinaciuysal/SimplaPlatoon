@@ -51,12 +51,12 @@ parameters = dict(
     contextual=dict(
         lookAheadDistance=500.0, # distance to find a leader vehicle in the simulation
         switchImpatienceFactor=0.1,
-        platoonCarCounter=25,
-        totalCarCounter=25
+        platoonCarCounter=10,
+        totalCarCounter=10
     ),
 
     changeable=dict(
-        maxVehiclesInPlatoon=25,
+        maxVehiclesInPlatoon=5,
         catchupDistance=500.0,
         maxPlatoonGap=500.0,
         platoonSplitTime=5.0,

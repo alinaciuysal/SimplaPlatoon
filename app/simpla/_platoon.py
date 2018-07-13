@@ -255,12 +255,12 @@ class Platoon(object):
         # split can be taken out safely -> reduce vehicles in this platoon
         self._vehicles = self._vehicles[:index]
 
-        print("BEFORE SPLIT", pltn.getID())
-        print("veh[0]", self._vehicles[0].getPlatoon().getID())
+        # print("BEFORE SPLIT", pltn.getID())
+        # print("veh[0]", self._vehicles[0].getPlatoon().getID())
         # set reference to new platoon in splitted vehicles
         pltn.registerVehicles()
-        print("AFTER SPLIT", pltn.getID())
-        print("veh[0]", self._vehicles[0].getPlatoon().getID())
+        # print("AFTER SPLIT", pltn.getID())
+        # print("veh[0]", self._vehicles[0].getPlatoon().getID())
         pltn.adjustInterval()
 
         if len(self._vehicles) == 1:
@@ -281,12 +281,12 @@ class Platoon(object):
                 #     v.setPlatoon(self)
                 self._vehicles.extend(vehs)
 
-                print("join-case-1 before", vehs[0].getPlatoon().getID())
+                # print("join-case-1 before", vehs[0].getPlatoon().getID())
                 # set reference to new platoon in splitted vehicles
                 pltn.registerVehicles()
-                print("join-case-1 after", vehs[0].getPlatoon().getID())
+                # print("join-case-1 after", vehs[0].getPlatoon().getID())
                 self.registerVehicles()
-                print("join-case-1 after-22", vehs[0].getPlatoon().getID())
+                # print("join-case-1 after-22", vehs[0].getPlatoon().getID())
                 return True
             else:
                 return False
@@ -303,9 +303,9 @@ class Platoon(object):
             #     v.setPlatoon(self)
             self._vehicles.extend(vehs)
 
-            print("join-case-3 before", vehs[0].getPlatoon().getID())
+            # print("join-case-3 before", vehs[0].getPlatoon().getID())
             self.registerVehicles()
-            print("join-case-3 after", vehs[0].getPlatoon().getID())
+            # print("join-case-3 after", vehs[0].getPlatoon().getID())
             self.getLeader().setPlatoonMode(PlatoonMode.LEADER)
             return True
         else:

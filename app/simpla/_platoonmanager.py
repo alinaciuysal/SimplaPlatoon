@@ -344,18 +344,22 @@ class PlatoonManager(traci.StepListener):
                         # the platoon order is violated.
                         if rp.VERBOSITY >= 2:
                             report(("Platoon order for platoon '%s' is violated: real leader '%s' is not registered " +
-                                    "as leader of '%s'") % (
-                                       pltnID, leaderID, veh.getID()), 1)
+                                    "as leader of '%s', actual leader of '%s' is '%s'") % (
+                                       pltnID, leaderID, veh.getID(), veh.getID(), veh.state.leaderInfo[0]), 1)
                         print("leaderID:", leader.getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
                         veh.setSplitConditions(False)
                     else:
                         # leader is connected but belongs to a different platoon
-                        print("++++++++++++++++++")
-                        print("case 4: leader is connected but belongs to a different platoon. ")
-                        print("veh-platoonID:", veh.getPlatoon().getID(), "leader-platoonID:", leader.getPlatoon().getID())
-                        print("leaderID:", leader.getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
-                        print("vehicleID:", veh.getID(), str([veh.getID() for veh in veh.getPlatoon().getVehicles()]))
-                        print("++++++++++++++++++")
+                        print("++++++++++++++++++ \n")
+                        print("case 4: leader is connected but belongs to a different platoon. \n")
+                        print("veh-platoonID:", veh.getPlatoon().getID(), "leader-platoonID:", leader.getPlatoon().getID(), "\n")
+                        print("leaderID:", leader.getID(),
+                              "platoonID of leader:", leader.getPlatoon().getID(),
+                              "vehicles in leader's platoon:", str([veh.getID() for veh in leader.getPlatoon().getVehicles()]), "\n")
+                        print("vehicleID:", veh.getID(),
+                              "platoonID of vehicle:", veh.getPlatoon().getID(),
+                              "vehicles in vehicle's platoon:", str([veh.getID() for veh in veh.getPlatoon().getVehicles()]))
+                        print("++++++++++++++++++ \n")
                         veh.setSplitConditions(True)
                 if veh.splitConditions():
                     # eventually increase isolation time
@@ -455,12 +459,12 @@ class PlatoonManager(traci.StepListener):
             if leaderArrivalPos < pltnArrivalInterval[0] or leaderArrivalPos > pltnArrivalInterval[1]:
                 continue
 
-            print("pltnLeaderLastEdgeID", pltnLeaderLastEdgeID, "pltnArrivalInterval", pltnArrivalInterval, "leadersArrivalEdge", leadersArrivalEdge, "leaderArrivalPos", leaderArrivalPos)
+            # print("pltnLeaderLastEdgeID", pltnLeaderLastEdgeID, "pltnArrivalInterval", pltnArrivalInterval, "leadersArrivalEdge", leadersArrivalEdge, "leaderArrivalPos", leaderArrivalPos)
 
             if leaderDist <= self._maxPlatoonGap:
                 # introducing number of vehicles in platoon logic
                 nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= self.maxVehiclesInPlatoon
-                print("number of vehicles in leader's platoon", len(leader.getPlatoon().getVehicles()), " number of vehicles in platoon to join", len(pltn.getVehicles()), "res", nrOfVehiclesCondition)
+                # print("number of vehicles in leader's platoon", len(leader.getPlatoon().getVehicles()), " number of vehicles in platoon to join", len(pltn.getVehicles()), "res", nrOfVehiclesCondition)
                 print("**************")
                 if nrOfVehiclesCondition == True:
                     # Try to join the platoon in front
