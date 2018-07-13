@@ -87,6 +87,13 @@ class Platoon(object):
         '''
         return self._ID
 
+    def setID(self, _ID):
+        '''getID() -> int
+
+        Returns the platoon's id
+        '''
+        self._ID = _ID
+
     def getVehicles(self):
         '''getVehicles() -> list(PVehicle)
 
@@ -248,8 +255,12 @@ class Platoon(object):
         # split can be taken out safely -> reduce vehicles in this platoon
         self._vehicles = self._vehicles[:index]
 
+        print("BEFORE SPLIT", pltn.getID())
+        print("veh[0]", self._vehicles[0].getPlatoon().getID())
         # set reference to new platoon in splitted vehicles
         pltn.registerVehicles()
+        print("AFTER SPLIT", pltn.getID())
+        print("veh[0]", self._vehicles[0].getPlatoon().getID())
         pltn.adjustInterval()
 
         if len(self._vehicles) == 1:
@@ -266,9 +277,16 @@ class Platoon(object):
         vehs = pltn.getVehicles()
         if self.getMode() == PlatoonMode.CATCHUP:
             if pltn.setModeWithImpatience(PlatoonMode.CATCHUP, self._controlInterval):
-                for v in vehs:
-                    v.setPlatoon(self)
+                # for v in vehs:
+                #     v.setPlatoon(self)
                 self._vehicles.extend(vehs)
+
+                print("join-case-1 before", vehs[0].getPlatoon().getID())
+                # set reference to new platoon in splitted vehicles
+                pltn.registerVehicles()
+                print("join-case-1 after", vehs[0].getPlatoon().getID())
+                self.registerVehicles()
+                print("join-case-1 after-22", vehs[0].getPlatoon().getID())
                 return True
             else:
                 return False
@@ -281,9 +299,13 @@ class Platoon(object):
 
         # At this point either this has PlatoonMode.LEADER or PlatoonMode.NONE (size==1), and switch to leader was safe
         if pltn.setModeWithImpatience(PlatoonMode.FOLLOWER, self._controlInterval):
-            for v in vehs:
-                v.setPlatoon(self)
+            # for v in vehs:
+            #     v.setPlatoon(self)
             self._vehicles.extend(vehs)
+
+            print("join-case-3 before", vehs[0].getPlatoon().getID())
+            self.registerVehicles()
+            print("join-case-3 after", vehs[0].getPlatoon().getID())
             self.getLeader().setPlatoonMode(PlatoonMode.LEADER)
             return True
         else:
@@ -314,3 +336,4 @@ class Platoon(object):
         max_interval = max(intervals, key=itemgetter(1))[1]
         self.setArrivalInterval((min_interval, max_interval))
         # self._arrivalInterval = min_interval, max_interval
+

@@ -342,15 +342,17 @@ class PlatoonManager(traci.StepListener):
                         veh.resetSplitCountDown()
                     elif leader.getPlatoon() == veh.getPlatoon():
                         # the platoon order is violated.
-                        if rp.VERBOSITY >= 3:
+                        if rp.VERBOSITY >= 2:
                             report(("Platoon order for platoon '%s' is violated: real leader '%s' is not registered " +
                                     "as leader of '%s'") % (
                                        pltnID, leaderID, veh.getID()), 1)
+                        print("leaderID:", leader.getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
                         veh.setSplitConditions(False)
                     else:
-                        print("veh-platoonID:", veh.getPlatoon().getID(), "leader-platoonID:", leader.getPlatoon().getID())
                         # leader is connected but belongs to a different platoon
+                        print("++++++++++++++++++")
                         print("case 4: leader is connected but belongs to a different platoon. ")
+                        print("veh-platoonID:", veh.getPlatoon().getID(), "leader-platoonID:", leader.getPlatoon().getID())
                         print("leaderID:", leader.getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
                         print("vehicleID:", veh.getID(), str([veh.getID() for veh in veh.getPlatoon().getVehicles()]))
                         print("++++++++++++++++++")
@@ -468,7 +470,7 @@ class PlatoonManager(traci.StepListener):
                         if rp.VERBOSITY >= 2:
                             report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(),
                                                                                               leader.getPlatoon().getID()) +
-                                   "vehicles:\n%s" % str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
+                                   "vehicles:\n%s " % str([(veh.getID(), veh.getPlatoon().getID()) for veh in leader.getPlatoon().getVehicles()]))
                         self.add_to_pairwise_platoons(leader.getPlatoon(), pltn)
                         continue
                     else:
