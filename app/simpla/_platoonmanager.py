@@ -292,13 +292,13 @@ class PlatoonManager(traci.StepListener):
 
         # Re-add removed cars (both normal & platoon) into the system
         # Returns a list of ids of arrived vehicles (reached their destination and removed from the road network)
-        for ID in traci.simulation.getArrivedIDList():
-            # The only way to distinguish the type of arrived car is to look at its id
-            # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
-            if "platoon" in ID:
-                self._addPlatoonVehicle()
-            else:
-                self._addNormalVehicle()
+        # for ID in traci.simulation.getArrivedIDList():
+        #     # The only way to distinguish the type of arrived car is to look at its id
+        #     # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
+        #     if "platoon" in ID:
+        #         self._addPlatoonVehicle()
+        #     else:
+        #         self._addNormalVehicle()
 
         return count
 

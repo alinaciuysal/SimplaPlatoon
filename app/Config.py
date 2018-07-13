@@ -35,7 +35,7 @@ forTests = True
 
 if forTests:
     # number of ticks to run each simulation for test
-    nrOfTicks = 2000
+    nrOfTicks = 500
 
 # startEdgeID & lastEdgeID denotes lower & upper edges, i.e. extreme points
 startEdgeID = "11S"
@@ -51,16 +51,16 @@ parameters = dict(
     contextual=dict(
         lookAheadDistance=500.0, # distance to find a leader vehicle in the simulation
         switchImpatienceFactor=0.1,
-        platoonCarCounter=10,
-        totalCarCounter=10
+        platoonCarCounter=5,
+        totalCarCounter=5
     ),
 
     changeable=dict(
-        maxVehiclesInPlatoon=5,
+        maxVehiclesInPlatoon=10,
         catchupDistance=500.0,
         maxPlatoonGap=500.0,
         platoonSplitTime=5.0,
-        joinDistance=1000.0 # to find extreme positions (-+d) of platoon
+        joinDistance=3000.0 # to find extreme positions (-+d) of platoon
     )
 )
 
