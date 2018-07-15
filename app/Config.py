@@ -35,7 +35,7 @@ forTests = True
 
 if forTests:
     # number of ticks to run each simulation for test
-    nrOfTicks = 2000
+    nrOfTicks = 1000
 
 # startEdgeID & lastEdgeID denotes lower & upper edges, i.e. extreme points
 startEdgeID = "11S"

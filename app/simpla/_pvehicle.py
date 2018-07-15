@@ -92,11 +92,6 @@ class PVehicle(object):
 
         # get a random exit location within [0, line_length]
         arrivalPos = Config.get_random().uniform(0, line_length)
-
-        # set arrivalInterval relative to the edge length,
-        # i.e. negative values or values greater than actual length are not allowed
-        self.arrivalInterval = (max(arrivalPos - Config.parameters["changeable"]["joinDistance"], 0), min(arrivalPos + Config.parameters["changeable"]["joinDistance"], line_length))
-
         self.arrivalPos = arrivalPos
         self.arrivalEdge = rnd_edge
         self.currentRouteBeginTime = simTime
@@ -284,9 +279,6 @@ class PVehicle(object):
         '''
         self._timeUntilSplit = cfg.PLATOON_SPLIT_TIME
 
-    def getArrivalInterval(self):
-        return self.arrivalInterval
-
     def setSplitConditions(self, b=True):
         ''' splitConditions(bool) -> void
         Sets whether splitConditions are satisfied.
@@ -422,8 +414,7 @@ class PVehicle(object):
         # that an increasing waiting time has on the active speed factor:
         # activeSpeedFactor = modeSpecificSpeedFactor/(1+impatienceFactor*waitingTime)
         self._switchImpatienceFactor = cfg.SWITCH_IMPATIENCE_FACTOR
-        # create a new platoon containing only this vehicle, also set its arrivalInterval
-        self._platoon = Platoon([self], controlInterval, self.arrivalInterval)
+        self._platoon = Platoon([self], controlInterval)
         # the time left until splitting from a platoon if loosing coherence as a follower
         self._timeUntilSplit = cfg.PLATOON_SPLIT_TIME
         # Whether split conditions are fulfilled (i.e. leader in th platoon

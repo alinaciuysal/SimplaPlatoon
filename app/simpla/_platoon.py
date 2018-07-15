@@ -26,7 +26,7 @@ class Platoon(object):
     '''    
     '''
 
-    def __init__(self, vehicles, controlInterval, arrivalInterval=None, registerVehicles=True):
+    def __init__(self, vehicles, controlInterval, registerVehicles=True):
         '''Platoon(list(PVehicle), float, tuple(float, float), bool) -> Platoon
 
         Create a Platoon object that holds an ordered list of its members, which is inititialized with 'vehicles'.
@@ -42,7 +42,6 @@ class Platoon(object):
             self.registerVehicles()
 
         self._controlInterval = controlInterval
-        self._arrivalInterval = arrivalInterval
         self.lifeSpan = 0
 
     def registerVehicles(self):
@@ -107,12 +106,6 @@ class Platoon(object):
         Sets the platoon members. Used for reordering, e.g..
         '''
         self._vehicles = vehs
-
-    def getArrivalInterval(self):
-        return self._arrivalInterval
-
-    def setArrivalInterval(self, arrivalInterval):
-        self._arrivalInterval = arrivalInterval
 
     def size(self):
         '''size() -> int
@@ -246,7 +239,7 @@ class Platoon(object):
         mode = PlatoonMode.LEADER if (index < self.size() - 1) else PlatoonMode.NONE
         # splitImpatience = 1. - math.exp(min([0., splitLeader._timeUntilSplit]))
 
-        pltn = Platoon(self._vehicles[index:], self._controlInterval, None, False)
+        pltn = Platoon(self._vehicles[index:], self._controlInterval, False)
 
         if not pltn.setModeWithImpatience(mode, self._controlInterval):
             # could not split off platoon safely
@@ -255,13 +248,8 @@ class Platoon(object):
         # split can be taken out safely -> reduce vehicles in this platoon
         self._vehicles = self._vehicles[:index]
 
-        # print("BEFORE SPLIT", pltn.getID())
-        # print("veh[0]", self._vehicles[0].getPlatoon().getID())
         # set reference to new platoon in splitted vehicles
         pltn.registerVehicles()
-        # print("AFTER SPLIT", pltn.getID())
-        # print("veh[0]", self._vehicles[0].getPlatoon().getID())
-        pltn.adjustInterval()
 
         if len(self._vehicles) == 1:
             # only one vehicle remains, turn off its platoon-specific behavior
@@ -324,16 +312,3 @@ class Platoon(object):
             # Leader was kept in CATCHUP_FOLLOW mode due to safety constraints
             mode = PlatoonMode.CATCHUP
         return mode
-
-    # see https://stackoverflow.com/questions/13145368/find-the-maximum-value-in-a-list-of-tuples-in-python and
-    # app.tests.arrivals
-    def adjustInterval(self):
-        intervals = []
-        for veh in self._vehicles:
-            intervals.append(veh.arrivalInterval)
-
-        min_interval = min(intervals, key=itemgetter(0))[0]
-        max_interval = max(intervals, key=itemgetter(1))[1]
-        self.setArrivalInterval((min_interval, max_interval))
-        # self._arrivalInterval = min_interval, max_interval
-

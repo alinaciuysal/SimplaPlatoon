@@ -154,7 +154,6 @@ class PlatoonManager(traci.StepListener):
                 _pvehicle.vTypeParameters[typeID][tc.VAR_EMERGENCY_DECEL] = traci.vehicletype.getEmergencyDecel(
                     typeID)
 
-
     def step(self, t=0):
         '''step(int)
 
@@ -287,15 +286,10 @@ class PlatoonManager(traci.StepListener):
                 # remove empty platoons
                 self._platoons.pop(pltn.getID())
 
-        # Re-add removed cars (both normal & platoon) into the system
+        # Re-add removed platooning cars into the system
         # Returns a list of ids of arrived vehicles (reached their destination and removed from the road network)
         for ID in traci.simulation.getArrivedIDList():
-            # The only way to distinguish the type of arrived car is to look at its id
-            # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
-            if "platoon" in ID:
-                self._addPlatoonVehicle()
-            else:
-                self._addNormalVehicle()
+            self._addPlatoonVehicle()
 
         return count
 
@@ -429,13 +423,6 @@ class PlatoonManager(traci.StepListener):
             pltnLeaderRouteIx = traci.vehicle.getRouteIndex(pltnLeader.getID())
             leaderEdge = leader.state.edgeID
 
-            # if leaderArrivalPos is not within arrivalInterval (type tuple = (min, max)) of platoon
-            # and if their journey do not end in the same edge, they won't merge
-            leaderArrivalPos = leader.arrivalPos
-            pltnArrivalInterval = pltnLeader.getPlatoon().getArrivalInterval()
-            leadersArrivalEdge = leader.arrivalEdge
-            pltnLeaderLastEdgeID = pltnLeaderRoute[-1]
-
             # usual simpla logic
             if leaderEdge not in pltnLeaderRoute[pltnLeaderRouteIx:]:
                 continue
@@ -444,44 +431,23 @@ class PlatoonManager(traci.StepListener):
                 # Platoon order is corrupted, don't join own platoon.
                 continue
 
-            if leadersArrivalEdge != pltnLeaderLastEdgeID:
-                continue
-
-            if leaderArrivalPos < pltnArrivalInterval[0] or leaderArrivalPos > pltnArrivalInterval[1]:
-                continue
-
-            # print("pltnLeaderLastEdgeID", pltnLeaderLastEdgeID, "pltnArrivalInterval", pltnArrivalInterval, "leadersArrivalEdge", leadersArrivalEdge, "leaderArrivalPos", leaderArrivalPos)
-
             if leaderDist <= self._maxPlatoonGap:
-                # introducing number of vehicles in platoon logic
-                nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= Config.parameters["changeable"]["maxVehiclesInPlatoon"]
-                # print("number of vehicles in leader's platoon", len(leader.getPlatoon().getVehicles()), " number of vehicles in platoon to join", len(pltn.getVehicles()), "res", nrOfVehiclesCondition)
-                # print("**************")
-                if nrOfVehiclesCondition == True:
-                    # Try to join the platoon in front
-                    if leader.getPlatoon().join(pltn):
-                        toRemove.append(pltnID)
-                        # Debug
-                        if rp.VERBOSITY >= 2:
-                            report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(),
-                                                                                              leader.getPlatoon().getID()) +
-                                   "vehicles:\n%s " % str([(veh.getID(), veh.getPlatoon().getID()) for veh in leader.getPlatoon().getVehicles()]))
-                        self.add_to_pairwise_platoons(leader.getPlatoon(), pltn)
-                        continue
-                    else:
-                        if rp.VERBOSITY >= 3:
-                            report("Merging of platoons '%s' (%s) and '%s' (%s) would not be safe." %
-                                   (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
-                                    leader.getPlatoon().getID(),
-                                    str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
+                # Try to join the platoon in front
+                if leader.getPlatoon().join(pltn):
+                    toRemove.append(pltnID)
+                    # Debug
+                    if rp.VERBOSITY >= 2:
+                        report("Platoon '%s' joined Platoon '%s', which now contains " % (pltn.getID(),
+                                                                                          leader.getPlatoon().getID()) +
+                               "vehicles:\n%s " % str([(veh.getID(), veh.getPlatoon().getID()) for veh in leader.getPlatoon().getVehicles()]))
+                    self.add_to_pairwise_platoons(leader.getPlatoon(), pltn)
+                    continue
                 else:
-                    # Join failed due to number of cars in platoon. Do not change pltn behavior.
                     if rp.VERBOSITY >= 3:
-                        report("Merging of platoons '%s' (%s) and '%s' (%s) failed due to number of vehicles limitation" %
+                        report("Merging of platoons '%s' (%s) and '%s' (%s) would not be safe." %
                                (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
                                 leader.getPlatoon().getID(),
                                 str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
-                    continue
             else:
                 # Join failed due to too large distance. Try to get closer (change to CATCHUP mode).
                 if not pltn.setMode(PlatoonMode.CATCHUP):
@@ -663,36 +629,9 @@ class PlatoonManager(traci.StepListener):
         return False
 
     def applyCarCounter(self):
-
-        """ add normal car into the system """
-        while self.carIndex < Config.parameters["contextual"]["totalCarCounter"] - Config.parameters["contextual"]["platoonCarCounter"]:
-            self._addNormalVehicle()
-
         """ add platooning car into the system """
         while len(self._connectedVehicles) < Config.parameters["contextual"]["platoonCarCounter"]:
             self._addPlatoonVehicle()
-
-    def _addNormalVehicle(self):
-        vehID = "normal-car-" + str(self.carIndex)
-        typeID = "normal-car" # must be same with <vType> id in flow.rou.xml if used
-        routeID = "normal-car-route-" + str(self.carIndex)
-        rnd_edge = Config.get_random().choice(Config.edgeIDsForExit)
-        edges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=rnd_edge).edges
-        traci.route.add(routeID, edges)
-
-        # TODO: hard-coded lane numbers, there should be getLaneNumber(edgeID) method in edge,
-        # TODO: but there's no such fcn in current version
-        # see: http://www.sumo.dlr.de/daily/pydoc/traci._edge.html#EdgeDomain-getLaneNumber
-        # laneNumbers = traci.edge.getLaneNumber("12N")
-        laneNumbers = [0, 1, 2, 3]
-
-        # TODO: remove in production
-        # random.seed(0)
-
-        arrivalLane = str(Config.get_random().choice(laneNumbers))
-        traci.vehicle.addFull(vehID=vehID, routeID=routeID, typeID='DEFAULT_VEHTYPE', depart=str(simTime()), departLane='random', departPos='base', departSpeed='0', arrivalLane=arrivalLane, arrivalPos='random')
-
-        self.carIndex += 1
 
     def _addPlatoonVehicle(self):
         '''_addPlatoonVehicle()

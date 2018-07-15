@@ -1,506 +1,506 @@
 {
-    "number_of_non_significant_results": 2, 
-    "number_of_significant_results": 34, 
+    "number_of_non_significant_results": 1, 
+    "number_of_significant_results": 35, 
     "actual_results": [
         {
-            "statistic": 33.1169729413273, 
+            "statistic": -4.492728580790181, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                35.78950258866265
+                34.502574197294706, 
+                34.790866298257704
             ], 
-            "pvalue": 2.4329412817433897e-240, 
+            "pvalue": 7.033994827514986e-06, 
             "x_parameters": [
                 "3.0.json", 
                 "4.0.json"
             ]
         }, 
         {
-            "statistic": 28.08456262802379, 
+            "statistic": -21.631862039699467, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                35.96673417454517
+                34.502574197294706, 
+                35.87752284759905
             ], 
-            "pvalue": 1.8248893734406664e-173, 
+            "pvalue": 1.0650498940773619e-103, 
             "x_parameters": [
                 "3.0.json", 
                 "5.0.json"
             ]
         }, 
         {
-            "statistic": 17.9596689761576, 
+            "statistic": -10.810251074069857, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                36.3447264129145
+                34.502574197294706, 
+                35.197174194014735
             ], 
-            "pvalue": 4.160748065083416e-72, 
+            "pvalue": 3.1116170545607684e-27, 
             "x_parameters": [
                 "3.0.json", 
                 "6.0.json"
             ]
         }, 
         {
-            "statistic": 22.76665236980883, 
+            "statistic": -15.693707024458872, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                36.17325915842367
+                34.502574197294706, 
+                35.524574757824794
             ], 
-            "pvalue": 1.0641701560676749e-114, 
+            "pvalue": 1.7530826296734745e-55, 
             "x_parameters": [
                 "3.0.json", 
                 "7.0.json"
             ]
         }, 
         {
-            "statistic": 25.365962684386293, 
+            "statistic": -45.14629729337486, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                36.066176369397034
+                34.502574197294706, 
+                37.37769792092917
             ], 
-            "pvalue": 6.78876835968659e-142, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "3.0.json", 
                 "8.0.json"
             ]
         }, 
         {
-            "statistic": 12.560814596491994, 
+            "statistic": -4.216930497359666, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                36.54510541178056
+                34.502574197294706, 
+                34.77082309095516
             ], 
-            "pvalue": 3.493736644185438e-36, 
+            "pvalue": 2.477150334902138e-05, 
             "x_parameters": [
                 "3.0.json", 
                 "10.0.json"
             ]
         }, 
         {
-            "statistic": 21.57438728408751, 
+            "statistic": -7.2187496809528815, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                36.21246751919053
+                34.502574197294706, 
+                34.970767163520875
             ], 
-            "pvalue": 3.3358924063944843e-103, 
+            "pvalue": 5.2579962389925e-13, 
             "x_parameters": [
                 "3.0.json", 
                 "15.0.json"
             ]
         }, 
         {
-            "statistic": 28.320424274816705, 
+            "statistic": 26.543386247894034, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.99563957439252, 
-                35.96623784512199
+                34.502574197294706, 
+                32.72774866929536
             ], 
-            "pvalue": 2.3512373339155973e-176, 
+            "pvalue": 4.487577395652813e-155, 
             "x_parameters": [
                 "3.0.json", 
                 "20.0.json"
             ]
         }, 
         {
-            "statistic": -4.768664771291848, 
+            "statistic": -17.222809935575253, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.78950258866265, 
-                35.96673417454517
+                34.790866298257704, 
+                35.87752284759905
             ], 
-            "pvalue": 1.8548223446939008e-06, 
+            "pvalue": 1.914006726982108e-66, 
             "x_parameters": [
                 "4.0.json", 
                 "5.0.json"
             ]
         }, 
         {
-            "statistic": -15.096380530585055, 
+            "statistic": -6.369294750934176, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.78950258866265, 
-                36.3447264129145
+                34.790866298257704, 
+                35.197174194014735
             ], 
-            "pvalue": 1.737726523175653e-51, 
+            "pvalue": 1.9015069912758876e-10, 
             "x_parameters": [
                 "4.0.json", 
                 "6.0.json"
             ]
         }, 
         {
-            "statistic": -10.468142264523454, 
+            "statistic": -11.346173625587701, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.78950258866265, 
-                36.17325915842367
+                34.790866298257704, 
+                35.524574757824794
             ], 
-            "pvalue": 1.2143676303095626e-25, 
+            "pvalue": 7.85100041672531e-30, 
             "x_parameters": [
                 "4.0.json", 
                 "7.0.json"
             ]
         }, 
         {
-            "statistic": -7.443079743577984, 
+            "statistic": -40.9190509227699, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.78950258866265, 
-                36.066176369397034
+                34.790866298257704, 
+                37.37769792092917
             ], 
-            "pvalue": 9.845844505481782e-14, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "4.0.json", 
                 "8.0.json"
             ]
         }, 
         {
-            "statistic": -20.753017928119522, 
+            "statistic": 0.31741308112700795, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.78950258866265, 
-                36.54510541178056
+                34.790866298257704, 
+                34.77082309095516
             ], 
-            "pvalue": 1.2173075828009022e-95, 
+            "pvalue": 0.7509303771066083, 
             "x_parameters": [
                 "4.0.json", 
                 "10.0.json"
             ]
         }, 
         {
-            "statistic": -11.482465452037879, 
+            "statistic": -2.7934885124211775, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.78950258866265, 
-                36.21246751919053
+                34.790866298257704, 
+                34.970767163520875
             ], 
-            "pvalue": 1.6245737741598118e-30, 
+            "pvalue": 0.005214584924347506, 
             "x_parameters": [
                 "4.0.json", 
                 "15.0.json"
             ]
         }, 
         {
-            "statistic": -4.791857125039581, 
+            "statistic": 31.061186420328728, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.78950258866265, 
-                35.96623784512199
+                34.790866298257704, 
+                32.72774866929536
             ], 
-            "pvalue": 1.652729121039055e-06, 
+            "pvalue": 1.6381934541394276e-211, 
             "x_parameters": [
                 "4.0.json", 
                 "20.0.json"
             ]
         }, 
         {
-            "statistic": -10.21821886758843, 
+            "statistic": 10.768297031061431, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.96673417454517, 
-                36.3447264129145
+                35.87752284759905, 
+                35.197174194014735
             ], 
-            "pvalue": 1.648804805635278e-24, 
+            "pvalue": 4.9111630092750894e-27, 
             "x_parameters": [
                 "5.0.json", 
                 "6.0.json"
             ]
         }, 
         {
-            "statistic": -5.600898543221079, 
+            "statistic": 5.5093818015943175, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.96673417454517, 
-                36.17325915842367
+                35.87752284759905, 
+                35.524574757824794
             ], 
-            "pvalue": 2.1331025438156888e-08, 
+            "pvalue": 3.603787545748001e-08, 
             "x_parameters": [
                 "5.0.json", 
                 "7.0.json"
             ]
         }, 
         {
-            "statistic": -2.6600851428439705, 
+            "statistic": -23.963798404232662, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.96673417454517, 
-                36.066176369397034
+                35.87752284759905, 
+                37.37769792092917
             ], 
-            "pvalue": 0.007812239508746661, 
+            "pvalue": 8.585281206649496e-127, 
             "x_parameters": [
                 "5.0.json", 
                 "8.0.json"
             ]
         }, 
         {
-            "statistic": -15.791777935671437, 
+            "statistic": 17.69920060365939, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.96673417454517, 
-                36.54510541178056
+                35.87752284759905, 
+                34.77082309095516
             ], 
-            "pvalue": 3.611670929331253e-56, 
+            "pvalue": 4.577826364994566e-70, 
             "x_parameters": [
                 "5.0.json", 
                 "10.0.json"
             ]
         }, 
         {
-            "statistic": -6.632697601174423, 
+            "statistic": 14.213596860259967, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.96673417454517, 
-                36.21246751919053
+                35.87752284759905, 
+                34.970767163520875
             ], 
-            "pvalue": 3.298055777625924e-11, 
+            "pvalue": 7.785404175837425e-46, 
             "x_parameters": [
                 "5.0.json", 
                 "15.0.json"
             ]
         }, 
         {
-            "statistic": 0.013379882726585695, 
+            "statistic": 47.84379636041217, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.96673417454517, 
-                35.96623784512199
+                35.87752284759905, 
+                32.72774866929536
             ], 
-            "pvalue": 0.9893247198678831, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "5.0.json", 
                 "20.0.json"
             ]
         }, 
         {
-            "statistic": 4.699899432746564, 
+            "statistic": -5.0563566972469465, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.3447264129145, 
-                36.17325915842367
+                35.197174194014735, 
+                35.524574757824794
             ], 
-            "pvalue": 2.6033085525952387e-06, 
+            "pvalue": 4.2758564567040753e-07, 
             "x_parameters": [
                 "6.0.json", 
                 "7.0.json"
             ]
         }, 
         {
-            "statistic": 7.528767361570593, 
+            "statistic": -34.4448529656125, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.3447264129145, 
-                36.066176369397034
+                35.197174194014735, 
+                37.37769792092917
             ], 
-            "pvalue": 5.127254536040299e-14, 
+            "pvalue": 1.642454447870947e-259, 
             "x_parameters": [
                 "6.0.json", 
                 "8.0.json"
             ]
         }, 
         {
-            "statistic": -5.53047560755314, 
+            "statistic": 6.742636596283263, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.3447264129145, 
-                36.54510541178056
+                35.197174194014735, 
+                34.77082309095516
             ], 
-            "pvalue": 3.19458603360797e-08, 
+            "pvalue": 1.557936436830203e-11, 
             "x_parameters": [
                 "6.0.json", 
                 "10.0.json"
             ]
         }, 
         {
-            "statistic": 3.6076896373197966, 
+            "statistic": 3.51100333327716, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.3447264129145, 
-                36.21246751919053
+                35.197174194014735, 
+                34.970767163520875
             ], 
-            "pvalue": 0.00030895361981291605, 
+            "pvalue": 0.00044647967843886147, 
             "x_parameters": [
                 "6.0.json", 
                 "15.0.json"
             ]
         }, 
         {
-            "statistic": 10.31102065324532, 
+            "statistic": 37.13230708461896, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.3447264129145, 
-                35.96623784512199
+                35.197174194014735, 
+                32.72774866929536
             ], 
-            "pvalue": 6.304717987233562e-25, 
+            "pvalue": 3.7553128483158484e-301, 
             "x_parameters": [
                 "6.0.json", 
                 "20.0.json"
             ]
         }, 
         {
-            "statistic": 2.903572338109972, 
+            "statistic": -28.871384092850285, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.17325915842367, 
-                36.066176369397034
+                35.524574757824794, 
+                37.37769792092917
             ], 
-            "pvalue": 0.003689413688742277, 
+            "pvalue": 4.80490783888123e-183, 
             "x_parameters": [
                 "7.0.json", 
                 "8.0.json"
             ]
         }, 
         {
-            "statistic": -10.297356210014316, 
+            "statistic": 11.756467263787984, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.17325915842367, 
-                36.54510541178056
+                35.524574757824794, 
+                34.77082309095516
             ], 
-            "pvalue": 7.267165552743578e-25, 
+            "pvalue": 6.641326946721762e-32, 
             "x_parameters": [
                 "7.0.json", 
                 "10.0.json"
             ]
         }, 
         {
-            "statistic": -1.0730035548817578, 
+            "statistic": 8.474513819639755, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.17325915842367, 
-                36.21246751919053
+                35.524574757824794, 
+                34.970767163520875
             ], 
-            "pvalue": 0.2832698283883664, 
+            "pvalue": 2.3705557347742847e-17, 
             "x_parameters": [
                 "7.0.json", 
                 "15.0.json"
             ]
         }, 
         {
-            "statistic": 5.6582027756283315, 
+            "statistic": 41.531495765703745, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.17325915842367, 
-                35.96623784512199
+                35.524574757824794, 
+                32.72774866929536
             ], 
-            "pvalue": 1.5301602636779358e-08, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "7.0.json", 
                 "20.0.json"
             ]
         }, 
         {
-            "statistic": -13.074419015373957, 
+            "statistic": 41.607746996577184, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.066176369397034, 
-                36.54510541178056
+                37.37769792092917, 
+                34.77082309095516
             ], 
-            "pvalue": 4.6516974464943095e-39, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "8.0.json", 
                 "10.0.json"
             ]
         }, 
         {
-            "statistic": -3.9479596636548457, 
+            "statistic": 37.65664471699, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.066176369397034, 
-                36.21246751919053
+                37.37769792092917, 
+                34.970767163520875
             ], 
-            "pvalue": 7.88265027307166e-05, 
+            "pvalue": 1.20729998286272e-309, 
             "x_parameters": [
                 "8.0.json", 
                 "15.0.json"
             ]
         }, 
         {
-            "statistic": 2.693667238187319, 
+            "statistic": 70.50333018880262, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.066176369397034, 
-                35.96623784512199
+                37.37769792092917, 
+                32.72774866929536
             ], 
-            "pvalue": 0.0070672094020182335, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "8.0.json", 
                 "20.0.json"
             ]
         }, 
         {
-            "statistic": 9.166163117421924, 
+            "statistic": -3.1316691071039493, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.54510541178056, 
-                36.21246751919053
+                34.77082309095516, 
+                34.970767163520875
             ], 
-            "pvalue": 4.9120797446446706e-20, 
+            "pvalue": 0.0017383056144287172, 
             "x_parameters": [
                 "10.0.json", 
                 "15.0.json"
             ]
         }, 
         {
-            "statistic": 15.930459453633468, 
+            "statistic": 31.01024107515195, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.54510541178056, 
-                35.96623784512199
+                34.77082309095516, 
+                32.72774866929536
             ], 
-            "pvalue": 3.971122624927675e-57, 
+            "pvalue": 7.923332909590932e-211, 
             "x_parameters": [
                 "10.0.json", 
                 "20.0.json"
             ]
         }, 
         {
-            "statistic": 6.697499746356391, 
+            "statistic": 33.434350269675754, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.21246751919053, 
-                35.96623784512199
+                34.970767163520875, 
+                32.72774866929536
             ], 
-            "pvalue": 2.1214825574186453e-11, 
+            "pvalue": 1.1329423413293509e-244, 
             "x_parameters": [
                 "15.0.json", 
                 "20.0.json"

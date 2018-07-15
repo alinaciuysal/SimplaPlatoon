@@ -23,16 +23,10 @@ defaultParameters = deepcopy(PlatoonConfig.parameters)
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
-    # catchupDistance=[100.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 1000.0],
-    # maxPlatoonGap=[25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0],
-    # platoonSplitTime=[3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 15.0, 20.0]
-    # joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0],
-    # maxVehiclesInPlatoon=[3, 5, 10, 15, 20, 25, 30, 50]
+    catchupDistance=[100.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 1000.0],
+    maxPlatoonGap=[25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0],
+    platoonSplitTime=[3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 15.0, 20.0]
 )
-
-# to be used after reverting back to own logic
-# maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50],
-# joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0],
 
 def flush_results(variable_name, value, results):
     current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -52,22 +46,11 @@ def make_sure_path_exists(path):
         if exception.errno != errno.EEXIST:
             raise
 
-def changeValueInXML(attribute, newValue):
-    global root
-    if root is not None:
-        tags = [elem.tag for elem in root.iter()]
-        if attribute in tags:
-            foundElement = root.find(attribute)
-            # foundElement.attrib is a dict: {'value': exact value in xml}, and value must be string
-            foundElement.attrib["value"] = str(newValue)
-            xml_tree.write(simpla_cfg_xml)
-
-
 def changeVariable(variable_name, value):
     # temporarily change a variable to perform an experiment and revert it back
     # these parameters should be loaded/changed within different files, we need to distinguish them based on their names
 
-    # there must be a better way instead of this
+    # there might be a better way instead of this if/else statements
     if variable_name == "maxVehiclesInPlatoon":
         PlatoonConfig.parameters["changeable"]["maxVehiclesInPlatoon"] = value
     elif variable_name == "catchupDistance":
