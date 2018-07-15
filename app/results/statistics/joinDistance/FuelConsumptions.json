@@ -1,56 +1,56 @@
 {
-    "number_of_non_significant_results": 0, 
-    "number_of_significant_results": 55, 
+    "number_of_non_significant_results": 1, 
+    "number_of_significant_results": 54, 
     "actual_results": [
         {
-            "statistic": -8.01387582286094, 
+            "statistic": -9.417713364241134, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                7.852282474338914
+                7.860634761582692, 
+                7.984776393903263
             ], 
-            "pvalue": 1.1140312077298065e-15, 
+            "pvalue": 4.6577749184297954e-21, 
             "x_parameters": [
                 "10.0.json", 
                 "25.0.json"
             ]
         }, 
         {
-            "statistic": -23.038858896922168, 
+            "statistic": -11.48248962225471, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                7.982757455070835
+                7.860634761582692, 
+                8.01445423045741
             ], 
-            "pvalue": 2.2155578008064003e-117, 
+            "pvalue": 1.652440525609481e-30, 
             "x_parameters": [
                 "10.0.json", 
                 "50.0.json"
             ]
         }, 
         {
-            "statistic": -54.56770567668059, 
+            "statistic": -25.56051027680693, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                8.276840347322667
+                7.860634761582692, 
+                8.218132854999064
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 7.366307015799914e-144, 
             "x_parameters": [
                 "10.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": -86.22958979813491, 
+            "statistic": -50.03232149975116, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                8.607700876216757
+                7.860634761582692, 
+                8.60014942383359
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -59,12 +59,12 @@
             ]
         }, 
         {
-            "statistic": -92.83291444762034, 
+            "statistic": -51.233206423111184, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                8.689923162607894
+                7.860634761582692, 
+                8.634208152155288
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -73,12 +73,12 @@
             ]
         }, 
         {
-            "statistic": -99.75748043455597, 
+            "statistic": -62.37087916401061, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                8.78249060052539
+                7.860634761582692, 
+                8.820070340425433
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -87,12 +87,12 @@
             ]
         }, 
         {
-            "statistic": -119.93801440596819, 
+            "statistic": -74.56580916171336, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                9.00023794952967
+                7.860634761582692, 
+                9.037039838355206
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -101,12 +101,12 @@
             ]
         }, 
         {
-            "statistic": -121.91579220732174, 
+            "statistic": -53.74873157730105, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                9.047351132624852
+                7.860634761582692, 
+                8.731569433948847
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -115,12 +115,12 @@
             ]
         }, 
         {
-            "statistic": -135.61569610056534, 
+            "statistic": -51.47296372582637, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                9.204914225060083
+                7.860634761582692, 
+                8.729013919850829
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -129,54 +129,54 @@
             ]
         }, 
         {
-            "statistic": -139.87524136134516, 
+            "statistic": -23.603223774578826, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.785143177833522, 
-                9.31117206947317
+                7.860634761582692, 
+                8.287483049707616
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 5.798046372427157e-123, 
             "x_parameters": [
                 "10.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -14.863520149203676, 
+            "statistic": -2.158492858624252, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                7.982757455070835
+                7.984776393903263, 
+                8.01445423045741
             ], 
-            "pvalue": 5.837334695378234e-50, 
+            "pvalue": 0.030890732616561337, 
             "x_parameters": [
                 "25.0.json", 
                 "50.0.json"
             ]
         }, 
         {
-            "statistic": -46.13710779285882, 
+            "statistic": -16.29001763782581, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                8.276840347322667
+                7.984776393903263, 
+                8.218132854999064
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 1.2734843566467574e-59, 
             "x_parameters": [
                 "25.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": -77.71728273853002, 
+            "statistic": -40.74858110831693, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                8.607700876216757
+                7.984776393903263, 
+                8.60014942383359
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -185,12 +185,12 @@
             ]
         }, 
         {
-            "statistic": -84.41001288441947, 
+            "statistic": -42.13422774548873, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                8.689923162607894
+                7.984776393903263, 
+                8.634208152155288
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -199,12 +199,12 @@
             ]
         }, 
         {
-            "statistic": -91.46147838490245, 
+            "statistic": -53.232575947586355, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                8.78249060052539
+                7.984776393903263, 
+                8.820070340425433
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -213,12 +213,12 @@
             ]
         }, 
         {
-            "statistic": -111.43513555883591, 
+            "statistic": -65.44809811031769, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                9.00023794952967
+                7.984776393903263, 
+                9.037039838355206
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -227,12 +227,12 @@
             ]
         }, 
         {
-            "statistic": -113.59916354697911, 
+            "statistic": -45.26808549379273, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                9.047351132624852
+                7.984776393903263, 
+                8.731569433948847
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -241,12 +241,12 @@
             ]
         }, 
         {
-            "statistic": -127.19648712208752, 
+            "statistic": -43.3894693170665, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                9.204914225060083
+                7.984776393903263, 
+                8.729013919850829
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -255,40 +255,40 @@
             ]
         }, 
         {
-            "statistic": -131.80590666567272, 
+            "statistic": -16.49844544736562, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.852282474338914, 
-                9.31117206947317
+                7.984776393903263, 
+                8.287483049707616
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 4.212338155644097e-61, 
             "x_parameters": [
                 "25.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -31.338311333163052, 
+            "statistic": -14.024995323757675, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                8.276840347322667
+                8.01445423045741, 
+                8.218132854999064
             ], 
-            "pvalue": 2.349087982801053e-215, 
+            "pvalue": 1.1524995769515548e-44, 
             "x_parameters": [
                 "50.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": -63.17283563841824, 
+            "statistic": -38.308011386290985, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                8.607700876216757
+                8.01445423045741, 
+                8.60014942383359
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -297,12 +297,12 @@
             ]
         }, 
         {
-            "statistic": -70.06833982319488, 
+            "statistic": -39.73531234784361, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                8.689923162607894
+                8.01445423045741, 
+                8.634208152155288
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -311,12 +311,12 @@
             ]
         }, 
         {
-            "statistic": -77.37737850568915, 
+            "statistic": -50.757559955997785, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                8.78249060052539
+                8.01445423045741, 
+                8.820070340425433
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -325,12 +325,12 @@
             ]
         }, 
         {
-            "statistic": -97.23172568079464, 
+            "statistic": -62.91293421236832, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                9.00023794952967
+                8.01445423045741, 
+                9.037039838355206
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -339,12 +339,12 @@
             ]
         }, 
         {
-            "statistic": -99.6843388845033, 
+            "statistic": -43.02130347983344, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                9.047351132624852
+                8.01445423045741, 
+                8.731569433948847
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -353,12 +353,12 @@
             ]
         }, 
         {
-            "statistic": -113.24546479407888, 
+            "statistic": -41.261778707308906, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                9.204914225060083
+                8.01445423045741, 
+                8.729013919850829
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -367,68 +367,68 @@
             ]
         }, 
         {
-            "statistic": -118.3941640957305, 
+            "statistic": -14.756607808054035, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                7.982757455070835, 
-                9.31117206947317
+                8.01445423045741, 
+                8.287483049707616
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 2.994143304282188e-49, 
             "x_parameters": [
                 "50.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -32.21434677751203, 
+            "statistic": -24.16463670468219, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.276840347322667, 
-                8.607700876216757
+                8.218132854999064, 
+                8.60014942383359
             ], 
-            "pvalue": 1.9648777685452126e-227, 
+            "pvalue": 8.05486656508221e-129, 
             "x_parameters": [
                 "100.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": -39.47923721134704, 
+            "statistic": -25.832071939798908, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.276840347322667, 
-                8.689923162607894
+                8.218132854999064, 
+                8.634208152155288
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 6.831242577494536e-147, 
             "x_parameters": [
                 "100.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -47.2665265775205, 
+            "statistic": -36.763671773118865, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.276840347322667, 
-                8.78249060052539
+                8.218132854999064, 
+                8.820070340425433
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 7.308929103684294e-295, 
             "x_parameters": [
                 "100.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -66.8418014936996, 
+            "statistic": -48.90790122017553, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.276840347322667, 
-                9.00023794952967
+                8.218132854999064, 
+                9.037039838355206
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -437,336 +437,336 @@
             ]
         }, 
         {
-            "statistic": -69.85142892238386, 
+            "statistic": -29.943458944593985, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.276840347322667, 
-                9.047351132624852
+                8.218132854999064, 
+                8.731569433948847
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 1.4950843667905851e-196, 
             "x_parameters": [
                 "100.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -83.31287922975912, 
+            "statistic": -28.736207082367606, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.276840347322667, 
-                9.204914225060083
+                8.218132854999064, 
+                8.729013919850829
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 3.317410809257893e-181, 
             "x_parameters": [
                 "100.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -89.51441251970431, 
+            "statistic": -3.662744992722708, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.276840347322667, 
-                9.31117206947317
+                8.218132854999064, 
+                8.287483049707616
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 0.00024960005149700056, 
             "x_parameters": [
                 "100.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -7.528389196269126, 
+            "statistic": -2.0271418426654306, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.607700876216757, 
-                8.689923162607894
+                8.60014942383359, 
+                8.634208152155288
             ], 
-            "pvalue": 5.145893698487159e-14, 
+            "pvalue": 0.04264921372362516, 
             "x_parameters": [
                 "200.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -15.681063047462313, 
+            "statistic": -12.893481665178792, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.607700876216757, 
-                8.78249060052539
+                8.60014942383359, 
+                8.820070340425433
             ], 
-            "pvalue": 2.1041639264225745e-55, 
+            "pvalue": 5.070567068302391e-38, 
             "x_parameters": [
                 "200.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -34.841808649968186, 
+            "statistic": -25.090038149002755, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.607700876216757, 
-                9.00023794952967
+                8.60014942383359, 
+                9.037039838355206
             ], 
-            "pvalue": 1.2154021903324536e-265, 
+            "pvalue": 1.0467830663137037e-138, 
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -38.34252259101932, 
+            "statistic": -7.382825805670673, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.607700876216757, 
-                9.047351132624852
+                8.60014942383359, 
+                8.731569433948847
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 1.5554970164000545e-13, 
             "x_parameters": [
                 "200.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -51.612049068192945, 
+            "statistic": -6.999778988330497, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.607700876216757, 
-                9.204914225060083
+                8.60014942383359, 
+                8.729013919850829
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 2.57173011741651e-12, 
             "x_parameters": [
                 "200.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -58.761986035863224, 
+            "statistic": 16.011104588435963, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.607700876216757, 
-                9.31117206947317
+                8.60014942383359, 
+                8.287483049707616
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 1.1681413388888617e-57, 
             "x_parameters": [
                 "200.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -8.174194587606797, 
+            "statistic": -10.722822174841712, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.689923162607894, 
-                8.78249060052539
+                8.634208152155288, 
+                8.820070340425433
             ], 
-            "pvalue": 2.9855970271907133e-16, 
+            "pvalue": 8.087591269496275e-27, 
             "x_parameters": [
                 "250.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -27.1201862475184, 
+            "statistic": -22.77955995832476, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.689923162607894, 
-                9.00023794952967
+                8.634208152155288, 
+                9.037039838355206
             ], 
-            "pvalue": 7.517489913513751e-162, 
+            "pvalue": 1.0228227061637555e-114, 
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -30.70870356802646, 
+            "statistic": -5.389210916061568, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.689923162607894, 
-                9.047351132624852
+                8.634208152155288, 
+                8.731569433948847
             ], 
-            "pvalue": 6.885482000922502e-207, 
+            "pvalue": 7.084559520250568e-08, 
             "x_parameters": [
                 "250.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -43.85674589219995, 
+            "statistic": -5.078971032666496, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.689923162607894, 
-                9.204914225060083
+                8.634208152155288, 
+                8.729013919850829
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 3.798241872606807e-07, 
             "x_parameters": [
                 "250.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -51.185278753909046, 
+            "statistic": 17.537827916874424, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.689923162607894, 
-                9.31117206947317
+                8.634208152155288, 
+                8.287483049707616
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 8.357727875685146e-69, 
             "x_parameters": [
                 "250.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -18.679400224918627, 
+            "statistic": -12.1031218580229, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.78249060052539, 
-                9.00023794952967
+                8.820070340425433, 
+                9.037039838355206
             ], 
-            "pvalue": 7.755439548931408e-78, 
+            "pvalue": 1.0445047027830071e-33, 
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -22.349950457391593, 
+            "statistic": 4.835131454821302, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.78249060052539, 
-                9.047351132624852
+                8.820070340425433, 
+                8.731569433948847
             ], 
-            "pvalue": 1.374513607256002e-110, 
+            "pvalue": 1.3315368124419297e-06, 
             "x_parameters": [
                 "300.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -35.34318774035026, 
+            "statistic": 4.818681762233805, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.78249060052539, 
-                9.204914225060083
+                8.820070340425433, 
+                8.729013919850829
             ], 
-            "pvalue": 2.846459437918515e-273, 
+            "pvalue": 1.4461472816815467e-06, 
             "x_parameters": [
                 "300.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -42.84277478195013, 
+            "statistic": 26.645848894930563, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                8.78249060052539, 
-                9.31117206947317
+                8.820070340425433, 
+                8.287483049707616
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 3.8667429169142893e-156, 
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -3.938148217241901, 
+            "statistic": 16.39136265936865, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                9.00023794952967, 
-                9.047351132624852
+                9.037039838355206, 
+                8.731569433948847
             ], 
-            "pvalue": 8.212415394179889e-05, 
+            "pvalue": 2.4075956327934916e-60, 
             "x_parameters": [
                 "400.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -16.966182754342142, 
+            "statistic": 16.027465476349743, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                9.00023794952967, 
-                9.204914225060083
+                9.037039838355206, 
+                8.729013919850829
             ], 
-            "pvalue": 1.5245488479148044e-64, 
+            "pvalue": 8.916694963118641e-58, 
             "x_parameters": [
                 "400.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -24.978073266061667, 
+            "statistic": 36.93780120084564, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                9.00023794952967, 
-                9.31117206947317
+                9.037039838355206, 
+                8.287483049707616
             ], 
-            "pvalue": 1.2901614831212547e-137, 
+            "pvalue": 1.2486795146563712e-297, 
             "x_parameters": [
                 "400.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -12.861368561339166, 
+            "statistic": 0.1305782767879056, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                9.047351132624852, 
-                9.204914225060083
+                8.731569433948847, 
+                8.729013919850829
             ], 
-            "pvalue": 7.529896524441058e-38, 
+            "pvalue": 0.8961090544612244, 
             "x_parameters": [
                 "500.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -20.888948212485897, 
+            "statistic": 21.530211789936264, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                9.047351132624852, 
-                9.31117206947317
+                8.731569433948847, 
+                8.287483049707616
             ], 
-            "pvalue": 7.432164955185961e-97, 
+            "pvalue": 1.0633101950212204e-102, 
             "x_parameters": [
                 "500.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -8.350372050078883, 
+            "statistic": 20.87218655041503, 
             "x_label": "joinDistance", 
             "y_parameter": "FuelConsumptions", 
             "means_of_x_parameters": [
-                9.204914225060083, 
-                9.31117206947317
+                8.729013919850829, 
+                8.287483049707616
             ], 
-            "pvalue": 6.821990529523426e-17, 
+            "pvalue": 1.213870643490883e-96, 
             "x_parameters": [
                 "600.0.json", 
                 "1000.0.json"

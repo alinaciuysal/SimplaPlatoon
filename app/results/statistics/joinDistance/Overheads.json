@@ -1,772 +1,772 @@
 {
-    "number_of_non_significant_results": 9, 
-    "number_of_significant_results": 46, 
+    "number_of_non_significant_results": 11, 
+    "number_of_significant_results": 44, 
     "actual_results": [
         {
-            "statistic": -0.4037443075387752, 
+            "statistic": -0.26311594007702443, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.4717518379991776
+                1.5901998252101543, 
+                1.5955161598477419
             ], 
-            "pvalue": 0.6864298387535992, 
+            "pvalue": 0.7925042803930751, 
             "x_parameters": [
                 "10.0.json", 
                 "25.0.json"
             ]
         }, 
         {
-            "statistic": -1.5665297277531511, 
+            "statistic": -0.7228850047627019, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.4829539454874099
+                1.5901998252101543, 
+                1.6049370491477555
             ], 
-            "pvalue": 0.11733166079408197, 
+            "pvalue": 0.4698852871832123, 
             "x_parameters": [
                 "10.0.json", 
                 "50.0.json"
             ]
         }, 
         {
-            "statistic": -1.8406123811665813, 
+            "statistic": -2.278018368702855, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.4855206264117646
+                1.5901998252101543, 
+                1.6361871495206621
             ], 
-            "pvalue": 0.0657785341758952, 
+            "pvalue": 0.022896343024919615, 
             "x_parameters": [
                 "10.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": -3.9541441533097896, 
+            "statistic": -3.050788469971691, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.5074069580886809
+                1.5901998252101543, 
+                1.655481879791473
             ], 
-            "pvalue": 7.865689687936678e-05, 
+            "pvalue": 0.002331903799389235, 
             "x_parameters": [
                 "10.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": -6.1637428503945815, 
+            "statistic": -4.042210960058308, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.5331664387100294
+                1.5901998252101543, 
+                1.6804719273031654
             ], 
-            "pvalue": 8.148204977100212e-10, 
+            "pvalue": 5.641796842618229e-05, 
             "x_parameters": [
                 "10.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -8.632280114137858, 
+            "statistic": -4.509906875284267, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.5597037278682704
+                1.5901998252101543, 
+                1.6882110403882913
             ], 
-            "pvalue": 1.0148102822061242e-17, 
+            "pvalue": 7.133040254417044e-06, 
             "x_parameters": [
                 "10.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -8.178187138203988, 
+            "statistic": -5.546357335401277, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.5546311004994073
+                1.5901998252101543, 
+                1.7129993565725425
             ], 
-            "pvalue": 4.376783359421007e-16, 
+            "pvalue": 3.6200028739573585e-08, 
             "x_parameters": [
                 "10.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -12.045636390257279, 
+            "statistic": -11.688209897303878, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.5969888622975965
+                1.5901998252101543, 
+                1.8416746976725993
             ], 
-            "pvalue": 1.454169870470871e-32, 
+            "pvalue": 7.168451680088819e-30, 
             "x_parameters": [
                 "10.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -12.307842962948737, 
+            "statistic": -10.232313293116205, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.5943911517625229
+                1.5901998252101543, 
+                1.8411965269735024
             ], 
-            "pvalue": 6.559682162519198e-34, 
+            "pvalue": 1.9496538285400017e-23, 
             "x_parameters": [
                 "10.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -13.371206738000772, 
+            "statistic": -14.626129150548067, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4678918067923266, 
-                1.6221005255789915
+                1.5901998252101543, 
+                2.007612034749627
             ], 
-            "pvalue": 2.124595895382335e-39, 
+            "pvalue": 5.612085952393637e-43, 
             "x_parameters": [
                 "10.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -1.1305301741767193, 
+            "statistic": -0.4588606655919968, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.4829539454874099
+                1.5955161598477419, 
+                1.6049370491477555
             ], 
-            "pvalue": 0.258344314945725, 
+            "pvalue": 0.6464137144003865, 
             "x_parameters": [
                 "25.0.json", 
                 "50.0.json"
             ]
         }, 
         {
-            "statistic": -1.394653581898579, 
+            "statistic": -2.000225031523895, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.4855206264117646
+                1.5955161598477419, 
+                1.6361871495206621
             ], 
-            "pvalue": 0.1632248794860775, 
+            "pvalue": 0.04569540658146843, 
             "x_parameters": [
                 "25.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": -3.469649125682758, 
+            "statistic": -2.784440044519328, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.5074069580886809
+                1.5955161598477419, 
+                1.655481879791473
             ], 
-            "pvalue": 0.0005286888809115255, 
+            "pvalue": 0.00544501927129319, 
             "x_parameters": [
                 "25.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": -5.656424215342152, 
+            "statistic": -3.7818249936967354, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.5331664387100294
+                1.5955161598477419, 
+                1.6804719273031654
             ], 
-            "pvalue": 1.7011968505224683e-08, 
+            "pvalue": 0.00016352469422323455, 
             "x_parameters": [
                 "25.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -8.067382781346236, 
+            "statistic": -4.2388540290890875, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.5597037278682704
+                1.5955161598477419, 
+                1.6882110403882913
             ], 
-            "pvalue": 1.0621082499128148e-15, 
+            "pvalue": 2.421349496545305e-05, 
             "x_parameters": [
                 "25.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -7.62235743503179, 
+            "statistic": -5.274554822639511, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.5546311004994073
+                1.5955161598477419, 
+                1.7129993565725425
             ], 
-            "pvalue": 3.395097534872642e-14, 
+            "pvalue": 1.588671694667006e-07, 
             "x_parameters": [
                 "25.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -11.404228102232137, 
+            "statistic": -11.368804665694523, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.5969888622975965
+                1.5955161598477419, 
+                1.8416746976725993
             ], 
-            "pvalue": 1.86069611227074e-29, 
+            "pvalue": 1.947957878897022e-28, 
             "x_parameters": [
                 "25.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -11.620991631819422, 
+            "statistic": -9.966779730376995, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.5943911517625229
+                1.5955161598477419, 
+                1.8411965269735024
             ], 
-            "pvalue": 1.6363252304799856e-30, 
+            "pvalue": 2.229933397965634e-22, 
             "x_parameters": [
                 "25.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -12.764227420089393, 
+            "statistic": -14.387762734585715, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4717518379991776, 
-                1.6221005255789915
+                1.5955161598477419, 
+                2.007612034749627
             ], 
-            "pvalue": 3.3509274640276e-36, 
+            "pvalue": 7.825153070818794e-42, 
             "x_parameters": [
                 "25.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -0.258601672723231, 
+            "statistic": -1.5233948074684462, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.4855206264117646
+                1.6049370491477555, 
+                1.6361871495206621
             ], 
-            "pvalue": 0.7959605915409677, 
+            "pvalue": 0.1279174274373601, 
             "x_parameters": [
                 "50.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": -2.3678926964817935, 
+            "statistic": -2.3285815046672114, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.5074069580886809
+                1.6049370491477555, 
+                1.655481879791473
             ], 
-            "pvalue": 0.017954537021583655, 
+            "pvalue": 0.020043865215627482, 
             "x_parameters": [
                 "50.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": -4.604362363068941, 
+            "statistic": -3.3381878810378516, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.5331664387100294
+                1.6049370491477555, 
+                1.6804719273031654
             ], 
-            "pvalue": 4.320613759436487e-06, 
+            "pvalue": 0.0008695909627051848, 
             "x_parameters": [
                 "50.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -7.009185932095043, 
+            "statistic": -3.7790637628201624, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.5597037278682704
+                1.6049370491477555, 
+                1.6882110403882913
             ], 
-            "pvalue": 3.002783198260015e-12, 
+            "pvalue": 0.0001652294713009621, 
             "x_parameters": [
                 "50.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -6.563221330314264, 
+            "statistic": -4.815986897838931, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.5546311004994073
+                1.6049370491477555, 
+                1.7129993565725425
             ], 
-            "pvalue": 6.256206175266669e-11, 
+            "pvalue": 1.658807851198137e-06, 
             "x_parameters": [
                 "50.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -10.339539239687154, 
+            "statistic": -10.848842511093343, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.5969888622975965
+                1.6049370491477555, 
+                1.8416746976725993
             ], 
-            "pvalue": 1.3303976191898518e-24, 
+            "pvalue": 3.6680452842640785e-26, 
             "x_parameters": [
                 "50.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -10.510411354642507, 
+            "statistic": -9.527044486775612, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.5943911517625229
+                1.6049370491477555, 
+                1.8411965269735024
             ], 
-            "pvalue": 2.311516258343228e-25, 
+            "pvalue": 1.144645798143669e-20, 
             "x_parameters": [
                 "50.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -11.769045836058577, 
+            "statistic": -13.996178079676678, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4829539454874099, 
-                1.6221005255789915
+                1.6049370491477555, 
+                2.007612034749627
             ], 
-            "pvalue": 3.600527224742553e-31, 
+            "pvalue": 5.9909849480703034e-40, 
             "x_parameters": [
                 "50.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -2.1264950274669765, 
+            "statistic": -0.8966267860384082, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4855206264117646, 
-                1.5074069580886809
+                1.6361871495206621, 
+                1.655481879791473
             ], 
-            "pvalue": 0.03354589127437183, 
+            "pvalue": 0.3700983706012776, 
             "x_parameters": [
                 "100.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": -4.382205759029424, 
+            "statistic": -1.972758027242547, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4855206264117646, 
-                1.5331664387100294
+                1.6361871495206621, 
+                1.6804719273031654
             ], 
-            "pvalue": 1.2179157381105447e-05, 
+            "pvalue": 0.048760982232714384, 
             "x_parameters": [
                 "100.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -6.795087948433333, 
+            "statistic": -2.380803351478126, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4855206264117646, 
-                1.5597037278682704
+                1.6361871495206621, 
+                1.6882110403882913
             ], 
-            "pvalue": 1.322530342086788e-11, 
+            "pvalue": 0.017434974651320143, 
             "x_parameters": [
                 "100.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -6.347266425185136, 
+            "statistic": -3.4510911945381975, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4855206264117646, 
-                1.5546311004994073
+                1.6361871495206621, 
+                1.7129993565725425
             ], 
-            "pvalue": 2.551058618906499e-10, 
+            "pvalue": 0.0005788642642381833, 
             "x_parameters": [
                 "100.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -10.136674346176314, 
+            "statistic": -9.497733296426986, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4855206264117646, 
-                1.5969888622975965
+                1.6361871495206621, 
+                1.8416746976725993
             ], 
-            "pvalue": 1.0046269956097346e-23, 
+            "pvalue": 1.2615046733589618e-20, 
             "x_parameters": [
                 "100.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -10.301164158555745, 
+            "statistic": -8.321779821452377, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4855206264117646, 
-                1.5943911517625229
+                1.6361871495206621, 
+                1.8411965269735024
             ], 
-            "pvalue": 1.9205243712061195e-24, 
+            "pvalue": 2.828919761750117e-16, 
             "x_parameters": [
                 "100.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -11.581633281107454, 
+            "statistic": -12.973499029584598, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.4855206264117646, 
-                1.6221005255789915
+                1.6361871495206621, 
+                2.007612034749627
             ], 
-            "pvalue": 2.937046844317704e-30, 
+            "pvalue": 5.336733154732731e-35, 
             "x_parameters": [
                 "100.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -2.291678776285416, 
+            "statistic": -1.0614572315283017, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5074069580886809, 
-                1.5331664387100294
+                1.655481879791473, 
+                1.6804719273031654
             ], 
-            "pvalue": 0.021996618672957807, 
+            "pvalue": 0.28869672447371586, 
             "x_parameters": [
                 "200.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -4.6347637938825805, 
+            "statistic": -1.4245642861940806, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5074069580886809, 
-                1.5597037278682704
+                1.655481879791473, 
+                1.6882110403882913
             ], 
-            "pvalue": 3.7369784061686584e-06, 
+            "pvalue": 0.15454456617046772, 
             "x_parameters": [
                 "200.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -4.1956161075961775, 
+            "statistic": -2.4620828767392666, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5074069580886809, 
-                1.5546311004994073
+                1.655481879791473, 
+                1.7129993565725425
             ], 
-            "pvalue": 2.8050622609895478e-05, 
+            "pvalue": 0.013956276727719544, 
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -7.885458237675912, 
+            "statistic": -8.177274773222697, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5074069580886809, 
-                1.5969888622975965
+                1.655481879791473, 
+                1.8416746976725993
             ], 
-            "pvalue": 4.473886184666204e-15, 
+            "pvalue": 7.630773422492238e-16, 
             "x_parameters": [
                 "200.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -7.946047078342179, 
+            "statistic": -7.24400003913466, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5074069580886809, 
-                1.5943911517625229
+                1.655481879791473, 
+                1.8411965269735024
             ], 
-            "pvalue": 2.7672165112733227e-15, 
+            "pvalue": 8.362779115062928e-13, 
             "x_parameters": [
                 "200.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -9.45317573087125, 
+            "statistic": -11.938268769237801, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5074069580886809, 
-                1.6221005255789915
+                1.655481879791473, 
+                2.007612034749627
             ], 
-            "pvalue": 7.051355401596604e-21, 
+            "pvalue": 1.81719766932517e-30, 
             "x_parameters": [
                 "200.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -2.24600141406292, 
+            "statistic": -0.32453009555683776, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5331664387100294, 
-                1.5597037278682704
+                1.6804719273031654, 
+                1.6882110403882913
             ], 
-            "pvalue": 0.024781051815232456, 
+            "pvalue": 0.7455942100211044, 
             "x_parameters": [
                 "250.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -1.820796022534749, 
+            "statistic": -1.3430168982301918, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5331664387100294, 
-                1.5546311004994073
+                1.6804719273031654, 
+                1.7129993565725425
             ], 
-            "pvalue": 0.06874298887721826, 
+            "pvalue": 0.1795271899325049, 
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -5.368318611851796, 
+            "statistic": -6.816358786651245, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5331664387100294, 
-                1.5969888622975965
+                1.6804719273031654, 
+                1.8416746976725993
             ], 
-            "pvalue": 8.600106356210993e-08, 
+            "pvalue": 1.511016243434059e-11, 
             "x_parameters": [
                 "250.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -5.326574732618595, 
+            "statistic": -6.083083893517874, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5331664387100294, 
-                1.5943911517625229
+                1.6804719273031654, 
+                1.8411965269735024
             ], 
-            "pvalue": 1.080634538547668e-07, 
+            "pvalue": 1.6299684395609404e-09, 
             "x_parameters": [
                 "250.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -7.04213091942858, 
+            "statistic": -10.839523063894676, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5331664387100294, 
-                1.6221005255789915
+                1.6804719273031654, 
+                2.007612034749627
             ], 
-            "pvalue": 2.3916582959542396e-12, 
+            "pvalue": 8.580978451280575e-26, 
             "x_parameters": [
                 "250.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 0.42880212363298914, 
+            "statistic": -1.0473510788040228, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5597037278682704, 
-                1.5546311004994073
+                1.6882110403882913, 
+                1.7129993565725425
             ], 
-            "pvalue": 0.6681002361424069, 
+            "pvalue": 0.29515590817655635, 
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -3.1254511485146454, 
+            "statistic": -6.648134197429376, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5597037278682704, 
-                1.5969888622975965
+                1.6882110403882913, 
+                1.8416746976725993
             ], 
-            "pvalue": 0.0017938287615393712, 
+            "pvalue": 4.6073558433941387e-11, 
             "x_parameters": [
                 "300.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -3.006781060761555, 
+            "statistic": -5.903022587972669, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5597037278682704, 
-                1.5943911517625229
+                1.6882110403882913, 
+                1.8411965269735024
             ], 
-            "pvalue": 0.002664283084774229, 
+            "pvalue": 4.793557390389436e-09, 
             "x_parameters": [
                 "300.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -4.925824634687736, 
+            "statistic": -10.740097920293255, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5597037278682704, 
-                1.6221005255789915
+                1.6882110403882913, 
+                2.007612034749627
             ], 
-            "pvalue": 8.911523011648031e-07, 
+            "pvalue": 2.4900635961871726e-25, 
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -3.558565802508679, 
+            "statistic": -5.482924564506387, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5546311004994073, 
-                1.5969888622975965
+                1.7129993565725425, 
+                1.8416746976725993
             ], 
-            "pvalue": 0.0003791434546461209, 
+            "pvalue": 5.170089780654983e-08, 
             "x_parameters": [
                 "400.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -3.4546872473143453, 
+            "statistic": -4.881904631440696, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5546311004994073, 
-                1.5943911517625229
+                1.7129993565725425, 
+                1.8411965269735024
             ], 
-            "pvalue": 0.000559231339131658, 
+            "pvalue": 1.2104607383806227e-06, 
             "x_parameters": [
                 "400.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -5.336780026617553, 
+            "statistic": -9.807781113381965, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5546311004994073, 
-                1.6221005255789915
+                1.7129993565725425, 
+                2.007612034749627
             ], 
-            "pvalue": 1.0249649914967951e-07, 
+            "pvalue": 1.3026781963321552e-21, 
             "x_parameters": [
                 "400.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 0.2237181919635301, 
+            "statistic": 0.018580824755162505, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5969888622975965, 
-                1.5943911517625229
+                1.8416746976725993, 
+                1.8411965269735024
             ], 
-            "pvalue": 0.8229934555269093, 
+            "pvalue": 0.9851790886981169, 
             "x_parameters": [
                 "500.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -1.9717472065377275, 
+            "statistic": -5.609632208875386, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5969888622975965, 
-                1.6221005255789915
+                1.8416746976725993, 
+                2.007612034749627
             ], 
-            "pvalue": 0.04874156949990504, 
+            "pvalue": 2.755243342984879e-08, 
             "x_parameters": [
                 "500.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -2.2403594528396575, 
+            "statistic": -5.226508013992461, 
             "x_label": "joinDistance", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.5943911517625229, 
-                1.6221005255789915
+                1.8411965269735024, 
+                2.007612034749627
             ], 
-            "pvalue": 0.025151397336919054, 
+            "pvalue": 2.1260700302848694e-07, 
             "x_parameters": [
                 "600.0.json", 
                 "1000.0.json"

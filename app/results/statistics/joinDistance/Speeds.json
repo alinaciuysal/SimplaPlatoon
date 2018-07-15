@@ -3,40 +3,40 @@
     "number_of_significant_results": 54, 
     "actual_results": [
         {
-            "statistic": 19.743904800454793, 
+            "statistic": 16.04781179148731, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                41.31547417378017
+                41.852433168458155, 
+                41.47564461340538
             ], 
-            "pvalue": 9.471262432533554e-87, 
+            "pvalue": 6.207836119248275e-58, 
             "x_parameters": [
                 "10.0.json", 
                 "25.0.json"
             ]
         }, 
         {
-            "statistic": 34.16661335039145, 
+            "statistic": 28.605205982700387, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                41.085500252209435
+                41.852433168458155, 
+                41.15666991114996
             ], 
-            "pvalue": 1.137530475727633e-255, 
+            "pvalue": 9.32950365040804e-180, 
             "x_parameters": [
                 "10.0.json", 
                 "50.0.json"
             ]
         }, 
         {
-            "statistic": 46.33294693797747, 
+            "statistic": 49.34269658426326, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                40.86605272552067
+                41.852433168458155, 
+                40.596113186258265
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -45,12 +45,12 @@
             ]
         }, 
         {
-            "statistic": 76.2373032996961, 
+            "statistic": 67.163025146782, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                40.29742156466562
+                41.852433168458155, 
+                39.982148990847385
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -59,12 +59,12 @@
             ]
         }, 
         {
-            "statistic": 109.97892678324376, 
+            "statistic": 85.92876588556102, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                39.555024726833025
+                41.852433168458155, 
+                39.3883690133478
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -73,12 +73,12 @@
             ]
         }, 
         {
-            "statistic": 133.05015033474635, 
+            "statistic": 86.73521837624035, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                38.96465001173487
+                41.852433168458155, 
+                39.3143839303816
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -87,12 +87,12 @@
             ]
         }, 
         {
-            "statistic": 133.24597353448632, 
+            "statistic": 100.75930983010697, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                38.942282133467494
+                41.852433168458155, 
+                38.738024757050866
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -101,12 +101,12 @@
             ]
         }, 
         {
-            "statistic": 167.19064449299722, 
+            "statistic": 165.3637085591572, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                38.002316666200805
+                41.852433168458155, 
+                35.94131682733119
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -115,12 +115,12 @@
             ]
         }, 
         {
-            "statistic": 159.7192513653917, 
+            "statistic": 155.13792059757827, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                38.11076302840176
+                41.852433168458155, 
+                35.88408132065223
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -129,12 +129,12 @@
             ]
         }, 
         {
-            "statistic": 170.6640449819462, 
+            "statistic": 188.26297420230173, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.62551921471178, 
-                37.397347414286614
+                41.852433168458155, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -143,40 +143,40 @@
             ]
         }, 
         {
-            "statistic": 14.092300977254649, 
+            "statistic": 12.790545784061278, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                41.085500252209435
+                41.47564461340538, 
+                41.15666991114996
             ], 
-            "pvalue": 4.285489736675563e-45, 
+            "pvalue": 1.8873219037226008e-37, 
             "x_parameters": [
                 "25.0.json", 
                 "50.0.json"
             ]
         }, 
         {
-            "statistic": 26.612915152396884, 
+            "statistic": 33.763720980466985, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                40.86605272552067
+                41.47564461340538, 
+                40.596113186258265
             ], 
-            "pvalue": 5.585245121942209e-156, 
+            "pvalue": 1.7295381797779034e-249, 
             "x_parameters": [
                 "25.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": 56.91286781113792, 
+            "statistic": 52.613810755353335, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                40.29742156466562
+                41.47564461340538, 
+                39.982148990847385
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -185,12 +185,12 @@
             ]
         }, 
         {
-            "statistic": 91.40659531236035, 
+            "statistic": 71.48342830371776, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                39.555024726833025
+                41.47564461340538, 
+                39.3883690133478
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -199,12 +199,12 @@
             ]
         }, 
         {
-            "statistic": 115.19484210764732, 
+            "statistic": 72.58520885926184, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                38.96465001173487
+                41.47564461340538, 
+                39.3143839303816
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -213,12 +213,12 @@
             ]
         }, 
         {
-            "statistic": 115.52259391382167, 
+            "statistic": 87.19668750146803, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                38.942282133467494
+                41.47564461340538, 
+                38.738024757050866
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -227,12 +227,12 @@
             ]
         }, 
         {
-            "statistic": 150.26669678342245, 
+            "statistic": 153.01861722890263, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                38.002316666200805
+                41.47564461340538, 
+                35.94131682733119
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -241,12 +241,12 @@
             ]
         }, 
         {
-            "statistic": 143.21051519994802, 
+            "statistic": 143.87794585157445, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                38.11076302840176
+                41.47564461340538, 
+                35.88408132065223
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -255,12 +255,12 @@
             ]
         }, 
         {
-            "statistic": 156.0656123791258, 
+            "statistic": 178.85982452081325, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.31547417378017, 
-                37.397347414286614
+                41.47564461340538, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -269,26 +269,26 @@
             ]
         }, 
         {
-            "statistic": 12.922091778537242, 
+            "statistic": 20.906419354853963, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                40.86605272552067
+                41.15666991114996, 
+                40.596113186258265
             ], 
-            "pvalue": 3.4066280488543686e-38, 
+            "pvalue": 5.368180026915476e-97, 
             "x_parameters": [
                 "50.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": 43.83660788763202, 
+            "statistic": 40.37842485605034, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                40.29742156466562
+                41.15666991114996, 
+                39.982148990847385
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -297,12 +297,12 @@
             ]
         }, 
         {
-            "statistic": 79.12334970005855, 
+            "statistic": 59.17578846756809, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                39.555024726833025
+                41.15666991114996, 
+                39.3883690133478
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -311,12 +311,12 @@
             ]
         }, 
         {
-            "statistic": 103.52648565598385, 
+            "statistic": 60.511308594063685, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                38.96465001173487
+                41.15666991114996, 
+                39.3143839303816
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -325,12 +325,12 @@
             ]
         }, 
         {
-            "statistic": 103.9323939917281, 
+            "statistic": 75.50746278812457, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                38.942282133467494
+                41.15666991114996, 
+                38.738024757050866
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -339,12 +339,12 @@
             ]
         }, 
         {
-            "statistic": 139.37580622216342, 
+            "statistic": 142.02612597215972, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                38.002316666200805
+                41.15666991114996, 
+                35.94131682733119
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -353,12 +353,12 @@
             ]
         }, 
         {
-            "statistic": 132.50847972232015, 
+            "statistic": 133.894145300377, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                38.11076302840176
+                41.15666991114996, 
+                35.88408132065223
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -367,12 +367,12 @@
             ]
         }, 
         {
-            "statistic": 146.5317821136225, 
+            "statistic": 170.4401707966275, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                41.085500252209435, 
-                37.397347414286614
+                41.15666991114996, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -381,26 +381,26 @@
             ]
         }, 
         {
-            "statistic": 30.745163578649848, 
+            "statistic": 20.43411917704207, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.86605272552067, 
-                40.29742156466562
+                40.596113186258265, 
+                39.982148990847385
             ], 
-            "pvalue": 1.8510571531911766e-207, 
+            "pvalue": 9.433219269498691e-93, 
             "x_parameters": [
                 "100.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": 66.13120183286534, 
+            "statistic": 39.192524357733085, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.86605272552067, 
-                39.555024726833025
+                40.596113186258265, 
+                39.3883690133478
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -409,12 +409,12 @@
             ]
         }, 
         {
-            "statistic": 90.79579581093911, 
+            "statistic": 40.86877424249585, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.86605272552067, 
-                38.96465001173487
+                40.596113186258265, 
+                39.3143839303816
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -423,12 +423,12 @@
             ]
         }, 
         {
-            "statistic": 91.2872556663659, 
+            "statistic": 56.46922077398349, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.86605272552067, 
-                38.942282133467494
+                40.596113186258265, 
+                38.738024757050866
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -437,12 +437,12 @@
             ]
         }, 
         {
-            "statistic": 127.02977309068223, 
+            "statistic": 124.17869571218081, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.86605272552067, 
-                38.002316666200805
+                40.596113186258265, 
+                35.94131682733119
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -451,12 +451,12 @@
             ]
         }, 
         {
-            "statistic": 120.49828753757441, 
+            "statistic": 117.53113151111629, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.86605272552067, 
-                38.11076302840176
+                40.596113186258265, 
+                35.88408132065223
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -465,12 +465,12 @@
             ]
         }, 
         {
-            "statistic": 135.8054390018795, 
+            "statistic": 156.53055772347568, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.86605272552067, 
-                37.397347414286614
+                40.596113186258265, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -479,54 +479,54 @@
             ]
         }, 
         {
-            "statistic": 35.892991519168774, 
+            "statistic": 18.09506669859821, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.29742156466562, 
-                39.555024726833025
+                39.982148990847385, 
+                39.3883690133478
             ], 
-            "pvalue": 6.446891503962559e-282, 
+            "pvalue": 3.759361278021112e-73, 
             "x_parameters": [
                 "200.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": 61.25870937543074, 
+            "statistic": 20.0360943132323, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.29742156466562, 
-                38.96465001173487
+                39.982148990847385, 
+                39.3143839303816
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 2.993838089060993e-89, 
             "x_parameters": [
                 "200.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": 61.92431515424328, 
+            "statistic": 35.76774353348653, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.29742156466562, 
-                38.942282133467494
+                39.982148990847385, 
+                38.738024757050866
             ], 
-            "pvalue": 0.0, 
+            "pvalue": 1.1489703201008242e-279, 
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 98.4906657559328, 
+            "statistic": 103.22889955473767, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.29742156466562, 
-                38.002316666200805
+                39.982148990847385, 
+                35.94131682733119
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -535,12 +535,12 @@
             ]
         }, 
         {
-            "statistic": 92.59851621580427, 
+            "statistic": 98.39833114622137, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.29742156466562, 
-                38.11076302840176
+                39.982148990847385, 
+                35.88408132065223
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -549,12 +549,12 @@
             ]
         }, 
         {
-            "statistic": 110.63064606833883, 
+            "statistic": 139.7772888407429, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                40.29742156466562, 
-                37.397347414286614
+                39.982148990847385, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -563,40 +563,40 @@
             ]
         }, 
         {
-            "statistic": 25.783375137899668, 
+            "statistic": 2.174523260933409, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                39.555024726833025, 
-                38.96465001173487
+                39.3883690133478, 
+                39.3143839303816
             ], 
-            "pvalue": 1.555071254790353e-146, 
+            "pvalue": 0.029666523087164963, 
             "x_parameters": [
                 "250.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": 26.61952153735543, 
+            "statistic": 18.34521031650323, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                39.555024726833025, 
-                38.942282133467494
+                39.3883690133478, 
+                38.738024757050866
             ], 
-            "pvalue": 4.683882396693807e-156, 
+            "pvalue": 3.9134001099940353e-75, 
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 63.709916230698305, 
+            "statistic": 86.74402944937506, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                39.555024726833025, 
-                38.002316666200805
+                39.3883690133478, 
+                35.94131682733119
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -605,12 +605,12 @@
             ]
         }, 
         {
-            "statistic": 58.54402799828238, 
+            "statistic": 83.02750356006283, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                39.555024726833025, 
-                38.11076302840176
+                39.3883690133478, 
+                35.88408132065223
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -619,12 +619,12 @@
             ]
         }, 
         {
-            "statistic": 79.41834139394402, 
+            "statistic": 126.41746862598511, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                39.555024726833025, 
-                37.397347414286614
+                39.3883690133478, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -633,26 +633,26 @@
             ]
         }, 
         {
-            "statistic": 0.9324935882018542, 
+            "statistic": 16.04280713812067, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.96465001173487, 
-                38.942282133467494
+                39.3143839303816, 
+                38.738024757050866
             ], 
-            "pvalue": 0.3510817651074095, 
+            "pvalue": 6.734224693066578e-58, 
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 38.05436705505333, 
+            "statistic": 83.98361208802312, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.96465001173487, 
-                38.002316666200805
+                39.3143839303816, 
+                35.94131682733119
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -661,26 +661,26 @@
             ]
         }, 
         {
-            "statistic": 33.3864761639868, 
+            "statistic": 80.51046854833844, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.96465001173487, 
-                38.11076302840176
+                39.3143839303816, 
+                35.88408132065223
             ], 
-            "pvalue": 3.140599569790883e-244, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "300.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 55.98729574398881, 
+            "statistic": 124.06097240851024, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.96465001173487, 
-                37.397347414286614
+                39.3143839303816, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -689,40 +689,40 @@
             ]
         }, 
         {
-            "statistic": 37.00937589894656, 
+            "statistic": 67.58761396949784, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.942282133467494, 
-                38.002316666200805
+                38.738024757050866, 
+                35.94131682733119
             ], 
-            "pvalue": 1.4153455536020054e-299, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "400.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 32.37465443382828, 
+            "statistic": 65.2260088233978, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.942282133467494, 
-                38.11076302840176
+                38.738024757050866, 
+                35.88408132065223
             ], 
-            "pvalue": 8.686827274656683e-230, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "400.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 54.99359534396007, 
+            "statistic": 110.29514041748294, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.942282133467494, 
-                37.397347414286614
+                38.738024757050866, 
+                33.139948999252155
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -731,42 +731,42 @@
             ]
         }, 
         {
-            "statistic": -4.030935718560047, 
+            "statistic": 1.2101666771433561, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.002316666200805, 
-                38.11076302840176
+                35.94131682733119, 
+                35.88408132065223
             ], 
-            "pvalue": 5.556012260733828e-05, 
+            "pvalue": 0.22621575753254086, 
             "x_parameters": [
                 "500.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 20.709693722284065, 
+            "statistic": 52.03346766175939, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.002316666200805, 
-                37.397347414286614
+                35.94131682733119, 
+                33.139948999252155
             ], 
-            "pvalue": 2.996460604044131e-95, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "500.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 24.215524976017285, 
+            "statistic": 49.28002901941169, 
             "x_label": "joinDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                38.11076302840176, 
-                37.397347414286614
+                35.88408132065223, 
+                33.139948999252155
             ], 
-            "pvalue": 1.6952290730716668e-129, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "600.0.json", 
                 "1000.0.json"

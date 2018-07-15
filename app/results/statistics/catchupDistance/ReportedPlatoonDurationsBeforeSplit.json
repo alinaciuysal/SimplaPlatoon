@@ -1,632 +1,632 @@
 {
-    "number_of_non_significant_results": 26, 
-    "number_of_significant_results": 19, 
+    "number_of_non_significant_results": 18, 
+    "number_of_significant_results": 27, 
     "actual_results": [
         {
-            "statistic": -2.3502787460162784, 
+            "statistic": 3.295858159488848, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                47.316514662550865
+                44.57098494170036, 
+                42.6461248056851
             ], 
-            "pvalue": 0.0187620226008988, 
+            "pvalue": 0.000982191818395778, 
             "x_parameters": [
                 "100.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": 0.46331436018328515, 
+            "statistic": -0.8387057958454075, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                45.72660798916723
+                44.57098494170036, 
+                45.07733802403987
             ], 
-            "pvalue": 0.6431404177136228, 
+            "pvalue": 0.40164030958945296, 
             "x_parameters": [
                 "100.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -2.7069219117886867, 
+            "statistic": 1.776643960599511, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                47.53916562020371
+                44.57098494170036, 
+                43.512061902594446
             ], 
-            "pvalue": 0.006792613539472712, 
+            "pvalue": 0.07563561191905602, 
             "x_parameters": [
                 "100.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -2.9454974740703714, 
+            "statistic": -2.15063622715861, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                47.66323500846352
+                44.57098494170036, 
+                45.892935785276435
             ], 
-            "pvalue": 0.0032253774842709165, 
+            "pvalue": 0.03151202314048713, 
             "x_parameters": [
                 "100.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": 0.9960914486107139, 
+            "statistic": -7.873812257269715, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                45.44561933534743
+                44.57098494170036, 
+                49.642870632672334
             ], 
-            "pvalue": 0.31920898009290066, 
+            "pvalue": 3.5488171080728137e-15, 
             "x_parameters": [
                 "100.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -1.1167615594358258, 
+            "statistic": -1.5714650655562319, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                46.60848458101175
+                44.57098494170036, 
+                45.550591016548466
             ], 
-            "pvalue": 0.26409995150633436, 
+            "pvalue": 0.11608406965313448, 
             "x_parameters": [
                 "100.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -0.08731946351786463, 
+            "statistic": 0.19233825887634873, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                46.032844719138
+                44.57098494170036, 
+                44.45652922935569
             ], 
-            "pvalue": 0.9304178212909158, 
+            "pvalue": 0.8474783843199651, 
             "x_parameters": [
                 "100.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -0.022490661035301392, 
+            "statistic": -2.295228288317031, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                45.997297518630745
+                44.57098494170036, 
+                45.97729818975176
             ], 
-            "pvalue": 0.9820566225433344, 
+            "pvalue": 0.021726129270204807, 
             "x_parameters": [
                 "100.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 0.24000174681145464, 
+            "statistic": 0.8114901661373611, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.98500769874929, 
-                45.85300010830716
+                44.57098494170036, 
+                44.08428456128214
             ], 
-            "pvalue": 0.8103295681588218, 
+            "pvalue": 0.4170898525688881, 
             "x_parameters": [
                 "100.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 2.8071329114354278, 
+            "statistic": -4.080026555780695, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                45.72660798916723
+                42.6461248056851, 
+                45.07733802403987
             ], 
-            "pvalue": 0.004999797336573414, 
+            "pvalue": 4.513094193846954e-05, 
             "x_parameters": [
                 "200.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -0.38219471956663315, 
+            "statistic": -1.4725025467734476, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                47.53916562020371
+                42.6461248056851, 
+                43.512061902594446
             ], 
-            "pvalue": 0.7023180752869759, 
+            "pvalue": 0.14089408870622833, 
             "x_parameters": [
                 "200.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -0.5996123468223561, 
+            "statistic": -5.349204539795022, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                47.66323500846352
+                42.6461248056851, 
+                45.892935785276435
             ], 
-            "pvalue": 0.5487665122776204, 
+            "pvalue": 8.890844143302626e-08, 
             "x_parameters": [
                 "200.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": 3.3990261250345135, 
+            "statistic": -10.987442520448207, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                45.44561933534743
+                42.6461248056851, 
+                49.642870632672334
             ], 
-            "pvalue": 0.000676629903493577, 
+            "pvalue": 4.929954156588495e-28, 
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 1.2488574409991406, 
+            "statistic": -4.716789391952691, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                46.60848458101175
+                42.6461248056851, 
+                45.550591016548466
             ], 
-            "pvalue": 0.2117212926050995, 
+            "pvalue": 2.4054346347379405e-06, 
             "x_parameters": [
                 "200.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": 2.3060471074235256, 
+            "statistic": -3.083588317464858, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                46.032844719138
+                42.6461248056851, 
+                44.45652922935569
             ], 
-            "pvalue": 0.021110837003061343, 
+            "pvalue": 0.0020467809131383937, 
             "x_parameters": [
                 "200.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 2.3757782310557625, 
+            "statistic": -5.50626750736924, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                45.997297518630745
+                42.6461248056851, 
+                45.97729818975176
             ], 
-            "pvalue": 0.01751459520203719, 
+            "pvalue": 3.6913418511942275e-08, 
             "x_parameters": [
                 "200.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 2.618994584262869, 
+            "statistic": -2.429903185353653, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.316514662550865, 
-                45.85300010830716
+                42.6461248056851, 
+                44.08428456128214
             ], 
-            "pvalue": 0.008820778925539945, 
+            "pvalue": 0.015107825575655888, 
             "x_parameters": [
                 "200.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -3.1578011441603024, 
+            "statistic": 2.575958825747248, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.72660798916723, 
-                47.53916562020371
+                45.07733802403987, 
+                43.512061902594446
             ], 
-            "pvalue": 0.0015902920516027432, 
+            "pvalue": 0.010000366972390328, 
             "x_parameters": [
                 "250.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -3.3999142623739727, 
+            "statistic": -1.3029628346852737, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.72660798916723, 
-                47.66323500846352
+                45.07733802403987, 
+                45.892935785276435
             ], 
-            "pvalue": 0.0006744316621593265, 
+            "pvalue": 0.19259632708384017, 
             "x_parameters": [
                 "250.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": 0.519054251851665, 
+            "statistic": -6.971170366270252, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.72660798916723, 
-                45.44561933534743
+                45.07733802403987, 
+                49.642870632672334
             ], 
-            "pvalue": 0.603724467883999, 
+            "pvalue": 3.2036826255520944e-12, 
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -1.5800352016565384, 
+            "statistic": -0.7458746012185492, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.72660798916723, 
-                46.60848458101175
+                45.07733802403987, 
+                45.550591016548466
             ], 
-            "pvalue": 0.11410312783510745, 
+            "pvalue": 0.45574835111711876, 
             "x_parameters": [
                 "250.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -0.5591491146351882, 
+            "statistic": 1.0232264306274463, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.72660798916723, 
-                46.032844719138
+                45.07733802403987, 
+                44.45652922935569
             ], 
-            "pvalue": 0.5760616632513116, 
+            "pvalue": 0.30620799104492036, 
             "x_parameters": [
                 "250.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -0.49550976455231144, 
+            "statistic": -1.4421870586219507, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.72660798916723, 
-                45.997297518630745
+                45.07733802403987, 
+                45.97729818975176
             ], 
-            "pvalue": 0.620241813511962, 
+            "pvalue": 0.14925882705124818, 
             "x_parameters": [
                 "250.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -0.22985710835232104, 
+            "statistic": 1.6244576539888798, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.72660798916723, 
-                45.85300010830716
+                45.07733802403987, 
+                44.08428456128214
             ], 
-            "pvalue": 0.818203443596292, 
+            "pvalue": 0.10428733699915849, 
             "x_parameters": [
                 "250.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -0.21183119356578492, 
+            "statistic": -3.849269650422235, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.53916562020371, 
-                47.66323500846352
+                43.512061902594446, 
+                45.892935785276435
             ], 
-            "pvalue": 0.8322393326301386, 
+            "pvalue": 0.00011868621795147511, 
             "x_parameters": [
                 "300.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": 3.7501861820000744, 
+            "statistic": -9.463777776309168, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.53916562020371, 
-                45.44561933534743
+                43.512061902594446, 
+                49.642870632672334
             ], 
-            "pvalue": 0.00017684231786405688, 
+            "pvalue": 3.16464807253193e-21, 
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 1.6198505826237277, 
+            "statistic": -3.250386914011845, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.53916562020371, 
-                46.60848458101175
+                43.512061902594446, 
+                45.550591016548466
             ], 
-            "pvalue": 0.10526876751800855, 
+            "pvalue": 0.0011535973721248107, 
             "x_parameters": [
                 "300.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": 2.668899969296114, 
+            "statistic": -1.5766132318722819, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.53916562020371, 
-                46.032844719138
+                43.512061902594446, 
+                44.45652922935569
             ], 
-            "pvalue": 0.0076117251691658365, 
+            "pvalue": 0.11489358716531996, 
             "x_parameters": [
                 "300.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 2.7384667103010054, 
+            "statistic": -3.998299715485463, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.53916562020371, 
-                45.997297518630745
+                43.512061902594446, 
+                45.97729818975176
             ], 
-            "pvalue": 0.006174166204842355, 
+            "pvalue": 6.393240013506293e-05, 
             "x_parameters": [
                 "300.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 2.9763451156307905, 
+            "statistic": -0.9478537631343603, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.53916562020371, 
-                45.85300010830716
+                43.512061902594446, 
+                44.08428456128214
             ], 
-            "pvalue": 0.002918032497698801, 
+            "pvalue": 0.34321046760062246, 
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 4.00476946641103, 
+            "statistic": -5.638816117695069, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.66323500846352, 
-                45.44561933534743
+                45.892935785276435, 
+                49.642870632672334
             ], 
-            "pvalue": 6.214011983094323e-05, 
+            "pvalue": 1.7265215815412236e-08, 
             "x_parameters": [
                 "350.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 1.8498919420645399, 
+            "statistic": 0.5308332895870757, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.66323500846352, 
-                46.60848458101175
+                45.892935785276435, 
+                45.550591016548466
             ], 
-            "pvalue": 0.06433321133023785, 
+            "pvalue": 0.5955378068911801, 
             "x_parameters": [
                 "350.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": 2.9117257851545593, 
+            "statistic": 2.3257445022030896, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.66323500846352, 
-                46.032844719138
+                45.892935785276435, 
+                44.45652922935569
             ], 
-            "pvalue": 0.0035954818115725967, 
+            "pvalue": 0.020038036111542288, 
             "x_parameters": [
                 "350.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 2.9824954943121247, 
+            "statistic": -0.13293329141631655, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.66323500846352, 
-                45.997297518630745
+                45.892935785276435, 
+                45.97729818975176
             ], 
-            "pvalue": 0.0028600449439696524, 
+            "pvalue": 0.8942469301750736, 
             "x_parameters": [
                 "350.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 3.2205951147556897, 
+            "statistic": 2.9072014510198896, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                47.66323500846352, 
-                45.85300010830716
+                45.892935785276435, 
+                44.08428456128214
             ], 
-            "pvalue": 0.001279811270091002, 
+            "pvalue": 0.003649137705371094, 
             "x_parameters": [
                 "350.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -2.1457667456538463, 
+            "statistic": 6.080074393434979, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.44561933534743, 
-                46.60848458101175
+                49.642870632672334, 
+                45.550591016548466
             ], 
-            "pvalue": 0.031894883810250824, 
+            "pvalue": 1.214618475987582e-09, 
             "x_parameters": [
                 "400.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -1.1055486039230225, 
+            "statistic": 8.016663713410647, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.44561933534743, 
-                46.032844719138
+                49.642870632672334, 
+                44.45652922935569
             ], 
-            "pvalue": 0.2689255616570113, 
+            "pvalue": 1.1231237238700202e-15, 
             "x_parameters": [
                 "400.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -1.0414527443698052, 
+            "statistic": 5.527068297932183, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.44561933534743, 
-                45.997297518630745
+                49.642870632672334, 
+                45.97729818975176
             ], 
-            "pvalue": 0.29766889248259804, 
+            "pvalue": 3.281339530961018e-08, 
             "x_parameters": [
                 "400.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -0.7637164467690412, 
+            "statistic": 8.535150163528156, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.44561933534743, 
-                45.85300010830716
+                49.642870632672334, 
+                44.08428456128214
             ], 
-            "pvalue": 0.4450386752786868, 
+            "pvalue": 1.4600673481932413e-17, 
             "x_parameters": [
                 "400.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 1.0499320505179706, 
+            "statistic": 1.7469684557607974, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                46.60848458101175, 
-                46.032844719138
+                45.550591016548466, 
+                44.45652922935569
             ], 
-            "pvalue": 0.29375284542221114, 
+            "pvalue": 0.08065184514198868, 
             "x_parameters": [
                 "450.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 1.1176157841453687, 
+            "statistic": -0.6635729855982911, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                46.60848458101175, 
-                45.997297518630745
+                45.550591016548466, 
+                45.97729818975176
             ], 
-            "pvalue": 0.2637348172365073, 
+            "pvalue": 0.5069681725277493, 
             "x_parameters": [
                 "450.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 1.372483424229633, 
+            "statistic": 2.3248227512062773, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                46.60848458101175, 
-                45.85300010830716
+                45.550591016548466, 
+                44.08428456128214
             ], 
-            "pvalue": 0.16991720816806155, 
+            "pvalue": 0.020087293882963365, 
             "x_parameters": [
                 "450.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 0.06629548740514642, 
+            "statistic": -2.4701697673151095, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                46.032844719138, 
-                45.997297518630745
+                44.45652922935569, 
+                45.97729818975176
             ], 
-            "pvalue": 0.9471427569181551, 
+            "pvalue": 0.013509735307069384, 
             "x_parameters": [
                 "500.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 0.3331393171275901, 
+            "statistic": 0.6175604140123847, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                46.032844719138, 
-                45.85300010830716
+                44.45652922935569, 
+                44.08428456128214
             ], 
-            "pvalue": 0.7390300723062696, 
+            "pvalue": 0.536869192774877, 
             "x_parameters": [
                 "500.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 0.2679970103316037, 
+            "statistic": 3.052340418065429, 
             "x_label": "catchupDistance", 
             "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
             "means_of_x_parameters": [
-                45.997297518630745, 
-                45.85300010830716
+                45.97729818975176, 
+                44.08428456128214
             ], 
-            "pvalue": 0.7887023714768537, 
+            "pvalue": 0.0022723856287337756, 
             "x_parameters": [
                 "600.0.json", 
                 "1000.0.json"

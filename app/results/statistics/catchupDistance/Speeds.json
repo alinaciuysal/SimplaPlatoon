@@ -1,632 +1,632 @@
 {
-    "number_of_non_significant_results": 5, 
-    "number_of_significant_results": 40, 
+    "number_of_non_significant_results": 9, 
+    "number_of_significant_results": 36, 
     "actual_results": [
         {
-            "statistic": 16.33946410002482, 
+            "statistic": 1.7129590365074783, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                35.976933714509315
+                36.296624887479084, 
+                36.200889719771446
             ], 
-            "pvalue": 5.282431334838684e-60, 
+            "pvalue": 0.08672095204559213, 
             "x_parameters": [
                 "100.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": 17.33251604974639, 
+            "statistic": 4.367894489332532, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                35.94008893116544
+                36.296624887479084, 
+                36.04966969781933
             ], 
-            "pvalue": 2.747007503278859e-67, 
+            "pvalue": 1.2548579904173698e-05, 
             "x_parameters": [
                 "100.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": 19.56787304004781, 
+            "statistic": 0.7846766905764611, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                35.86337483631983
+                36.296624887479084, 
+                36.2523678176419
             ], 
-            "pvalue": 3.0350670883799665e-85, 
+            "pvalue": 0.43264368184675006, 
             "x_parameters": [
                 "100.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": 13.59620079875418, 
+            "statistic": 0.21993657990381466, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                36.0826816025378
+                36.296624887479084, 
+                36.284026763804206
             ], 
-            "pvalue": 4.2613779981031464e-42, 
+            "pvalue": 0.8259206759789832, 
             "x_parameters": [
                 "100.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": 18.862591216850625, 
+            "statistic": -10.539402666026819, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                35.88374833237303
+                36.296624887479084, 
+                36.88888776134443
             ], 
-            "pvalue": 2.4056505737478457e-79, 
+            "pvalue": 5.737329303025787e-26, 
             "x_parameters": [
                 "100.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 19.64654570019689, 
+            "statistic": -2.3547395978477588, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                35.858430980160016
+                36.296624887479084, 
+                36.42881096989356
             ], 
-            "pvalue": 6.470854845686677e-86, 
+            "pvalue": 0.01853623369234312, 
             "x_parameters": [
                 "100.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": 8.039841426012563, 
+            "statistic": 2.871877968273329, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                36.2895278649369
+                36.296624887479084, 
+                36.13403832925057
             ], 
-            "pvalue": 9.00695212874691e-16, 
+            "pvalue": 0.004080647156030655, 
             "x_parameters": [
                 "100.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 32.71994832253084, 
+            "statistic": -9.12911743428614, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                35.37457375025192
+                36.296624887479084, 
+                36.80956889929612
             ], 
-            "pvalue": 1.1428351789073e-234, 
+            "pvalue": 6.941201297447222e-20, 
             "x_parameters": [
                 "100.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 22.369218446456717, 
+            "statistic": 6.531092222780984, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.58265237656702, 
-                35.757242561883075
+                36.296624887479084, 
+                35.9212452472655
             ], 
-            "pvalue": 8.454846731869213e-111, 
+            "pvalue": 6.53813160096722e-11, 
             "x_parameters": [
                 "100.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 0.9815992120988294, 
+            "statistic": 2.696208444409158, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                35.94008893116544
+                36.200889719771446, 
+                36.04966969781933
             ], 
-            "pvalue": 0.3262976188984321, 
+            "pvalue": 0.007013706916029623, 
             "x_parameters": [
                 "200.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": 3.050628699126622, 
+            "statistic": -0.9201060656425776, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                35.86337483631983
+                36.200889719771446, 
+                36.2523678176419
             ], 
-            "pvalue": 0.002283698774000883, 
+            "pvalue": 0.35751796185898443, 
             "x_parameters": [
                 "200.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -2.8396847399089276, 
+            "statistic": -1.4628029354584726, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                36.0826816025378
+                36.200889719771446, 
+                36.284026763804206
             ], 
-            "pvalue": 0.004515922455773834, 
+            "pvalue": 0.14352220651371494, 
             "x_parameters": [
                 "200.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": 2.4839242544734117, 
+            "statistic": -12.34303724210253, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                35.88374833237303
+                36.200889719771446, 
+                36.88888776134443
             ], 
-            "pvalue": 0.012994538821687824, 
+            "pvalue": 5.400982547820672e-35, 
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 3.174643597332565, 
+            "statistic": -4.093387004634123, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                35.858430980160016
+                36.200889719771446, 
+                36.42881096989356
             ], 
-            "pvalue": 0.0015002606904892164, 
+            "pvalue": 4.252108260596111e-05, 
             "x_parameters": [
                 "200.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -8.464634600369399, 
+            "statistic": 1.19034460893618, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                36.2895278649369
+                36.200889719771446, 
+                36.13403832925057
             ], 
-            "pvalue": 2.5735971009809137e-17, 
+            "pvalue": 0.23391176640164651, 
             "x_parameters": [
                 "200.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 16.111742590114684, 
+            "statistic": -10.921481804591096, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                35.37457375025192
+                36.200889719771446, 
+                36.80956889929612
             ], 
-            "pvalue": 2.1529749686075825e-58, 
+            "pvalue": 9.193735754152552e-28, 
             "x_parameters": [
                 "200.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 5.879714488184268, 
+            "statistic": 4.903405036249291, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.976933714509315, 
-                35.757242561883075
+                36.200889719771446, 
+                35.9212452472655
             ], 
-            "pvalue": 4.111284241082865e-09, 
+            "pvalue": 9.423166550569856e-07, 
             "x_parameters": [
                 "200.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 2.0607359139584376, 
+            "statistic": -3.5814107746564448, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.94008893116544, 
-                35.86337483631983
+                36.04966969781933, 
+                36.2523678176419
             ], 
-            "pvalue": 0.03932854697325547, 
+            "pvalue": 0.00034178978022640096, 
             "x_parameters": [
                 "250.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -3.8289047583377993, 
+            "statistic": -4.0776656914262235, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.94008893116544, 
-                36.0826816025378
+                36.04966969781933, 
+                36.284026763804206
             ], 
-            "pvalue": 0.0001287241365427549, 
+            "pvalue": 4.5500160687445386e-05, 
             "x_parameters": [
                 "250.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": 1.5017279305903566, 
+            "statistic": -14.882010126943003, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.94008893116544, 
-                35.88374833237303
+                36.04966969781933, 
+                36.88888776134443
             ], 
-            "pvalue": 0.13316776467556024, 
+            "pvalue": 4.468614570095895e-50, 
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 2.187480126261786, 
+            "statistic": -6.7303915768762765, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.94008893116544, 
-                35.858430980160016
+                36.04966969781933, 
+                36.42881096989356
             ], 
-            "pvalue": 0.028707767590774782, 
+            "pvalue": 1.6946270705204096e-11, 
             "x_parameters": [
                 "250.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -9.46187569719259, 
+            "statistic": -1.4851484061781035, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.94008893116544, 
-                36.2895278649369
+                36.04966969781933, 
+                36.13403832925057
             ], 
-            "pvalue": 3.0320324419825454e-21, 
+            "pvalue": 0.13750540265506014, 
             "x_parameters": [
                 "250.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 15.125501478962413, 
+            "statistic": -13.477200950650365, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.94008893116544, 
-                35.37457375025192
+                36.04966969781933, 
+                36.80956889929612
             ], 
-            "pvalue": 1.1169745758866328e-51, 
+            "pvalue": 2.18157127867424e-41, 
             "x_parameters": [
                 "250.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 4.893381608971335, 
+            "statistic": 2.2269713577215278, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.94008893116544, 
-                35.757242561883075
+                36.04966969781933, 
+                35.9212452472655
             ], 
-            "pvalue": 9.913612333284237e-07, 
+            "pvalue": 0.02594982398790517, 
             "x_parameters": [
                 "250.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -5.938779946342927, 
+            "statistic": -0.5521410637403782, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.86337483631983, 
-                36.0826816025378
+                36.2523678176419, 
+                36.284026763804206
             ], 
-            "pvalue": 2.8726264282595874e-09, 
+            "pvalue": 0.580852063678339, 
             "x_parameters": [
                 "300.0.json", 
                 "350.0.json"
             ]
         }, 
         {
-            "statistic": -0.5475817589309102, 
+            "statistic": -11.31510082299706, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.86337483631983, 
-                35.88374833237303
+                36.2523678176419, 
+                36.88888776134443
             ], 
-            "pvalue": 0.5839792625847259, 
+            "pvalue": 1.1180097432243393e-29, 
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 0.13355549947439235, 
+            "statistic": -3.1398285434463933, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.86337483631983, 
-                35.858430980160016
+                36.2523678176419, 
+                36.42881096989356
             ], 
-            "pvalue": 0.8937541069862776, 
+            "pvalue": 0.001690606516214009, 
             "x_parameters": [
                 "300.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -11.638625914774206, 
+            "statistic": 2.0879781398863644, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.86337483631983, 
-                36.2895278649369
+                36.2523678176419, 
+                36.13403832925057
             ], 
-            "pvalue": 2.6364683606231427e-31, 
+            "pvalue": 0.03680051901602817, 
             "x_parameters": [
                 "300.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 13.183674650801594, 
+            "statistic": -9.906393728793567, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.86337483631983, 
-                35.37457375025192
+                36.2523678176419, 
+                36.80956889929612
             ], 
-            "pvalue": 1.0993976394324071e-39, 
+            "pvalue": 3.9323816383003546e-23, 
             "x_parameters": [
                 "300.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 2.8642661145181876, 
+            "statistic": 5.755311652611833, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.86337483631983, 
-                35.757242561883075
+                36.2523678176419, 
+                35.9212452472655
             ], 
-            "pvalue": 0.004179869203371295, 
+            "pvalue": 8.65544410838911e-09, 
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 5.3446692397034905, 
+            "statistic": -10.586459504246049, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.0826816025378, 
-                35.88374833237303
+                36.284026763804206, 
+                36.88888776134443
             ], 
-            "pvalue": 9.060591557516258e-08, 
+            "pvalue": 3.4756749829364e-26, 
             "x_parameters": [
                 "350.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 6.055609544484759, 
+            "statistic": -2.536630015360718, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.0826816025378, 
-                35.858430980160016
+                36.284026763804206, 
+                36.42881096989356
             ], 
-            "pvalue": 1.399460470004487e-09, 
+            "pvalue": 0.011192947651125934, 
             "x_parameters": [
                 "350.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -5.646876346744184, 
+            "statistic": 2.606376485272978, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.0826816025378, 
-                36.2895278649369
+                36.284026763804206, 
+                36.13403832925057
             ], 
-            "pvalue": 1.6344149488060264e-08, 
+            "pvalue": 0.009150968199926267, 
             "x_parameters": [
                 "350.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 19.091169321607378, 
+            "statistic": -9.19937177769757, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.0826816025378, 
-                35.37457375025192
+                36.284026763804206, 
+                36.80956889929612
             ], 
-            "pvalue": 3.1109684929086354e-81, 
+            "pvalue": 3.619556572458776e-20, 
             "x_parameters": [
                 "350.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 8.77938598054505, 
+            "statistic": 6.212501464180531, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.0826816025378, 
-                35.757242561883075
+                36.284026763804206, 
+                35.9212452472655
             ], 
-            "pvalue": 1.6466564878575114e-18, 
+            "pvalue": 5.220675245951462e-10, 
             "x_parameters": [
                 "350.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 0.6785765622853226, 
+            "statistic": 8.217441475096917, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.88374833237303, 
-                35.858430980160016
+                36.88888776134443, 
+                36.42881096989356
             ], 
-            "pvalue": 0.49740638545014637, 
+            "pvalue": 2.0858706755852625e-16, 
             "x_parameters": [
                 "400.0.json", 
                 "450.0.json"
             ]
         }, 
         {
-            "statistic": -10.993503463076905, 
+            "statistic": 13.368155125249192, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.88374833237303, 
-                36.2895278649369
+                36.88888776134443, 
+                36.13403832925057
             ], 
-            "pvalue": 4.124867924054248e-28, 
+            "pvalue": 9.496982753026672e-41, 
             "x_parameters": [
                 "400.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 13.625938645218497, 
+            "statistic": 1.4154102339324792, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.88374833237303, 
-                35.37457375025192
+                36.88888776134443, 
+                36.80956889929612
             ], 
-            "pvalue": 2.8370793486236068e-42, 
+            "pvalue": 0.1569491479791272, 
             "x_parameters": [
                 "400.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 3.3874083748517956, 
+            "statistic": 16.87819911188382, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.88374833237303, 
-                35.757242561883075
+                36.88888776134443, 
+                35.9212452472655
             ], 
-            "pvalue": 0.0007055950284632067, 
+            "pvalue": 6.907158488400369e-64, 
             "x_parameters": [
                 "400.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -11.740028437081477, 
+            "statistic": 5.225761844457316, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.858430980160016, 
-                36.2895278649369
+                36.42881096989356, 
+                36.13403832925057
             ], 
-            "pvalue": 7.991526629755835e-32, 
+            "pvalue": 1.735368060968701e-07, 
             "x_parameters": [
                 "450.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 13.013984269974094, 
+            "statistic": -6.8016302246935165, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.858430980160016, 
-                35.37457375025192
+                36.42881096989356, 
+                36.80956889929612
             ], 
-            "pvalue": 1.0277147879190818e-38, 
+            "pvalue": 1.0360595923458451e-11, 
             "x_parameters": [
                 "450.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 2.7232278079159733, 
+            "statistic": 8.862193407282197, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.858430980160016, 
-                35.757242561883075
+                36.42881096989356, 
+                35.9212452472655
             ], 
-            "pvalue": 0.006464879003414048, 
+            "pvalue": 7.881140281074981e-19, 
             "x_parameters": [
                 "450.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 24.876583201587753, 
+            "statistic": -11.965006624103406, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.2895278649369, 
-                35.37457375025192
+                36.13403832925057, 
+                36.80956889929612
             ], 
-            "pvalue": 1.4941464434179384e-136, 
+            "pvalue": 5.4997476330710764e-33, 
             "x_parameters": [
                 "500.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 14.481105129860685, 
+            "statistic": 3.6853094179688894, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.2895278649369, 
-                35.757242561883075
+                36.13403832925057, 
+                35.9212452472655
             ], 
-            "pvalue": 1.6160609728602198e-47, 
+            "pvalue": 0.00022845935777951384, 
             "x_parameters": [
                 "500.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -10.28228893322119, 
+            "statistic": 15.496637796529317, 
             "x_label": "catchupDistance", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.37457375025192, 
-                35.757242561883075
+                36.80956889929612, 
+                35.9212452472655
             ], 
-            "pvalue": 8.497677889019662e-25, 
+            "pvalue": 3.812130505094117e-54, 
             "x_parameters": [
                 "600.0.json", 
                 "1000.0.json"
