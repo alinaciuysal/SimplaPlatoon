@@ -4,9 +4,9 @@
 *.iml
 **.pyc
 
-!/app/map/output/placeholder
-
-
+/app/tests/dataForStats/**/*.json
 /app/results/**/*.json
+
+!/app/map/output/placeholder
 !/app/results/plots/*
 !/app/results/statistics/**/*.json

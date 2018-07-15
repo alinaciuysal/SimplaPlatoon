@@ -1,6 +1,6 @@
 {
-    "number_of_non_significant_results": 13, 
-    "number_of_significant_results": 42, 
+    "number_of_non_significant_results": 15, 
+    "number_of_significant_results": 51, 
     "actual_results": [
         {
             "statistic": -0.2843634283370663, 
@@ -143,6 +143,20 @@
             ]
         }, 
         {
+            "statistic": -7.7867999867141116, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                335.05071315372425, 
+                378.471766848816
+            ], 
+            "pvalue": 1.783096187796694e-14, 
+            "x_parameters": [
+                "10.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -0.6070780663145545, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -269,6 +283,20 @@
             ]
         }, 
         {
+            "statistic": -7.461957356250452, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                336.2952380952381, 
+                378.471766848816
+            ], 
+            "pvalue": 1.8725089829229557e-13, 
+            "x_parameters": [
+                "25.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -1.2827594330963927, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -381,6 +409,20 @@
             ]
         }, 
         {
+            "statistic": -6.893017267669027, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                339.06060606060606, 
+                378.471766848816
+            ], 
+            "pvalue": 9.632387885013396e-12, 
+            "x_parameters": [
+                "50.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -1.1593567122251573, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -479,6 +521,20 @@
             ]
         }, 
         {
+            "statistic": -5.955617428936199, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                344.8839137645108, 
+                378.471766848816
+            ], 
+            "pvalue": 3.6164279237898094e-09, 
+            "x_parameters": [
+                "100.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -0.7598251821798068, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -563,6 +619,20 @@
             ]
         }, 
         {
+            "statistic": -4.86605072771152, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                350.2627257799672, 
+                378.471766848816
+            ], 
+            "pvalue": 1.3174593535470886e-06, 
+            "x_parameters": [
+                "200.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -0.24209281739987568, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -633,6 +703,20 @@
             ]
         }, 
         {
+            "statistic": -4.109329675639082, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                354.06208053691273, 
+                378.471766848816
+            ], 
+            "pvalue": 4.2750025327760386e-05, 
+            "x_parameters": [
+                "250.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -1.23159629832468, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -689,6 +773,20 @@
             ]
         }, 
         {
+            "statistic": -3.968866677828793, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                355.2852292020373, 
+                378.471766848816
+            ], 
+            "pvalue": 7.722455800029262e-05, 
+            "x_parameters": [
+                "300.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -5.236229852811352, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -731,6 +829,20 @@
             ]
         }, 
         {
+            "statistic": -2.8523441987994484, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                361.51478260869567, 
+                378.471766848816
+            ], 
+            "pvalue": 0.004425064945054191, 
+            "x_parameters": [
+                "400.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -0.11389894013851054, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -759,6 +871,20 @@
             ]
         }, 
         {
+            "statistic": 1.6412656329939954, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                388.08256880733944, 
+                378.471766848816
+            ], 
+            "pvalue": 0.101052215907404, 
+            "x_parameters": [
+                "500.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -4.908196529239262, 
             "x_label": "joinDistance", 
             "y_parameter": "TripDurations", 
@@ -770,6 +896,34 @@
             "x_parameters": [
                 "600.0.json", 
                 "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.6165341251566188, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                388.7118959107807, 
+                378.471766848816
+            ], 
+            "pvalue": 0.10627160306826072, 
+            "x_parameters": [
+                "600.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 6.175559990994365, 
+            "x_label": "joinDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                421.8389121338912, 
+                378.471766848816
+            ], 
+            "pvalue": 9.599677365898023e-10, 
+            "x_parameters": [
+                "1000.0.json", 
+                "3000.0.json"
             ]
         }
     ]

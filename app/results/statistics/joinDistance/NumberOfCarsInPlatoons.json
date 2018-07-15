@@ -1,6 +1,6 @@
 {
     "number_of_non_significant_results": 0, 
-    "number_of_significant_results": 55, 
+    "number_of_significant_results": 66, 
     "actual_results": [
         {
             "statistic": 4.525589930547239, 
@@ -143,6 +143,20 @@
             ]
         }, 
         {
+            "statistic": -317.23709330736494, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                2.0656851642129106, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "10.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -16.802592015428164, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -269,6 +283,20 @@
             ]
         }, 
         {
+            "statistic": -337.9179705498446, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                2.03656238220882, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "25.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -21.154848226374256, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -381,6 +409,20 @@
             ]
         }, 
         {
+            "statistic": -329.2672061512988, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                2.109289617486339, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "50.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -36.93721773957545, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -479,6 +521,20 @@
             ]
         }, 
         {
+            "statistic": -320.1586270027315, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                2.2193689953742144, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "100.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -8.55473092948243, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -563,6 +619,20 @@
             ]
         }, 
         {
+            "statistic": -298.7153649799211, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                2.4534996405014224, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "200.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -30.56885724005557, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -633,6 +703,20 @@
             ]
         }, 
         {
+            "statistic": -296.2858867564664, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                2.512866449511401, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "250.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -26.106382583466534, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -689,6 +773,20 @@
             ]
         }, 
         {
+            "statistic": -269.5969478764571, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                2.761696591204788, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "300.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -44.33899115347782, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -731,6 +829,20 @@
             ]
         }, 
         {
+            "statistic": -239.78555730577057, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                3.0423677180484603, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "400.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -17.36783953051873, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -759,6 +871,20 @@
             ]
         }, 
         {
+            "statistic": -136.91607258971158, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                3.9363071912056595, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "500.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
             "statistic": -62.727390668200435, 
             "x_label": "joinDistance", 
             "y_parameter": "NumberOfCarsInPlatoons", 
@@ -770,6 +896,34 @@
             "x_parameters": [
                 "600.0.json", 
                 "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -99.63755577213693, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                4.445281739719955, 
+                7.172042647951954
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "600.0.json", 
+                "3000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 26.5429573823914, 
+            "x_label": "joinDistance", 
+            "y_parameter": "NumberOfCarsInPlatoons", 
+            "means_of_x_parameters": [
+                9.077363384312672, 
+                7.172042647951954
+            ], 
+            "pvalue": 4.6106141469366574e-153, 
+            "x_parameters": [
+                "1000.0.json", 
+                "3000.0.json"
             ]
         }
     ]
