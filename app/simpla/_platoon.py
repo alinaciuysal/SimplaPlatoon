@@ -19,13 +19,12 @@ from app.Config import parameters
 warn = rp.Warner("Platoon")
 report = rp.Reporter("Platoon")
 
+# static platoon ID counter
+_nextID = 0
 
 class Platoon(object):
     '''    
     '''
-
-    # static platoon ID counter
-    _nextID = 0
 
     def __init__(self, vehicles, controlInterval, arrivalInterval=None, registerVehicles=True):
         '''Platoon(list(PVehicle), float, tuple(float, float), bool) -> Platoon
@@ -35,8 +34,9 @@ class Platoon(object):
         platoon reference veh._platoon is set to the newly created platoon. 'deltaT' is the control interval provided
         to give the platoon a sense of time (used for decreasing active speed factor when trying to switch modes unsuccessfully).
         '''
-        self._ID = Platoon._nextID
-        Platoon._nextID += 1
+        global _nextID
+        self._ID = _nextID
+        _nextID += 1
         self._vehicles = vehicles
         if registerVehicles:
             self.registerVehicles()

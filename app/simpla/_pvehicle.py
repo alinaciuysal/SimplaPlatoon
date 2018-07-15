@@ -28,9 +28,6 @@ vTypeParameters = defaultdict(dict)
 
 WARNED_DEFAULT = dict([(mode, False) for mode in PlatoonMode])
 
-joinDistance = Config.parameters["changeable"]["joinDistance"]
-lookAheadDistance = Config.parameters["contextual"]["lookAheadDistance"]
-
 class pVehicleState(object):
 
     def __init__(self, ID):
@@ -44,7 +41,7 @@ class pVehicleState(object):
         # lookAheadDistance parameter defines the maximum lookahead, 0 calculates a lookahead from the brake gap.
         # Note that the returned leader may be farther away than the given dist.
         # type of leaderInfo is (string, double) where string ID the leading vehicle's ID and double is the distance
-        self.leaderInfo = traci.vehicle.getLeader(ID, lookAheadDistance)
+        self.leaderInfo = traci.vehicle.getLeader(ID, Config.parameters["contextual"]["lookAheadDistance"])
 
         # must be set by vehicle creator (PlatoonManager._addPlatoonVehicle()) to guarantee function in first step
         self.leader = None
@@ -98,7 +95,7 @@ class PVehicle(object):
 
         # set arrivalInterval relative to the edge length,
         # i.e. negative values or values greater than actual length are not allowed
-        self.arrivalInterval = (max(arrivalPos - joinDistance, 0), min(arrivalPos + joinDistance, line_length))
+        self.arrivalInterval = (max(arrivalPos - Config.parameters["changeable"]["joinDistance"], 0), min(arrivalPos + Config.parameters["changeable"]["joinDistance"], line_length))
 
         self.arrivalPos = arrivalPos
         self.arrivalEdge = rnd_edge
@@ -114,6 +111,12 @@ class PVehicle(object):
         global WARNED_DEFAULT
         # original vType
         origVType = self._vTypes[PlatoonMode.NONE]
+        # print("cfg.PLATOON_VTYPES", cfg.PLATOON_VTYPES)
+        # print("origVType", origVType, " origVType in cfg.PLATOON_VTYPES ?", origVType in cfg.PLATOON_VTYPES)
+        # print("cfg.PLATOON_VTYPES[origVType]", cfg.PLATOON_VTYPES[origVType])
+        # print("mode", mode, " mode in cfg.PLATOON_VTYPES[origVType] ?", mode in cfg.PLATOON_VTYPES[origVType])
+        # print("cfg.PLATOON_VTYPES[origVType][mode]", cfg.PLATOON_VTYPES[origVType][mode])
+        # print("*******************")
         if origVType not in cfg.PLATOON_VTYPES \
                 or mode not in cfg.PLATOON_VTYPES[origVType] \
                 or cfg.PLATOON_VTYPES[origVType][mode] is "":
@@ -401,7 +404,6 @@ class PVehicle(object):
     def setState(self, controlInterval):
         # original vtype, speedFactor and lanechangemodes
         self._vTypes[PlatoonMode.NONE] = traci.vehicle.getTypeID(self._ID)
-        # print(traci.vehicle.getTypeID(ID)) # result: simple_pkw_leader, PlatoonMode.NONE = 0, PlatoonMode is enum
         self._speedFactors[PlatoonMode.NONE] = traci.vehicle.getSpeedFactor(self._ID)
         # This is the default mode
         self._laneChangeModes[PlatoonMode.NONE] = 0b1001010101

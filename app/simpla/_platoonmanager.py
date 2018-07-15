@@ -45,9 +45,6 @@ class PlatoonManager(traci.StepListener):
     carIndex = None
     _platoons = None
     _connectedVehicles = None
-    totalCarCounter = Config.parameters["contextual"]["totalCarCounter"]
-    platoonCarCounter = Config.parameters["contextual"]["platoonCarCounter"]
-    maxVehiclesInPlatoon = Config.parameters["changeable"]["maxVehiclesInPlatoon"]
     pairwise_platoons = None
 
     def __init__(self):
@@ -78,8 +75,6 @@ class PlatoonManager(traci.StepListener):
         self.pairwise_platoons = dict()
 
         self.carIndex = 0
-        self.totalCarCounter = PlatoonManager.totalCarCounter
-        self.platoonCarCounter = PlatoonManager.platoonCarCounter
 
         self.TripDurations = []
         self.FuelConsumptions = []
@@ -190,7 +185,7 @@ class PlatoonManager(traci.StepListener):
             veh.setPlatoonMode(PlatoonMode.NONE)
             traci.vehicle.unsubscribe(veh.getID())
         self._connectedVehicles = dict()
-        _platoon.Platoon._nextID = 0
+        _platoon._nextID = 0
 
     def getPlatoonLeaders(self):
         '''getPlatoonLeaders() -> list(PVehicle)
@@ -286,19 +281,21 @@ class PlatoonManager(traci.StepListener):
         for pltnID, vehs in toRemove.items():
             pltn = self._platoons[pltnID]
             pltn.removeVehicles(vehs)
+            # also remove vehicles' tuples from pairwise platoons
+            self.remove_single_veh_from_pairwise_platoons(pltnID, vehs)
             if pltn.size() == 0:
                 # remove empty platoons
                 self._platoons.pop(pltn.getID())
 
         # Re-add removed cars (both normal & platoon) into the system
         # Returns a list of ids of arrived vehicles (reached their destination and removed from the road network)
-        # for ID in traci.simulation.getArrivedIDList():
-        #     # The only way to distinguish the type of arrived car is to look at its id
-        #     # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
-        #     if "platoon" in ID:
-        #         self._addPlatoonVehicle()
-        #     else:
-        #         self._addNormalVehicle()
+        for ID in traci.simulation.getArrivedIDList():
+            # The only way to distinguish the type of arrived car is to look at its id
+            # vehID is either "normal-car-idx" or "platoon-car-pltnidx", see _addNormalVehicle & _addPlatoonVehicle
+            if "platoon" in ID:
+                self._addPlatoonVehicle()
+            else:
+                self._addNormalVehicle()
 
         return count
 
@@ -321,46 +318,40 @@ class PlatoonManager(traci.StepListener):
             for ix, veh in enumerate(pltn.getVehicles()[1:]):
                 # check whether to split the platoon at index ix
                 leaderInfo = veh.state.leaderInfo
-
+                # if leaderInfo is None:
+                #     print(simTime(), "checking pltn:", pltnID, " ix & veh", ix, veh.getID(), "leader in veh.state:", leaderInfo, "all vehs:", str([veh.getID() for veh in pltn.getVehicles()]))
+                # else:
+                #     print(simTime(), "checking pltn:", pltnID, " ix & veh", ix, veh.getID(), "leader in veh.state:", leaderInfo[0], "all vehs:", str([veh.getID() for veh in pltn.getVehicles()]))
                 if leaderInfo is None:
                     # no leader or no leader that allows platooning
-                    print("case 1: no leader or no leader that allows platooning")
+                    # print("case 1: no leader or no leader that allows platooning in front of '%s'" % veh.getID())
                     veh.setSplitConditions(True)
                 elif not self._isConnected(leaderInfo[0]):
-                    print("case 2: leader is not connected id: '%s'", leaderInfo[0])
+                    # print("case 2: leader is not connected id: '%s'", leaderInfo[0])
                     veh.setSplitConditions(True)
                 elif leaderInfo[1] > self._maxPlatoonGap:
-                    print("case 3: leader is too far '%s' > '%s'", leaderInfo[1], self._maxPlatoonGap)
+                    # print("case 3: leader is too far '%s' > '%s'", leaderInfo[1], self._maxPlatoonGap)
                     veh.setSplitConditions(True)
                 else:
                     # ego has a connected leader
                     leaderID = leaderInfo[0]
                     leader = self._connectedVehicles[leaderID]
+
                     if pltn.getVehicles()[ix] == leader:
                         # ok, this is really the leader as registered in the platoon
                         veh.setSplitConditions(False)
                         veh.resetSplitCountDown()
-                    elif leader.getPlatoon() == veh.getPlatoon():
-                        # the platoon order is violated.
-                        if rp.VERBOSITY >= 2:
-                            report(("Platoon order for platoon '%s' is violated: real leader '%s' is not registered " +
-                                    "as leader of '%s', actual leader of '%s' is '%s'") % (
-                                       pltnID, leaderID, veh.getID(), veh.getID(), veh.state.leaderInfo[0]), 1)
-                        print("leaderID:", leader.getID(), str([veh.getID() for veh in leader.getPlatoon().getVehicles()]))
-                        veh.setSplitConditions(False)
                     else:
-                        # leader is connected but belongs to a different platoon
-                        print("++++++++++++++++++ \n")
-                        print("case 4: leader is connected but belongs to a different platoon. \n")
-                        print("veh-platoonID:", veh.getPlatoon().getID(), "leader-platoonID:", leader.getPlatoon().getID(), "\n")
-                        print("leaderID:", leader.getID(),
-                              "platoonID of leader:", leader.getPlatoon().getID(),
-                              "vehicles in leader's platoon:", str([veh.getID() for veh in leader.getPlatoon().getVehicles()]), "\n")
-                        print("vehicleID:", veh.getID(),
-                              "platoonID of vehicle:", veh.getPlatoon().getID(),
-                              "vehicles in vehicle's platoon:", str([veh.getID() for veh in veh.getPlatoon().getVehicles()]))
-                        print("++++++++++++++++++ \n")
-                        veh.setSplitConditions(True)
+                        if leader.getPlatoon().getID() == veh.getPlatoon().getID():
+                            # the platoon order is violated, but it's not a problem,
+                            # as a vehicle can change its line in junctions or during line-changes
+                            if rp.VERBOSITY >= 3:
+                                report("Platoon order for platoon '%s' is violated: vehicle in front '%s' is not registered as leader of '%s')" % (
+                                           pltnID, leaderID, veh.getID()), 1)
+                            veh.setSplitConditions(False)
+                        else:
+                            veh.setSplitConditions(True)
+
                 if veh.splitConditions():
                     # eventually increase isolation time
                     timeUntilSplit = veh.splitCountDown(self._timeSinceLastControl)
@@ -463,9 +454,9 @@ class PlatoonManager(traci.StepListener):
 
             if leaderDist <= self._maxPlatoonGap:
                 # introducing number of vehicles in platoon logic
-                nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= self.maxVehiclesInPlatoon
+                nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= Config.parameters["changeable"]["maxVehiclesInPlatoon"]
                 # print("number of vehicles in leader's platoon", len(leader.getPlatoon().getVehicles()), " number of vehicles in platoon to join", len(pltn.getVehicles()), "res", nrOfVehiclesCondition)
-                print("**************")
+                # print("**************")
                 if nrOfVehiclesCondition == True:
                     # Try to join the platoon in front
                     if leader.getPlatoon().join(pltn):
@@ -478,14 +469,14 @@ class PlatoonManager(traci.StepListener):
                         self.add_to_pairwise_platoons(leader.getPlatoon(), pltn)
                         continue
                     else:
-                        if rp.VERBOSITY >= 2:
+                        if rp.VERBOSITY >= 3:
                             report("Merging of platoons '%s' (%s) and '%s' (%s) would not be safe." %
                                    (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
                                     leader.getPlatoon().getID(),
                                     str([veh.getID() for veh in leader.getPlatoon().getVehicles()])))
                 else:
                     # Join failed due to number of cars in platoon. Do not change pltn behavior.
-                    if rp.VERBOSITY >= 2:
+                    if rp.VERBOSITY >= 3:
                         report("Merging of platoons '%s' (%s) and '%s' (%s) failed due to number of vehicles limitation" %
                                (pltn.getID(), str([veh.getID() for veh in pltn.getVehicles()]),
                                 leader.getPlatoon().getID(),
@@ -674,11 +665,11 @@ class PlatoonManager(traci.StepListener):
     def applyCarCounter(self):
 
         """ add normal car into the system """
-        while self.carIndex < self.totalCarCounter - self.platoonCarCounter:
+        while self.carIndex < Config.parameters["contextual"]["totalCarCounter"] - Config.parameters["contextual"]["platoonCarCounter"]:
             self._addNormalVehicle()
 
         """ add platooning car into the system """
-        while len(self._connectedVehicles) < self.platoonCarCounter:
+        while len(self._connectedVehicles) < Config.parameters["contextual"]["platoonCarCounter"]:
             self._addPlatoonVehicle()
 
     def _addNormalVehicle(self):
@@ -806,26 +797,41 @@ class PlatoonManager(traci.StepListener):
     def _endSimulation(self):
         import app.simulation.PlatoonSimulation as ps
         if simTime() % Config.nrOfTicks == 0:
+            if len(self.pairwise_platoons.keys()) > 0:
+                self.remove_hindmost_pairwise_platoons()
             ps.simulationEnded = True
-
 
     def add_to_pairwise_platoons(self, leadingPlatoon, joiningPlatoon):
         # here, leadingPlatoon already contains vehicles of joiningPlatoon, as this fcn is called after .join(pltn)
-        # so if clause is added to the inner loop
-        cars_IDs_in_leading_platoon = [veh.getID() for veh in leadingPlatoon.getVehicles()]
-        cars_IDs_in_joining_platoon = [veh.getID() for veh in joiningPlatoon.getVehicles()]
-
-        for first_carID in cars_IDs_in_leading_platoon:
+        # so, first get exact vehicles of leadingPlatoon before join by filtering leadingPlatoon's vehicles
+        # https://stackoverflow.com/a/30353802
+        cars_IDs_in_leading_platoon = [v1.getID() for v1 in leadingPlatoon.getVehicles()]
+        cars_IDs_in_joining_platoon = [v2.getID() for v2 in joiningPlatoon.getVehicles()]
+        vehicles_of_leading_pltn_before_join = list(set(cars_IDs_in_leading_platoon) - set(cars_IDs_in_joining_platoon))
+        # print("leading", cars_IDs_in_leading_platoon, " joining", cars_IDs_in_joining_platoon, "filtered", vehicles_of_leading_pltn_before_join)
+        for first_carID in vehicles_of_leading_pltn_before_join:
             for second_carID in cars_IDs_in_joining_platoon:
                 if first_carID != second_carID:
                     pwp = PWP(first_carID=first_carID, second_carID=second_carID)
                     self.pairwise_platoons[pwp] = simTime()
-        # print("self.pairwise_platoons add", self.pairwise_platoons)
+        # print("self.pairwise_platoons after addition", self.pairwise_platoons)
         # print("+++++++++++++++++++")
+
+    # this is called after removal of cars from actual platoon (pltnID)
+    def remove_single_veh_from_pairwise_platoons(self, pltnID, vehs):
+        # print("removing arrived vehicle: ", vehicle.getID(), " platoonID: ", platoon.getID())
+        # print("before removal", self.pairwise_platoons)
+        tpls_to_be_removed = []
+        for remaining_veh in self._platoons[pltnID].getVehicles():
+            for removed_veh in vehs:
+                if remaining_veh.getID() != removed_veh.getID():
+                    tpls_to_be_removed.append((remaining_veh.getID(), removed_veh.getID()))
+        self.remove_tpls_helper(tpls_to_be_removed)
+        # print("self.pairwise_platoons after single vehicle removal", self.pairwise_platoons)
+        # print("-----------------------")
 
     def remove_from_pairwise_platoons(self, leadingPlatoon, splittedPlatoon):
         tpls_to_be_removed = []
-
         for veh1 in leadingPlatoon.getVehicles():
             for veh2 in splittedPlatoon.getVehicles():
                 # this restriction is needed to avoid key errors when we want to remove vehicle(s) that arrive their destinations
@@ -837,8 +843,15 @@ class PlatoonManager(traci.StepListener):
         # print("removing pltnID: ", splittedPlatoon.getID(), " leadingPltnID: ", leadingPlatoon.getID(), " tpls_to_be_removed", tpls_to_be_removed)
         # print("before removal", self.pairwise_platoons)
 
+        self.remove_tpls_helper(tpls_to_be_removed)
+
+        # print("self.pairwise_platoons after removal", self.pairwise_platoons)
+        # print("-----------------------")
+
+    def remove_tpls_helper(self, tpls):
         # in some cases, order of keys must be reversed, due to internal reordering of vehicles
-        for tpl in tpls_to_be_removed:
+        # print("tpls_to_be_removed in helper", tpls, "all", self.pairwise_platoons.keys())
+        for tpl in tpls:
             pwp = PWP(first_carID=tpl[0], second_carID=tpl[1])
             reversed = PWP(first_carID=tpl[1], second_carID=tpl[0])
 
@@ -854,7 +867,12 @@ class PlatoonManager(traci.StepListener):
                     self.ReportedPlatoonDurationsBeforeSplit.append(simTime() - tick)
                 self.pairwise_platoons.pop(reversed)
             else:
-                print("given tuple should not be in the dict")
+                print("given pairwise platooning tuple should not be in the dict", str(tpl))
                 exit(0)
-        # print("self.pairwise_platoons remove", self.pairwise_platoons)
-        # print("-----------------------")
+
+    # only called when simulation has to be ended
+    def remove_hindmost_pairwise_platoons(self):
+        for pwp_key in self.pairwise_platoons.keys():
+            tick = self.pairwise_platoons[pwp_key]
+            self.ReportedPlatoonDurationsBeforeSplit.append(simTime() - tick)
+            self.pairwise_platoons.pop(pwp_key)

@@ -21,8 +21,6 @@ parameters = ["TripDurations",
 
 def get_folder_paths():
     folder_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results"))]
-    folder_paths.remove("statistics")
-    folder_paths.remove("plots")
     return folder_paths
 
 
@@ -47,41 +45,6 @@ def get_data(folder_path):
 
 def sort_data(x_label, data):
     return sorted(data, key=lambda k: k['config'].get(x_label))
-
-
-def draw_scatter_plot(x_values, y_values, x_label, y_label):
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.set_title('Effect of ' + x_label + " on " + y_label)
-
-    # set proper units for labels and use another variable for them as original ones are used for plot image files
-    yLabelPlot = y_label
-    xLabelPlot = x_label
-    if yLabelPlot == "totalTripAverage":
-        yLabelPlot += " [s]"
-    elif "FuelConsumption" in yLabelPlot:
-        yLabelPlot += " [ml/s]"
-    elif "Speed" in yLabelPlot:
-        yLabelPlot += " [m/s]"
-    elif "Emission" in yLabelPlot:
-        yLabelPlot += " [mg/s]"
-
-    if xLabelPlot == "platoonSplitTime":
-        xLabelPlot += " [s]"
-    elif xLabelPlot == "maxPlatoonGap" or xLabelPlot == "catchupDistance" or xLabelPlot == "joinDistance":
-        xLabelPlot += " [m]"
-
-    ax.set_ylabel(yLabelPlot)
-    ax.set_xlabel(xLabelPlot)
-
-    ax.plot(x_values, y_values, 'o')
-    fig_name = y_label + ".pdf"
-    fig_folder = os.path.join(os.getcwd(), "..", "results", "plots", x_label)
-    make_sure_path_exists(fig_folder)
-    fig_path = os.path.join(fig_folder, fig_name)
-    plt.savefig(fig_path)
-    plt.close()
-
 
 def draw_box_plot(x_label, y_label, x_values, y_values):
     # Create a figure instance
@@ -110,10 +73,16 @@ def draw_box_plot(x_label, y_label, x_values, y_values):
     plt.legend(handles=[median_legend, mean_legend])
 
     fig_name = y_label + ".png"
-    fig_folder = os.path.join(os.getcwd(), "..", "results", "plots", x_label)
+
+    plots_folder = os.path.join(os.getcwd(), "..", "results", "plots")
+    make_sure_path_exists(plots_folder)
+
+    fig_folder = os.path.join(plots_folder, x_label)
     make_sure_path_exists(fig_folder)
+
     fig_path = os.path.join(fig_folder, fig_name)
     plt.savefig(fig_path, bbox_inches='tight')
+
     plt.close()
 
 
@@ -174,8 +143,13 @@ def run_plotting_process(paths):
 def write_results_to_file(folder_name, variable_name, result):
     current_dir = os.path.abspath(os.path.dirname(__file__))
     parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
-    results_dir = os.path.join(parent_dir, 'results', 'statistics', folder_name)
+
+    stats_dir = os.path.join(parent_dir, 'results', 'statistics')
+    make_sure_path_exists(stats_dir)
+
+    results_dir = os.path.join(stats_dir, folder_name)
     make_sure_path_exists(results_dir)
+
     results_path = os.path.join(results_dir, variable_name)
     with open(results_path + '.json', 'w') as outfile:
         json.dump(result, outfile, indent=4, ensure_ascii=False)
@@ -238,7 +212,7 @@ def run_statistics_process(paths):
 
 if __name__ == '__main__':
     paths = get_folder_paths()
-    plotting = False
+    plotting = True
     if plotting:
         run_plotting_process(paths=paths)
 

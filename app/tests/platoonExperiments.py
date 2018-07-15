@@ -23,9 +23,11 @@ defaultParameters = deepcopy(PlatoonConfig.parameters)
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
-    catchupDistance=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 1000.0],
-    maxPlatoonGap=[25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0, 1000.0],
-    platoonSplitTime=[3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 20.0]
+    # catchupDistance=[100.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 1000.0],
+    # maxPlatoonGap=[25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0],
+    # platoonSplitTime=[3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 15.0, 20.0]
+    # joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0],
+    # maxVehiclesInPlatoon=[3, 5, 10, 15, 20, 25, 30, 50]
 )
 
 # to be used after reverting back to own logic
@@ -70,7 +72,7 @@ def changeVariable(variable_name, value):
         PlatoonConfig.parameters["changeable"]["maxVehiclesInPlatoon"] = value
     elif variable_name == "catchupDistance":
         PlatoonConfig.parameters["changeable"]["catchupDistance"] = value
-        PlatoonConfig.parameters["contextual"]["lookAheadDistance"] = value # can be removed
+        PlatoonConfig.parameters["contextual"]["lookAheadDistance"] = value # TODO: this dependency should be reported in another branch
     elif variable_name == "maxPlatoonGap":
         PlatoonConfig.parameters["changeable"]["maxPlatoonGap"] = value
     elif variable_name == "platoonSplitTime":
@@ -82,10 +84,9 @@ def changeVariable(variable_name, value):
 if __name__ == '__main__':
     originalParameters = deepcopy(defaultParameters)
 
-    # TODO: uncomment in production
-    # if PlatoonConfig.sumoUseGUI:
-    #     print("SUMO GUI cannot be used to perform sequential experiments")
-    #     exit(0)
+    if PlatoonConfig.sumoUseGUI and PlatoonConfig.forTests:
+        print("SUMO GUI cannot be used to perform sequential tests")
+        exit(0)
 
     PlatoonConfig.platooning = True
     for variable_name in changeableVariables:
