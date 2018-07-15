@@ -9,4 +9,4 @@
 
 /app/results/**/*.json
 !/app/results/plots/*
-!/app/results/statistics/*
+!/app/results/statistics/**/*.json

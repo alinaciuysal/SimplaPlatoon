@@ -1,0 +1,398 @@
+{
+    "number_of_non_significant_results": 6, 
+    "number_of_significant_results": 22, 
+    "actual_results": [
+        {
+            "statistic": -5.9921701765596875, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                324.8635724331927, 
+                341.6305309734513
+            ], 
+            "pvalue": 2.3426690813192958e-09, 
+            "x_parameters": [
+                "3.json", 
+                "5.json"
+            ]
+        }, 
+        {
+            "statistic": -8.980708396532734, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                324.8635724331927, 
+                350.56561780506524
+            ], 
+            "pvalue": 5.0060626237875755e-19, 
+            "x_parameters": [
+                "3.json", 
+                "10.json"
+            ]
+        }, 
+        {
+            "statistic": -13.895147694794352, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                324.8635724331927, 
+                365.13429256594725
+            ], 
+            "pvalue": 2.322000000094594e-42, 
+            "x_parameters": [
+                "3.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": -14.748807321672786, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                324.8635724331927, 
+                367.8697411003236
+            ], 
+            "pvalue": 2.843080887284526e-47, 
+            "x_parameters": [
+                "3.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": -13.35888216939553, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                324.8635724331927, 
+                368.77211155378484
+            ], 
+            "pvalue": 3.006636313338649e-39, 
+            "x_parameters": [
+                "3.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": -19.169947534653886, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                324.8635724331927, 
+                386.6468085106383
+            ], 
+            "pvalue": 7.109063231428701e-76, 
+            "x_parameters": [
+                "3.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": -14.10626192688056, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                324.8635724331927, 
+                371.126427406199
+            ], 
+            "pvalue": 2.340390520527907e-43, 
+            "x_parameters": [
+                "3.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -2.9766235268585497, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                341.6305309734513, 
+                350.56561780506524
+            ], 
+            "pvalue": 0.0029408228078802246, 
+            "x_parameters": [
+                "5.json", 
+                "10.json"
+            ]
+        }, 
+        {
+            "statistic": -7.740791953236191, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                341.6305309734513, 
+                365.13429256594725
+            ], 
+            "pvalue": 1.4080253023509658e-14, 
+            "x_parameters": [
+                "5.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": -8.59380161169657, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                341.6305309734513, 
+                367.8697411003236
+            ], 
+            "pvalue": 1.4409057945398503e-17, 
+            "x_parameters": [
+                "5.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": -7.961058349217317, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                341.6305309734513, 
+                368.77211155378484
+            ], 
+            "pvalue": 2.6066384242521385e-15, 
+            "x_parameters": [
+                "5.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": -13.446882509515158, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                341.6305309734513, 
+                386.6468085106383
+            ], 
+            "pvalue": 9.51103580031016e-40, 
+            "x_parameters": [
+                "5.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": -8.669377356720405, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                341.6305309734513, 
+                371.126427406199
+            ], 
+            "pvalue": 7.92464746203878e-18, 
+            "x_parameters": [
+                "5.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -4.706830469824275, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                350.56561780506524, 
+                365.13429256594725
+            ], 
+            "pvalue": 2.650661421111051e-06, 
+            "x_parameters": [
+                "10.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": -5.560772145020331, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                350.56561780506524, 
+                367.8697411003236
+            ], 
+            "pvalue": 2.967666148237007e-08, 
+            "x_parameters": [
+                "10.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": -5.25921743491038, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                350.56561780506524, 
+                368.77211155378484
+            ], 
+            "pvalue": 1.5735172896780763e-07, 
+            "x_parameters": [
+                "10.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": -10.608386401138633, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                350.56561780506524, 
+                386.6468085106383
+            ], 
+            "pvalue": 1.0352439160700775e-25, 
+            "x_parameters": [
+                "10.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": -5.951120967520855, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                350.56561780506524, 
+                371.126427406199
+            ], 
+            "pvalue": 3.0558737460890848e-09, 
+            "x_parameters": [
+                "10.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -0.869719355523645, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                365.13429256594725, 
+                367.8697411003236
+            ], 
+            "pvalue": 0.3845378123842208, 
+            "x_parameters": [
+                "15.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": -1.0417971961379584, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                365.13429256594725, 
+                368.77211155378484
+            ], 
+            "pvalue": 0.29761013319513996, 
+            "x_parameters": [
+                "15.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": -6.268637805949779, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                365.13429256594725, 
+                386.6468085106383
+            ], 
+            "pvalue": 4.3260881599288925e-10, 
+            "x_parameters": [
+                "15.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": -1.719382907494884, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                365.13429256594725, 
+                371.126427406199
+            ], 
+            "pvalue": 0.08567491144608261, 
+            "x_parameters": [
+                "15.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -0.2573354664720021, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                367.8697411003236, 
+                368.77211155378484
+            ], 
+            "pvalue": 0.7969417726209114, 
+            "x_parameters": [
+                "20.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": -5.447762112851657, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                367.8697411003236, 
+                386.6468085106383
+            ], 
+            "pvalue": 5.636924752800727e-08, 
+            "x_parameters": [
+                "20.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": -0.930534560990157, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                367.8697411003236, 
+                371.126427406199
+            ], 
+            "pvalue": 0.35218891135254704, 
+            "x_parameters": [
+                "20.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -4.746647308364079, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                368.77211155378484, 
+                386.6468085106383
+            ], 
+            "pvalue": 2.188356181204332e-06, 
+            "x_parameters": [
+                "25.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": -0.6172226419495839, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                368.77211155378484, 
+                371.126427406199
+            ], 
+            "pvalue": 0.5371445727911022, 
+            "x_parameters": [
+                "25.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 4.128386893978588, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                386.6468085106383, 
+                371.126427406199
+            ], 
+            "pvalue": 3.777998565493938e-05, 
+            "x_parameters": [
+                "30.json", 
+                "50.json"
+            ]
+        }
+    ]
+}

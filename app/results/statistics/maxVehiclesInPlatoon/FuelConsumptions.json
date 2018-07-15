@@ -1,0 +1,398 @@
+{
+    "number_of_non_significant_results": 2, 
+    "number_of_significant_results": 26, 
+    "actual_results": [
+        {
+            "statistic": 23.03954625281909, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.506314654072112, 
+                9.210366651016596
+            ], 
+            "pvalue": 2.1556063670939702e-117, 
+            "x_parameters": [
+                "3.json", 
+                "5.json"
+            ]
+        }, 
+        {
+            "statistic": 33.14823044656477, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.506314654072112, 
+                9.068223182230366
+            ], 
+            "pvalue": 1.1109903025920831e-240, 
+            "x_parameters": [
+                "3.json", 
+                "10.json"
+            ]
+        }, 
+        {
+            "statistic": 60.391088349930435, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.506314654072112, 
+                8.69784670580206
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "3.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": 59.26332939764985, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.506314654072112, 
+                8.705940074978836
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "3.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 65.37048238771705, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.506314654072112, 
+                8.632181632580084
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "3.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 85.7250927028115, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.506314654072112, 
+                8.345510894407097
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "3.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 64.48334067423015, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.506314654072112, 
+                8.641228017839786
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "3.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 10.50509700108423, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.210366651016596, 
+                9.068223182230366
+            ], 
+            "pvalue": 8.234891310053493e-26, 
+            "x_parameters": [
+                "5.json", 
+                "10.json"
+            ]
+        }, 
+        {
+            "statistic": 37.41555137463954, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.210366651016596, 
+                8.69784670580206
+            ], 
+            "pvalue": 5.843268876715335e-306, 
+            "x_parameters": [
+                "5.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": 36.51673153543715, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.210366651016596, 
+                8.705940074978836
+            ], 
+            "pvalue": 1.4825539134157433e-291, 
+            "x_parameters": [
+                "5.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 42.25519709861202, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.210366651016596, 
+                8.632181632580084
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "5.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 62.4517120367969, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.210366651016596, 
+                8.345510894407097
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "5.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 41.464708141336715, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.210366651016596, 
+                8.641228017839786
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "5.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 26.367958489382325, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.068223182230366, 
+                8.69784670580206
+            ], 
+            "pvalue": 4.0804922874689753e-153, 
+            "x_parameters": [
+                "10.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": 25.586509047287624, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.068223182230366, 
+                8.705940074978836
+            ], 
+            "pvalue": 2.6820409756492593e-144, 
+            "x_parameters": [
+                "10.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 31.074901383005656, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.068223182230366, 
+                8.632181632580084
+            ], 
+            "pvalue": 8.411518122314044e-212, 
+            "x_parameters": [
+                "10.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 50.91991942169873, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.068223182230366, 
+                8.345510894407097
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "10.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 30.34019076454632, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                9.068223182230366, 
+                8.641228017839786
+            ], 
+            "pvalue": 5.2131024140095015e-202, 
+            "x_parameters": [
+                "10.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -0.5652206460732755, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.69784670580206, 
+                8.705940074978836
+            ], 
+            "pvalue": 0.5719239527189051, 
+            "x_parameters": [
+                "15.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 4.626518164618279, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.69784670580206, 
+                8.632181632580084
+            ], 
+            "pvalue": 3.7195776227309033e-06, 
+            "x_parameters": [
+                "15.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 24.548661411950974, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.69784670580206, 
+                8.345510894407097
+            ], 
+            "pvalue": 5.377457790514513e-133, 
+            "x_parameters": [
+                "15.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 3.9776089749289016, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.69784670580206, 
+                8.641228017839786
+            ], 
+            "pvalue": 6.9621675875986e-05, 
+            "x_parameters": [
+                "15.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 5.156229533005495, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.705940074978836, 
+                8.632181632580084
+            ], 
+            "pvalue": 2.5206872287828426e-07, 
+            "x_parameters": [
+                "20.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 24.92103829288429, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.705940074978836, 
+                8.345510894407097
+            ], 
+            "pvalue": 5.361369017573344e-137, 
+            "x_parameters": [
+                "20.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 4.510946075528422, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.705940074978836, 
+                8.641228017839786
+            ], 
+            "pvalue": 6.455410101759764e-06, 
+            "x_parameters": [
+                "20.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 19.99328752185967, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.632181632580084, 
+                8.345510894407097
+            ], 
+            "pvalue": 6.833535941843238e-89, 
+            "x_parameters": [
+                "25.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": -0.6361717176782751, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.632181632580084, 
+                8.641228017839786
+            ], 
+            "pvalue": 0.5246647999128576, 
+            "x_parameters": [
+                "25.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -20.56577252871555, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.345510894407097, 
+                8.641228017839786
+            ], 
+            "pvalue": 6.095702217534058e-94, 
+            "x_parameters": [
+                "30.json", 
+                "50.json"
+            ]
+        }
+    ]
+}

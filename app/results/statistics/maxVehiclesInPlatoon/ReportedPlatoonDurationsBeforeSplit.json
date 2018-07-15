@@ -1,0 +1,398 @@
+{
+    "number_of_non_significant_results": 1, 
+    "number_of_significant_results": 27, 
+    "actual_results": [
+        {
+            "statistic": 5.3022581188612765, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                63.26392694063927, 
+                56.077319587628864
+            ], 
+            "pvalue": 1.1654646575468741e-07, 
+            "x_parameters": [
+                "3.json", 
+                "5.json"
+            ]
+        }, 
+        {
+            "statistic": 12.694487461490068, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                63.26392694063927, 
+                47.53666472011346
+            ], 
+            "pvalue": 1.3919739734990733e-36, 
+            "x_parameters": [
+                "3.json", 
+                "10.json"
+            ]
+        }, 
+        {
+            "statistic": 12.520612904309454, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                63.26392694063927, 
+                48.03982728254076
+            ], 
+            "pvalue": 1.2812176627949976e-35, 
+            "x_parameters": [
+                "3.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": 17.98779402051317, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                63.26392694063927, 
+                41.828133181777545
+            ], 
+            "pvalue": 8.943347338382858e-71, 
+            "x_parameters": [
+                "3.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 20.952211211521135, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                63.26392694063927, 
+                38.44613609255147
+            ], 
+            "pvalue": 1.4741972827581593e-94, 
+            "x_parameters": [
+                "3.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 23.764558745033778, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                63.26392694063927, 
+                35.23155999321068
+            ], 
+            "pvalue": 5.3870466711408106e-120, 
+            "x_parameters": [
+                "3.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 29.474293280640634, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                63.26392694063927, 
+                28.6893743746317
+            ], 
+            "pvalue": 1.4157611915604089e-179, 
+            "x_parameters": [
+                "3.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 10.694034297315088, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                56.077319587628864, 
+                47.53666472011346
+            ], 
+            "pvalue": 1.2405389511088189e-26, 
+            "x_parameters": [
+                "5.json", 
+                "10.json"
+            ]
+        }, 
+        {
+            "statistic": 10.540987085270949, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                56.077319587628864, 
+                48.03982728254076
+            ], 
+            "pvalue": 6.47407566934782e-26, 
+            "x_parameters": [
+                "5.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": 19.70235651492218, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                56.077319587628864, 
+                41.828133181777545
+            ], 
+            "pvalue": 1.7363793546480853e-85, 
+            "x_parameters": [
+                "5.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 24.78684664690099, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                56.077319587628864, 
+                38.44613609255147
+            ], 
+            "pvalue": 3.475433757521656e-133, 
+            "x_parameters": [
+                "5.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 29.64798398317234, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                56.077319587628864, 
+                35.23155999321068
+            ], 
+            "pvalue": 5.3948506518189917e-188, 
+            "x_parameters": [
+                "5.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 39.573933232690315, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                56.077319587628864, 
+                28.6893743746317
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "5.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": -0.9522179489515346, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                47.53666472011346, 
+                48.03982728254076
+            ], 
+            "pvalue": 0.34098946574038436, 
+            "x_parameters": [
+                "10.json", 
+                "15.json"
+            ]
+        }, 
+        {
+            "statistic": 12.146794153187873, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                47.53666472011346, 
+                41.828133181777545
+            ], 
+            "pvalue": 6.5439040069544115e-34, 
+            "x_parameters": [
+                "10.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 20.137706847531508, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                47.53666472011346, 
+                38.44613609255147
+            ], 
+            "pvalue": 7.582288025765706e-90, 
+            "x_parameters": [
+                "10.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 28.069597270952713, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                47.53666472011346, 
+                35.23155999321068
+            ], 
+            "pvalue": 6.128687076392202e-172, 
+            "x_parameters": [
+                "10.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 44.826888983278025, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                47.53666472011346, 
+                28.6893743746317
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "10.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 15.317802912225492, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                48.03982728254076, 
+                41.828133181777545
+            ], 
+            "pvalue": 6.68126653014134e-53, 
+            "x_parameters": [
+                "15.json", 
+                "20.json"
+            ]
+        }, 
+        {
+            "statistic": 24.99156881023387, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                48.03982728254076, 
+                38.44613609255147
+            ], 
+            "pvalue": 2.2913096273757234e-137, 
+            "x_parameters": [
+                "15.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 34.76213106839868, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                48.03982728254076, 
+                35.23155999321068
+            ], 
+            "pvalue": 1.0001182150068185e-262, 
+            "x_parameters": [
+                "15.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 55.776783210241746, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                48.03982728254076, 
+                28.6893743746317
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "15.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 11.335997043831528, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                41.828133181777545, 
+                38.44613609255147
+            ], 
+            "pvalue": 8.92957739826442e-30, 
+            "x_parameters": [
+                "20.json", 
+                "25.json"
+            ]
+        }, 
+        {
+            "statistic": 23.71016592895618, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                41.828133181777545, 
+                35.23155999321068
+            ], 
+            "pvalue": 4.822604051768183e-124, 
+            "x_parameters": [
+                "20.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 52.76480028570776, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                41.828133181777545, 
+                28.6893743746317
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "20.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 13.088712492151474, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                38.44613609255147, 
+                35.23155999321068
+            ], 
+            "pvalue": 3.9543781556455283e-39, 
+            "x_parameters": [
+                "25.json", 
+                "30.json"
+            ]
+        }, 
+        {
+            "statistic": 46.035660797927456, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                38.44613609255147, 
+                28.6893743746317
+            ], 
+            "pvalue": 0.0, 
+            "x_parameters": [
+                "25.json", 
+                "50.json"
+            ]
+        }, 
+        {
+            "statistic": 35.8426740310147, 
+            "x_label": "maxVehiclesInPlatoon", 
+            "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+            "means_of_x_parameters": [
+                35.23155999321068, 
+                28.6893743746317
+            ], 
+            "pvalue": 1.3655595754910402e-280, 
+            "x_parameters": [
+                "30.json", 
+                "50.json"
+            ]
+        }
+    ]
+}
