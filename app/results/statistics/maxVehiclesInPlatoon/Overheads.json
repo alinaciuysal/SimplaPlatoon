@@ -1,394 +1,394 @@
 {
-    "number_of_non_significant_results": 6, 
-    "number_of_significant_results": 22, 
+    "number_of_non_significant_results": 11, 
+    "number_of_significant_results": 17, 
     "actual_results": [
         {
-            "statistic": -2.2003536031615503, 
+            "statistic": -3.8874782481917878, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.6945725216592056, 
-                1.754458692560011
+                1.6929179057697883, 
+                1.7954688221789674
             ], 
-            "pvalue": 0.027981303496712715, 
+            "pvalue": 0.000107336175540008, 
             "x_parameters": [
                 "3.json", 
                 "5.json"
             ]
         }, 
         {
-            "statistic": -5.166376492178177, 
+            "statistic": -5.201076095191369, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.6945725216592056, 
-                1.8475220663726462
+                1.6929179057697883, 
+                1.8358056697685556
             ], 
-            "pvalue": 2.844990061739508e-07, 
+            "pvalue": 2.38454415589132e-07, 
             "x_parameters": [
                 "3.json", 
                 "10.json"
             ]
         }, 
         {
-            "statistic": -4.24100336440998, 
+            "statistic": -5.41498041159433, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.6945725216592056, 
-                1.809369012949296
+                1.6929179057697883, 
+                1.8451618824254163
             ], 
-            "pvalue": 2.4062335732967026e-05, 
+            "pvalue": 7.668561240138099e-08, 
             "x_parameters": [
                 "3.json", 
                 "15.json"
             ]
         }, 
         {
-            "statistic": -7.351947112159239, 
+            "statistic": -6.104068842735124, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.6945725216592056, 
-                1.8926659758160744
+                1.6929179057697883, 
+                1.865571332317975
             ], 
-            "pvalue": 3.806295778973148e-13, 
+            "pvalue": 1.477482387121601e-09, 
             "x_parameters": [
                 "3.json", 
                 "20.json"
             ]
         }, 
         {
-            "statistic": -10.203556719496284, 
+            "statistic": -7.732493279955966, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.6945725216592056, 
-                2.035282886583902
+                1.6929179057697883, 
+                1.904934826140985
             ], 
-            "pvalue": 3.32858703431604e-23, 
+            "pvalue": 2.449463172687082e-14, 
             "x_parameters": [
                 "3.json", 
                 "25.json"
             ]
         }, 
         {
-            "statistic": -8.08896425237625, 
+            "statistic": -9.727583821711958, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.6945725216592056, 
-                1.9406516802825347
+                1.6929179057697883, 
+                1.9758837265185463
             ], 
-            "pvalue": 1.742855035356179e-15, 
+            "pvalue": 2.1962113536253055e-21, 
             "x_parameters": [
                 "3.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": -6.387057047854569, 
+            "statistic": -6.542412905007797, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.6945725216592056, 
-                1.8915365091815302
+                1.6929179057697883, 
+                1.8915717210061476
             ], 
-            "pvalue": 2.6138419018910624e-10, 
+            "pvalue": 9.876902380143223e-11, 
             "x_parameters": [
                 "3.json", 
                 "50.json"
             ]
         }, 
         {
-            "statistic": -3.1214444833052357, 
+            "statistic": -1.3807911302702072, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.754458692560011, 
-                1.8475220663726462
+                1.7954688221789674, 
+                1.8358056697685556
             ], 
-            "pvalue": 0.0018479347576222638, 
+            "pvalue": 0.16763275206478304, 
             "x_parameters": [
                 "5.json", 
                 "10.json"
             ]
         }, 
         {
-            "statistic": -2.0115803758024815, 
+            "statistic": -1.6665470088835779, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.754458692560011, 
-                1.809369012949296
+                1.7954688221789674, 
+                1.8451618824254163
             ], 
-            "pvalue": 0.044502934785932646, 
+            "pvalue": 0.0959050379231179, 
             "x_parameters": [
                 "5.json", 
                 "15.json"
             ]
         }, 
         {
-            "statistic": -5.085962710027094, 
+            "statistic": -2.338466437752138, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.754458692560011, 
-                1.8926659758160744
+                1.7954688221789674, 
+                1.865571332317975
             ], 
-            "pvalue": 4.305117087757696e-07, 
+            "pvalue": 0.019551912782037127, 
             "x_parameters": [
                 "5.json", 
                 "20.json"
             ]
         }, 
         {
-            "statistic": -8.36355606231483, 
+            "statistic": -3.7536834241592003, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.754458692560011, 
-                2.035282886583902
+                1.7954688221789674, 
+                1.904934826140985
             ], 
-            "pvalue": 2.287889692074445e-16, 
+            "pvalue": 0.00018356763476320054, 
             "x_parameters": [
                 "5.json", 
                 "25.json"
             ]
         }, 
         {
-            "statistic": -6.079690210539695, 
+            "statistic": -5.869485700900595, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.754458692560011, 
-                1.9406516802825347
+                1.7954688221789674, 
+                1.9758837265185463
             ], 
-            "pvalue": 1.7136991025840518e-09, 
+            "pvalue": 5.9358841611420174e-09, 
             "x_parameters": [
                 "5.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": -4.416299058550053, 
+            "statistic": -3.0081958552118904, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.754458692560011, 
-                1.8915365091815302
+                1.7954688221789674, 
+                1.8915717210061476
             ], 
-            "pvalue": 1.1160011129086969e-05, 
+            "pvalue": 0.002693148417322488, 
             "x_parameters": [
                 "5.json", 
                 "50.json"
             ]
         }, 
         {
-            "statistic": 1.2855314944907106, 
+            "statistic": -0.30388069260285583, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8475220663726462, 
-                1.809369012949296
+                1.8358056697685556, 
+                1.8451618824254163
             ], 
-            "pvalue": 0.19888728533527886, 
+            "pvalue": 0.7612797205878803, 
             "x_parameters": [
                 "10.json", 
                 "15.json"
             ]
         }, 
         {
-            "statistic": -1.5268925854602646, 
+            "statistic": -0.9619176827033037, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8475220663726462, 
-                1.8926659758160744
+                1.8358056697685556, 
+                1.865571332317975
             ], 
-            "pvalue": 0.12709319623640752, 
+            "pvalue": 0.336315320622942, 
             "x_parameters": [
                 "10.json", 
                 "20.json"
             ]
         }, 
         {
-            "statistic": -5.283017164927067, 
+            "statistic": -2.2924961542519178, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8475220663726462, 
-                2.035282886583902
+                1.8358056697685556, 
+                1.904934826140985
             ], 
-            "pvalue": 1.5688647039454123e-07, 
+            "pvalue": 0.022072081328359788, 
             "x_parameters": [
                 "10.json", 
                 "25.json"
             ]
         }, 
         {
-            "statistic": -2.842257094718314, 
+            "statistic": -4.4215567300951335, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8475220663726462, 
-                1.9406516802825347
+                1.8358056697685556, 
+                1.9758837265185463
             ], 
-            "pvalue": 0.004568077914619752, 
+            "pvalue": 1.0860536969404043e-05, 
             "x_parameters": [
                 "10.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": -1.327614058894066, 
+            "statistic": -1.6973241613243617, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8475220663726462, 
-                1.8915365091815302
+                1.8358056697685556, 
+                1.8915717210061476
             ], 
-            "pvalue": 0.18460316871303162, 
+            "pvalue": 0.08993939763180313, 
             "x_parameters": [
                 "10.json", 
                 "50.json"
             ]
         }, 
         {
-            "statistic": -3.0821439888297757, 
+            "statistic": -0.6475903902045369, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.809369012949296, 
-                1.8926659758160744
+                1.8451618824254163, 
+                1.865571332317975
             ], 
-            "pvalue": 0.002107260405214937, 
+            "pvalue": 0.5173945191829454, 
             "x_parameters": [
                 "15.json", 
                 "20.json"
             ]
         }, 
         {
-            "statistic": -6.752370215462151, 
+            "statistic": -1.9443965139408108, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.809369012949296, 
-                2.035282886583902
+                1.8451618824254163, 
+                1.904934826140985
             ], 
-            "pvalue": 2.6132057549969793e-11, 
+            "pvalue": 0.05211567600777568, 
             "x_parameters": [
                 "15.json", 
                 "25.json"
             ]
         }, 
         {
-            "statistic": -4.305249720347474, 
+            "statistic": -4.054704748639999, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.809369012949296, 
-                1.9406516802825347
+                1.8451618824254163, 
+                1.9758837265185463
             ], 
-            "pvalue": 1.8344357724305618e-05, 
+            "pvalue": 5.406959599155328e-05, 
             "x_parameters": [
                 "15.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": -2.6583635939314156, 
+            "statistic": -1.389746576719829, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.809369012949296, 
-                1.8915365091815302
+                1.8451618824254163, 
+                1.8915717210061476
             ], 
-            "pvalue": 0.007981552689159127, 
+            "pvalue": 0.16490767619522906, 
             "x_parameters": [
                 "15.json", 
                 "50.json"
             ]
         }, 
         {
-            "statistic": -4.275494345262697, 
+            "statistic": -1.2740497357751268, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8926659758160744, 
-                2.035282886583902
+                1.865571332317975, 
+                1.904934826140985
             ], 
-            "pvalue": 2.115363992752238e-05, 
+            "pvalue": 0.20292938345660472, 
             "x_parameters": [
                 "20.json", 
                 "25.json"
             ]
         }, 
         {
-            "statistic": -1.579323519591477, 
+            "statistic": -3.406007791902594, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8926659758160744, 
-                1.9406516802825347
+                1.865571332317975, 
+                1.9758837265185463
             ], 
-            "pvalue": 0.11458954098969103, 
+            "pvalue": 0.0006852056089259826, 
             "x_parameters": [
                 "20.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": 0.036670259691918804, 
+            "statistic": -0.7752652591969279, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.8926659758160744, 
-                1.8915365091815302
+                1.865571332317975, 
+                1.8915717210061476
             ], 
-            "pvalue": 0.9707556381111194, 
+            "pvalue": 0.438361438587462, 
             "x_parameters": [
                 "20.json", 
                 "50.json"
             ]
         }, 
         {
-            "statistic": 2.612415084089135, 
+            "statistic": -2.2427986861198455, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                2.035282886583902, 
-                1.9406516802825347
+                1.904934826140985, 
+                1.9758837265185463
             ], 
-            "pvalue": 0.009130530062965879, 
+            "pvalue": 0.025124798286314805, 
             "x_parameters": [
                 "25.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": 3.930283412778992, 
+            "statistic": 0.4072835279960989, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                2.035282886583902, 
-                1.8915365091815302
+                1.904934826140985, 
+                1.8915717210061476
             ], 
-            "pvalue": 9.089945268487122e-05, 
+            "pvalue": 0.6838845125511652, 
             "x_parameters": [
                 "25.json", 
                 "50.json"
             ]
         }, 
         {
-            "statistic": 1.4494918098108809, 
+            "statistic": 2.463948267544103, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9406516802825347, 
-                1.8915365091815302
+                1.9758837265185463, 
+                1.8915717210061476
             ], 
-            "pvalue": 0.14751689287863792, 
+            "pvalue": 0.013905771866631587, 
             "x_parameters": [
                 "30.json", 
                 "50.json"

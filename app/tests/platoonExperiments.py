@@ -23,16 +23,12 @@ defaultParameters = deepcopy(PlatoonConfig.parameters)
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
-    catchupDistance=[100.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 1000.0],
-    maxPlatoonGap=[25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0],
-    platoonSplitTime=[3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 15.0, 20.0],
-    joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0, 3000.0],
+    catchupDistance=[100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0, 900.0, 1000.0],
+    maxPlatoonGap=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 700.0, 800.0, 900.0, 1000.0],
+    platoonSplitTime=[3.0, 5.0, 7.0, 10.0, 15.0, 20.0],
+    joinDistance=[25.0, 50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1250.0, 1500.0, 1750.0, 2000.0, 2250.0, 2500.0, 2750.0, 3000.0],
     maxVehiclesInPlatoon=[3, 5, 10, 15, 20, 25, 30, 50]
 )
-
-# to be used after reverting back to own logic
-# maxVehiclesInPlatoon=[2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50],
-# joinDistance=[10.0, 25.0, 50.0, 100.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0],
 
 def flush_results(variable_name, value, results):
     current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -81,8 +77,11 @@ if __name__ == '__main__':
     for variable_name in changeableVariables:
         for value in changeableVariables[variable_name]:
             changeVariable(variable_name, value)
-            print("New parameter: " + variable_name + " - " + str(value))
+            print("New parameter: " + variable_name + " - " + str(PlatoonConfig.parameters["changeable"][variable_name]))
             results = run()
             flush_results(variable_name=variable_name, value=value, results=results)
-            # now revert back to original
+
+            # now revert back to default values
             defaultParameters = deepcopy(originalParameters)
+            defaultValue = originalParameters["changeable"][variable_name]
+            changeVariable(variable_name, defaultValue)

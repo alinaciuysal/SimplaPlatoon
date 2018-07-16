@@ -3,12 +3,12 @@
     "number_of_significant_results": 28, 
     "actual_results": [
         {
-            "statistic": -281.01760473032607, 
+            "statistic": -285.1057969701708, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                2.687893916165468, 
-                4.0309333333333335
+                2.7031260257066707, 
+                4.088997857101488
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -17,12 +17,12 @@
             ]
         }, 
         {
-            "statistic": -293.6578170251642, 
+            "statistic": -316.83851237959703, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                2.687893916165468, 
-                7.041826224745807
+                2.7031260257066707, 
+                7.228932300437858
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -31,12 +31,12 @@
             ]
         }, 
         {
-            "statistic": -232.30262700457698, 
+            "statistic": -254.98967651719164, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                2.687893916165468, 
-                9.50751762983989
+                2.7031260257066707, 
+                10.0595388428979
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -45,12 +45,12 @@
             ]
         }, 
         {
-            "statistic": -196.2103854752801, 
+            "statistic": -208.68586048436043, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                2.687893916165468, 
-                11.62833114897335
+                2.7031260257066707, 
+                12.500816516971888
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -59,12 +59,12 @@
             ]
         }, 
         {
-            "statistic": -167.10511169703668, 
+            "statistic": -183.177072631489, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                2.687893916165468, 
-                12.919647704651023
+                2.7031260257066707, 
+                14.366218938885158
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -73,12 +73,12 @@
             ]
         }, 
         {
-            "statistic": -151.96060555613434, 
+            "statistic": -164.85211251042224, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                2.687893916165468, 
-                14.75270157938487
+                2.7031260257066707, 
+                16.428351783517837
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -87,12 +87,12 @@
             ]
         }, 
         {
-            "statistic": -111.09722128795447, 
+            "statistic": -117.05504221109337, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                2.687893916165468, 
-                19.860196746121833
+                2.7031260257066707, 
+                22.082731176039374
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -101,12 +101,12 @@
             ]
         }, 
         {
-            "statistic": -195.5616597578699, 
+            "statistic": -210.6496535364032, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                4.0309333333333335, 
-                7.041826224745807
+                4.088997857101488, 
+                7.228932300437858
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -115,12 +115,12 @@
             ]
         }, 
         {
-            "statistic": -184.71783522119293, 
+            "statistic": -204.73237935757533, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                4.0309333333333335, 
-                9.50751762983989
+                4.088997857101488, 
+                10.0595388428979
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -129,12 +129,12 @@
             ]
         }, 
         {
-            "statistic": -166.04856331644618, 
+            "statistic": -178.4344867689273, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                4.0309333333333335, 
-                11.62833114897335
+                4.088997857101488, 
+                12.500816516971888
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -143,12 +143,12 @@
             ]
         }, 
         {
-            "statistic": -144.83843566527594, 
+            "statistic": -161.0509233064774, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                4.0309333333333335, 
-                12.919647704651023
+                4.088997857101488, 
+                14.366218938885158
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -157,12 +157,12 @@
             ]
         }, 
         {
-            "statistic": -134.86051819191067, 
+            "statistic": -148.0129469785258, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                4.0309333333333335, 
-                14.75270157938487
+                4.088997857101488, 
+                16.428351783517837
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -171,12 +171,12 @@
             ]
         }, 
         {
-            "statistic": -102.37147593993755, 
+            "statistic": -108.64825697382024, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                4.0309333333333335, 
-                19.860196746121833
+                4.088997857101488, 
+                22.082731176039374
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -185,12 +185,12 @@
             ]
         }, 
         {
-            "statistic": -75.16750376334092, 
+            "statistic": -88.16109591522101, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                7.041826224745807, 
-                9.50751762983989
+                7.228932300437858, 
+                10.0595388428979
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -199,12 +199,12 @@
             ]
         }, 
         {
-            "statistic": -95.83501549870229, 
+            "statistic": -107.54890214297558, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                7.041826224745807, 
-                11.62833114897335
+                7.228932300437858, 
+                12.500816516971888
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -213,12 +213,12 @@
             ]
         }, 
         {
-            "statistic": -93.36646335156945, 
+            "statistic": -109.4478523113597, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                7.041826224745807, 
-                12.919647704651023
+                7.228932300437858, 
+                14.366218938885158
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -227,12 +227,12 @@
             ]
         }, 
         {
-            "statistic": -95.51199993943837, 
+            "statistic": -108.94387215971307, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                7.041826224745807, 
-                14.75270157938487
+                7.228932300437858, 
+                16.428351783517837
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -241,12 +241,12 @@
             ]
         }, 
         {
-            "statistic": -82.5599355979814, 
+            "statistic": -89.3954448114247, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                7.041826224745807, 
-                19.860196746121833
+                7.228932300437858, 
+                22.082731176039374
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -255,12 +255,12 @@
             ]
         }, 
         {
-            "statistic": -39.16430329984561, 
+            "statistic": -44.34228949010264, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                9.50751762983989, 
-                11.62833114897335
+                10.0595388428979, 
+                12.500816516971888
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -269,12 +269,12 @@
             ]
         }, 
         {
-            "statistic": -50.280532962469984, 
+            "statistic": -61.64460057878589, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                9.50751762983989, 
-                12.919647704651023
+                10.0595388428979, 
+                14.366218938885158
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -283,12 +283,12 @@
             ]
         }, 
         {
-            "statistic": -61.98906144571762, 
+            "statistic": -72.304303483049, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                9.50751762983989, 
-                14.75270157938487
+                10.0595388428979, 
+                16.428351783517837
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -297,12 +297,12 @@
             ]
         }, 
         {
-            "statistic": -65.80849376131393, 
+            "statistic": -71.5503123470831, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                9.50751762983989, 
-                19.860196746121833
+                10.0595388428979, 
+                22.082731176039374
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -311,40 +311,40 @@
             ]
         }, 
         {
-            "statistic": -16.927182360229278, 
+            "statistic": -23.590425298994614, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                11.62833114897335, 
-                12.919647704651023
+                12.500816516971888, 
+                14.366218938885158
             ], 
-            "pvalue": 5.4655856767930396e-64, 
+            "pvalue": 7.314914584665415e-122, 
             "x_parameters": [
                 "20.json", 
                 "25.json"
             ]
         }, 
         {
-            "statistic": -34.142452836426244, 
+            "statistic": -41.102630590468785, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                11.62833114897335, 
-                14.75270157938487
+                12.500816516971888, 
+                16.428351783517837
             ], 
-            "pvalue": 2.1303369742024627e-249, 
+            "pvalue": 0.0, 
             "x_parameters": [
                 "20.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": -51.088725213086114, 
+            "statistic": -55.68546420148558, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                11.62833114897335, 
-                19.860196746121833
+                12.500816516971888, 
+                22.082731176039374
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -353,26 +353,26 @@
             ]
         }, 
         {
-            "statistic": -18.287726502965402, 
+            "statistic": -19.679209335754482, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                12.919647704651023, 
-                14.75270157938487
+                14.366218938885158, 
+                16.428351783517837
             ], 
-            "pvalue": 2.801910329777873e-74, 
+            "pvalue": 1.4324850523849328e-85, 
             "x_parameters": [
                 "25.json", 
                 "30.json"
             ]
         }, 
         {
-            "statistic": -41.750491211386, 
+            "statistic": -43.50624216926155, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                12.919647704651023, 
-                19.860196746121833
+                14.366218938885158, 
+                22.082731176039374
             ], 
             "pvalue": 0.0, 
             "x_parameters": [
@@ -381,14 +381,14 @@
             ]
         }, 
         {
-            "statistic": -29.395330682902063, 
+            "statistic": -30.514584258570107, 
             "x_label": "maxVehiclesInPlatoon", 
             "y_parameter": "NumberOfCarsInPlatoons", 
             "means_of_x_parameters": [
-                14.75270157938487, 
-                19.860196746121833
+                16.428351783517837, 
+                22.082731176039374
             ], 
-            "pvalue": 4.8214992585411656e-185, 
+            "pvalue": 3.471184713840373e-198, 
             "x_parameters": [
                 "30.json", 
                 "50.json"

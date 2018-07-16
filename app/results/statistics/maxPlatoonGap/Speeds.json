@@ -1,928 +1,1474 @@
 {
     "number_of_non_significant_results": 9, 
-    "number_of_significant_results": 57, 
+    "number_of_significant_results": 96, 
     "actual_results": [
         {
-            "statistic": -0.2780630386840085, 
+            "statistic": -17.304601751962043, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.00652094618342, 
-                36.022474098868386
+                35.59849319722936, 
+                36.56308213395809
             ], 
-            "pvalue": 0.7809641344326677, 
-            "x_parameters": [
-                "25.0.json", 
-                "50.0.json"
-            ]
-        }, 
-        {
-            "statistic": -7.82667692663761, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.44557914594949
-            ], 
-            "pvalue": 5.023012868040244e-15, 
-            "x_parameters": [
-                "25.0.json", 
-                "75.0.json"
-            ]
-        }, 
-        {
-            "statistic": 5.640611966487803, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                35.68489963514012
-            ], 
-            "pvalue": 1.695762818411251e-08, 
-            "x_parameters": [
-                "25.0.json", 
-                "100.0.json"
-            ]
-        }, 
-        {
-            "statistic": -5.71463130241861, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.33264868563931
-            ], 
-            "pvalue": 1.100305473754219e-08, 
-            "x_parameters": [
-                "25.0.json", 
-                "150.0.json"
-            ]
-        }, 
-        {
-            "statistic": -14.43813356483724, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.832393646627764
-            ], 
-            "pvalue": 3.0739162129447134e-47, 
-            "x_parameters": [
-                "25.0.json", 
-                "200.0.json"
-            ]
-        }, 
-        {
-            "statistic": -0.5038226562370196, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.03516764271606
-            ], 
-            "pvalue": 0.6143863292933781, 
-            "x_parameters": [
-                "25.0.json", 
-                "250.0.json"
-            ]
-        }, 
-        {
-            "statistic": -9.66842724862037, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.55958652137505
-            ], 
-            "pvalue": 4.13281490926789e-22, 
-            "x_parameters": [
-                "25.0.json", 
-                "300.0.json"
-            ]
-        }, 
-        {
-            "statistic": -11.72926382413685, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.65881354246913
-            ], 
-            "pvalue": 9.148623479762231e-32, 
-            "x_parameters": [
-                "25.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": -13.645891723487976, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.778771002118624
-            ], 
-            "pvalue": 2.189662810641732e-42, 
-            "x_parameters": [
-                "25.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.5445768258455541, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                35.91947233501977
-            ], 
-            "pvalue": 0.12244956467912403, 
-            "x_parameters": [
-                "25.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": -11.370336456041146, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.00652094618342, 
-                36.64880712193261
-            ], 
-            "pvalue": 5.948030680855929e-30, 
-            "x_parameters": [
-                "25.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -7.453174585422498, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.022474098868386, 
-                36.44557914594949
-            ], 
-            "pvalue": 9.132947967766995e-14, 
-            "x_parameters": [
-                "50.0.json", 
-                "75.0.json"
-            ]
-        }, 
-        {
-            "statistic": 5.8526470565104285, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.022474098868386, 
-                35.68489963514012
-            ], 
-            "pvalue": 4.842433132122994e-09, 
+            "pvalue": 4.632804957513288e-67, 
             "x_parameters": [
                 "50.0.json", 
                 "100.0.json"
             ]
         }, 
         {
-            "statistic": -5.372998151117329, 
+            "statistic": -17.05733175934042, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                36.33264868563931
+                35.59849319722936, 
+                36.56415481241737
             ], 
-            "pvalue": 7.748789071118011e-08, 
+            "pvalue": 3.2801561678600454e-65, 
             "x_parameters": [
                 "50.0.json", 
                 "150.0.json"
             ]
         }, 
         {
-            "statistic": -13.998211553865623, 
+            "statistic": 6.693520778420048, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                36.832393646627764
+                35.59849319722936, 
+                35.20693846998913
             ], 
-            "pvalue": 1.6445094269799326e-44, 
+            "pvalue": 2.181940611486061e-11, 
             "x_parameters": [
                 "50.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": -0.22067823202889564, 
+            "statistic": 8.10890448652237, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                36.03516764271606
+                35.59849319722936, 
+                35.126106599672944
             ], 
-            "pvalue": 0.8253431153448925, 
+            "pvalue": 5.124216765663003e-16, 
             "x_parameters": [
                 "50.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -9.282769237549628, 
+            "statistic": 16.226746753056368, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                36.55958652137505
+                35.59849319722936, 
+                34.672878647190494
             ], 
-            "pvalue": 1.6604650911164255e-20, 
+            "pvalue": 3.4293472129220902e-59, 
             "x_parameters": [
                 "50.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -11.30486888849861, 
+            "statistic": -13.622800083493624, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                36.65881354246913
+                35.59849319722936, 
+                36.37559883524104
             ], 
-            "pvalue": 1.256471696604984e-29, 
+            "pvalue": 3.004493901995608e-42, 
+            "x_parameters": [
+                "50.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
+            "statistic": -12.988655459404681, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.59849319722936, 
+                36.33353218127719
+            ], 
+            "pvalue": 1.4482953378570117e-38, 
             "x_parameters": [
                 "50.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -13.208784157956202, 
+            "statistic": 18.515098767374205, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                36.778771002118624
+                35.59849319722936, 
+                34.52020587474398
             ], 
-            "pvalue": 7.982974856492095e-40, 
+            "pvalue": 1.695439783933097e-76, 
+            "x_parameters": [
+                "50.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": 4.883015833090451, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.59849319722936, 
+                35.31749599356365
+            ], 
+            "pvalue": 1.0452117151254092e-06, 
             "x_parameters": [
                 "50.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 1.8062466562716994, 
+            "statistic": 16.202378753357866, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                35.91947233501977
+                35.59849319722936, 
+                34.65789185754705
             ], 
-            "pvalue": 0.07088069802614987, 
+            "pvalue": 5.098780056530446e-59, 
             "x_parameters": [
                 "50.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -10.958675692851083, 
+            "statistic": 10.283752269657713, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.022474098868386, 
-                36.64880712193261
+                35.59849319722936, 
+                35.00027479420895
             ], 
-            "pvalue": 6.102501331989183e-28, 
+            "pvalue": 8.409441949270112e-25, 
+            "x_parameters": [
+                "50.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -13.644907553177752, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.59849319722936, 
+                36.37189941552168
+            ], 
+            "pvalue": 2.2198373698078955e-42, 
+            "x_parameters": [
+                "50.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 19.29593053088946, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.59849319722936, 
+                34.46233668982402
+            ], 
+            "pvalue": 6.4167171063077685e-83, 
+            "x_parameters": [
+                "50.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.26890631396926284, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.59849319722936, 
+                35.614125056701624
+            ], 
+            "pvalue": 0.7880019387181557, 
             "x_parameters": [
                 "50.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 13.484575115065976, 
+            "statistic": -0.019757539421954035, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.44557914594949, 
-                35.68489963514012
+                36.56308213395809, 
+                36.56415481241737
             ], 
-            "pvalue": 1.9735130265004712e-41, 
-            "x_parameters": [
-                "75.0.json", 
-                "100.0.json"
-            ]
-        }, 
-        {
-            "statistic": 2.0001265302530737, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                36.33264868563931
-            ], 
-            "pvalue": 0.045487361787845834, 
-            "x_parameters": [
-                "75.0.json", 
-                "150.0.json"
-            ]
-        }, 
-        {
-            "statistic": -6.834786579953305, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                36.832393646627764
-            ], 
-            "pvalue": 8.2261078282703e-12, 
-            "x_parameters": [
-                "75.0.json", 
-                "200.0.json"
-            ]
-        }, 
-        {
-            "statistic": 7.296311334721783, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                36.03516764271606
-            ], 
-            "pvalue": 2.963930375876089e-13, 
-            "x_parameters": [
-                "75.0.json", 
-                "250.0.json"
-            ]
-        }, 
-        {
-            "statistic": -2.0143550339216723, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                36.55958652137505
-            ], 
-            "pvalue": 0.04397303222107079, 
-            "x_parameters": [
-                "75.0.json", 
-                "300.0.json"
-            ]
-        }, 
-        {
-            "statistic": -3.8777588974077615, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                36.65881354246913
-            ], 
-            "pvalue": 0.0001054420898494339, 
-            "x_parameters": [
-                "75.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": -5.952010919576557, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                36.778771002118624
-            ], 
-            "pvalue": 2.6511408166232282e-09, 
-            "x_parameters": [
-                "75.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": 9.438148597071464, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                35.91947233501977
-            ], 
-            "pvalue": 3.8161510400762124e-21, 
-            "x_parameters": [
-                "75.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": -3.6372340828422485, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                36.44557914594949, 
-                36.64880712193261
-            ], 
-            "pvalue": 0.00027562071128113265, 
-            "x_parameters": [
-                "75.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -11.289344312265216, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Speeds", 
-            "means_of_x_parameters": [
-                35.68489963514012, 
-                36.33264868563931
-            ], 
-            "pvalue": 1.4988037401654817e-29, 
+            "pvalue": 0.9842368013478233, 
             "x_parameters": [
                 "100.0.json", 
                 "150.0.json"
             ]
         }, 
         {
-            "statistic": -19.953567043695557, 
+            "statistic": 24.107168331062365, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.68489963514012, 
-                36.832393646627764
+                36.56308213395809, 
+                35.20693846998913
             ], 
-            "pvalue": 1.5654269690954332e-88, 
+            "pvalue": 2.690698772122418e-128, 
             "x_parameters": [
                 "100.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": -6.1269995148368075, 
+            "statistic": 25.65899231093231, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.68489963514012, 
-                36.03516764271606
+                36.56308213395809, 
+                35.126106599672944
             ], 
-            "pvalue": 8.964849436682993e-10, 
+            "pvalue": 4.597590907269213e-145, 
             "x_parameters": [
                 "100.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -15.209123763393903, 
+            "statistic": 34.53047500774402, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.68489963514012, 
-                36.55958652137505
+                36.56308213395809, 
+                34.672878647190494
             ], 
-            "pvalue": 3.1976016172502076e-52, 
+            "pvalue": 7.685278571796492e-261, 
             "x_parameters": [
                 "100.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -17.413534665314398, 
+            "statistic": 3.4248403528330207, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.68489963514012, 
-                36.65881354246913
+                36.56308213395809, 
+                36.37559883524104
             ], 
-            "pvalue": 6.957815436357779e-68, 
+            "pvalue": 0.0006152307848700097, 
+            "x_parameters": [
+                "100.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
+            "statistic": 4.2298293754690315, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56308213395809, 
+                36.33353218127719
+            ], 
+            "pvalue": 2.3392731682664024e-05, 
             "x_parameters": [
                 "100.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -19.223494231614268, 
+            "statistic": 36.489643334572406, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.68489963514012, 
-                36.778771002118624
+                36.56308213395809, 
+                34.52020587474398
             ], 
-            "pvalue": 2.5941308668635543e-82, 
+            "pvalue": 5.66066931082583e-291, 
+            "x_parameters": [
+                "100.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": 22.538656978979308, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56308213395809, 
+                35.31749599356365
+            ], 
+            "pvalue": 2.0856712569058603e-112, 
             "x_parameters": [
                 "100.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": -4.139305824984594, 
+            "statistic": 34.147696114674034, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.68489963514012, 
-                35.91947233501977
+                36.56308213395809, 
+                34.65789185754705
             ], 
-            "pvalue": 3.484400283235902e-05, 
+            "pvalue": 3.8523260773155846e-255, 
             "x_parameters": [
                 "100.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -16.970454067626797, 
+            "statistic": 27.949525181551667, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.68489963514012, 
-                36.64880712193261
+                36.56308213395809, 
+                35.00027479420895
             ], 
-            "pvalue": 1.442434641623334e-64, 
+            "pvalue": 1.0340528224128182e-171, 
+            "x_parameters": [
+                "100.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.516763143818139, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56308213395809, 
+                36.37189941552168
+            ], 
+            "pvalue": 0.00043689860182526786, 
+            "x_parameters": [
+                "100.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 37.08091543918591, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56308213395809, 
+                34.46233668982402
+            ], 
+            "pvalue": 2.2153362391148237e-300, 
+            "x_parameters": [
+                "100.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 16.98394884529573, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56308213395809, 
+                35.614125056701624
+            ], 
+            "pvalue": 1.1477328533017261e-64, 
             "x_parameters": [
                 "100.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -8.682485353059548, 
+            "statistic": 23.76166040762364, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.33264868563931, 
-                36.832393646627764
+                36.56415481241737, 
+                35.20693846998913
             ], 
-            "pvalue": 3.888457329367235e-18, 
+            "pvalue": 1.0536292259405278e-124, 
             "x_parameters": [
                 "150.0.json", 
                 "200.0.json"
             ]
         }, 
         {
-            "statistic": 5.199094614503262, 
+            "statistic": 25.286698895377537, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.33264868563931, 
-                36.03516764271606
+                36.56415481241737, 
+                35.126106599672944
             ], 
-            "pvalue": 2.0037594744550679e-07, 
+            "pvalue": 6.043801058080142e-141, 
             "x_parameters": [
                 "150.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": -3.9426119871107943, 
+            "statistic": 33.9993829854551, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.33264868563931, 
-                36.55958652137505
+                36.56415481241737, 
+                34.672878647190494
             ], 
-            "pvalue": 8.061472111559155e-05, 
+            "pvalue": 5.980953625967472e-253, 
             "x_parameters": [
                 "150.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -5.826498224810156, 
+            "statistic": 3.3895391694445305, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.33264868563931, 
-                36.65881354246913
+                36.56415481241737, 
+                36.37559883524104
             ], 
-            "pvalue": 5.6651772905187235e-09, 
+            "pvalue": 0.0007001801261809634, 
+            "x_parameters": [
+                "150.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
+            "statistic": 4.1807097669019795, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56415481241737, 
+                36.33353218127719
+            ], 
+            "pvalue": 2.9067177228001583e-05, 
             "x_parameters": [
                 "150.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -7.8331698062071435, 
+            "statistic": 35.95190523367133, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.33264868563931, 
-                36.778771002118624
+                36.56415481241737, 
+                34.52020587474398
             ], 
-            "pvalue": 4.770343331563413e-15, 
+            "pvalue": 1.5642957184496158e-282, 
+            "x_parameters": [
+                "150.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": 22.205148696561785, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56415481241737, 
+                35.31749599356365
+            ], 
+            "pvalue": 3.653205428427363e-109, 
             "x_parameters": [
                 "150.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 7.28450199314366, 
+            "statistic": 33.642227518648724, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.33264868563931, 
-                35.91947233501977
+                36.56415481241737, 
+                34.65789185754705
             ], 
-            "pvalue": 3.2353802159840383e-13, 
+            "pvalue": 1.0322178448339795e-247, 
             "x_parameters": [
                 "150.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -5.561334313312043, 
+            "statistic": 27.541039135808326, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.33264868563931, 
-                36.64880712193261
+                36.56415481241737, 
+                35.00027479420895
             ], 
-            "pvalue": 2.6791499596269368e-08, 
+            "pvalue": 8.603409686237179e-167, 
+            "x_parameters": [
+                "150.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.4793618409600016, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56415481241737, 
+                36.37189941552168
+            ], 
+            "pvalue": 0.0005026716485343576, 
+            "x_parameters": [
+                "150.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 36.54690571606517, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56415481241737, 
+                34.46233668982402
+            ], 
+            "pvalue": 7.289221221806988e-292, 
+            "x_parameters": [
+                "150.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 16.742773368185354, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.56415481241737, 
+                35.614125056701624
+            ], 
+            "pvalue": 6.778619316870005e-63, 
             "x_parameters": [
                 "150.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 13.901208315145679, 
+            "statistic": 1.3759465113953449, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.832393646627764, 
-                36.03516764271606
+                35.20693846998913, 
+                35.126106599672944
             ], 
-            "pvalue": 6.404425980602652e-44, 
+            "pvalue": 0.16883909093276075, 
             "x_parameters": [
                 "200.0.json", 
                 "250.0.json"
             ]
         }, 
         {
-            "statistic": 4.728760430274848, 
+            "statistic": 9.280902142826069, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.832393646627764, 
-                36.55958652137505
+                35.20693846998913, 
+                34.672878647190494
             ], 
-            "pvalue": 2.259843123678245e-06, 
+            "pvalue": 1.689731692505984e-20, 
             "x_parameters": [
                 "200.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": 3.0933464555918277, 
+            "statistic": -20.30831537838683, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.832393646627764, 
-                36.65881354246913
+                35.20693846998913, 
+                36.37559883524104
             ], 
-            "pvalue": 0.0019792879931287157, 
+            "pvalue": 1.2278662482257691e-91, 
+            "x_parameters": [
+                "200.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
+            "statistic": -19.731484844789346, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.20693846998913, 
+                36.33353218127719
+            ], 
+            "pvalue": 1.2915002306050616e-86, 
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": 0.9393451855097636, 
+            "statistic": 11.693146415924621, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.832393646627764, 
-                36.778771002118624
+                35.20693846998913, 
+                34.52020587474398
             ], 
-            "pvalue": 0.34755420127055414, 
+            "pvalue": 1.400515031080656e-31, 
+            "x_parameters": [
+                "200.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.9047547679763541, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.20693846998913, 
+                35.31749599356365
+            ], 
+            "pvalue": 0.056812781345407314, 
             "x_parameters": [
                 "200.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 16.057682985681183, 
+            "statistic": 9.378027624638964, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.832393646627764, 
-                35.91947233501977
+                35.20693846998913, 
+                34.65789185754705
             ], 
-            "pvalue": 5.303751807942401e-58, 
+            "pvalue": 6.760493180096713e-21, 
             "x_parameters": [
                 "200.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 3.2218458558227705, 
+            "statistic": 3.5228961048891456, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.832393646627764, 
-                36.64880712193261
+                35.20693846998913, 
+                35.00027479420895
             ], 
-            "pvalue": 0.0012737951581465903, 
+            "pvalue": 0.00042691344569630745, 
+            "x_parameters": [
+                "200.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -20.371597380568094, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.20693846998913, 
+                36.37189941552168
+            ], 
+            "pvalue": 3.3875392598610605e-92, 
+            "x_parameters": [
+                "200.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 12.542448881550147, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.20693846998913, 
+                34.46233668982402
+            ], 
+            "pvalue": 4.4522448146695464e-36, 
+            "x_parameters": [
+                "200.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -6.945806527122207, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.20693846998913, 
+                35.614125056701624
+            ], 
+            "pvalue": 3.769723745732699e-12, 
             "x_parameters": [
                 "200.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -9.143885345474898, 
+            "statistic": 7.910062982870174, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.03516764271606, 
-                36.55958652137505
+                35.126106599672944, 
+                34.672878647190494
             ], 
-            "pvalue": 6.056604017765537e-20, 
+            "pvalue": 2.5800704350517272e-15, 
             "x_parameters": [
                 "250.0.json", 
                 "300.0.json"
             ]
         }, 
         {
-            "statistic": -11.183414403373874, 
+            "statistic": -21.806300242802124, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.03516764271606, 
-                36.65881354246913
+                35.126106599672944, 
+                36.37559883524104
             ], 
-            "pvalue": 4.973825430572208e-29, 
+            "pvalue": 2.379358882394299e-105, 
+            "x_parameters": [
+                "250.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
+            "statistic": -21.239546817714338, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.126106599672944, 
+                36.33353218127719
+            ], 
+            "pvalue": 4.768784394400635e-100, 
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -13.104913583081188, 
+            "statistic": 10.359371443061866, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.03516764271606, 
-                36.778771002118624
+                35.126106599672944, 
+                34.52020587474398
             ], 
-            "pvalue": 3.15393153460759e-39, 
+            "pvalue": 3.826221760506134e-25, 
+            "x_parameters": [
+                "250.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.311307981121056, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.126106599672944, 
+                35.31749599356365
+            ], 
+            "pvalue": 0.0009287037572809961, 
             "x_parameters": [
                 "250.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 2.0473999262429112, 
+            "statistic": 8.030578862157, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.03516764271606, 
-                35.91947233501977
+                35.126106599672944, 
+                34.65789185754705
             ], 
-            "pvalue": 0.04061960226417673, 
+            "pvalue": 9.731489757916904e-16, 
             "x_parameters": [
                 "250.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -10.83434443736186, 
+            "statistic": 2.1538645743904405, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.03516764271606, 
-                36.64880712193261
+                35.126106599672944, 
+                35.00027479420895
             ], 
-            "pvalue": 2.3910624485782154e-27, 
+            "pvalue": 0.0312514776622141, 
+            "x_parameters": [
+                "250.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -21.879935435591808, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.126106599672944, 
+                36.37189941552168
+            ], 
+            "pvalue": 4.763948463686802e-106, 
+            "x_parameters": [
+                "250.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 11.226017416058452, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.126106599672944, 
+                34.46233668982402
+            ], 
+            "pvalue": 3.0740590751481396e-29, 
+            "x_parameters": [
+                "250.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -8.359112691230688, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.126106599672944, 
+                35.614125056701624
+            ], 
+            "pvalue": 6.342377483607341e-17, 
             "x_parameters": [
                 "250.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -1.7682314138215125, 
+            "statistic": -30.369838585524327, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.55958652137505, 
-                36.65881354246913
+                34.672878647190494, 
+                36.37559883524104
             ], 
-            "pvalue": 0.0770231057183718, 
+            "pvalue": 2.509778531976596e-202, 
+            "x_parameters": [
+                "300.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
+            "statistic": -29.865432987585883, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.672878647190494, 
+                36.33353218127719
+            ], 
+            "pvalue": 9.707421431441404e-196, 
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
             ]
         }, 
         {
-            "statistic": -3.8394407705204743, 
+            "statistic": 2.6653610228309015, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.55958652137505, 
-                36.778771002118624
+                34.672878647190494, 
+                34.52020587474398
             ], 
-            "pvalue": 0.00012333664590668733, 
+            "pvalue": 0.007690918320404002, 
+            "x_parameters": [
+                "300.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": -11.393795532690184, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.672878647190494, 
+                35.31749599356365
+            ], 
+            "pvalue": 4.5446753829478965e-30, 
             "x_parameters": [
                 "300.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 11.258694065310946, 
+            "statistic": 0.26250130553454676, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.55958652137505, 
-                35.91947233501977
+                34.672878647190494, 
+                34.65789185754705
             ], 
-            "pvalue": 2.123442089351792e-29, 
+            "pvalue": 0.792935133755376, 
             "x_parameters": [
                 "300.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": -1.5657060061703767, 
+            "statistic": -5.722492225483691, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.55958652137505, 
-                36.64880712193261
+                34.672878647190494, 
+                35.00027479420895
             ], 
-            "pvalue": 0.11741837623061008, 
+            "pvalue": 1.0505746648914217e-08, 
+            "x_parameters": [
+                "300.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -30.505131198093014, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.672878647190494, 
+                36.37189941552168
+            ], 
+            "pvalue": 4.128125440582914e-204, 
+            "x_parameters": [
+                "300.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.634212124971968, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.672878647190494, 
+                34.46233668982402
+            ], 
+            "pvalue": 0.000278871146395776, 
+            "x_parameters": [
+                "300.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -16.463554269973116, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.672878647190494, 
+                35.614125056701624
+            ], 
+            "pvalue": 7.073212591575057e-61, 
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -2.1616513426757846, 
+            "statistic": 0.7565053517124188, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.65881354246913, 
-                36.778771002118624
+                36.37559883524104, 
+                36.33353218127719
             ], 
-            "pvalue": 0.03064573475394191, 
+            "pvalue": 0.4493467670279848, 
+            "x_parameters": [
+                "350.0.json", 
+                "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 32.390340745981824, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37559883524104, 
+                34.52020587474398
+            ], 
+            "pvalue": 8.122938070968828e-230, 
+            "x_parameters": [
+                "350.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": 18.701614676481142, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37559883524104, 
+                35.31749599356365
+            ], 
+            "pvalue": 5.238665792246191e-78, 
+            "x_parameters": [
+                "350.0.json", 
+                "500.0.json"
+            ]
+        }, 
+        {
+            "statistic": 30.085483825760054, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37559883524104, 
+                34.65789185754705
+            ], 
+            "pvalue": 1.347377698225909e-198, 
+            "x_parameters": [
+                "350.0.json", 
+                "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": 24.0381924873057, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37559883524104, 
+                35.00027479420895
+            ], 
+            "pvalue": 1.4064598013354534e-127, 
+            "x_parameters": [
+                "350.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.06641896790693168, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37559883524104, 
+                36.37189941552168
+            ], 
+            "pvalue": 0.9470443070698252, 
+            "x_parameters": [
+                "350.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 33.02414559772707, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37559883524104, 
+                34.46233668982402
+            ], 
+            "pvalue": 8.515523819678514e-239, 
+            "x_parameters": [
+                "350.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 13.318653655020709, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37559883524104, 
+                35.614125056701624
+            ], 
+            "pvalue": 1.8452113606687227e-40, 
+            "x_parameters": [
+                "350.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 31.907598236321295, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.33353218127719, 
+                34.52020587474398
+            ], 
+            "pvalue": 4.331247895227085e-223, 
+            "x_parameters": [
+                "400.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": 18.104467863741156, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.33353218127719, 
+                35.31749599356365
+            ], 
+            "pvalue": 3.171106256090481e-73, 
             "x_parameters": [
                 "400.0.json", 
                 "500.0.json"
             ]
         }, 
         {
-            "statistic": 13.380718547201544, 
+            "statistic": 29.583539770647644, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.65881354246913, 
-                35.91947233501977
+                36.33353218127719, 
+                34.65789185754705
             ], 
-            "pvalue": 8.02386950248548e-41, 
+            "pvalue": 4.20594966876604e-192, 
             "x_parameters": [
                 "400.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 0.1806633213936433, 
+            "statistic": 23.488624093219258, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.65881354246913, 
-                36.64880712193261
+                36.33353218127719, 
+                35.00027479420895
             ], 
-            "pvalue": 0.8566319557041412, 
+            "pvalue": 6.61810006638787e-122, 
+            "x_parameters": [
+                "400.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.6946364768027925, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.33353218127719, 
+                36.37189941552168
+            ], 
+            "pvalue": 0.4872836040975965, 
+            "x_parameters": [
+                "400.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 32.54896202834701, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.33353218127719, 
+                34.46233668982402
+            ], 
+            "pvalue": 4.810320784099904e-232, 
+            "x_parameters": [
+                "400.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 12.683287973937077, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.33353218127719, 
+                35.614125056701624
+            ], 
+            "pvalue": 7.459377418547669e-37, 
             "x_parameters": [
                 "400.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": 15.279086991315332, 
+            "statistic": -13.798345668814738, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.778771002118624, 
-                35.91947233501977
+                34.52020587474398, 
+                35.31749599356365
             ], 
-            "pvalue": 1.0964163737883926e-52, 
+            "pvalue": 2.6755026737141053e-43, 
+            "x_parameters": [
+                "450.0.json", 
+                "500.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.362208353315582, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.52020587474398, 
+                34.65789185754705
+            ], 
+            "pvalue": 0.01816696792174427, 
+            "x_parameters": [
+                "450.0.json", 
+                "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": -8.219733754724883, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.52020587474398, 
+                35.00027479420895
+            ], 
+            "pvalue": 2.0462968822607997e-16, 
+            "x_parameters": [
+                "450.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -32.53135746183861, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.52020587474398, 
+                36.37189941552168
+            ], 
+            "pvalue": 8.474261600967109e-232, 
+            "x_parameters": [
+                "450.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.9789910315825069, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.52020587474398, 
+                34.46233668982402
+            ], 
+            "pvalue": 0.32758507681508653, 
+            "x_parameters": [
+                "450.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -18.742846049522715, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.52020587474398, 
+                35.614125056701624
+            ], 
+            "pvalue": 2.4198693914027877e-78, 
+            "x_parameters": [
+                "450.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 11.452430380620013, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.31749599356365, 
+                34.65789185754705
+            ], 
+            "pvalue": 2.3151116442033066e-30, 
             "x_parameters": [
                 "500.0.json", 
                 "600.0.json"
             ]
         }, 
         {
-            "statistic": 2.3055196395813873, 
+            "statistic": 5.496434967444788, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                36.778771002118624, 
-                36.64880712193261
+                35.31749599356365, 
+                35.00027479420895
             ], 
-            "pvalue": 0.021138071130011354, 
+            "pvalue": 3.878130424360611e-08, 
+            "x_parameters": [
+                "500.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -18.757756982821515, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.31749599356365, 
+                36.37189941552168
+            ], 
+            "pvalue": 1.8279751350576977e-78, 
+            "x_parameters": [
+                "500.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 14.635882954371711, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.31749599356365, 
+                34.46233668982402
+            ], 
+            "pvalue": 1.7134792433813027e-48, 
+            "x_parameters": [
+                "500.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -5.143229025026239, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.31749599356365, 
+                35.614125056701624
+            ], 
+            "pvalue": 2.70202619343577e-07, 
             "x_parameters": [
                 "500.0.json", 
                 "1000.0.json"
             ]
         }, 
         {
-            "statistic": -12.992449431265042, 
+            "statistic": -5.880849306990373, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Speeds", 
             "means_of_x_parameters": [
-                35.91947233501977, 
-                36.64880712193261
+                34.65789185754705, 
+                35.00027479420895
             ], 
-            "pvalue": 1.378831133041504e-38, 
+            "pvalue": 4.085356765429364e-09, 
             "x_parameters": [
                 "600.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -30.21289922309279, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.65789185754705, 
+                36.37189941552168
+            ], 
+            "pvalue": 2.921076548097949e-200, 
+            "x_parameters": [
+                "600.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.3184988680132563, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.65789185754705, 
+                34.46233668982402
+            ], 
+            "pvalue": 0.0009051192548386085, 
+            "x_parameters": [
+                "600.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -16.435759451179973, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.65789185754705, 
+                35.614125056701624
+            ], 
+            "pvalue": 1.1191013041149059e-60, 
+            "x_parameters": [
+                "600.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -24.126377311664836, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.00027479420895, 
+                36.37189941552168
+            ], 
+            "pvalue": 1.6846384437755012e-128, 
+            "x_parameters": [
+                "700.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 9.110648218686565, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.00027479420895, 
+                34.46233668982402
+            ], 
+            "pvalue": 8.230234452315023e-20, 
+            "x_parameters": [
+                "700.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -10.52957598250196, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                35.00027479420895, 
+                35.614125056701624
+            ], 
+            "pvalue": 6.369091566489226e-26, 
+            "x_parameters": [
+                "700.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 33.16518330873436, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37189941552168, 
+                34.46233668982402
+            ], 
+            "pvalue": 8.135023869685158e-241, 
+            "x_parameters": [
+                "800.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 13.338570787497853, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                36.37189941552168, 
+                35.614125056701624
+            ], 
+            "pvalue": 1.4133455623623461e-40, 
+            "x_parameters": [
+                "800.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -19.51998152403192, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Speeds", 
+            "means_of_x_parameters": [
+                34.46233668982402, 
+                35.614125056701624
+            ], 
+            "pvalue": 8.250943657007791e-85, 
+            "x_parameters": [
+                "900.0.json", 
                 "1000.0.json"
             ]
         }

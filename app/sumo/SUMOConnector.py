@@ -1,7 +1,6 @@
 from sumolib import checkBinary
-from app import Config
+import app.Config as Config
 import traci
-from colorama import Fore
 
 import os.path
 
