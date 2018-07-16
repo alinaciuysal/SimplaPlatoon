@@ -184,6 +184,16 @@ class PlatoonManager(traci.StepListener):
             veh.setPlatoonMode(PlatoonMode.NONE)
             traci.vehicle.unsubscribe(veh.getID())
         self._connectedVehicles = dict()
+        self._platoons = dict()
+        self._platoons = dict()
+        self.TripDurations = []
+        self.FuelConsumptions = []
+        self.Speeds = []
+        self.Overheads = []
+        self.TimeSpentInsidePlatoon = []
+        self.NumberOfCarsInPlatoons = []
+        self.ReportedPlatoonDurationsBeforeSplit = []
+        self.carIndex = 0
         _platoon._nextID = 0
 
     def getPlatoonLeaders(self):
@@ -694,9 +704,7 @@ class PlatoonManager(traci.StepListener):
 
             catchupDistance=Config.parameters["changeable"]["catchupDistance"],
             maxPlatoonGap=Config.parameters["changeable"]["maxPlatoonGap"],
-            maxVehiclesInPlatoon=Config.parameters["changeable"]["maxVehiclesInPlatoon"],
             platoonSplitTime=Config.parameters["changeable"]["platoonSplitTime"],
-            joinDistance=Config.parameters["changeable"]["joinDistance"]
         )
 
         data = dict(

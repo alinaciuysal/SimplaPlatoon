@@ -1,21 +1,7 @@
 {
-    "number_of_non_significant_results": 20, 
-    "number_of_significant_results": 16, 
+    "number_of_non_significant_results": 21, 
+    "number_of_significant_results": 24, 
     "actual_results": [
-        {
-            "statistic": 0.7654579969164176, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9890100309349028, 
-                1.9649059433189184
-            ], 
-            "pvalue": 0.44418542618065315, 
-            "x_parameters": [
-                "3.0.json", 
-                "4.0.json"
-            ]
-        }, 
         {
             "statistic": 2.0595232947706004, 
             "x_label": "platoonSplitTime", 
@@ -31,20 +17,6 @@
             ]
         }, 
         {
-            "statistic": 0.471776538133663, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9890100309349028, 
-                1.9736252239314545
-            ], 
-            "pvalue": 0.637194110786427, 
-            "x_parameters": [
-                "3.0.json", 
-                "6.0.json"
-            ]
-        }, 
-        {
             "statistic": 0.2794638137117269, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
@@ -56,20 +28,6 @@
             "x_parameters": [
                 "3.0.json", 
                 "7.0.json"
-            ]
-        }, 
-        {
-            "statistic": 4.030375018853374, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9890100309349028, 
-                1.860965185129256
-            ], 
-            "pvalue": 6.003382122239406e-05, 
-            "x_parameters": [
-                "3.0.json", 
-                "8.0.json"
             ]
         }, 
         {
@@ -115,115 +73,59 @@
             ]
         }, 
         {
-            "statistic": 1.3567368254962424, 
+            "statistic": -3.0089536727477704, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9649059433189184, 
-                1.92536375014471
+                1.9890100309349028, 
+                2.0904629295560504
             ], 
-            "pvalue": 0.17517216432882052, 
+            "pvalue": 0.002693268161606236, 
             "x_parameters": [
-                "4.0.json", 
-                "5.0.json"
+                "3.0.json", 
+                "25.0.json"
             ]
         }, 
         {
-            "statistic": -0.28172907505095607, 
+            "statistic": 0.47915897350918335, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9649059433189184, 
-                1.9736252239314545
+                1.9890100309349028, 
+                1.9731050911386063
             ], 
-            "pvalue": 0.7782118733299612, 
+            "pvalue": 0.6319320235859776, 
             "x_parameters": [
-                "4.0.json", 
-                "6.0.json"
+                "3.0.json", 
+                "30.0.json"
             ]
         }, 
         {
-            "statistic": -0.4881476733858919, 
+            "statistic": 2.556051976152048, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9649059433189184, 
-                1.9799378297640815
+                1.9890100309349028, 
+                1.9057345312258176
             ], 
-            "pvalue": 0.6255580034015085, 
+            "pvalue": 0.010734147388456438, 
             "x_parameters": [
-                "4.0.json", 
-                "7.0.json"
+                "3.0.json", 
+                "40.0.json"
             ]
         }, 
         {
-            "statistic": 3.4575056724676654, 
+            "statistic": -1.7320959979281725, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9649059433189184, 
-                1.860965185129256
+                1.9890100309349028, 
+                2.0465962789242926
             ], 
-            "pvalue": 0.0005681395498075122, 
+            "pvalue": 0.08357808038816861, 
             "x_parameters": [
-                "4.0.json", 
-                "8.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.12905211023605212, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9649059433189184, 
-                1.961013813345046
-            ], 
-            "pvalue": 0.8973421157912361, 
-            "x_parameters": [
-                "4.0.json", 
-                "10.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.0287553896857746, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9649059433189184, 
-                1.964033743675796
-            ], 
-            "pvalue": 0.9770654755302062, 
-            "x_parameters": [
-                "4.0.json", 
-                "15.0.json"
-            ]
-        }, 
-        {
-            "statistic": -4.634511409937675, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9649059433189184, 
-                2.1120496968466855
-            ], 
-            "pvalue": 4.095169019881645e-06, 
-            "x_parameters": [
-                "4.0.json", 
-                "20.0.json"
-            ]
-        }, 
-        {
-            "statistic": -1.5900395847434787, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.92536375014471, 
-                1.9736252239314545
-            ], 
-            "pvalue": 0.11215853475285589, 
-            "x_parameters": [
-                "5.0.json", 
-                "6.0.json"
+                "3.0.json", 
+                "50.0.json"
             ]
         }, 
         {
@@ -238,20 +140,6 @@
             "x_parameters": [
                 "5.0.json", 
                 "7.0.json"
-            ]
-        }, 
-        {
-            "statistic": 2.1868874054766323, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.92536375014471, 
-                1.860965185129256
-            ], 
-            "pvalue": 0.028982877542853197, 
-            "x_parameters": [
-                "5.0.json", 
-                "8.0.json"
             ]
         }, 
         {
@@ -297,87 +185,59 @@
             ]
         }, 
         {
-            "statistic": -0.19764712829196301, 
+            "statistic": -5.234872940956309, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9736252239314545, 
-                1.9799378297640815
+                1.92536375014471, 
+                2.0904629295560504
             ], 
-            "pvalue": 0.843364257287108, 
+            "pvalue": 2.0640051001713168e-07, 
             "x_parameters": [
-                "6.0.json", 
-                "7.0.json"
+                "5.0.json", 
+                "25.0.json"
             ]
         }, 
         {
-            "statistic": 3.606942841306316, 
+            "statistic": -1.541137739378037, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9736252239314545, 
-                1.860965185129256
+                1.92536375014471, 
+                1.9731050911386063
             ], 
-            "pvalue": 0.00032569419778783425, 
+            "pvalue": 0.12360706569962852, 
             "x_parameters": [
-                "6.0.json", 
-                "8.0.json"
+                "5.0.json", 
+                "30.0.json"
             ]
         }, 
         {
-            "statistic": 0.402565453318106, 
+            "statistic": 0.6474132375247932, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9736252239314545, 
-                1.961013813345046
+                1.92536375014471, 
+                1.9057345312258176
             ], 
-            "pvalue": 0.6873562209783639, 
+            "pvalue": 0.5175121331795293, 
             "x_parameters": [
-                "6.0.json", 
-                "10.0.json"
+                "5.0.json", 
+                "40.0.json"
             ]
         }, 
         {
-            "statistic": 0.3045539274961196, 
+            "statistic": -3.906329696904017, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.9736252239314545, 
-                1.964033743675796
+                1.92536375014471, 
+                2.0465962789242926
             ], 
-            "pvalue": 0.7607718761368695, 
+            "pvalue": 0.00010038930061165325, 
             "x_parameters": [
-                "6.0.json", 
-                "15.0.json"
-            ]
-        }, 
-        {
-            "statistic": -4.212382765242732, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9736252239314545, 
-                2.1120496968466855
-            ], 
-            "pvalue": 2.7771958126197592e-05, 
-            "x_parameters": [
-                "6.0.json", 
-                "20.0.json"
-            ]
-        }, 
-        {
-            "statistic": 3.8279237138848234, 
-            "x_label": "platoonSplitTime", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                1.9799378297640815, 
-                1.860965185129256
-            ], 
-            "pvalue": 0.00013765755927440496, 
-            "x_parameters": [
-                "7.0.json", 
-                "8.0.json"
+                "5.0.json", 
+                "50.0.json"
             ]
         }, 
         {
@@ -423,45 +283,59 @@
             ]
         }, 
         {
-            "statistic": -3.2854738799413647, 
+            "statistic": -3.3423697980684435, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.860965185129256, 
-                1.961013813345046
+                1.9799378297640815, 
+                2.0904629295560504
             ], 
-            "pvalue": 0.0010530904784856606, 
+            "pvalue": 0.000865283814593897, 
             "x_parameters": [
-                "8.0.json", 
-                "10.0.json"
+                "7.0.json", 
+                "25.0.json"
             ]
         }, 
         {
-            "statistic": -3.365779759457197, 
+            "statistic": 0.21001911731454442, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.860965185129256, 
-                1.964033743675796
+                1.9799378297640815, 
+                1.9731050911386063
             ], 
-            "pvalue": 0.00079253776873393, 
+            "pvalue": 0.8336972694947945, 
             "x_parameters": [
-                "8.0.json", 
-                "15.0.json"
+                "7.0.json", 
+                "30.0.json"
             ]
         }, 
         {
-            "statistic": -7.839654156742218, 
+            "statistic": 2.3255761058214777, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
             "means_of_x_parameters": [
-                1.860965185129256, 
-                2.1120496968466855
+                1.9799378297640815, 
+                1.9057345312258176
             ], 
-            "pvalue": 1.2405692752690503e-14, 
+            "pvalue": 0.020245480046473145, 
             "x_parameters": [
-                "8.0.json", 
-                "20.0.json"
+                "7.0.json", 
+                "40.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.045485526833095, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9799378297640815, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.04108641089576772, 
+            "x_parameters": [
+                "7.0.json", 
+                "50.0.json"
             ]
         }, 
         {
@@ -493,6 +367,62 @@
             ]
         }, 
         {
+            "statistic": -3.985750985816948, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.961013813345046, 
+                2.0904629295560504
+            ], 
+            "pvalue": 7.261744105328584e-05, 
+            "x_parameters": [
+                "10.0.json", 
+                "25.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.37863199941602854, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.961013813345046, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.7050413513090235, 
+            "x_parameters": [
+                "10.0.json", 
+                "30.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.7663530895231923, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.961013813345046, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.07763383490052488, 
+            "x_parameters": [
+                "10.0.json", 
+                "40.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.6753446357152226, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.961013813345046, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.007590791217668628, 
+            "x_parameters": [
+                "10.0.json", 
+                "50.0.json"
+            ]
+        }, 
+        {
             "statistic": -4.585313266725771, 
             "x_label": "platoonSplitTime", 
             "y_parameter": "Overheads", 
@@ -504,6 +434,202 @@
             "x_parameters": [
                 "15.0.json", 
                 "20.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.8736734712351075, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.964033743675796, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.00011491027888810442, 
+            "x_parameters": [
+                "15.0.json", 
+                "25.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.2826236697136491, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.964033743675796, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.7775244814296978, 
+            "x_parameters": [
+                "15.0.json", 
+                "30.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.853014819609852, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.964033743675796, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.06417178430978253, 
+            "x_parameters": [
+                "15.0.json", 
+                "40.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.567894355061097, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.964033743675796, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.010382234561402403, 
+            "x_parameters": [
+                "15.0.json", 
+                "50.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.6356568595973926, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.1120496968466855, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.525164384906435, 
+            "x_parameters": [
+                "20.0.json", 
+                "25.0.json"
+            ]
+        }, 
+        {
+            "statistic": 4.155038338050558, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.1120496968466855, 
+                1.9731050911386063
+            ], 
+            "pvalue": 3.547589086032026e-05, 
+            "x_parameters": [
+                "20.0.json", 
+                "30.0.json"
+            ]
+        }, 
+        {
+            "statistic": 6.284171552665971, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.1120496968466855, 
+                1.9057345312258176
+            ], 
+            "pvalue": 5.012392278460514e-10, 
+            "x_parameters": [
+                "20.0.json", 
+                "40.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.9542559394965, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.1120496968466855, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.05097305267099991, 
+            "x_parameters": [
+                "20.0.json", 
+                "50.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.4736286681351007, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.0005371204749445791, 
+            "x_parameters": [
+                "25.0.json", 
+                "30.0.json"
+            ]
+        }, 
+        {
+            "statistic": 5.567024768297352, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                1.9057345312258176
+            ], 
+            "pvalue": 3.3850490521808016e-08, 
+            "x_parameters": [
+                "25.0.json", 
+                "40.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.2963892630774527, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.1951697809936569, 
+            "x_parameters": [
+                "25.0.json", 
+                "50.0.json"
+            ]
+        }, 
+        {
+            "statistic": 2.0633860088144487, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.03932954810710155, 
+            "x_parameters": [
+                "30.0.json", 
+                "40.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.205889067196282, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.02762410597958575, 
+            "x_parameters": [
+                "30.0.json", 
+                "50.0.json"
+            ]
+        }, 
+        {
+            "statistic": -4.307107649829483, 
+            "x_label": "platoonSplitTime", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9057345312258176, 
+                2.0465962789242926
+            ], 
+            "pvalue": 1.819259969120844e-05, 
+            "x_parameters": [
+                "40.0.json", 
+                "50.0.json"
             ]
         }
     ]

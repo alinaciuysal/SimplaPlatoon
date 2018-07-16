@@ -23,10 +23,11 @@ defaultParameters = deepcopy(PlatoonConfig.parameters)
 
 # variables to be used in each experiment separately
 changeableVariables = dict(
-    catchupDistance=[100.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 1000.0],
-    maxPlatoonGap=[25.0, 50.0, 75.0, 100.0, 150.0, 200.0, 250.0, 300.0, 400.0, 500.0, 600.0, 1000.0],
-    platoonSplitTime=[3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 15.0, 20.0]
+    catchupDistance=[100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0, 900.0, 1000.0],
+    maxPlatoonGap=[50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0, 500.0, 600.0, 700.0, 800.0, 900.0, 1000.0],
+    platoonSplitTime=[3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0],
 )
+
 
 def flush_results(variable_name, value, results):
     current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -51,17 +52,13 @@ def changeVariable(variable_name, value):
     # these parameters should be loaded/changed within different files, we need to distinguish them based on their names
 
     # there might be a better way instead of this if/else statements
-    if variable_name == "maxVehiclesInPlatoon":
-        PlatoonConfig.parameters["changeable"]["maxVehiclesInPlatoon"] = value
-    elif variable_name == "catchupDistance":
+    if variable_name == "catchupDistance":
         PlatoonConfig.parameters["changeable"]["catchupDistance"] = value
-        PlatoonConfig.parameters["contextual"]["lookAheadDistance"] = value # TODO: this dependency should be reported in another branch
+        PlatoonConfig.parameters["contextual"]["lookAheadDistance"] = value
     elif variable_name == "maxPlatoonGap":
         PlatoonConfig.parameters["changeable"]["maxPlatoonGap"] = value
     elif variable_name == "platoonSplitTime":
         PlatoonConfig.parameters["changeable"]["platoonSplitTime"] = value
-    elif variable_name == "joinDistance":
-        PlatoonConfig.parameters["changeable"]["joinDistance"] = value
     defaultParameters[variable_name] = value
 
 if __name__ == '__main__':
@@ -80,3 +77,5 @@ if __name__ == '__main__':
             flush_results(variable_name=variable_name, value=value, results=results)
             # now revert back to original
             defaultParameters = deepcopy(originalParameters)
+            defaultValue = originalParameters["changeable"][variable_name]
+            changeVariable(variable_name, defaultValue)

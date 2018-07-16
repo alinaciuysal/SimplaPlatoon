@@ -1,6 +1,6 @@
 {
-    "number_of_non_significant_results": 21, 
-    "number_of_significant_results": 24, 
+    "number_of_non_significant_results": 22, 
+    "number_of_significant_results": 23, 
     "actual_results": [
         {
             "statistic": 2.8168718657260223, 
@@ -14,20 +14,6 @@
             "x_parameters": [
                 "100.0.json", 
                 "200.0.json"
-            ]
-        }, 
-        {
-            "statistic": -0.6521260093472898, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                429.7193347193347, 
-                434.1545253863135
-            ], 
-            "pvalue": 0.514483791813154, 
-            "x_parameters": [
-                "100.0.json", 
-                "250.0.json"
             ]
         }, 
         {
@@ -45,20 +31,6 @@
             ]
         }, 
         {
-            "statistic": 0.552878366584555, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                429.7193347193347, 
-                426.0417536534447
-            ], 
-            "pvalue": 0.580476328133686, 
-            "x_parameters": [
-                "100.0.json", 
-                "350.0.json"
-            ]
-        }, 
-        {
             "statistic": -1.5424797541783517, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -70,20 +42,6 @@
             "x_parameters": [
                 "100.0.json", 
                 "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": 3.282046315779361, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                429.7193347193347, 
-                409.0688259109312
-            ], 
-            "pvalue": 0.0010673380815921284, 
-            "x_parameters": [
-                "100.0.json", 
-                "450.0.json"
             ]
         }, 
         {
@@ -115,6 +73,48 @@
             ]
         }, 
         {
+            "statistic": 2.172900585827505, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                429.7193347193347, 
+                416.11297071129707
+            ], 
+            "pvalue": 0.030033096435899364, 
+            "x_parameters": [
+                "100.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.6443706524328499, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                429.7193347193347, 
+                441.2130434782609
+            ], 
+            "pvalue": 0.10044509491097807, 
+            "x_parameters": [
+                "100.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.3517406802763191, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                429.7193347193347, 
+                427.4427645788337
+            ], 
+            "pvalue": 0.7251115124611928, 
+            "x_parameters": [
+                "100.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -1.450049297569686, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -126,20 +126,6 @@
             "x_parameters": [
                 "100.0.json", 
                 "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -3.3128937366427293, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                411.7573221757322, 
-                434.1545253863135
-            ], 
-            "pvalue": 0.0009598163659328092, 
-            "x_parameters": [
-                "200.0.json", 
-                "250.0.json"
             ]
         }, 
         {
@@ -157,20 +143,6 @@
             ]
         }, 
         {
-            "statistic": -2.1609434669982157, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                411.7573221757322, 
-                426.0417536534447
-            ], 
-            "pvalue": 0.03094935796239102, 
-            "x_parameters": [
-                "200.0.json", 
-                "350.0.json"
-            ]
-        }, 
-        {
             "statistic": -4.412158205247792, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -182,20 +154,6 @@
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.4302866157502356, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                411.7573221757322, 
-                409.0688259109312
-            ], 
-            "pvalue": 0.6670829270295465, 
-            "x_parameters": [
-                "200.0.json", 
-                "450.0.json"
             ]
         }, 
         {
@@ -227,6 +185,48 @@
             ]
         }, 
         {
+            "statistic": -0.7005102891971834, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                411.7573221757322, 
+                416.11297071129707
+            ], 
+            "pvalue": 0.4837797255958226, 
+            "x_parameters": [
+                "200.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -4.238037240164352, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                411.7573221757322, 
+                441.2130434782609
+            ], 
+            "pvalue": 2.4862991601521136e-05, 
+            "x_parameters": [
+                "200.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.4395231382403586, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                411.7573221757322, 
+                427.4427645788337
+            ], 
+            "pvalue": 0.014891231173795521, 
+            "x_parameters": [
+                "200.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -4.345457214901569, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -241,118 +241,6 @@
             ]
         }, 
         {
-            "statistic": 4.7270884078305215, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                434.1545253863135, 
-                401.0233009708738
-            ], 
-            "pvalue": 2.6202046936422707e-06, 
-            "x_parameters": [
-                "250.0.json", 
-                "300.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.155549937338613, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                434.1545253863135, 
-                426.0417536534447
-            ], 
-            "pvalue": 0.2481634867553354, 
-            "x_parameters": [
-                "250.0.json", 
-                "350.0.json"
-            ]
-        }, 
-        {
-            "statistic": -0.7929058272022005, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                434.1545253863135, 
-                439.47741935483873
-            ], 
-            "pvalue": 0.42804271834133867, 
-            "x_parameters": [
-                "250.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": 3.754859528207523, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                434.1545253863135, 
-                409.0688259109312
-            ], 
-            "pvalue": 0.00018443899990980056, 
-            "x_parameters": [
-                "250.0.json", 
-                "450.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.689612286713953, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                434.1545253863135, 
-                422.4742268041237
-            ], 
-            "pvalue": 0.09143902888257152, 
-            "x_parameters": [
-                "250.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.5202679551913392, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                434.1545253863135, 
-                423.37106918238993
-            ], 
-            "pvalue": 0.12878497581803638, 
-            "x_parameters": [
-                "250.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": -0.6991258754489703, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                434.1545253863135, 
-                438.8105726872247
-            ], 
-            "pvalue": 0.48465747208394483, 
-            "x_parameters": [
-                "250.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -3.6449331671388143, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                401.0233009708738, 
-                426.0417536534447
-            ], 
-            "pvalue": 0.0002813616733365522, 
-            "x_parameters": [
-                "300.0.json", 
-                "350.0.json"
-            ]
-        }, 
-        {
             "statistic": -5.871767688809286, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -364,20 +252,6 @@
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": -1.2347552923978051, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                401.0233009708738, 
-                409.0688259109312
-            ], 
-            "pvalue": 0.2172117012178885, 
-            "x_parameters": [
-                "300.0.json", 
-                "450.0.json"
             ]
         }, 
         {
@@ -409,6 +283,48 @@
             ]
         }, 
         {
+            "statistic": -2.326208684688938, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                401.0233009708738, 
+                416.11297071129707
+            ], 
+            "pvalue": 0.02020958628958822, 
+            "x_parameters": [
+                "300.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -5.588146247426816, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                401.0233009708738, 
+                441.2130434782609
+            ], 
+            "pvalue": 2.996215610256471e-08, 
+            "x_parameters": [
+                "300.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.9489864287671876, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                401.0233009708738, 
+                427.4427645788337
+            ], 
+            "pvalue": 8.412264444707007e-05, 
+            "x_parameters": [
+                "300.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -5.818527256793554, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -420,90 +336,6 @@
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -2.047583085438404, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                426.0417536534447, 
-                439.47741935483873
-            ], 
-            "pvalue": 0.04087968487874332, 
-            "x_parameters": [
-                "350.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": 2.5997466977778902, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                426.0417536534447, 
-                409.0688259109312
-            ], 
-            "pvalue": 0.009473085409176933, 
-            "x_parameters": [
-                "350.0.json", 
-                "450.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.5272686653816182, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                426.0417536534447, 
-                422.4742268041237
-            ], 
-            "pvalue": 0.5981287871172098, 
-            "x_parameters": [
-                "350.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.3842720089774419, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                426.0417536534447, 
-                423.37106918238993
-            ], 
-            "pvalue": 0.7008625342550481, 
-            "x_parameters": [
-                "350.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": -1.9622772435602476, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                426.0417536534447, 
-                438.8105726872247
-            ], 
-            "pvalue": 0.05003014250303568, 
-            "x_parameters": [
-                "350.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": 4.907176745363098, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                439.47741935483873, 
-                409.0688259109312
-            ], 
-            "pvalue": 1.085903136624336e-06, 
-            "x_parameters": [
-                "400.0.json", 
-                "450.0.json"
             ]
         }, 
         {
@@ -535,6 +367,48 @@
             ]
         }, 
         {
+            "statistic": 3.789130550321163, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                439.47741935483873, 
+                416.11297071129707
+            ], 
+            "pvalue": 0.00016079568278025452, 
+            "x_parameters": [
+                "400.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.25138826089659183, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                439.47741935483873, 
+                441.2130434782609
+            ], 
+            "pvalue": 0.8015719356462581, 
+            "x_parameters": [
+                "400.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.8863726425903675, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                439.47741935483873, 
+                427.4427645788337
+            ], 
+            "pvalue": 0.059558175422879917, 
+            "x_parameters": [
+                "400.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 0.10800781587017669, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -545,48 +419,6 @@
             "pvalue": 0.9140131204576912, 
             "x_parameters": [
                 "400.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -2.0904356472638894, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                409.0688259109312, 
-                422.4742268041237
-            ], 
-            "pvalue": 0.03683857293381636, 
-            "x_parameters": [
-                "450.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": -2.164871857729558, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                409.0688259109312, 
-                423.37106918238993
-            ], 
-            "pvalue": 0.030646355833899713, 
-            "x_parameters": [
-                "450.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": -4.8447695299531635, 
-            "x_label": "catchupDistance", 
-            "y_parameter": "TripDurations", 
-            "means_of_x_parameters": [
-                409.0688259109312, 
-                438.8105726872247
-            ], 
-            "pvalue": 1.4808084708636628e-06, 
-            "x_parameters": [
-                "450.0.json", 
                 "1000.0.json"
             ]
         }, 
@@ -605,6 +437,48 @@
             ]
         }, 
         {
+            "statistic": 0.9965649068263323, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                422.4742268041237, 
+                416.11297071129707
+            ], 
+            "pvalue": 0.3192281890637296, 
+            "x_parameters": [
+                "500.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.6397759070201685, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                422.4742268041237, 
+                441.2130434782609
+            ], 
+            "pvalue": 0.00843607381540899, 
+            "x_parameters": [
+                "500.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.7539783198939763, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                422.4742268041237, 
+                427.4427645788337
+            ], 
+            "pvalue": 0.4510498675401584, 
+            "x_parameters": [
+                "500.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -2.556229463269725, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -619,6 +493,48 @@
             ]
         }, 
         {
+            "statistic": 1.103418250923232, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                423.37106918238993, 
+                416.11297071129707
+            ], 
+            "pvalue": 0.27012965658189825, 
+            "x_parameters": [
+                "600.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.4527857797501937, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                423.37106918238993, 
+                441.2130434782609
+            ], 
+            "pvalue": 0.014358558015166546, 
+            "x_parameters": [
+                "600.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.6006796665228727, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                423.37106918238993, 
+                427.4427645788337
+            ], 
+            "pvalue": 0.5481989700222341, 
+            "x_parameters": [
+                "600.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -2.344568906326531, 
             "x_label": "catchupDistance", 
             "y_parameter": "TripDurations", 
@@ -629,6 +545,90 @@
             "pvalue": 0.019261531131948097, 
             "x_parameters": [
                 "600.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.6668095843898074, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                416.11297071129707, 
+                441.2130434782609
+            ], 
+            "pvalue": 0.0002601429150199471, 
+            "x_parameters": [
+                "700.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.7938400296460075, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                416.11297071129707, 
+                427.4427645788337
+            ], 
+            "pvalue": 0.07316257693376846, 
+            "x_parameters": [
+                "700.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.7160038960714266, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                416.11297071129707, 
+                438.8105726872247
+            ], 
+            "pvalue": 0.0002144856584878005, 
+            "x_parameters": [
+                "700.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.9564949417227746, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                441.2130434782609, 
+                427.4427645788337
+            ], 
+            "pvalue": 0.05071499869481119, 
+            "x_parameters": [
+                "800.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.35060747338599607, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                441.2130434782609, 
+                438.8105726872247
+            ], 
+            "pvalue": 0.7259669490472287, 
+            "x_parameters": [
+                "800.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.7976683532767888, 
+            "x_label": "catchupDistance", 
+            "y_parameter": "TripDurations", 
+            "means_of_x_parameters": [
+                427.4427645788337, 
+                438.8105726872247
+            ], 
+            "pvalue": 0.07256016228646704, 
+            "x_parameters": [
+                "900.0.json", 
                 "1000.0.json"
             ]
         }

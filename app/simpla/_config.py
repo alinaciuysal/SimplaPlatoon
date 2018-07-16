@@ -286,13 +286,7 @@ def load(filename):
                 else:
                     origType = e.attrib["original"]
                     PLATOON_VTYPES[origType][PlatoonMode.NONE] = origType
-                    print("e.attrib", e.attrib)
-                    res1 = "leader" in e.attrib
-                    print("res1", res1)
-                    res2 = "follower" in e.attrib
-                    print("res2", res2)
                     if ("leader" in e.attrib):
-                        print("YO", e.attrib["leader"])
                         leaderType = e.attrib["leader"]
                         PLATOON_VTYPES[origType][PlatoonMode.LEADER] = leaderType
                         # report("Registering vtype map '%s':'%s'"%(origType,leaderType), True)

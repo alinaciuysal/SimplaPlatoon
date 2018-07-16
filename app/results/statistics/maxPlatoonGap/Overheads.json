@@ -1,175 +1,7 @@
 {
-    "number_of_non_significant_results": 40, 
-    "number_of_significant_results": 26, 
+    "number_of_non_significant_results": 54, 
+    "number_of_significant_results": 51, 
     "actual_results": [
-        {
-            "statistic": 1.6290448104396775, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                2.0257471084464975
-            ], 
-            "pvalue": 0.10364730683198532, 
-            "x_parameters": [
-                "25.0.json", 
-                "50.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.719789735416725, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                2.0222120415106626
-            ], 
-            "pvalue": 0.08581339811600894, 
-            "x_parameters": [
-                "25.0.json", 
-                "75.0.json"
-            ]
-        }, 
-        {
-            "statistic": 3.0975570048037624, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                1.972871237593384
-            ], 
-            "pvalue": 0.0020096034001175203, 
-            "x_parameters": [
-                "25.0.json", 
-                "100.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.024011185976984255, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                2.0793857558522673
-            ], 
-            "pvalue": 0.9808490482191753, 
-            "x_parameters": [
-                "25.0.json", 
-                "150.0.json"
-            ]
-        }, 
-        {
-            "statistic": -0.20770044188683565, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                2.087252870810761
-            ], 
-            "pvalue": 0.8355098191492264, 
-            "x_parameters": [
-                "25.0.json", 
-                "200.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.9397639574961099, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                2.0139802779920744
-            ], 
-            "pvalue": 0.05271097824825556, 
-            "x_parameters": [
-                "25.0.json", 
-                "250.0.json"
-            ]
-        }, 
-        {
-            "statistic": 2.6643173770825515, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                1.991711955791512
-            ], 
-            "pvalue": 0.00785158035078293, 
-            "x_parameters": [
-                "25.0.json", 
-                "300.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.27314757473791734, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                2.070866696014801
-            ], 
-            "pvalue": 0.7848014449686042, 
-            "x_parameters": [
-                "25.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": 4.281740802653504, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                1.9338310466514914
-            ], 
-            "pvalue": 2.047385318269679e-05, 
-            "x_parameters": [
-                "25.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.7648408896982604, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                2.0537214095466854
-            ], 
-            "pvalue": 0.4445603122261462, 
-            "x_parameters": [
-                "25.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": 3.4771266613670715, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0801933772303838, 
-                1.9650182220573045
-            ], 
-            "pvalue": 0.000530731694531825, 
-            "x_parameters": [
-                "25.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.11238158643209854, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0257471084464975, 
-                2.0222120415106626
-            ], 
-            "pvalue": 0.9105446487768453, 
-            "x_parameters": [
-                "50.0.json", 
-                "75.0.json"
-            ]
-        }, 
         {
             "statistic": 1.6292522506807223, 
             "x_label": "maxPlatoonGap", 
@@ -241,6 +73,20 @@
             ]
         }, 
         {
+            "statistic": -1.9754896682270398, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0257471084464975, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.04851546825700111, 
+            "x_parameters": [
+                "50.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": -1.4136340230358888, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -252,6 +98,20 @@
             "x_parameters": [
                 "50.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.6338165779630893, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0257471084464975, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.10261651577274192, 
+            "x_parameters": [
+                "50.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -283,6 +143,48 @@
             ]
         }, 
         {
+            "statistic": 3.7993503704701066, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0257471084464975, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.00015377876214025195, 
+            "x_parameters": [
+                "50.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.6459852835621045, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0257471084464975, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.518443645698368, 
+            "x_parameters": [
+                "50.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.68744068511898, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0257471084464975, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.4919760756731768, 
+            "x_parameters": [
+                "50.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 1.9703003268938386, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -293,132 +195,6 @@
             "pvalue": 0.04908504619210693, 
             "x_parameters": [
                 "50.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.5063732437083759, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                1.972871237593384
-            ], 
-            "pvalue": 0.13230490015272478, 
-            "x_parameters": [
-                "75.0.json", 
-                "100.0.json"
-            ]
-        }, 
-        {
-            "statistic": -1.8046028596824177, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                2.0793857558522673
-            ], 
-            "pvalue": 0.0714662774115133, 
-            "x_parameters": [
-                "75.0.json", 
-                "150.0.json"
-            ]
-        }, 
-        {
-            "statistic": -2.0288917648208984, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                2.087252870810761
-            ], 
-            "pvalue": 0.042757993997770846, 
-            "x_parameters": [
-                "75.0.json", 
-                "200.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.25555074141640555, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                2.0139802779920744
-            ], 
-            "pvalue": 0.7983530762569198, 
-            "x_parameters": [
-                "75.0.json", 
-                "250.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.9766233592800472, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                1.991711955791512
-            ], 
-            "pvalue": 0.3290073440632384, 
-            "x_parameters": [
-                "75.0.json", 
-                "300.0.json"
-            ]
-        }, 
-        {
-            "statistic": -1.5099318219147047, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                2.070866696014801
-            ], 
-            "pvalue": 0.1313998882697248, 
-            "x_parameters": [
-                "75.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": 2.739390061766517, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                1.9338310466514914
-            ], 
-            "pvalue": 0.006270863272423059, 
-            "x_parameters": [
-                "75.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": -0.9631082548179323, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                2.0537214095466854
-            ], 
-            "pvalue": 0.33573988023974444, 
-            "x_parameters": [
-                "75.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.8367537602946569, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "Overheads", 
-            "means_of_x_parameters": [
-                2.0222120415106626, 
-                1.9650182220573045
-            ], 
-            "pvalue": 0.06655856078776268, 
-            "x_parameters": [
-                "75.0.json", 
                 "1000.0.json"
             ]
         }, 
@@ -479,6 +255,20 @@
             ]
         }, 
         {
+            "statistic": -3.457723545228849, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.972871237593384, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.0005697039261490205, 
+            "x_parameters": [
+                "100.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": -2.951833235226438, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -490,6 +280,20 @@
             "x_parameters": [
                 "100.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.006982908664422313, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.972871237593384, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.9944299025169678, 
+            "x_parameters": [
+                "100.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -518,6 +322,48 @@
             "x_parameters": [
                 "100.0.json", 
                 "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": 2.0417943769724087, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.972871237593384, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.041434679414303836, 
+            "x_parameters": [
+                "100.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.1979874454702624, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.972871237593384, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.028187623696393903, 
+            "x_parameters": [
+                "100.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.244332573157697, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.972871237593384, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.02504329996048846, 
+            "x_parameters": [
+                "100.0.json", 
+                "900.0.json"
             ]
         }, 
         {
@@ -577,6 +423,20 @@
             ]
         }, 
         {
+            "statistic": -0.3359093734521002, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0793857558522673, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.7370191006339863, 
+            "x_parameters": [
+                "150.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": 0.2650574340883401, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -588,6 +448,20 @@
             "x_parameters": [
                 "150.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.276103942254332, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0793857558522673, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.0010905160158525857, 
+            "x_parameters": [
+                "150.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -616,6 +490,48 @@
             "x_parameters": [
                 "150.0.json", 
                 "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": 5.458506998830894, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0793857558522673, 
+                1.9057345312258176
+            ], 
+            "pvalue": 6.104707367736934e-08, 
+            "x_parameters": [
+                "150.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.0090459722009608, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0793857558522673, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.3132160908732775, 
+            "x_parameters": [
+                "150.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.9753705407269138, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0793857558522673, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.3296379139468114, 
+            "x_parameters": [
+                "150.0.json", 
+                "900.0.json"
             ]
         }, 
         {
@@ -661,6 +577,20 @@
             ]
         }, 
         {
+            "statistic": -0.09629039497543941, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.087252870810761, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.9233116459760783, 
+            "x_parameters": [
+                "200.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": 0.5040302321323181, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -672,6 +602,20 @@
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.4793029709431176, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.087252870810761, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.0005254160025613665, 
+            "x_parameters": [
+                "200.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -703,6 +647,48 @@
             ]
         }, 
         {
+            "statistic": 5.63956455400291, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.087252870810761, 
+                1.9057345312258176
+            ], 
+            "pvalue": 2.2371094608130166e-08, 
+            "x_parameters": [
+                "200.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.2372142907099073, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.087252870810761, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.21631952366972518, 
+            "x_parameters": [
+                "200.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.2048744336993722, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.087252870810761, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.22856590784515368, 
+            "x_parameters": [
+                "200.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 3.888406533808369, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -731,6 +717,20 @@
             ]
         }, 
         {
+            "statistic": -2.2840256325194934, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0139802779920744, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.02259775661909725, 
+            "x_parameters": [
+                "250.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": -1.741632694499574, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -742,6 +742,20 @@
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.2401950396318409, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0139802779920744, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.21519742290712365, 
+            "x_parameters": [
+                "250.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -773,6 +787,48 @@
             ]
         }, 
         {
+            "statistic": 3.3470639969102307, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0139802779920744, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.0008470358777070093, 
+            "x_parameters": [
+                "250.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.9879992532677072, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0139802779920744, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.3234012165007081, 
+            "x_parameters": [
+                "250.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.0299525023714284, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0139802779920744, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.3032976267177868, 
+            "x_parameters": [
+                "250.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 1.5497634947308294, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -787,6 +843,20 @@
             ]
         }, 
         {
+            "statistic": -3.034510043905127, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.991711955791512, 
+                2.0904629295560504
+            ], 
+            "pvalue": 0.0024787922005022915, 
+            "x_parameters": [
+                "300.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": -2.4973929058498405, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -798,6 +868,20 @@
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.5814666620662752, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.991711955791512, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.5610601450890231, 
+            "x_parameters": [
+                "300.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -829,6 +913,48 @@
             ]
         }, 
         {
+            "statistic": 2.741380500972418, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.991711955791512, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.006227615718074229, 
+            "x_parameters": [
+                "300.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.7121934627775375, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.991711955791512, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.0871881046085153, 
+            "x_parameters": [
+                "300.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.7589070409465681, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.991711955791512, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.07892491328472352, 
+            "x_parameters": [
+                "300.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 0.8725813587374759, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -840,6 +966,132 @@
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.585019875190673, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                2.070866696014801
+            ], 
+            "pvalue": 0.5586805299322328, 
+            "x_parameters": [
+                "350.0.json", 
+                "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.4736286681351007, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.0005371204749445791, 
+            "x_parameters": [
+                "350.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": 4.670682139743183, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                1.9338310466514914
+            ], 
+            "pvalue": 3.450980307778731e-06, 
+            "x_parameters": [
+                "350.0.json", 
+                "500.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.081540801755352, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                2.0537214095466854
+            ], 
+            "pvalue": 0.27974069337884616, 
+            "x_parameters": [
+                "350.0.json", 
+                "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": 5.567024768297352, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                1.9057345312258176
+            ], 
+            "pvalue": 3.3850490521808016e-08, 
+            "x_parameters": [
+                "350.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.2963892630774527, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.1951697809936569, 
+            "x_parameters": [
+                "350.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.265082961852084, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.20617286080912248, 
+            "x_parameters": [
+                "350.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.8652199982657844, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0904629295560504, 
+                1.9650182220573045
+            ], 
+            "pvalue": 0.00011892407652147411, 
+            "x_parameters": [
+                "350.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 2.965200223264238, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.070866696014801, 
+                1.9731050911386063
+            ], 
+            "pvalue": 0.00309885346758169, 
+            "x_parameters": [
+                "400.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -871,6 +1123,48 @@
             ]
         }, 
         {
+            "statistic": 5.104282891612317, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.070866696014801, 
+                1.9057345312258176
+            ], 
+            "pvalue": 3.985175223521225e-07, 
+            "x_parameters": [
+                "400.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.7349521689570712, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.070866696014801, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.46255081396507436, 
+            "x_parameters": [
+                "400.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.7005489280386921, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.070866696014801, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.48376127927870305, 
+            "x_parameters": [
+                "400.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 3.3491383317509418, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -881,6 +1175,90 @@
             "pvalue": 0.0008423482602194619, 
             "x_parameters": [
                 "400.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 1.189809502309354, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                1.9338310466514914
+            ], 
+            "pvalue": 0.23440739618583292, 
+            "x_parameters": [
+                "450.0.json", 
+                "500.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.4099181328801245, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                2.0537214095466854
+            ], 
+            "pvalue": 0.016138911041608597, 
+            "x_parameters": [
+                "450.0.json", 
+                "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": 2.0633860088144487, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.03932954810710155, 
+            "x_parameters": [
+                "450.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.205889067196282, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.02762410597958575, 
+            "x_parameters": [
+                "450.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.2526493901603053, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.024508293450675532, 
+            "x_parameters": [
+                "450.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.253423575905762, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9731050911386063, 
+                1.9650182220573045
+            ], 
+            "pvalue": 0.7999936389015002, 
+            "x_parameters": [
+                "450.0.json", 
                 "1000.0.json"
             ]
         }, 
@@ -899,6 +1277,48 @@
             ]
         }, 
         {
+            "statistic": 0.8674048204717212, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9338310466514914, 
+                1.9057345312258176
+            ], 
+            "pvalue": 0.385928116194561, 
+            "x_parameters": [
+                "500.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.4107101969629694, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9338310466514914, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.0006749086400210502, 
+            "x_parameters": [
+                "500.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.4631624729223915, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9338310466514914, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.0005580218509210393, 
+            "x_parameters": [
+                "500.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -0.985519773221427, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -913,6 +1333,48 @@
             ]
         }, 
         {
+            "statistic": 4.50588711127664, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0537214095466854, 
+                1.9057345312258176
+            ], 
+            "pvalue": 7.39456805147814e-06, 
+            "x_parameters": [
+                "600.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.21266127307543808, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0537214095466854, 
+                2.0465962789242926
+            ], 
+            "pvalue": 0.831636369386918, 
+            "x_parameters": [
+                "600.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.1764925385952139, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0537214095466854, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.8599451984301671, 
+            "x_parameters": [
+                "600.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 2.762698832555956, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "Overheads", 
@@ -923,6 +1385,90 @@
             "pvalue": 0.005841575284041711, 
             "x_parameters": [
                 "600.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -4.307107649829483, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9057345312258176, 
+                2.0465962789242926
+            ], 
+            "pvalue": 1.819259969120844e-05, 
+            "x_parameters": [
+                "700.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -4.364301047069692, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9057345312258176, 
+                2.0478331081851717
+            ], 
+            "pvalue": 1.413280546965206e-05, 
+            "x_parameters": [
+                "700.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -1.8957676503830774, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                1.9057345312258176, 
+                1.9650182220573045
+            ], 
+            "pvalue": 0.0582759078565759, 
+            "x_parameters": [
+                "700.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.03722413675317443, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0465962789242926, 
+                2.0478331081851717
+            ], 
+            "pvalue": 0.9703142927633481, 
+            "x_parameters": [
+                "800.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 2.5520470385197926, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0465962789242926, 
+                1.9650182220573045
+            ], 
+            "pvalue": 0.01086344698011349, 
+            "x_parameters": [
+                "800.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 2.6028360550096243, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "Overheads", 
+            "means_of_x_parameters": [
+                2.0478331081851717, 
+                1.9650182220573045
+            ], 
+            "pvalue": 0.009392513601904667, 
+            "x_parameters": [
+                "900.0.json", 
                 "1000.0.json"
             ]
         }

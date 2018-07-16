@@ -54,11 +54,9 @@ parameters = dict(
     ),
 
     changeable=dict(
-        maxVehiclesInPlatoon=10,
         catchupDistance=500.0,
         maxPlatoonGap=500.0,
-        platoonSplitTime=10.0,
-        joinDistance=3000.0 # to find extreme positions (-+d) of platoon
+        platoonSplitTime=20.0,
     )
 )
 

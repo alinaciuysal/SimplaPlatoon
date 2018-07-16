@@ -1,175 +1,7 @@
 {
     "number_of_non_significant_results": 7, 
-    "number_of_significant_results": 59, 
+    "number_of_significant_results": 98, 
     "actual_results": [
-        {
-            "statistic": -7.4371297476395934, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.415005375085848
-            ], 
-            "pvalue": 1.033083900657567e-13, 
-            "x_parameters": [
-                "25.0.json", 
-                "50.0.json"
-            ]
-        }, 
-        {
-            "statistic": -11.56191056737829, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.51548087820507
-            ], 
-            "pvalue": 6.580811297625542e-31, 
-            "x_parameters": [
-                "25.0.json", 
-                "75.0.json"
-            ]
-        }, 
-        {
-            "statistic": -17.671938392021517, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.651267110759102
-            ], 
-            "pvalue": 7.823475065167434e-70, 
-            "x_parameters": [
-                "25.0.json", 
-                "100.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.7433521210108832, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.230151037738834
-            ], 
-            "pvalue": 0.4572694330081827, 
-            "x_parameters": [
-                "25.0.json", 
-                "150.0.json"
-            ]
-        }, 
-        {
-            "statistic": 4.757685361948814, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.137563279557172
-            ], 
-            "pvalue": 1.959664549367542e-06, 
-            "x_parameters": [
-                "25.0.json", 
-                "200.0.json"
-            ]
-        }, 
-        {
-            "statistic": -10.656374218443496, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.490156821073896
-            ], 
-            "pvalue": 1.655502523097331e-26, 
-            "x_parameters": [
-                "25.0.json", 
-                "250.0.json"
-            ]
-        }, 
-        {
-            "statistic": -19.84326814922709, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.708039106786313
-            ], 
-            "pvalue": 1.5422508962997857e-87, 
-            "x_parameters": [
-                "25.0.json", 
-                "300.0.json"
-            ]
-        }, 
-        {
-            "statistic": 0.10810642059575981, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.244901971376954
-            ], 
-            "pvalue": 0.9139113860250364, 
-            "x_parameters": [
-                "25.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": -23.484761716856724, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.782757187043494
-            ], 
-            "pvalue": 8.686756286451369e-122, 
-            "x_parameters": [
-                "25.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": -1.3351874050582988, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.27788381915836
-            ], 
-            "pvalue": 0.18181655758974943, 
-            "x_parameters": [
-                "25.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": -12.81515844488579, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.247353832437415, 
-                8.535622811705066
-            ], 
-            "pvalue": 1.3965894296264228e-37, 
-            "x_parameters": [
-                "25.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -4.441705953461675, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.415005375085848, 
-                8.51548087820507
-            ], 
-            "pvalue": 8.929712559578628e-06, 
-            "x_parameters": [
-                "50.0.json", 
-                "75.0.json"
-            ]
-        }, 
         {
             "statistic": -10.605146724015492, 
             "x_label": "maxPlatoonGap", 
@@ -241,6 +73,20 @@
             ]
         }, 
         {
+            "statistic": 11.857444308699048, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.415005375085848, 
+                8.145824491038228
+            ], 
+            "pvalue": 2.0199794022199983e-32, 
+            "x_parameters": [
+                "50.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": 7.697929972751456, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -252,6 +98,20 @@
             "x_parameters": [
                 "50.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.7184982857440633, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.415005375085848, 
+                8.399189488634095
+            ], 
+            "pvalue": 0.4724509167645099, 
+            "x_parameters": [
+                "50.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -283,6 +143,48 @@
             ]
         }, 
         {
+            "statistic": -14.817560143090187, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.415005375085848, 
+                8.736731580881232
+            ], 
+            "pvalue": 1.1962523176601424e-49, 
+            "x_parameters": [
+                "50.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.8066551462657157, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.415005375085848, 
+                8.328958966096552
+            ], 
+            "pvalue": 0.00014090045102682354, 
+            "x_parameters": [
+                "50.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 0.6037848388617791, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.415005375085848, 
+                8.401233237617872
+            ], 
+            "pvalue": 0.5459874024781874, 
+            "x_parameters": [
+                "50.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -5.505971498811046, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -293,132 +195,6 @@
             "pvalue": 3.675787218029562e-08, 
             "x_parameters": [
                 "50.0.json", 
-                "1000.0.json"
-            ]
-        }, 
-        {
-            "statistic": -5.920857150555382, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.651267110759102
-            ], 
-            "pvalue": 3.2080660871580244e-09, 
-            "x_parameters": [
-                "75.0.json", 
-                "100.0.json"
-            ]
-        }, 
-        {
-            "statistic": 12.28885668506333, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.230151037738834
-            ], 
-            "pvalue": 1.0716430639420637e-34, 
-            "x_parameters": [
-                "75.0.json", 
-                "150.0.json"
-            ]
-        }, 
-        {
-            "statistic": 16.322565935494485, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.137563279557172
-            ], 
-            "pvalue": 7.4864226534083e-60, 
-            "x_parameters": [
-                "75.0.json", 
-                "200.0.json"
-            ]
-        }, 
-        {
-            "statistic": 1.1076749216488673, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.490156821073896
-            ], 
-            "pvalue": 0.26800359646474026, 
-            "x_parameters": [
-                "75.0.json", 
-                "250.0.json"
-            ]
-        }, 
-        {
-            "statistic": -8.267015303180147, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.708039106786313
-            ], 
-            "pvalue": 1.3822107165930439e-16, 
-            "x_parameters": [
-                "75.0.json", 
-                "300.0.json"
-            ]
-        }, 
-        {
-            "statistic": 11.889389572301495, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.244901971376954
-            ], 
-            "pvalue": 1.3794390003710013e-32, 
-            "x_parameters": [
-                "75.0.json", 
-                "400.0.json"
-            ]
-        }, 
-        {
-            "statistic": -11.683980784409115, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.782757187043494
-            ], 
-            "pvalue": 1.577889361242414e-31, 
-            "x_parameters": [
-                "75.0.json", 
-                "500.0.json"
-            ]
-        }, 
-        {
-            "statistic": 10.35596735940946, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.27788381915836
-            ], 
-            "pvalue": 3.991198464613584e-25, 
-            "x_parameters": [
-                "75.0.json", 
-                "600.0.json"
-            ]
-        }, 
-        {
-            "statistic": -0.892303506250339, 
-            "x_label": "maxPlatoonGap", 
-            "y_parameter": "FuelConsumptions", 
-            "means_of_x_parameters": [
-                8.51548087820507, 
-                8.535622811705066
-            ], 
-            "pvalue": 0.3722313863632105, 
-            "x_parameters": [
-                "75.0.json", 
                 "1000.0.json"
             ]
         }, 
@@ -479,6 +255,20 @@
             ]
         }, 
         {
+            "statistic": 21.963401274798393, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.651267110759102, 
+                8.145824491038228
+            ], 
+            "pvalue": 8.727511931812164e-107, 
+            "x_parameters": [
+                "100.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": 18.127372010692476, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -490,6 +280,20 @@
             "x_parameters": [
                 "100.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 11.286944870616605, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.651267110759102, 
+                8.399189488634095
+            ], 
+            "pvalue": 1.553801262408579e-29, 
+            "x_parameters": [
+                "100.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -518,6 +322,48 @@
             "x_parameters": [
                 "100.0.json", 
                 "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.878049787271504, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.651267110759102, 
+                8.736731580881232
+            ], 
+            "pvalue": 0.00010533059388137757, 
+            "x_parameters": [
+                "100.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 14.064120917921496, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.651267110759102, 
+                8.328958966096552
+            ], 
+            "pvalue": 6.632005719602633e-45, 
+            "x_parameters": [
+                "100.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 10.814734479993996, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.651267110759102, 
+                8.401233237617872
+            ], 
+            "pvalue": 2.9848806711294402e-27, 
+            "x_parameters": [
+                "100.0.json", 
+                "900.0.json"
             ]
         }, 
         {
@@ -577,6 +423,20 @@
             ]
         }, 
         {
+            "statistic": 3.6196285137092303, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.230151037738834, 
+                8.145824491038228
+            ], 
+            "pvalue": 0.00029510272184438856, 
+            "x_parameters": [
+                "150.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": -0.6495709420499369, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -588,6 +448,20 @@
             "x_parameters": [
                 "150.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": -7.470930887872046, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.230151037738834, 
+                8.399189488634095
+            ], 
+            "pvalue": 7.995530263050687e-14, 
+            "x_parameters": [
+                "150.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -616,6 +490,48 @@
             "x_parameters": [
                 "150.0.json", 
                 "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": -22.681551970738518, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.230151037738834, 
+                8.736731580881232
+            ], 
+            "pvalue": 9.544058250183185e-114, 
+            "x_parameters": [
+                "150.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -4.258541820490151, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.230151037738834, 
+                8.328958966096552
+            ], 
+            "pvalue": 2.0586063693250275e-05, 
+            "x_parameters": [
+                "150.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -7.3104195753807995, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.230151037738834, 
+                8.401233237617872
+            ], 
+            "pvalue": 2.6734914600210956e-13, 
+            "x_parameters": [
+                "150.0.json", 
+                "900.0.json"
             ]
         }, 
         {
@@ -661,6 +577,20 @@
             ]
         }, 
         {
+            "statistic": -0.35560035269502877, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.137563279557172, 
+                8.145824491038228
+            ], 
+            "pvalue": 0.7221402711490534, 
+            "x_parameters": [
+                "200.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": -4.7407416451996465, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -672,6 +602,20 @@
             "x_parameters": [
                 "200.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": -11.597457324959409, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.137563279557172, 
+                8.399189488634095
+            ], 
+            "pvalue": 4.343944075572387e-31, 
+            "x_parameters": [
+                "200.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -703,6 +647,48 @@
             ]
         }, 
         {
+            "statistic": -26.909119694452322, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.137563279557172, 
+                8.736731580881232
+            ], 
+            "pvalue": 3.3235696122408215e-159, 
+            "x_parameters": [
+                "200.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -8.272371441998972, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.137563279557172, 
+                8.328958966096552
+            ], 
+            "pvalue": 1.3212616809255688e-16, 
+            "x_parameters": [
+                "200.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -11.298112419577581, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.137563279557172, 
+                8.401233237617872
+            ], 
+            "pvalue": 1.3700001537390585e-29, 
+            "x_parameters": [
+                "200.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -17.726404368419086, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -731,6 +717,20 @@
             ]
         }, 
         {
+            "statistic": 15.00881491328113, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.490156821073896, 
+                8.145824491038228
+            ], 
+            "pvalue": 6.864207952074315e-51, 
+            "x_parameters": [
+                "250.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": 10.97613197285413, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -742,6 +742,20 @@
             "x_parameters": [
                 "250.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 4.086500208346628, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.490156821073896, 
+                8.399189488634095
+            ], 
+            "pvalue": 4.3809575202085595e-05, 
+            "x_parameters": [
+                "250.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -773,6 +787,48 @@
             ]
         }, 
         {
+            "statistic": -11.22635909654585, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.490156821073896, 
+                8.736731580881232
+            ], 
+            "pvalue": 3.087152274486905e-29, 
+            "x_parameters": [
+                "250.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 7.055904829804203, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.490156821073896, 
+                8.328958966096552
+            ], 
+            "pvalue": 1.7203133053590575e-12, 
+            "x_parameters": [
+                "250.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.8580018873834825, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.490156821073896, 
+                8.401233237617872
+            ], 
+            "pvalue": 0.00011435459059240634, 
+            "x_parameters": [
+                "250.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -2.0520966903021662, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -787,6 +843,20 @@
             ]
         }, 
         {
+            "statistic": 24.056554282475286, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.708039106786313, 
+                8.145824491038228
+            ], 
+            "pvalue": 1.1063987941897523e-127, 
+            "x_parameters": [
+                "300.0.json", 
+                "350.0.json"
+            ]
+        }, 
+        {
             "statistic": 20.32716025039032, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -798,6 +868,20 @@
             "x_parameters": [
                 "300.0.json", 
                 "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": 13.604601174421418, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.708039106786313, 
+                8.399189488634095
+            ], 
+            "pvalue": 3.928296246035759e-42, 
+            "x_parameters": [
+                "300.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -829,6 +913,48 @@
             ]
         }, 
         {
+            "statistic": -1.2802765454022702, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.708039106786313, 
+                8.736731580881232
+            ], 
+            "pvalue": 0.20044940068381448, 
+            "x_parameters": [
+                "300.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 16.286231371735468, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.708039106786313, 
+                8.328958966096552
+            ], 
+            "pvalue": 1.3530785331119123e-59, 
+            "x_parameters": [
+                "300.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 13.06908002139316, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.708039106786313, 
+                8.401233237617872
+            ], 
+            "pvalue": 5.141233721438532e-39, 
+            "x_parameters": [
+                "300.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 7.629270950717719, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -840,6 +966,132 @@
             "x_parameters": [
                 "300.0.json", 
                 "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -4.338267247511379, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.244901971376954
+            ], 
+            "pvalue": 1.4368314127818684e-05, 
+            "x_parameters": [
+                "350.0.json", 
+                "400.0.json"
+            ]
+        }, 
+        {
+            "statistic": -11.134024493300128, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.399189488634095
+            ], 
+            "pvalue": 8.740687724624994e-29, 
+            "x_parameters": [
+                "350.0.json", 
+                "450.0.json"
+            ]
+        }, 
+        {
+            "statistic": -27.746946527444297, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.782757187043494
+            ], 
+            "pvalue": 4.142044906051916e-169, 
+            "x_parameters": [
+                "350.0.json", 
+                "500.0.json"
+            ]
+        }, 
+        {
+            "statistic": -5.73612784502079, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.27788381915836
+            ], 
+            "pvalue": 9.70080136248909e-09, 
+            "x_parameters": [
+                "350.0.json", 
+                "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": -26.302370443611455, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.736731580881232
+            ], 
+            "pvalue": 3.3345398256153876e-152, 
+            "x_parameters": [
+                "350.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -7.850127727183635, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.328958966096552
+            ], 
+            "pvalue": 4.177198819038015e-15, 
+            "x_parameters": [
+                "350.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -10.855523549930693, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.401233237617872
+            ], 
+            "pvalue": 1.9127236543753854e-27, 
+            "x_parameters": [
+                "350.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -17.206879978901256, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.145824491038228, 
+                8.535622811705066
+            ], 
+            "pvalue": 2.643619666530562e-66, 
+            "x_parameters": [
+                "350.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -6.964546596957203, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.244901971376954, 
+                8.399189488634095
+            ], 
+            "pvalue": 3.304582562499471e-12, 
+            "x_parameters": [
+                "400.0.json", 
+                "450.0.json"
             ]
         }, 
         {
@@ -871,6 +1123,48 @@
             ]
         }, 
         {
+            "statistic": -22.50392314864913, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.244901971376954, 
+                8.736731580881232
+            ], 
+            "pvalue": 5.2139343735076145e-112, 
+            "x_parameters": [
+                "400.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.6962112754636265, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.244901971376954, 
+                8.328958966096552
+            ], 
+            "pvalue": 0.00021889944002886008, 
+            "x_parameters": [
+                "400.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -6.813114643165376, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.244901971376954, 
+                8.401233237617872
+            ], 
+            "pvalue": 9.578660497004178e-12, 
+            "x_parameters": [
+                "400.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -13.185701786141257, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -881,6 +1175,90 @@
             "pvalue": 1.1018641830501307e-39, 
             "x_parameters": [
                 "400.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -17.220501772767054, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.399189488634095, 
+                8.782757187043494
+            ], 
+            "pvalue": 2.0837669381810238e-66, 
+            "x_parameters": [
+                "450.0.json", 
+                "500.0.json"
+            ]
+        }, 
+        {
+            "statistic": 5.4291797681454605, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.399189488634095, 
+                8.27788381915836
+            ], 
+            "pvalue": 5.667780418424197e-08, 
+            "x_parameters": [
+                "450.0.json", 
+                "600.0.json"
+            ]
+        }, 
+        {
+            "statistic": -15.50529783086351, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.399189488634095, 
+                8.736731580881232
+            ], 
+            "pvalue": 3.427995632754752e-54, 
+            "x_parameters": [
+                "450.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 3.0994626414539694, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.399189488634095, 
+                8.328958966096552
+            ], 
+            "pvalue": 0.0019389869936646523, 
+            "x_parameters": [
+                "450.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -0.08938752713862176, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.399189488634095, 
+                8.401233237617872
+            ], 
+            "pvalue": 0.9287740276201932, 
+            "x_parameters": [
+                "450.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -6.211925922561505, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.399189488634095, 
+                8.535622811705066
+            ], 
+            "pvalue": 5.244001091315007e-10, 
+            "x_parameters": [
+                "450.0.json", 
                 "1000.0.json"
             ]
         }, 
@@ -899,6 +1277,48 @@
             ]
         }, 
         {
+            "statistic": 2.0942108799125645, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.782757187043494, 
+                8.736731580881232
+            ], 
+            "pvalue": 0.036242468693074806, 
+            "x_parameters": [
+                "500.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": 19.852134794285483, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.782757187043494, 
+                8.328958966096552
+            ], 
+            "pvalue": 1.2894113353943763e-87, 
+            "x_parameters": [
+                "500.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 16.543318357735544, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.782757187043494, 
+                8.401233237617872
+            ], 
+            "pvalue": 1.976110638914915e-61, 
+            "x_parameters": [
+                "500.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": 11.147553077534976, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -913,6 +1333,48 @@
             ]
         }, 
         {
+            "statistic": -20.81144834507222, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.27788381915836, 
+                8.736731580881232
+            ], 
+            "pvalue": 4.290555562351158e-96, 
+            "x_parameters": [
+                "600.0.json", 
+                "700.0.json"
+            ]
+        }, 
+        {
+            "statistic": -2.227775615709716, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.27788381915836, 
+                8.328958966096552
+            ], 
+            "pvalue": 0.02589658311543131, 
+            "x_parameters": [
+                "600.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": -5.333075858488924, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.27788381915836, 
+                8.401233237617872
+            ], 
+            "pvalue": 9.66702319561476e-08, 
+            "x_parameters": [
+                "600.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
             "statistic": -11.589458378524554, 
             "x_label": "maxPlatoonGap", 
             "y_parameter": "FuelConsumptions", 
@@ -923,6 +1385,90 @@
             "pvalue": 4.767527152326236e-31, 
             "x_parameters": [
                 "600.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": 18.230438111714697, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.736731580881232, 
+                8.328958966096552
+            ], 
+            "pvalue": 3.3971028776138113e-74, 
+            "x_parameters": [
+                "700.0.json", 
+                "800.0.json"
+            ]
+        }, 
+        {
+            "statistic": 14.861297043640002, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.736731580881232, 
+                8.401233237617872
+            ], 
+            "pvalue": 6.262649739373294e-50, 
+            "x_parameters": [
+                "700.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": 9.28371989588019, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.736731580881232, 
+                8.535622811705066
+            ], 
+            "pvalue": 1.651977894525689e-20, 
+            "x_parameters": [
+                "700.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -3.084135557934782, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.328958966096552, 
+                8.401233237617872
+            ], 
+            "pvalue": 0.0020417329686396933, 
+            "x_parameters": [
+                "800.0.json", 
+                "900.0.json"
+            ]
+        }, 
+        {
+            "statistic": -9.162172943882915, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.328958966096552, 
+                8.535622811705066
+            ], 
+            "pvalue": 5.132543808799414e-20, 
+            "x_parameters": [
+                "800.0.json", 
+                "1000.0.json"
+            ]
+        }, 
+        {
+            "statistic": -5.904090884499674, 
+            "x_label": "maxPlatoonGap", 
+            "y_parameter": "FuelConsumptions", 
+            "means_of_x_parameters": [
+                8.401233237617872, 
+                8.535622811705066
+            ], 
+            "pvalue": 3.5518929877968434e-09, 
+            "x_parameters": [
+                "900.0.json", 
                 "1000.0.json"
             ]
         }

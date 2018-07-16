@@ -19,13 +19,19 @@ parameters = ["TripDurations",
               "NumberOfCarsInPlatoons",
               "ReportedPlatoonDurationsBeforeSplit"]
 
-def get_folder_paths():
-    folder_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results"))]
+def get_file_names(cmds):
+    folder_paths = [os.path.relpath(x) for x in os.listdir(os.path.join(*cmds))]
+    if 'plots' in folder_paths:
+        folder_paths.remove('plots')
+    if 'statistics' in folder_paths:
+        folder_paths.remove('statistics')
     return folder_paths
 
-
-def get_json_file_paths(x_label):
-    file_paths = [os.path.relpath(x) for x in os.listdir(os.path.join("..", "results", x_label))]
+def get_json_file_paths(cmds, x_label=None):
+    folder_path = os.path.join(*cmds)
+    if x_label is not None:
+        folder_path = os.path.join(folder_path, x_label)
+    file_paths = [os.path.relpath(x) for x in os.listdir(folder_path)]
     for i in xrange(len(file_paths)):
         file_paths[i] = str(file_paths[i]).replace(".json", '')
     return file_paths
@@ -66,7 +72,7 @@ def draw_box_plot(x_label, y_label, x_values, y_values):
     ax.get_yaxis().tick_left()
 
     median_legend = mlines.Line2D([], [], color='green', marker='^', linestyle='None',
-                                    markersize=5, label='Mean')
+                                  markersize=5, label='Mean')
 
     mean_legend = mpatches.Patch(color='red', label='Median')
 
@@ -122,9 +128,9 @@ def format_box_plot(ax, y_values):
         mean.set_color('green')
 
 
-def run_plotting_process(paths):
-    for path in paths:
-        x_label, data = get_data(path)
+def run_plotting_process(f_names):
+    for fn in f_names:
+        x_label, data = get_data(fn)
         # x_label is the catchupDistance, joinDistance etc. i.e. last element of file path
         sorted_data = sort_data(x_label, data)
         # print(sorted_data)
@@ -155,11 +161,10 @@ def write_results_to_file(folder_name, variable_name, result):
         json.dump(result, outfile, indent=4, ensure_ascii=False)
 
 
-def run_statistics_process(paths):
-    for path in paths:
-        x_values = get_json_file_paths(path)
+def run_statistics_process(f_names):
+    for fn in f_names:
+        x_values = get_json_file_paths(["..", "results"], fn)
         x_values = sorted(x_values, key=lambda x: float(x))
-
         for y_label in parameters:
             res = dict(
                 actual_results=[],
@@ -173,14 +178,14 @@ def run_statistics_process(paths):
                 # now get the files & their data
 
                 print(x1, x2)
-                json_file_path_1 = os.path.join(os.getcwd(), "..", "results", path, x1)
+                json_file_path_1 = os.path.join(os.getcwd(), "..", "results", fn, x1)
                 with open(json_file_path_1) as f:
                     json_data_1 = json.load(f)
                     orig = json_data_1["data"]["FuelConsumptions"]
                     updated = [item for item in orig if item > 0]
                     json_data_1["data"]["FuelConsumptions"] = updated
 
-                json_file_path_2 = os.path.join(os.getcwd(), "..", "results", path, x2)
+                json_file_path_2 = os.path.join(os.getcwd(), "..", "results", fn, x2)
                 with open(json_file_path_2) as f:
                     json_data_2 = json.load(f)
                     orig = json_data_2["data"]["FuelConsumptions"]
@@ -194,7 +199,7 @@ def run_statistics_process(paths):
                 y2_mean = np.mean(y2)
                 statistic, pvalue = stats.ttest_ind(y1, y2, equal_var=False)
                 result = dict(
-                    x_label=path,
+                    x_label=fn,
                     x_parameters=[x1, x2],
                     means_of_x_parameters=[y1_mean, y2_mean],
                     y_parameter=y_label,
@@ -207,15 +212,39 @@ def run_statistics_process(paths):
                     res["number_of_non_significant_results"] += 1
                 res["actual_results"].append(result)
 
-            write_results_to_file(folder_name=path, variable_name=y_label, result=res)
+            write_results_to_file(folder_name=fn, variable_name=y_label, result=res)
 
 
 if __name__ == '__main__':
-    paths = get_folder_paths()
+
     plotting = True
     if plotting:
-        run_plotting_process(paths=paths)
+        f_names1 = get_file_names(["..", "results"])
+        run_plotting_process(f_names=f_names1)
 
     statistics = True
     if statistics:
-        run_statistics_process(paths=paths)
+        f_names2 = get_file_names(["..", "results"])
+        run_statistics_process(f_names=f_names2)
+
+    # this is only used to perform t-tests on default & same configuration of extended-simpla
+    # internalStatistics = True
+    # if internalStatistics:
+    #     json_data = []
+    #     cmds = ["dataForStats", "extended-simpla"]
+    #     f_names3 = get_json_file_paths(cmds)
+    #     for fn in f_names3:
+    #         folder = os.path.join(os.getcwd(), *cmds)
+    #         exact_file_path = os.path.join(folder, fn)
+    #         exact_file_name = exact_file_path + ".json"
+    #         with open(exact_file_name) as f:
+    #             data = json.load(f)
+    #             json_data.append(data)
+    #     for json_obj in json_data:
+    #         print(json_obj["config"])
+
+    # this is only used to perform t-tests on same configurations of regular-simpla
+    # externalStatistics = True
+    # if externalStatistics:
+    #     f_names4 = get_file_names(["dataForStats", "regular-simpla"])
+    #     print(f_names4)
