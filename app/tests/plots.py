@@ -17,8 +17,7 @@ parameters = ["TripDurations",
               "FuelConsumptions",
               "Speeds",
               "Overheads",
-              "NumberOfCarsInPlatoons",
-              "ReportedPlatoonDurationsBeforeSplit"]
+              "NumberOfCarsInPlatoons"]
 
 from scipy import stats
 
@@ -209,9 +208,6 @@ def find_best_configuration(data):
             elif y_label == "NumberOfCarsInPlatoons":
                 MeanNumberOfCarsInPlatoons.append((folder_name, mean))
                 MedianNumberOfCarsInPlatoons.append((folder_name, median))
-            elif y_label == "ReportedPlatoonDurationsBeforeSplit":
-                MeanReportedDurationsBeforeSplit.append((folder_name, mean))
-                MedianReportedDurationsBeforeSplit.append((folder_name, median))
 
     MeanTripDurations.sort(key=itemgetter(1))
     MeanFuelConsumptions.sort(key=itemgetter(1))

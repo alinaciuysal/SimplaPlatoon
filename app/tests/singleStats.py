@@ -6,31 +6,13 @@ parameters = ["TripDurations",
              "FuelConsumptions",
              "Speeds",
              "Overheads",
-             "NumberOfCarsInPlatoons",
-             "ReportedPlatoonDurationsBeforeSplit"]
+             "NumberOfCarsInPlatoons"]
 
 def get_data(configuration_name):
     with open(configuration_name + ".json") as f:
         data = json.load(f)
 
     return data
-    # Overheads = data["data"]["Overheads"]
-    # FuelConsumptions = data["data"]["FuelConsumptions"]
-    # TripDurations = data["data"]["TripDurations"]
-    # NumberOfCarsInPlatoons = data["data"]["NumberOfCarsInPlatoons"]
-    # ReportedPlatoonDurationsBeforeSplit = data["data"]["ReportedPlatoonDurationsBeforeSplit"]
-    # Speeds = data["data"]["Speeds"]
-    #
-    # MeanOverheads = np.mean(Overheads)
-    # MeanFuelConsumptions = np.mean(FuelConsumptions)
-    # MeanTripDurations = np.mean(TripDurations)
-    # MeanNumberOfCarsInPlatoons = np.mean(NumberOfCarsInPlatoons)
-    # MeanReportedPlatoonDurationsBeforeSplit = np.mean(ReportedPlatoonDurationsBeforeSplit)
-    # MeanSpeeds = np.mean(Speeds)
-    #
-    # print("MeanOverheads", MeanOverheads, "MeanFuelConsumptions", MeanFuelConsumptions,
-    #       "MeanTripDurations", MeanTripDurations, "MeanNumberOfCarsInPlatoons", MeanNumberOfCarsInPlatoons,
-    #       "MeanReportedPlatoonDurationsBeforeSplit", MeanReportedPlatoonDurationsBeforeSplit, "MeanSpeeds", MeanSpeeds)
 
 def t_test(data1, data2, idx):
     res = []

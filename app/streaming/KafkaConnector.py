@@ -17,7 +17,7 @@ def connect():
                                  value_deserializer=lambda m: json.loads(m.decode('utf-8')),
                                  group_id=None,
                                  consumer_timeout_ms=100)
-        consumer.subscribe([Config.kafkaCommandsTopic])
+        consumer.subscribe([Config.kafkaPlatoonConfigTopic])
         print(Fore.GREEN + '# KafkaConnector OK!' + Fore.RESET)
     except RuntimeError:
         sys.exit(Fore.RED + "Connection to Kafka failed!" + Fore.RESET)
