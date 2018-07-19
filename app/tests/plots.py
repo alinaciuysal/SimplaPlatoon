@@ -1,15 +1,16 @@
-import os, json
+import os
+import json
 import matplotlib.pyplot as plt
 import itertools
 import pprint
 import numpy as np
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
+import errno
+from collections import OrderedDict, defaultdict
+from operator import itemgetter
 
 pp = pprint.PrettyPrinter(indent=4)
-
-from app.tests.platoonExperiments import make_sure_path_exists
-from scipy import stats
 
 # These must be same with parameters in data (dict) in _platoonmanager.get_statistics()
 parameters = ["TripDurations",
@@ -19,7 +20,10 @@ parameters = ["TripDurations",
               "NumberOfCarsInPlatoons",
               "ReportedPlatoonDurationsBeforeSplit"]
 
-def get_file_names(cmds):
+from scipy import stats
+
+
+def get_paths(cmds):
     folder_paths = [os.path.relpath(x) for x in os.listdir(os.path.join(*cmds))]
     if 'plots' in folder_paths:
         folder_paths.remove('plots')
@@ -27,30 +31,15 @@ def get_file_names(cmds):
         folder_paths.remove('statistics')
     return folder_paths
 
-def get_json_file_paths(cmds, x_label=None):
-    folder_path = os.path.join(*cmds)
-    if x_label is not None:
-        folder_path = os.path.join(folder_path, x_label)
-    file_paths = [os.path.relpath(x) for x in os.listdir(folder_path)]
-    for i in xrange(len(file_paths)):
-        file_paths[i] = str(file_paths[i]).replace(".json", '')
-    return file_paths
 
+# https://stackoverflow.com/a/5032238
+def make_sure_path_exists(path):
+    try:
+        os.makedirs(path)
+    except OSError as exception:
+        if exception.errno != errno.EEXIST:
+            raise
 
-def get_data(folder_path):
-    json_data = []
-    parameter = folder_path.split(os.sep)[-1]
-    parameterFolder = os.path.join(os.getcwd(), "..", "results", folder_path)
-    for f_name in os.listdir(parameterFolder):
-        f_path = os.path.join(parameterFolder, f_name)
-        with open(f_path) as f:
-            data = json.load(f)
-            json_data.append(data)
-    return parameter, json_data
-
-
-def sort_data(x_label, data):
-    return sorted(data, key=lambda k: k['config'].get(x_label))
 
 def draw_box_plot(x_label, y_label, x_values, y_values):
     # Create a figure instance
@@ -128,25 +117,28 @@ def format_box_plot(ax, y_values):
         mean.set_color('green')
 
 
-def run_plotting_process(f_names):
-    for fn in f_names:
-        x_label, data = get_data(fn)
-        # x_label is the catchupDistance, joinDistance etc. i.e. last element of file path
-        sorted_data = sort_data(x_label, data)
-        # print(sorted_data)
-        # y_label = TripDurations, CO2Emissions etc.
+def run_plotting_process(data):
+    for folder_name in data:
+
         for y_label in parameters:
             y_values = []
             x_values = []
-            for json_obj in sorted_data:
-                x_value = json_obj["config"][x_label]
-                y_value = json_obj["data"][y_label]
+            averages = []
+            # file_name here does not have .json extension
+            for file_name in data[folder_name]:
+                x_values.append(file_name)
+
+                y_value = data[folder_name][file_name]["data"][y_label]
                 y_values.append(y_value)
-                x_values.append(x_value)
-            draw_box_plot(x_label, y_label, x_values, y_values)
+                # averages.extend(y_value)
+
+            # to create separate plot for concatenated data of different configurations
+            # y_values.append(averages)
+            x_values.append("Average")
+            draw_box_plot(folder_name, y_label, x_values, y_values)
 
 
-def write_results_to_file(folder_name, variable_name, result):
+def write_results_to_file(folder_name, file_name, result):
     current_dir = os.path.abspath(os.path.dirname(__file__))
     parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
 
@@ -156,95 +148,133 @@ def write_results_to_file(folder_name, variable_name, result):
     results_dir = os.path.join(stats_dir, folder_name)
     make_sure_path_exists(results_dir)
 
-    results_path = os.path.join(results_dir, variable_name)
+    results_path = os.path.join(results_dir, file_name)
     with open(results_path + '.json', 'w') as outfile:
         json.dump(result, outfile, indent=4, ensure_ascii=False)
 
 
-def run_statistics_process(f_names):
-    for fn in f_names:
-        x_values = get_json_file_paths(["..", "results"], fn)
-        x_values = sorted(x_values, key=lambda x: float(x))
+def get_statistics(data):
+    for folder_name in data:
+        res = dict()
+
         for y_label in parameters:
-            res = dict(
-                actual_results=[],
-                number_of_significant_results=0,
-                number_of_non_significant_results=0
-            )
+            y_values = []
+            # file_name here does not have .json extension
+            for file_name in data[folder_name]:
+                data_points = data[folder_name][file_name]["data"][y_label]
+                y_values.extend(data_points)
+            res["mean"] = np.mean(y_values)
+            res["median"] = np.median(y_values)
+            res["std"] = np.std(y_values)
+            res["parameter"] = y_label
+            write_results_to_file(folder_name=folder_name, file_name=y_label, result=res)
 
-            for pair in itertools.combinations(x_values, 2):
-                x1 = str(pair[0]) + ".json"
-                x2 = str(pair[1]) + ".json"
-                # now get the files & their data
 
-                print(x1, x2)
-                json_file_path_1 = os.path.join(os.getcwd(), "..", "results", fn, x1)
-                with open(json_file_path_1) as f:
-                    json_data_1 = json.load(f)
-                    orig = json_data_1["data"]["FuelConsumptions"]
-                    updated = [item for item in orig if item > 0]
-                    json_data_1["data"]["FuelConsumptions"] = updated
+def find_best_configuration(data):
+    MeanTripDurations = []
+    MeanFuelConsumptions = []
+    MeanSpeeds = []
+    MeanOverheads = []
+    MeanNumberOfCarsInPlatoons = []
+    MeanReportedDurationsBeforeSplit = []
 
-                json_file_path_2 = os.path.join(os.getcwd(), "..", "results", fn, x2)
-                with open(json_file_path_2) as f:
-                    json_data_2 = json.load(f)
-                    orig = json_data_2["data"]["FuelConsumptions"]
-                    updated = [item for item in orig if item > 0]
-                    json_data_2["data"]["FuelConsumptions"] = updated
+    MedianTripDurations = []
+    MedianFuelConsumptions = []
+    MedianSpeeds = []
+    MedianOverheads = []
+    MedianNumberOfCarsInPlatoons = []
+    MedianReportedDurationsBeforeSplit = []
 
-                # now iterate each parameter & get values from json files, perform test, and write to sep. file
-                y1 = json_data_1["data"][y_label]
-                y1_mean = np.mean(y1)
-                y2 = json_data_2["data"][y_label]
-                y2_mean = np.mean(y2)
-                statistic, pvalue = stats.ttest_ind(y1, y2, equal_var=False)
-                result = dict(
-                    x_label=fn,
-                    x_parameters=[x1, x2],
-                    means_of_x_parameters=[y1_mean, y2_mean],
-                    y_parameter=y_label,
-                    statistic=statistic,
-                    pvalue=pvalue
-                )
-                if pvalue <= 0.05:
-                    res["number_of_significant_results"] += 1
-                else:
-                    res["number_of_non_significant_results"] += 1
-                res["actual_results"].append(result)
+    for folder_name in data:
+        print("folder_name", folder_name)
+        for y_label in parameters:
+            data_points = []
+            for file_name in data[folder_name]:
+                data_points.extend(data[folder_name][file_name]["data"][y_label])
+            mean = np.mean(data_points)
+            median = np.median(data_points)
 
-            write_results_to_file(folder_name=fn, variable_name=y_label, result=res)
+            if y_label == "TripDurations":
+                MeanTripDurations.append((folder_name, mean))
+                MedianTripDurations.append((folder_name, median))
+            elif y_label == "FuelConsumptions":
+                MeanFuelConsumptions.append((folder_name, mean))
+                MedianFuelConsumptions.append((folder_name, median))
+            elif y_label == "Speeds":
+                MeanSpeeds.append((folder_name, mean))
+                MedianSpeeds.append((folder_name, median))
+            elif y_label == "Overheads":
+                MeanOverheads.append((folder_name, mean))
+                MedianOverheads.append((folder_name, median))
+            elif y_label == "NumberOfCarsInPlatoons":
+                MeanNumberOfCarsInPlatoons.append((folder_name, mean))
+                MedianNumberOfCarsInPlatoons.append((folder_name, median))
+            elif y_label == "ReportedPlatoonDurationsBeforeSplit":
+                MeanReportedDurationsBeforeSplit.append((folder_name, mean))
+                MedianReportedDurationsBeforeSplit.append((folder_name, median))
+
+    MeanTripDurations.sort(key=itemgetter(1))
+    MeanFuelConsumptions.sort(key=itemgetter(1))
+    MeanOverheads.sort(key=itemgetter(1))
+
+    MedianTripDurations.sort(key=itemgetter(1))
+    MedianFuelConsumptions.sort(key=itemgetter(1))
+    MedianOverheads.sort(key=itemgetter(1))
+
+    # higher values are better for the rest, so sort them in descending order
+    MeanSpeeds.sort(key=itemgetter(1), reverse=True)
+    MeanNumberOfCarsInPlatoons.sort(key=itemgetter(1), reverse=True)
+    MeanReportedDurationsBeforeSplit.sort(key=itemgetter(1), reverse=True)
+
+    MedianSpeeds.sort(key=itemgetter(1), reverse=True)
+    MedianNumberOfCarsInPlatoons.sort(key=itemgetter(1), reverse=True)
+    MedianReportedDurationsBeforeSplit.sort(key=itemgetter(1), reverse=True)
+
+    write_results_to_file("overall", "MeanTripDurations", MeanTripDurations)
+    write_results_to_file("overall", "MeanFuelConsumptions", MeanFuelConsumptions)
+    write_results_to_file("overall", "MeanSpeeds", MeanSpeeds)
+    write_results_to_file("overall", "MeanOverheads", MeanOverheads)
+    write_results_to_file("overall", "MeanNumberOfCarsInPlatoons", MeanNumberOfCarsInPlatoons)
+    write_results_to_file("overall", "MeanReportedDurationsBeforeSplit", MeanReportedDurationsBeforeSplit)
+
+    write_results_to_file("overall", "MedianTripDurations", MedianTripDurations)
+    write_results_to_file("overall", "MedianFuelConsumptions", MedianFuelConsumptions)
+    write_results_to_file("overall", "MedianSpeeds", MedianSpeeds)
+    write_results_to_file("overall", "MedianOverheads", MedianOverheads)
+    write_results_to_file("overall", "MedianNumberOfCarsInPlatoons", MedianNumberOfCarsInPlatoons)
+    write_results_to_file("overall", "MedianReportedDurationsBeforeSplit", MedianReportedDurationsBeforeSplit)
 
 
 if __name__ == '__main__':
 
+    folders = [os.path.relpath(x) for x in os.listdir(os.path.join(os.getcwd(), "..", "results"))]
+
+    if "plots" in folders:
+        folders.remove("plots")
+    if "statistics" in folders:
+        folders.remove("statistics")
+
+    myDict = defaultdict(OrderedDict)
+
+    for folder_name in folders:
+        # first replace extension (json)
+        file_names = [os.path.relpath(x).replace('.json', '') for x in os.listdir(os.path.join(os.getcwd(), "..", "results", folder_name))]
+        # sort them
+        file_names = sorted(file_names, key=float)
+        for name in file_names:
+            file_path = os.path.join(os.getcwd(), "..", "results", folder_name, name)
+            with open(file_path + ".json") as f:
+                data = json.load(f)
+            myDict[folder_name][name] = data
+
     plotting = True
     if plotting:
-        f_names1 = get_file_names(["..", "results"])
-        run_plotting_process(f_names=f_names1)
+        run_plotting_process(data=myDict)
 
     statistics = True
     if statistics:
-        f_names2 = get_file_names(["..", "results"])
-        run_statistics_process(f_names=f_names2)
+        get_statistics(data=myDict)
 
-    # this is only used to perform t-tests on default & same configuration of extended-simpla
-    # internalStatistics = True
-    # if internalStatistics:
-    #     json_data = []
-    #     cmds = ["dataForStats", "extended-simpla"]
-    #     f_names3 = get_json_file_paths(cmds)
-    #     for fn in f_names3:
-    #         folder = os.path.join(os.getcwd(), *cmds)
-    #         exact_file_path = os.path.join(folder, fn)
-    #         exact_file_name = exact_file_path + ".json"
-    #         with open(exact_file_name) as f:
-    #             data = json.load(f)
-    #             json_data.append(data)
-    #     for json_obj in json_data:
-    #         print(json_obj["config"])
-
-    # this is only used to perform t-tests on same configurations of regular-simpla
-    # externalStatistics = True
-    # if externalStatistics:
-    #     f_names4 = get_file_names(["dataForStats", "regular-simpla"])
-    #     print(f_names4)
+    find_best = True
+    if find_best:
+        find_best_configuration(myDict)

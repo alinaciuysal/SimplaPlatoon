@@ -12,30 +12,23 @@ kafkaHost = "kafka:9092"
 
 # the topics we send the kafka messages to
 kafkaTopicTicks = "ticks"
-kafkaTopicLoopDetectorOccupancies = "occupancies"
 kafkaTopicCarSpeeds = "speeds"
 kafkaTopicDurationForTrips = "durations"
 kafkaTopicReportedValues = "reportedValues"
 
 # where we receive system changes
-kafkaCommandsTopic = "shoulder-control"
 kafkaPlatoonConfigTopic = "platoon-config"
 
 # Initial wait time before publishing data
-initialWaitTicks = 500
+ignore_first_n_results = 500
 
 # True if we want to use the SUMO GUI
 sumoUseGUI = False
 
-# True if we want to use platooning scenario, False if we want to use regular scenario
-platooning = True
-
-# True if we want end simulation at some point and get / publish the results via script
 forTests = True
-
 if forTests:
     # number of ticks to run each simulation for test
-    nrOfTicks = 1000
+    nrOfTicks = 10000
 
 # startEdgeID & lastEdgeID denotes lower & upper edges, i.e. extreme points
 startEdgeID = "11S"
@@ -45,6 +38,7 @@ lastEdgeID = "23805795"
 # edgeIDsForExit = ["135586672#0", "12N", "286344111", "286344110", "23805795"]
 edgeIDsForExit = ["135586672#0"]
 
+# you can also set contextual parameters
 parameters = dict(
     contextual=dict(
         lookAheadDistance=500.0, # distance to find a leader vehicle in the simulation
@@ -57,12 +51,11 @@ parameters = dict(
         maxVehiclesInPlatoon=10,
         catchupDistance=500.0,
         maxPlatoonGap=500.0,
-        platoonSplitTime=20.0,
+        platoonSplitTime=10.0,
         joinDistance=3000.0 # to find extreme positions (-+d) of platoon
     )
 )
 
-# simpla paramerers
 import random
 random.seed(0)
 

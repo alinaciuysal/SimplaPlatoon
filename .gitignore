@@ -6,6 +6,7 @@
 
 /app/tests/dataForStats/**/*.json
 /app/results/**/*.json
+/app/tests/*.json
 
 !/app/map/output/placeholder
 !/app/results/plots/*

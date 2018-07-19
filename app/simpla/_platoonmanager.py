@@ -46,13 +46,20 @@ class PlatoonManager(traci.StepListener):
     _platoons = None
     _connectedVehicles = None
     pairwise_platoons = None
+    ignore_first_n_results = None
+    sample_size = None
+    extended_simpla_logic = None
 
-    def __init__(self):
+    def __init__(self, ignore_first_n_results, sample_size, extended_simpla_logic):
         ''' PlatoonManager()
         Creates and initializes the PlatoonManager
         '''
         if rp.VERBOSITY >= 2:
             report("Initializing simpla.PlatoonManager...", True)
+        self.ignore_first_n_results = ignore_first_n_results
+        self.sample_size = sample_size
+        self.extended_simpla_logic = extended_simpla_logic
+
         # Load parameters from config
         # vehicle type filter
         self._typeSubstrings = cfg.VEH_SELECTORS
@@ -453,21 +460,27 @@ class PlatoonManager(traci.StepListener):
                 # Platoon order is corrupted, don't join own platoon.
                 continue
 
+            # usual simpla logic: if currentEdge of leader is no in pltn's route, then they don't merge
             if leadersArrivalEdge != pltnLeaderLastEdgeID:
                 continue
 
-            if leaderArrivalPos < pltnArrivalInterval[0] or leaderArrivalPos > pltnArrivalInterval[1]:
-                continue
+            # use additional restriction if it's set
+            if self.extended_simpla_logic:
+                if leaderArrivalPos < pltnArrivalInterval[0] or leaderArrivalPos > pltnArrivalInterval[1]:
+                    continue
 
             # print("pltnLeaderLastEdgeID", pltnLeaderLastEdgeID, "pltnArrivalInterval", pltnArrivalInterval, "leadersArrivalEdge", leadersArrivalEdge, "leaderArrivalPos", leaderArrivalPos)
 
             if leaderDist <= self._maxPlatoonGap:
-                # introducing number of vehicles in platoon logic
-                nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= Config.parameters["changeable"]["maxVehiclesInPlatoon"]
-                # print("number of vehicles in leader's platoon", len(leader.getPlatoon().getVehicles()), " number of vehicles in platoon to join", len(pltn.getVehicles()), "res", nrOfVehiclesCondition)
-                # print("**************")
-                if nrOfVehiclesCondition == True:
-                    # Try to join the platoon in front
+
+                # use additional restriction if it's set
+                nrOfVehiclesCondition = True
+                if self.extended_simpla_logic:
+                    # find desired result
+                    nrOfVehiclesCondition = (len(leader.getPlatoon().getVehicles()) + len(pltn.getVehicles())) <= Config.parameters["changeable"]["maxVehiclesInPlatoon"]
+
+                if nrOfVehiclesCondition:
+                    # Try to join the platoon in front (usual simpla)
                     if leader.getPlatoon().join(pltn):
                         toRemove.append(pltnID)
                         # Debug
@@ -757,6 +770,9 @@ class PlatoonManager(traci.StepListener):
 
     def get_statistics(self):
         config = dict(
+            ignore_first_n_results=self.ignore_first_n_results,
+            sample_size=self.sample_size,
+            extended_simpla_logic=self.extended_simpla_logic,
             switchImpatienceFactor=Config.parameters["contextual"]["switchImpatienceFactor"],
             lookAheadDistance=Config.parameters["contextual"]["lookAheadDistance"],
             platoonCarCounter=Config.parameters["contextual"]["platoonCarCounter"],

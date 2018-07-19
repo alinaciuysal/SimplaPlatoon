@@ -12,7 +12,7 @@ class Simulation(object):
     def applyFileConfig(cls):
         """ reads configs from a json and applies it at realtime to the simulation """
         try:
-            config = json.load(open('./knobs.json'))
+            config = json.load(open('./parameters.json'))
             if config['hard_shoulder'] == 0:
                 cls.hard_shoulder_on = False
             else:

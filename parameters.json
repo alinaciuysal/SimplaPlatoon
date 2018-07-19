@@ -1,0 +1,8 @@
+{
+  "ignore_first_n_results": 1000,
+  "sample_size": 10000,
+  "extended_simpla_logic": true,
+  "knobs": [
+    {"maxPlatoonGap": 500.0, "platoonSplitTime": 10.0, "catchupDistance": 500.0, "joinDistance": 3000.0, "maxVehiclesInPlatoon": 10}
+  ]
+}
