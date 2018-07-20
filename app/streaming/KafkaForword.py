@@ -1,6 +1,6 @@
 from kafka import KafkaProducer
 from app import Config
-import sys
+import msgpack, sys
 from colorama import Fore
 import json
 
@@ -21,16 +21,7 @@ def connect():
 
 
 # Publishes a message to the configured kafka server
-def publish(message, topic):
-    if Config.mqttUpdates:
-        from paho.mqtt import publish
-        try:
-            publish.single(topic, payload=json.dumps(message).encode('utf-8'),
-                           qos=0, retain=False, hostname=Config.mqttHost,
-                           port=Config.mqttPort, client_id="CrowdNav", keepalive=60)
-        except:
-            print("Error sending mqtt status")
-
+def publish(message,topic):
     if Config.kafkaUpdates:
         producer.send(topic, message)
     else:

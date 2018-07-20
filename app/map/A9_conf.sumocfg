@@ -1,10 +1,12 @@
 
 <configuration>
+
    <input>
        <net-file value="A9.net.xml"/>
        <route-files value="Flow.rou.xml"/>
        <gui-settings-file value="A9.settings.xml"/>
    </input>
+
 	<processing>
         <time-to-teleport value="2"/> <!-- required to teleport halting cars in the specified time interval-->
 		<lateral-resolution value="0.4"/>
@@ -12,4 +14,15 @@
 	<traci_server>
 		<remote-port value="1122"/>
 	</traci_server>
+
+
+	<!--
+	<output>
+		<tripinfo-output value="output/trip_info.xml" />
+		<netstate-dump value="output/netdump.xml" />
+		<summary value ="output/summary.xml" />
+		<laneData id="1112_0" file="output/laneData.xml" />
+		<edgeData id="1112" freq="300" file="output/edgeData.xml"/>
+	</output>
+	-->
 </configuration>

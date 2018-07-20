@@ -1,0 +1,172 @@
+[
+    {
+        "means": [
+            303.5268022181146, 
+            303.3274673886291
+        ], 
+        "pvalue": 0.7329430103414345, 
+        "medians": [
+            300.0, 
+            300.0
+        ], 
+        "statistic": 0.3412191663318385, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "10", 
+            "16"
+        ]
+    }, 
+    {
+        "means": [
+            303.5268022181146, 
+            303.4130113356333
+        ], 
+        "pvalue": 0.8441665460948046, 
+        "medians": [
+            300.0, 
+            300.0
+        ], 
+        "statistic": 0.196569956042446, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "10", 
+            "19"
+        ]
+    }, 
+    {
+        "means": [
+            303.5268022181146, 
+            302.73836138066576
+        ], 
+        "pvalue": 0.17251621141529536, 
+        "medians": [
+            300.0, 
+            299.0
+        ], 
+        "statistic": 1.3642232634998057, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "10", 
+            "25"
+        ]
+    }, 
+    {
+        "means": [
+            303.5268022181146, 
+            333.71865651346207
+        ], 
+        "pvalue": 0.0, 
+        "medians": [
+            300.0, 
+            333.0
+        ], 
+        "statistic": -41.557338691782086, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "10", 
+            "default"
+        ]
+    }, 
+    {
+        "means": [
+            303.3274673886291, 
+            303.4130113356333
+        ], 
+        "pvalue": 0.8822794005818234, 
+        "medians": [
+            300.0, 
+            300.0
+        ], 
+        "statistic": -0.14808262495536978, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "16", 
+            "19"
+        ]
+    }, 
+    {
+        "means": [
+            303.3274673886291, 
+            302.73836138066576
+        ], 
+        "pvalue": 0.3070556170648026, 
+        "medians": [
+            300.0, 
+            299.0
+        ], 
+        "statistic": 1.021451836197451, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "16", 
+            "25"
+        ]
+    }, 
+    {
+        "means": [
+            303.3274673886291, 
+            333.71865651346207
+        ], 
+        "pvalue": 0.0, 
+        "medians": [
+            300.0, 
+            333.0
+        ], 
+        "statistic": -41.88705829375704, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "16", 
+            "default"
+        ]
+    }, 
+    {
+        "means": [
+            303.4130113356333, 
+            302.73836138066576
+        ], 
+        "pvalue": 0.23771030378856922, 
+        "medians": [
+            300.0, 
+            299.0
+        ], 
+        "statistic": 1.180772713673112, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "19", 
+            "25"
+        ]
+    }, 
+    {
+        "means": [
+            303.4130113356333, 
+            333.71865651346207
+        ], 
+        "pvalue": 0.0, 
+        "medians": [
+            300.0, 
+            333.0
+        ], 
+        "statistic": -42.01596028654955, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "19", 
+            "default"
+        ]
+    }, 
+    {
+        "means": [
+            302.73836138066576, 
+            333.71865651346207
+        ], 
+        "pvalue": 0.0, 
+        "medians": [
+            299.0, 
+            333.0
+        ], 
+        "statistic": -42.99631335859385, 
+        "y_parameter": "TripDurations", 
+        "x_parameters": [
+            "25", 
+            "default"
+        ]
+    }
+]

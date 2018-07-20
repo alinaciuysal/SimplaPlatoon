@@ -5,12 +5,15 @@
 # which accompanies this distribution, and is available at
 # http://www.eclipse.org/legal/epl-v20.html
 
+# @file    _pvehicle.py
+# @author Leonhard Luecken
+# @date   2017-04-09
+# @version $Id$
 import traci
 import traci.constants as tc
 import _reporting as rp
 import _config as cfg
 import app.Config as Config
-import random
 
 from _platoonmode import PlatoonMode
 from _platoon import Platoon
@@ -78,26 +81,24 @@ class PVehicle(object):
         self._speedFactors = dict()
         self._laneChangeModes = dict()
         allEdges = traci.simulation.findRoute(fromEdge=Config.startEdgeID, toEdge=Config.lastEdgeID).edges
-        rnd_edge_id = random.choice(Config.edgeIDsAndNumberOfLanesForExit.keys())
-        rnd_edge_index = allEdges.index(rnd_edge_id) + 1 # to include randomly selected edge
-        self.edgesToTravel = allEdges[:rnd_edge_index]
 
-        # now get a random lane and select a position within this lane using edgeIDsAndNumberOfLanesForExit
-        numberOfLanes = Config.edgeIDsAndNumberOfLanesForExit[rnd_edge_id]
-        arrivalLaneNumber = random.randint(0, numberOfLanes - 1) # as indices of actual lanes start from 0
-        arrivalLane = rnd_edge_id + "_" + str(arrivalLaneNumber)
-        laneLength = traci.lane.getLength(arrivalLane)
+        rnd_edge = Config.get_random().choice(Config.edgeIDsForExit)
+        rnd_edge_idx = allEdges.index(rnd_edge) + 1 # to include randomly selected edge
+        self.edgesToTravel = allEdges[:rnd_edge_idx]
 
-        # get a random exit location within [0, laneLength]
-        arrivalPos = random.uniform(0, laneLength)
+        # now get line at idx 0 of this random edge to randomly select a position within this line
+        line_id = rnd_edge + str("_") + "0"
+        line_length = traci.lane.getLength(line_id)
+
+        # get a random exit location within [0, line_length]
+        arrivalPos = Config.get_random().uniform(0, line_length)
 
         # set arrivalInterval relative to the edge length,
         # i.e. negative values or values greater than actual length are not allowed
-        self.arrivalInterval = (max(arrivalPos - Config.parameters["changeable"]["joinDistance"], 0), min(arrivalPos + Config.parameters["changeable"]["joinDistance"], laneLength))
+        self.arrivalInterval = (max(arrivalPos - Config.parameters["changeable"]["joinDistance"], 0), min(arrivalPos + Config.parameters["changeable"]["joinDistance"], line_length))
 
         self.arrivalPos = arrivalPos
-        self.arrivalEdge = rnd_edge_id
-        self.arrivalLaneNumber = arrivalLaneNumber
+        self.arrivalEdge = rnd_edge
         self.currentRouteBeginTime = simTime
 
     def _determinePlatoonVType(self, mode):

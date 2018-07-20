@@ -17,7 +17,8 @@ parameters = ["TripDurations",
               "FuelConsumptions",
               "Speeds",
               "Overheads",
-              "NumberOfCarsInPlatoons"]
+              "NumberOfCarsInPlatoons",
+              "ReportedPlatoonDurationsBeforeSplit"]
 
 from scipy import stats
 
@@ -40,7 +41,7 @@ def make_sure_path_exists(path):
             raise
 
 
-def draw_box_plot(x_label, y_label, x_values, y_values):
+def draw_box_plot(x_label, y_label, x_values, y_values, outer_folder_name, inner_folder_name):
     # Create a figure instance
     fig = plt.figure(1, figsize=(9, 6))
     # Create an axes instance
@@ -68,7 +69,7 @@ def draw_box_plot(x_label, y_label, x_values, y_values):
 
     fig_name = y_label + ".png"
 
-    plots_folder = os.path.join(os.getcwd(), "..", "results", "plots")
+    plots_folder = os.path.join(os.getcwd(), "..", outer_folder_name, inner_folder_name)
     make_sure_path_exists(plots_folder)
 
     fig_folder = os.path.join(plots_folder, x_label)
@@ -116,25 +117,30 @@ def format_box_plot(ax, y_values):
         mean.set_color('green')
 
 
-def run_plotting_process(data):
+def run_plotting_process(data, outer_folder_name, inner_folder_name, parameters=None):
     for folder_name in data:
-
-        for y_label in parameters:
+        # iterate all of the given parameters for regular statistics & plotting
+        if parameters:
+            for y_label in parameters:
+                y_values = []
+                x_values = []
+                # file_name here does not have .json extension
+                for file_name in data[folder_name]:
+                    x_values.append(file_name)
+                    y_value = data[folder_name][file_name]["data"][y_label]
+                    y_values.append(y_value)
+                draw_box_plot(x_label=folder_name, y_label=y_label, x_values=x_values, y_values=y_values, outer_folder_name=outer_folder_name, inner_folder_name=inner_folder_name)
+        else:
+            # only executed for best_configurations, as they're already clustered w.r.t y_labels (folder_names)
+            y_label = folder_name
             y_values = []
             x_values = []
-            averages = []
             # file_name here does not have .json extension
             for file_name in data[folder_name]:
                 x_values.append(file_name)
-
                 y_value = data[folder_name][file_name]["data"][y_label]
                 y_values.append(y_value)
-                # averages.extend(y_value)
-
-            # to create separate plot for concatenated data of different configurations
-            # y_values.append(averages)
-            x_values.append("Average")
-            draw_box_plot(folder_name, y_label, x_values, y_values)
+            draw_box_plot(x_label="Configurations", y_label=y_label, x_values=x_values, y_values=y_values, outer_folder_name=outer_folder_name, inner_folder_name=inner_folder_name)
 
 
 def write_results_to_file(folder_name, file_name, result):
@@ -185,7 +191,6 @@ def find_best_configuration(data):
     MedianReportedDurationsBeforeSplit = []
 
     for folder_name in data:
-        print("folder_name", folder_name)
         for y_label in parameters:
             data_points = []
             for file_name in data[folder_name]:
@@ -208,6 +213,9 @@ def find_best_configuration(data):
             elif y_label == "NumberOfCarsInPlatoons":
                 MeanNumberOfCarsInPlatoons.append((folder_name, mean))
                 MedianNumberOfCarsInPlatoons.append((folder_name, median))
+            elif y_label == "ReportedPlatoonDurationsBeforeSplit":
+                MeanReportedDurationsBeforeSplit.append((folder_name, mean))
+                MedianReportedDurationsBeforeSplit.append((folder_name, median))
 
     MeanTripDurations.sort(key=itemgetter(1))
     MeanFuelConsumptions.sort(key=itemgetter(1))
@@ -240,37 +248,99 @@ def find_best_configuration(data):
     write_results_to_file("overall", "MedianNumberOfCarsInPlatoons", MedianNumberOfCarsInPlatoons)
     write_results_to_file("overall", "MedianReportedDurationsBeforeSplit", MedianReportedDurationsBeforeSplit)
 
+def find_pairwise_statistics(data):
+    for folder_name in data: # folder_name is y-attribute
+        print("folder_name", folder_name)
+        # first replace extension (json)
+        file_names = [os.path.relpath(x).replace('.json', '') for x in os.listdir(os.path.join(os.getcwd(), "..", "best_configurations", folder_name))]
+        print("file_names", file_names)
+        combinations = list(itertools.combinations(file_names, 2))
+        print(combinations)
+        res = []
+        for tpl in combinations:
+            file_name_1 = tpl[0]
+            file_name_2 = tpl[1]
+
+            data_1 = data[folder_name][file_name_1]
+            data_2 = data[folder_name][file_name_2]
+            result = t_test(data_1, data_2, folder_name)
+            result["x_parameters"] = [file_name_1, file_name_2]
+            res.append(result)
+
+        res_path = os.path.join(os.getcwd(), "..", "best_configurations", "Results", folder_name)
+        with open(res_path + ".json", "w") as outfile:
+            json.dump(res, outfile, indent=4, ensure_ascii=False)
+
+
+def t_test(data1, data2, y_parameter):
+    # iterate each parameter & get values, perform test, and return result
+    y_value_1 = data1["data"][y_parameter]
+    y_value_2 = data2["data"][y_parameter]
+
+    mean_1 = np.mean(y_value_1)
+    mean_2 = np.mean(y_value_2)
+    median_1 = np.median(y_value_1)
+    median_2 = np.median(y_value_2)
+
+    statistic, pvalue = stats.ttest_ind(y_value_1, y_value_2, equal_var=False)
+    result = dict(
+        means=[mean_1, mean_2],
+        medians=[median_1, median_2],
+        y_parameter=y_parameter,
+        statistic=statistic,
+        pvalue=pvalue,
+        x_parameters=[]
+    )
+    return result
+
+def get_all_data_from_folder(outer_folder_name):
+    inner_folders = [os.path.relpath(x) for x in os.listdir(os.path.join(os.getcwd(), "..", outer_folder_name))]
+    if "plots" in inner_folders:
+        inner_folders.remove("plots")
+    if "statistics" in inner_folders:
+        inner_folders.remove("statistics")
+    if "Results" in inner_folders:
+        inner_folders.remove("Results")
+    data = defaultdict(OrderedDict)
+
+    for inner_folder_name in inner_folders:
+        print("inner_folder_name", inner_folder_name)
+        # first replace extension (json)
+        file_names = [os.path.relpath(x).replace('.json', '') for x in os.listdir(os.path.join(os.getcwd(), "..", outer_folder_name, inner_folder_name))]
+        for name in file_names:
+            file_path = os.path.join(os.getcwd(), "..", outer_folder_name, inner_folder_name, name)
+            with open(file_path + ".json") as f:
+                d = json.load(f)
+            data[inner_folder_name][name] = d
+    return data
+
 
 if __name__ == '__main__':
+    first_phase = False # plotting, statistics, finding best configurations
 
-    folders = [os.path.relpath(x) for x in os.listdir(os.path.join(os.getcwd(), "..", "results"))]
+    if first_phase:
+        folder_name = "results"
+        data = get_all_data_from_folder(outer_folder_name=folder_name)
 
-    if "plots" in folders:
-        folders.remove("plots")
-    if "statistics" in folders:
-        folders.remove("statistics")
+        plotting = True
+        if plotting:
+            run_plotting_process(data=data, outer_folder_name=folder_name, inner_folder_name="plots", parameters=parameters)
 
-    myDict = defaultdict(OrderedDict)
+        statistics = False
+        if statistics:
+            get_statistics(data=data)
 
-    for folder_name in folders:
-        # first replace extension (json)
-        file_names = [os.path.relpath(x).replace('.json', '') for x in os.listdir(os.path.join(os.getcwd(), "..", "results", folder_name))]
-        # sort them
-        file_names = sorted(file_names, key=float)
-        for name in file_names:
-            file_path = os.path.join(os.getcwd(), "..", "results", folder_name, name)
-            with open(file_path + ".json") as f:
-                data = json.load(f)
-            myDict[folder_name][name] = data
+        find_best = False
+        if find_best:
+            find_best_configuration(data=data)
+    else:
+        folder_name = "best_configurations"
+        data = get_all_data_from_folder(outer_folder_name=folder_name)
 
-    plotting = True
-    if plotting:
-        run_plotting_process(data=myDict)
+        statistics = False
+        if statistics:
+            find_pairwise_statistics(data=data)
 
-    statistics = True
-    if statistics:
-        get_statistics(data=myDict)
-
-    find_best = True
-    if find_best:
-        find_best_configuration(myDict)
+        plotting = True
+        if plotting:
+            run_plotting_process(data=data, outer_folder_name=folder_name, inner_folder_name="Plots")

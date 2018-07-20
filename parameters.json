@@ -3,6 +3,42 @@
   "sample_size": 10000,
   "extended_simpla_logic": true,
   "knobs": [
-    {"maxPlatoonGap": 500.0, "platoonSplitTime": 10.0, "catchupDistance": 500.0, "joinDistance": 3000.0, "maxVehiclesInPlatoon": 10}
+    {"maxPlatoonGap": 500.0, "platoonSplitTime": 10.0, "catchupDistance": 500.0, "joinDistance": 3000.0, "maxVehiclesInPlatoon": 10},
+
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 100.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 200.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 100.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 200.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5},
+
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 250.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 500.0, "maxVehiclesInPlatoon": 5},
+    {"maxPlatoonGap": 400.0, "platoonSplitTime": 10.0, "catchupDistance": 400.0, "joinDistance": 1000.0, "maxVehiclesInPlatoon": 5}
   ]
 }

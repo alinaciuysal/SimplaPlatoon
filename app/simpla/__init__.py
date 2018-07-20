@@ -69,13 +69,13 @@ if not _emergencyDecelImplemented:
     traci.vehicletype.getEmergencyDecel = traci.vehicletype.getDecel
 
 
-def load(config_filename):
+def load(config_filename, ignore_first_n_results, sample_size, extended_simpla_logic):
     '''
     Load the config from file and creates a Platoon Manager with provided parameters
     '''
     global _mgr, _mgr_is_added
     _config.load(config_filename)
-    _mgr = _platoonmanager.PlatoonManager()
+    _mgr = _platoonmanager.PlatoonManager(ignore_first_n_results, sample_size, extended_simpla_logic)
     if _useStepListener:
         # For SUMO version >= 0.30
         traci.addStepListener(_mgr)

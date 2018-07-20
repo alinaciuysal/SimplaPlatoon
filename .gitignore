@@ -7,7 +7,9 @@
 /app/tests/dataForStats/**/*.json
 /app/results/**/*.json
 /app/tests/*.json
+/app/best_configurations/**/*.json
 
 !/app/map/output/placeholder
 !/app/results/plots/*
 !/app/results/statistics/**/*.json
+!/app/best_configurations/Results/*.json

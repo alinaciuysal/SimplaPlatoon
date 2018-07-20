@@ -1,0 +1,172 @@
+[
+    {
+        "means": [
+            142.68130832735105, 
+            135.1955373646686
+        ], 
+        "pvalue": 0.3107883830790237, 
+        "medians": [
+            24.0, 
+            23.0
+        ], 
+        "statistic": 1.013580591989699, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "1", 
+            "10"
+        ]
+    }, 
+    {
+        "means": [
+            142.68130832735105, 
+            136.60450585232772
+        ], 
+        "pvalue": 0.41253721793298626, 
+        "medians": [
+            24.0, 
+            23.0
+        ], 
+        "statistic": 0.8194444683386086, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "1", 
+            "19"
+        ]
+    }, 
+    {
+        "means": [
+            142.68130832735105, 
+            138.3635776855694
+        ], 
+        "pvalue": 0.5698035699510859, 
+        "medians": [
+            24.0, 
+            24.0
+        ], 
+        "statistic": 0.5683450941697967, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "1", 
+            "25"
+        ]
+    }, 
+    {
+        "means": [
+            142.68130832735105, 
+            60.52684281964477
+        ], 
+        "pvalue": 1.5447703515206162e-52, 
+        "medians": [
+            24.0, 
+            22.0
+        ], 
+        "statistic": 15.29266755917489, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "1", 
+            "default"
+        ]
+    }, 
+    {
+        "means": [
+            135.1955373646686, 
+            136.60450585232772
+        ], 
+        "pvalue": 0.8464755519809993, 
+        "medians": [
+            23.0, 
+            23.0
+        ], 
+        "statistic": -0.19361840395960034, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "10", 
+            "19"
+        ]
+    }, 
+    {
+        "means": [
+            135.1955373646686, 
+            138.3635776855694
+        ], 
+        "pvalue": 0.6711485310074092, 
+        "medians": [
+            23.0, 
+            24.0
+        ], 
+        "statistic": -0.4245750820165752, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "10", 
+            "25"
+        ]
+    }, 
+    {
+        "means": [
+            135.1955373646686, 
+            60.52684281964477
+        ], 
+        "pvalue": 6.329750685615326e-47, 
+        "medians": [
+            23.0, 
+            22.0
+        ], 
+        "statistic": 14.417661158728858, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "10", 
+            "default"
+        ]
+    }, 
+    {
+        "means": [
+            136.60450585232772, 
+            138.3635776855694
+        ], 
+        "pvalue": 0.8143617352605742, 
+        "medians": [
+            23.0, 
+            24.0
+        ], 
+        "statistic": -0.23480427794025738, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "19", 
+            "25"
+        ]
+    }, 
+    {
+        "means": [
+            136.60450585232772, 
+            60.52684281964477
+        ], 
+        "pvalue": 7.179931866254934e-48, 
+        "medians": [
+            23.0, 
+            22.0
+        ], 
+        "statistic": 14.568476853197323, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "19", 
+            "default"
+        ]
+    }, 
+    {
+        "means": [
+            138.3635776855694, 
+            60.52684281964477
+        ], 
+        "pvalue": 1.1982487122891768e-45, 
+        "medians": [
+            24.0, 
+            22.0
+        ], 
+        "statistic": 14.21303150376639, 
+        "y_parameter": "ReportedPlatoonDurationsBeforeSplit", 
+        "x_parameters": [
+            "25", 
+            "default"
+        ]
+    }
+]
