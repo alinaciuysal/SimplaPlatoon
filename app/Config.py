@@ -4,27 +4,29 @@ sumoConfig = "A9_conf.sumocfg"
 # The network net we use for our simulation
 sumoNet = "A9.net.xml"
 
+mqttUpdates = False
+mqttHost = "localhost"
+mqttPort = "1883"
+
 # should it use kafka for config changes & publishing data (else it uses json file)
 kafkaUpdates = True
-mqttUpdates = False
 
 # the kafka host we want to send our messages to
 kafkaHost = "kafka:9092"
 
 # the topics we send the kafka messages to
-kafkaTopicSpeeds = "platooningSpeeds"
-kafkaTopicTripDurations = "platooningTripDurations"
-kafkaTopicFuelConsumptions = "platooningFuelConsumptions"
-kafkaTopicOverheads = "platooningOverheads"
+kafkaTopicMeanCarData = "platooning-car-data"
+kafkaTopicDurations = "platooning-trip-durations"
+kafkaTopicPlatooningData = "platooning-data"
 
 # where we receive system changes
-kafkaPlatoonConfigTopic = "platooningConfig"
+kafkaPlatoonConfigTopic = "platooning-config"
 
-# Initial wait time before publishing data
-ignore_first_n_results = 500
+# Initial wait time before publishing data, should not be changed
+ignore_first_n_results = 350
 
 # True if we want to use the SUMO GUI
-sumoUseGUI = True
+sumoUseGUI = False
 
 # startEdgeID & lastEdgeID denotes lower & upper edges, i.e. extreme points of the map
 startEdgeID = "11S"

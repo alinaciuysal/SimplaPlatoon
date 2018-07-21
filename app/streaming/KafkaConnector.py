@@ -1,7 +1,6 @@
 from kafka import KafkaConsumer
-from kafka import KafkaProducer
 from app import Config
-import msgpack, sys
+import sys
 from colorama import Fore
 import json
 

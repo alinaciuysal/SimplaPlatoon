@@ -150,7 +150,7 @@ class PlatoonManager(traci.StepListener):
         Manages platoons at each time step.
         NOTE: argument t is unused, larger step sizes than DeltaT are not supported.
         '''
-        if not t==0 and rp.VERBOSITY >= 1:
+        if not t == 0 and rp.VERBOSITY >= 1:
             warn("Step lengths that differ from SUMO's simulation step length are not supported and probably lead to undesired behavior.\nConsider decreasing simpla's control rate instead.")
         # Handle vehicles entering and leaving the simulation
         self._removeArrived()
@@ -166,7 +166,7 @@ class PlatoonManager(traci.StepListener):
     def stop(self):
         '''stop()
 
-        Immediately resets all vtypes, releases all vehicles from the managers control, and unsubscribes them from traci
+        Immediately resets all vtypes, releases all vehicles from the managers control, and unsubscribe them from traci
         '''
         for veh in self._connectedVehicles.values():
             veh.setPlatoonMode(PlatoonMode.NONE)
@@ -293,9 +293,6 @@ class PlatoonManager(traci.StepListener):
         '''
         newPlatoons = []
         for pltnID, pltn in self._platoons.items():
-            # additional metric: in each tick, push number of cars in a platoon (excluding single ones)
-            if len(pltn.getVehicles()) > 1:
-                self.NumberOfCarsInPlatoons.append(len(pltn.getVehicles()))
             # encourage all vehicles to adopt the current mode of the platoon
             # NOTE: for switching between platoon modes, there may be vehicles not
             #       complying immediately. They are asked to do so, here in each turn.
@@ -751,7 +748,6 @@ class PlatoonManager(traci.StepListener):
             FuelConsumptions=self.FuelConsumptions,
             Speeds=self.Speeds,
             Overheads=self.Overheads,
-            NumberOfCarsInPlatoons=self.NumberOfCarsInPlatoons
         )
 
         res = dict(
@@ -771,11 +767,21 @@ class PlatoonManager(traci.StepListener):
         overhead = actualDuration / theoreticalDuration
 
         # as this fcn is called upon vehicle arrival, we get average fuel consumption & speed
-        averageFuelConsumption = np.mean(veh.state.reportedFuelConsumptions)
+        fuelConsumption = np.mean(veh.state.reportedFuelConsumptions)
+        speed = np.mean(veh.state.reportedSpeeds)
+        tripDuration = actualDuration
+        timeSpentInsidePlatoon = (100.0 * veh.state.durationInsidePlatoon) / (veh.state.durationOutsidePlatoon * 1.0) # in terms of percentage
 
-        self.TripDurations.append(actualDuration)
-        self.Speeds.extend(veh.state.reportedSpeeds)
-        self.Overheads.append(overhead)
-        self.TimeSpentInsidePlatoon.append(veh.state.durationInsidePlatoon / (veh.state.durationOutsidePlatoon * 1.0) )
+        average_metrics = dict(
+            fuelConsumption=fuelConsumption,
+            speed=speed,
+            overhead=overhead,
+            tripDuration=tripDuration,
+        )
 
-        KafkaPublisher.publish(actualDuration, Config.kafkaTopicTripDuration)
+        platooning_metrics = dict(
+            timeSpentInsidePlatoon=timeSpentInsidePlatoon
+        )
+
+        KafkaPublisher.publish(average_metrics, Config.kafkaTopicMeanCarData)
+        # KafkaPublisher.publish(platooning_metrics, Config.kafkaTopicPlatooningData)

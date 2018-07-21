@@ -20,7 +20,6 @@ def initiateSimulation():
     info('#####################################', Fore.CYAN)
     info('# Configuration:', Fore.YELLOW)
     info('# Kafka-Host   -> ' + Config.kafkaHost, Fore.YELLOW)
-    info('# Kafka-Topic1 -> ' + Config.kafkaTopicTripDuration, Fore.YELLOW)
 
     # init sending updates to kafka and getting commands from there
     if Config.kafkaUpdates:

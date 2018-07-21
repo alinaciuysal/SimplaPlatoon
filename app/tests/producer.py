@@ -1,8 +1,10 @@
 import app.Config as cfg
-from json import dumps
-from app.changeproviders.__init__ import init_change_provider
-from kafka import KafkaProducer
 import json
+
+from json import dumps
+from app.changeproviders import init_change_provider
+from kafka import KafkaProducer
+
 
 def main():
     wf = dict(

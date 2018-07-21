@@ -14,11 +14,13 @@ class PlatoonSimulation(object):
     def applyFileConfig(cls):
         """ reads configs from a json and applies it at realtime to the simulation """
         try:
-            file_path = os.path.join("..", "..", "parameters.json") # relative path to this file
+            file_path = os.path.join("parameters.json") # relative path to Run.py
             with open(file_path) as f:
                 parameters = json.load(f)
-            cls.changeVariables(parameters)
-        except:
+            cls.changeVariables(parameters=parameters)
+            info("# New parameters -> " + str(Config.parameters), Fore.GREEN)
+        except Exception as e:
+            print(e)
             pass
 
     @classmethod
@@ -26,13 +28,8 @@ class PlatoonSimulation(object):
         """ Gets a new configuration value from Kafka"""
         new_conf = KafkaConnector.checkForNewConfiguration()
         if new_conf is not None:
-            info("new_conf arrived", new_conf)
-        # else:
-            # NEW: apply platoon configs
-            # print("setting config")
-            # config = json.load(open('./parameters.json'))
-            # setValues(config)
-            # print("new globals", str(getValues()))
+            info("new configuration arrived" + str(new_conf), Fore.GREEN)
+            cls.changeVariables(parameters=new_conf)
 
     @classmethod
     def start(cls, platoon_mgr):
@@ -40,11 +37,17 @@ class PlatoonSimulation(object):
         info("# Applying file config")
         cls.applyFileConfig()
 
-        info("# Started adding initial cars to the simulation")
+        info("# Started adding initial cars to the simulation", Fore.GREEN)
         platoon_mgr.applyCarCounter()
+
+        kafkaIndex = 1
         while 1:
             # let the cars process this step via platoonmgr
             traci.simulationStep()
+            # apply kafka config in 10 ticks
+            if kafkaIndex % 10 == 0:
+                cls.applyKafkaConfig()
+            kafkaIndex += 1
 
     @classmethod
     def changeVariables(cls, parameters):
@@ -75,4 +78,4 @@ class PlatoonSimulation(object):
             elif variable_name == "extended_simpla_logic":
                 Config.parameters["contextual"]["extended_simpla_logic"] = value
             else:
-                warn(str(variable_name) + " does not exist in Config.py")
+                warn(str(variable_name) + " does not exist in Config.py", Fore.RED)
