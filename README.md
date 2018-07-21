@@ -6,10 +6,9 @@ https://github.com/alinaciuysal/OEDA
 
 ### Minimal Setup
 * Download or checkout the code
-* Download and install 32-bit version of [SUMO](http://sumo.dlr.de/wiki/Downloads)
+* Download and install 32-bit version of [SUMO](http://sumo.dlr.de/wiki/Downloads) & set env_var SUMO_HOME
 * Run `python setup.py install` to download all dependencies 
-* Install [SUMO](http://sumo.dlr.de) & set env var SUMO_HOME
-* Set necessary values in app.Config.py. If you want a GUI, set sumoUseGUI to True in this file.
+* Set necessary values in app.Config.py. If you want a GUI, set sumoUseGUI to `True` in this file.
 * Run `python Run.py`. This will start the simulation.
 
 ### Note 
