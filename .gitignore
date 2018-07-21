@@ -4,6 +4,10 @@
 *.iml
 **.pyc
 
+/build/**
+/dist/**
+/Sumo_Platooning.egg-info/**
+
 /app/tests/dataForStats/**/*.json
 /app/results/**/*.json
 /app/tests/*.json

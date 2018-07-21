@@ -70,7 +70,10 @@ if __name__ == '__main__':
     sample_size = parameters["sample_size"]
     ignore_first_n_results = parameters["ignore_first_n_results"]
     knobs = parameters["knobs"]
+
     PlatoonConfig.forTests = True
+    PlatoonConfig.nrOfTicks = sample_size
+
     run_index = 0
     for knob in knobs:
         for variable_name in knob:
@@ -78,7 +81,7 @@ if __name__ == '__main__':
             changeVariable(variable_name, value)
         print("New knob: " + str(knob))
         results = Initiator.initiateSimulation(ignore_first_n_results, sample_size, extended_simpla_logic)
-        flush_results(results=results, run_index=run_index)
+        # flush_results(results=results, run_index=run_index)
 
         # now revert back to default values
         defaultParameters = deepcopy(originalParameters)
